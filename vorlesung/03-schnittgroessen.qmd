@@ -10,6 +10,7 @@ Jetzt schneiden wir *durch das Tragwerk selbst*. So werden die inneren Kräfte s
 beanspruchen. Sie sind die Grundlage für die gesamte Festigkeitslehre.
 
 Tipp: Mit **Bild↓ / Bild↑** oder **→ / ←** springen Sie von Schritt zu Schritt; Taste **B** schaltet den Beamer-Modus.
+Hinter **„Ausführlicher“** finden Sie zu vielen Schritten eine längere Erklärung zum Nachlesen.
 :::
 
 ## Was sind Schnittgrößen?
@@ -23,6 +24,18 @@ Wir schneiden einen Balken an einer beliebigen Stelle $x$ (Schnittpunkt $S$) auf
 
 Im Schnitt muss so viel übertragen werden, dass beide Teile im Gleichgewicht bleiben.
 Ein Schnitt verhält sich also wie eine **Einspannung**: Er überträgt in der Ebene **drei** Größen.
+
+::: {.vertiefung titel="Ausführlicher: Was wird im Schnitt wirklich übertragen?"}
+In Wirklichkeit wird über die ganze Schnittfläche eine verteilte Flächenkraft übertragen, die
+**Spannung**. Für die Statik genügt ihre Gesamtwirkung, zusammengefasst im Schwerpunkt des Querschnitts:
+
+- die Komponente senkrecht zur Schnittfläche ist die **Normalkraft** $N(x)$,
+- die Komponente in der Schnittfläche ist die **Querkraft** $Q(x)$,
+- das resultierende Moment ist das **Biegemoment** $M(x)$.
+
+Wie sich die Spannungen über den Querschnitt verteilen, klärt später die Festigkeitslehre.
+Dort brauchen wir genau diese drei Größen wieder, deshalb lohnt es sich, sie sicher zu bestimmen.
+:::
 :::
 
 ::: {.schritt zeige="ganz getrennt ufer-pos" zoom="0 20 620 300"}
@@ -33,31 +46,44 @@ Es ist das rechte Ende des linken Teilsystems.
 
 Dort sind positiv:
 
-- **Normalkraft $N$** in $+x$, also **Zug**
-- **Querkraft $Q$** in $+z$, also nach unten
-- **Biegemoment $M$** so, dass die **untere Faser auf Zug** beansprucht wird
+- **Normalkraft $N(x)$** in $+x$, also **Zug**
+- **Querkraft $Q(x)$** in $+z$, also nach unten
+- **Biegemoment $M(x)$** so, dass die **untere Faser auf Zug** beansprucht wird
 :::
 
 ::: {.schritt zeige="ganz getrennt ufer-pos ufer-neg" zoom="0 20 620 300"}
 ### Negatives Schnittufer
 
 Am gegenüberliegenden Ufer wirken die Schnittgrößen nach dem
-**Wechselwirkungsgesetz** (actio = reactio) **entgegengesetzt**:
-
-- $N$ zeigt wieder aus dem Ufer heraus (Zug)
-- $Q$ zeigt nach oben
-- $M$ dreht andersherum
+**Wechselwirkungsgesetz** (actio = reactio) **entgegengesetzt**.
 
 Daher spielt es keine Rolle, ob wir das linke oder das rechte Teilsystem betrachten.
 Wir nehmen das **einfachere**.
+
+**Merkregel:** Am positiven Ufer zeigen positive Schnittgrößen in die positiven Koordinatenrichtungen,
+am negativen Ufer in die negativen.
+
+::: {.vertiefung titel="Ausführlicher: Vorzeichen anschaulich deuten"}
+Ein **positives Moment** krümmt den Balken wie eine durchhängende Decke: unten gezogen, oben gedrückt
+(*Feldmoment*). Ein **negatives Moment** tritt über Stützen und an Kragarmen auf, etwa bei einem
+Balkon oder einer Rohrkonsole; dann ist die Oberseite gezogen (*Stützmoment*). Im Stahlbeton liegt
+die Bewehrung deshalb dort, wo die Momentenlinie Zug anzeigt.
+
+Eine negative Normalkraft bedeutet **Druck**. Prüfen Sie jedes Vorzeichen mit dieser Vorstellung.
+
+*Hinweis zur Literatur:* Gross verwendet ebenfalls $N$, $Q$, $M$ und $x$, nennt die Lagerkräfte aber
+$A_H$, $A_V$, $B$. Bei Dankert heißen die Schnittgrößen $F_N$, $F_Q$, $M_b$, und die Balkenachse ist $z$.
+Die Vorzeichenkonvention ist überall dieselbe.
+:::
 :::
 
 ::::
 
 ## Bereiche und Rechenschema
 
-Schnittgrößen sind **Funktionen von $x$**. Wo sich die Belastung sprunghaft ändert, ändern sich auch
-die Funktionen. Deshalb teilen wir das Tragwerk in **Bereiche** ein, jeweils mit eigener Koordinate $x_i$.
+Schnittgrößen sind **Funktionen von $x$**: $N(x)$, $Q(x)$, $M(x)$. Wo sich die Belastung sprunghaft
+ändert, ändern sich auch die Funktionen. Deshalb teilen wir das Tragwerk in **Bereiche** ein,
+jeweils mit eigener Koordinate $x_1, x_2, \ldots$
 
 Ein neuer Bereich beginnt
 
@@ -71,11 +97,21 @@ Ein neuer Bereich beginnt
 ::: {.merke}
 **Rechenschema („Kochrezept“)**
 
-1. Lager- und Verbindungsreaktionen bestimmen
+1. Lager- und Verbindungsreaktionen bestimmen (in der Regel nötig; beim Kragträger kann man oft vom freien Ende her rechnen)
 2. Bereiche einteilen, Koordinaten $x_i$ festlegen
-3. In jedem Bereich an beliebiger Stelle $x_i$ schneiden, Gleichgewicht am einfacheren Teilsystem.
-   Die Momentenbilanz stets **um den Schnittpunkt $S$** bilden.
+3. In jedem Bereich an beliebiger Stelle $x_i$ schneiden. Schnittgrößen **immer in positiver Richtung** einzeichnen.
+   Gleichgewicht am einfacheren Teilsystem, Momentenbilanz stets **um den Schnittpunkt $S$**.
 4. Werte an den Bereichsgrenzen berechnen und Verläufe zeichnen
+:::
+
+::: {.vertiefung titel="Ausführlicher: Warum immer positiv einzeichnen?"}
+Zeichnen Sie $N(x_i)$, $Q(x_i)$, $M(x_i)$ am Schnittufer **immer in positiver Richtung** ein, auch wenn
+Sie schon ahnen, dass das Ergebnis negativ wird. Das Vorzeichen des Ergebnisses sagt Ihnen dann direkt,
+was los ist: $N<0$ heißt Druck, $M<0$ heißt Zug oben. Wer stattdessen „richtig herum“ einzeichnet,
+muss das Vorzeichen nachträglich umdeuten, und genau dabei passieren die meisten Fehler.
+
+Die Momentenbilanz um den Schnittpunkt $S$ hat den Vorteil, dass $N$ und $Q$ darin nicht vorkommen
+(ihre Wirkungslinien gehen durch $S$). So erhält man $M$ direkt aus einer Gleichung.
 :::
 
 ## Beispiel: Träger mit Kragarm
@@ -87,24 +123,25 @@ Ein neuer Bereich beginnt
 
 Ein Träger mit Festlager $A$ und Loslager $B$ trägt die schräge Kraft $F_1$ und am Kragarm die Kraft $F_2$.
 
-**Gegeben:** $F_1 = 2000\,\text{N}$, $F_2 = 500\,\text{N}$, $\alpha = 30^\circ$, $a = 1\,\text{m}$
+**Gegeben:** $F_1 = 2000$ N, $F_2 = 500$ N, $\alpha = 30^\circ$, $a = 1$ m
 
-**Gesucht:** Verläufe der Schnittgrößen $N$, $Q$, $M$
+**Gesucht:** Verläufe $N(x)$, $Q(x)$, $M(x)$
 :::
 
 ::: {.schritt zeige="traeger lasten reaktionen" zoom="30 40 680 175"}
 ### ① Lagerreaktionen
 
-Lager freischneiden: Lager durch Reaktionskräfte ersetzen.
+Lager durch Reaktionskräfte ersetzen und Gleichgewicht aufstellen:
 
 $$
-\rightarrow:\; F_{AH} - F_1\cos\alpha = 0 \;\Rightarrow\; F_{AH} = 1732\,\text{N}
-$$
-$$
-\curvearrowleft A:\; -F_1 \sin\alpha\, a + F_B\,3a - F_2\,4a = 0 \;\Rightarrow\; F_B = 1000\,\text{N}
-$$
-$$
-\uparrow:\; F_{AV} + F_B - F_1\sin\alpha - F_2 = 0 \;\Rightarrow\; F_{AV} = 500\,\text{N}
+\begin{aligned}
+&\rightarrow: && F_{AH} - F_1\cos\alpha = 0\\
+& && F_{AH} = 1732\ \text{N}\\[4pt]
+&\curvearrowleft A: && -F_1 \sin\alpha\; a + F_B\, 3a - F_2\, 4a = 0\\
+& && F_B = 1000\ \text{N}\\[4pt]
+&\uparrow: && F_{AV} + F_B - F_1\sin\alpha - F_2 = 0\\
+& && F_{AV} = 500\ \text{N}
+\end{aligned}
 $$
 :::
 
@@ -120,87 +157,104 @@ Die Kraft $F_1$ und das Lager $B$ teilen den Träger in **drei Bereiche**:
 | III | $0 \le x_3 \le a$ |
 :::
 
-::: {.schritt zeige="traeger lasten reaktionen schnitt-1" dimmen="bereiche" zoom="30 40 710 330"}
+::: {.schritt zeige="traeger lasten reaktionen schnitt-1" dimmen="bereiche" zoom="30 40 760 330"}
 ### ③ Bereich I
 
 Schnitt bei $x_1$, linkes Teilsystem:
 
 $$
-\rightarrow:\; F_{AH} + N = 0 \;\Rightarrow\; N(x_1) = -F_{AH} = -1732\,\text{N}
-$$
-$$
-\uparrow:\; F_{AV} - Q = 0 \;\Rightarrow\; Q(x_1) = F_{AV} = 500\,\text{N}
-$$
-$$
-\curvearrowleft S:\; M - F_{AV}\,x_1 = 0 \;\Rightarrow\; M(x_1) = F_{AV}\,x_1
+\begin{aligned}
+&\rightarrow: && F_{AH} + N(x_1) = 0\\
+& && N(x_1) = -F_{AH} = -1732\ \text{N}\\[4pt]
+&\uparrow: && F_{AV} - Q(x_1) = 0\\
+& && Q(x_1) = F_{AV} = 500\ \text{N}\\[4pt]
+&\curvearrowleft S: && M(x_1) - F_{AV}\,x_1 = 0\\
+& && M(x_1) = F_{AV}\,x_1
+\end{aligned}
 $$
 
-$N$ ist negativ, im Bereich I herrscht also **Druck**.
+$N(x_1)$ ist negativ: Im Bereich I herrscht **Druck**.
 :::
 
-::: {.schritt zeige="traeger lasten reaktionen schnitt-2" dimmen="bereiche" zoom="30 40 710 330"}
+::: {.schritt zeige="traeger lasten reaktionen schnitt-2" dimmen="bereiche" zoom="30 40 760 330"}
 ### ③ Bereich II
 
 Schnitt bei $x_2$. Das linke Teilsystem enthält jetzt zusätzlich $F_1$:
 
 $$
-N(x_2) = F_1\cos\alpha - F_{AH} = 0
-$$
-$$
-Q(x_2) = F_{AV} - F_1\sin\alpha = -500\,\text{N}
-$$
-$$
-M(x_2) = F_{AV}\,(a + x_2) - F_1\sin\alpha\;x_2
+\begin{aligned}
+&\rightarrow: && F_{AH} - F_1\cos\alpha + N(x_2) = 0\\
+& && N(x_2) = 0\\[4pt]
+&\uparrow: && F_{AV} - F_1\sin\alpha - Q(x_2) = 0\\
+& && Q(x_2) = -500\ \text{N}\\[4pt]
+&\curvearrowleft S: && M(x_2) + F_1\sin\alpha\,x_2 - F_{AV}(a + x_2) = 0\\
+& && M(x_2) = F_{AV}(a + x_2) - F_1\sin\alpha\,x_2
+\end{aligned}
 $$
 
-Kontrolle: $M(x_2{=}0) = 500\,\text{Nm}$, $M(x_2{=}2a) = -500\,\text{Nm}$
+Kontrolle: $M(x_2{=}0) = 500$ Nm, $M(x_2{=}2a) = -500$ Nm
 :::
 
-::: {.schritt zeige="traeger lasten reaktionen schnitt-3" dimmen="bereiche" zoom="30 40 710 330"}
+::: {.schritt zeige="traeger lasten reaktionen schnitt-3" dimmen="bereiche" zoom="30 40 760 330"}
 ### ③ Bereich III
 
 Hier ist das **rechte Teilsystem** einfacher: Es trägt nur $F_2$.
 
 $$
-\rightarrow:\; -N = 0 \;\Rightarrow\; N(x_3) = 0
-$$
-$$
-\uparrow:\; Q - F_2 = 0 \;\Rightarrow\; Q(x_3) = F_2 = 500\,\text{N}
-$$
-$$
-\curvearrowleft S:\; -M - F_2\,(a - x_3) = 0 \;\Rightarrow\; M(x_3) = -F_2\,(a - x_3)
+\begin{aligned}
+&\rightarrow: && -N(x_3) = 0\\
+& && N(x_3) = 0\\[4pt]
+&\uparrow: && Q(x_3) - F_2 = 0\\
+& && Q(x_3) = F_2 = 500\ \text{N}\\[4pt]
+&\curvearrowleft S: && -M(x_3) - F_2\,(a - x_3) = 0\\
+& && M(x_3) = -F_2\,(a - x_3)
+\end{aligned}
 $$
 :::
 
 ::: {.schritt zeige="traeger lasten reaktionen verlauf-N" zoom="30 40 690 555"}
-### ④ Normalkraftverlauf
+### ④ Normalkraftverlauf $N(x)$
 
 Nur im Bereich I wirkt eine Normalkraft: Der Träger wird zwischen $A$ und $F_1$ **gedrückt**.
 
-Positive Werte tragen wir **oberhalb** der Achse auf.
+Positive Werte tragen wir **oberhalb** der Achse auf; die Symbole ⊕/⊖ zeigen das Vorzeichen.
 :::
 
 ::: {.schritt zeige="traeger lasten reaktionen verlauf-N verlauf-Q" zoom="30 40 690 555"}
-### ④ Querkraftverlauf
+### ④ Querkraftverlauf $Q(x)$
 
 Die Querkraft ist in jedem Bereich **konstant**, denn zwischen den Einzelkräften greift keine Last an.
+
+::: {.vertiefung titel="Ausführlicher: Querkraftverlauf ohne Rechnung"}
+Bei reinen Einzellasten lässt sich $Q(x)$ direkt zeichnen. Man startet links bei null und „läuft mit
+den Kräften“: Eine Kraft nach oben hebt die Linie um ihren Betrag, eine Kraft nach unten senkt sie.
+Zwischen den Kräften bleibt die Linie waagerecht.
+
+Hier: $0 \to +500$ ($F_{AV}$) $\to -500$ ($F_1\sin\alpha$) $\to +500$ ($F_B$) $\to 0$ ($F_2$).
+
+Am rechten Ende muss man wieder bei null ankommen, das ist zugleich die Probe für die Lagerreaktionen.
+:::
 :::
 
 ::: {.schritt zeige="traeger lasten reaktionen verlauf-N verlauf-Q verlauf-M" zoom="30 40 690 555"}
-### ④ Momentenverlauf
+### ④ Momentenverlauf $M(x)$
 
 Das Moment verläuft in jedem Bereich **linear**.
 
-An den gelenkigen Lagern und am freien Ende ist $M = 0$. Das betragsmäßig größte Moment tritt bei $B$ auf:
-$|M| = 500\,\text{Nm}$.
+Am Endauflager $A$ und am freien Kragarmende ist $M = 0$. Über dem Lager $B$ ist $M \neq 0$:
+Der Kragarm „hängt“ dort am Träger (**Stützmoment**).
+
+Die betragsgrößten Momente liegen unter $F_1$ ($+500$ Nm, unten gezogen) und über $B$
+($-500$ Nm, oben gezogen).
 :::
 
 ::: {.schritt zeige="traeger lasten reaktionen verlauf-N verlauf-Q verlauf-M bezug" zoom="30 40 690 555"}
 ### Was fällt auf?
 
-- An jeder **Einzelkraft springt $Q$** um genau den Betrag der Querkomponente der Kraft.
+- An jeder **Einzelkraft springt $Q$** um die Querkomponente der Kraft, **$N$** um die Längskomponente.
 - Dort hat $M$ einen **Knick**.
 - Wo $Q$ konstant ist, ist $M$ linear. Die **Steigung von $M$ ist $Q$**.
+- $M$ ist extremal, wo $Q$ das **Vorzeichen wechselt**, hier durch einen Sprung.
 
 Dahinter steckt ein allgemeiner Zusammenhang. Ihn sehen wir uns als Nächstes an.
 :::
@@ -220,7 +274,7 @@ $$
 q(x) = q_0\,\frac{x}{L}
 $$
 
-Statt Bereiche zu schneiden, können wir die Schnittgrößen auch durch **Integration** gewinnen.
+Statt an jeder Stelle neu zu schneiden, können wir $Q(x)$ und $M(x)$ auch durch **Integration** gewinnen.
 :::
 
 ::: {.schritt zeige="system last element" zoom="80 60 560 330"}
@@ -229,19 +283,31 @@ Statt Bereiche zu schneiden, können wir die Schnittgrößen auch durch **Integr
 Wir schneiden ein kleines Stück der Länge $\mathrm{d}x$ heraus.
 
 $$
-\downarrow:\; -Q + q\,\mathrm{d}x + (Q + \mathrm{d}Q) = 0
-\;\Rightarrow\; \boxed{\frac{\mathrm{d}Q}{\mathrm{d}x} = -q}
+\begin{aligned}
+&\downarrow: && -Q + q\,\mathrm{d}x + (Q + \mathrm{d}Q) = 0\\
+& && \boxed{\dfrac{\mathrm{d}Q}{\mathrm{d}x} = -q}
+\end{aligned}
 $$
 
+Momente um das rechte Ufer:
+
 $$
-\curvearrowleft:\; -M + (M + \mathrm{d}M) - Q\,\mathrm{d}x + \underbrace{\ldots}_{\mathrm{d}x^2\,\to\,0} = 0
-\;\Rightarrow\; \boxed{\frac{\mathrm{d}M}{\mathrm{d}x} = Q}
+\begin{aligned}
+&\curvearrowleft: && -M + (M + \mathrm{d}M) - Q\,\mathrm{d}x + q\,\tfrac{\mathrm{d}x^2}{2} = 0\\
+& && \boxed{\dfrac{\mathrm{d}M}{\mathrm{d}x} = Q}
+\end{aligned}
 $$
 
 Daraus folgt $M'' = -q$.
+
+::: {.vertiefung titel="Ausführlicher: Warum fällt das dx²-Glied weg?"}
+Das Glied $q\,\mathrm{d}x^2/2$ ist das Moment der Streckenlast auf dem Element um das rechte Ufer
+(Resultierende $q\,\mathrm{d}x$ mal Hebelarm $\mathrm{d}x/2$). Nach Division durch $\mathrm{d}x$ bleibt
+$q\,\mathrm{d}x/2$, und das geht für $\mathrm{d}x \to 0$ gegen null. Es ist „klein von höherer Ordnung“.
+:::
 :::
 
-::: {.schritt zeige="system last verlauf-Q" dimmen="" zoom="60 60 580 500"}
+::: {.schritt zeige="system last verlauf-Q" zoom="60 60 580 500"}
 ### Integration: Querkraft
 
 $$
@@ -250,7 +316,7 @@ $$
 
 Die Konstante folgt aus den Randbedingungen für $M$ (nächster Schritt): $C_1 = \frac{q_0 L}{6}$.
 
-Bei $x = 0$ ist $Q = F_A = q_0L/6$, bei $x = L$ ist $Q = -F_B = -q_0L/3$.
+An den Rändern lassen sich die Lagerkräfte ablesen: $F_A = Q(0) = q_0L/6$, $F_B = -Q(L) = q_0L/3$.
 :::
 
 ::: {.schritt zeige="system last verlauf-Q verlauf-M" zoom="60 60 580 500"}
@@ -263,9 +329,22 @@ $$
 Randbedingungen an den gelenkigen Lagern:
 
 $$
-M(0) = 0 \;\Rightarrow\; C_2 = 0, \qquad
-M(L) = 0 \;\Rightarrow\; C_1 = \frac{q_0L}{6}
+\begin{aligned}
+M(0) &= 0 &&\Rightarrow\; C_2 = 0\\
+M(L) &= 0 &&\Rightarrow\; C_1 = \frac{q_0L}{6}
+\end{aligned}
 $$
+
+::: {.vertiefung titel="Ausführlicher: Welche Randbedingungen gibt es?"}
+| Rand | $Q$ | $M$ |
+|:--|:-:|:-:|
+| gelenkiges Lager (Fest- oder Loslager) | $\neq 0$ | $0$ |
+| freies Ende | $0$ | $0$ |
+| Einspannung | $\neq 0$ | $\neq 0$ |
+
+Nur die Nullen sind Randbedingungen. Aussagen der Form „$\neq 0$“ helfen beim Rechnen nicht weiter.
+Am Gelenk innerhalb eines Trägers gilt zusätzlich $M = 0$.
+:::
 :::
 
 ::: {.schritt zeige="system last verlauf-Q verlauf-M extremum" zoom="60 60 580 500"}
@@ -281,22 +360,53 @@ $$
 M_\text{max} = M(x_0) = \frac{q_0L^2}{9\sqrt3} \approx 0{,}064\,q_0L^2
 $$
 
-Die **Tangente** an $M$ hat überall die Steigung $Q$. Bei $x = 0$ ist sie $q_0L/6$, bei $x_0$ ist sie waagerecht.
+Die **Tangente** an $M$ hat überall die Steigung $Q$: bei $x = 0$ die Steigung $q_0L/6$, bei $x_0$ ist sie waagerecht.
+
+::: {.vertiefung titel="Ausführlicher: Extremwerte auch an Bereichsgrenzen"}
+$M$ hat überall dort ein Extremum, wo $Q$ das Vorzeichen wechselt, sei es durch einen stetigen
+Nulldurchgang wie hier oder durch einen Sprung an einer Einzelkraft wie im Beispiel davor.
+Das betragsgrößte Moment kann außerdem an Lagern oder Ecken liegen. Vergleichen Sie deshalb immer
+die Extremwerte innerhalb der Bereiche **und** die Werte an allen Bereichsgrenzen.
+:::
 :::
 
 ::::
 
-::: {.merke}
-**Zusammenfassung der Differentialbeziehungen**
+## Kontrollregeln für die Verläufe
 
+::: {.merke}
 | Belastung im Bereich | $Q(x)$ | $M(x)$ |
 |:--|:--|:--|
 | keine ($q = 0$) | konstant | linear |
 | $q$ konstant | linear | quadratische Parabel |
 | $q$ linear | quadratisch | kubisch |
-| Einzelkraft $F$ | Sprung um $F$ | Knick |
+| Beginn/Ende einer Streckenlast | Knick | glatt (kein Knick) |
+| Einzelkraft $F$ | Sprung um die Querkomponente | Knick |
 | Einzelmoment $M_0$ | – | Sprung um $M_0$ |
+
+- $M = 0$ am freien Ende, am gelenkigen Endlager und im Gelenk.
+- $Q > 0$: $M$ steigt; $Q < 0$: $M$ fällt.
+- Probe: $Q$ springt am rechten Rand mit der letzten Kraft genau auf null zurück.
+:::
+
+::: {.vertiefung titel="Typische Fehler – und wie man sie vermeidet"}
+1. **Streckenlast vor dem Schnitt zusammengefasst.** Erst schneiden, dann nur den Lastanteil am Teilsystem zur Resultierenden zusammenfassen.
+2. **Einzelmoment verschoben.** Für die Lagerreaktionen ist das erlaubt, für den Momentenverlauf nicht.
+3. **Genau an der Kraftangriffsstelle geschnitten.** Dort ist $Q$ nicht eindeutig; immer knapp daneben schneiden.
+4. **Momentenbilanz nicht um $S$.** Dann tauchen $N$ und $Q$ in der Gleichung auf.
+5. **Schnittgrößen „richtig herum“ statt positiv eingezeichnet.** Vorzeichen werden dann falsch gedeutet.
+6. **Koordinate von rechts nach links.** Dann kehrt sich das Vorzeichen von $Q$ um ($N$ und $M$ bleiben).
+:::
+
+::: {.vertiefung titel="Punktweise Ermittlung – der schnelle Weg"}
+Oft braucht man keine Funktionen, sondern nur Werte. Man berechnet $Q$ und $M$ links und rechts jeder
+Bereichsgrenze und verbindet die Punkte mit Geraden oder Parabeln, je nachdem, was die Belastung im
+Bereich vorgibt (Tabelle oben). Bei Parabeln hilft $M' = Q$, um die Tangentenrichtung an den Enden
+festzulegen. Das ist in Klausur und Praxis meist das schnellste Verfahren.
 :::
 
 **Weiter:** [Seminaraufgaben zu Schnittgrößen](../seminar/03-schnittgroessen.qmd) ·
 [Interaktives Notebook](../notebooks/schnittgroessen/index.html){target="_blank"}
+
+<p class="small text-muted">Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 7 ·
+Dankert/Dankert, Technische Mechanik, Kap. 7</p>

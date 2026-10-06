@@ -92,5 +92,25 @@
   });
   const knopf = document.querySelector(".beamer-schalter");
   if (knopf) knopf.addEventListener("click", () => document.documentElement.classList.toggle("beamer"));
+
+  // Abgesetzte Formeln, die breiter als die Textspalte sind, verkleinern statt abschneiden
+  function formelnEinpassen() {
+    document.querySelectorAll('mjx-container[display="true"]').forEach(m => {
+      if (m.dataset.fs === undefined) m.dataset.fs = m.style.fontSize || "";
+      m.style.fontSize = m.dataset.fs;
+      const block = m.closest("p, li, div, td");
+      if (!block) return;
+      const breite = block.clientWidth;
+      const ist = m.firstElementChild ? m.firstElementChild.getBoundingClientRect().width : m.scrollWidth;
+      if (ist > breite + 1) {
+        const basis = parseFloat(m.dataset.fs) || 100;
+        m.style.fontSize = Math.max(55, Math.floor(basis * breite / ist) - 2) + "%";
+      }
+    });
+  }
+  const mjBereit = () => (window.MathJax && MathJax.startup && MathJax.startup.promise) ? MathJax.startup.promise : Promise.resolve();
+  window.addEventListener("load", () => mjBereit().then(formelnEinpassen));
+  window.addEventListener("resize", () => { clearTimeout(window.__tmFit); window.__tmFit = setTimeout(formelnEinpassen, 200); });
+  new MutationObserver(formelnEinpassen).observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 })();
 </script>

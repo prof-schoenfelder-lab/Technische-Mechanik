@@ -23,18 +23,18 @@ from xml.sax.saxutils import escape
 # ---------------------------------------------------------------- Stil
 FARBE = {
     "last": "#ff0000",          # eingeprägte Lasten F, q, M
-    "reaktion": "#0050b4",      # Lager- und Gelenkreaktionen
-    "schnitt": "#0050b4",       # Schnittgrößen N, Q, M
-    "mass": "#006414",          # Bemaßung
+    "reaktion": "#ff0000",      # Lager- und Gelenkreaktionen (wie Gross: alle Kräfte rot)
+    "schnitt": "#ff0000",       # Schnittgrößen N, Q, M
+    "mass": "#006414",          # Bemaßung, Lagerbezeichnungen, Winkel
     "koord": "#006414",         # Koordinatensysteme
     "linie": "#000000",
-    "bauteil": "#c8c8c8",       # Balken/Stab-Füllung
-    "lager": "#919191",         # Lagerkörper
-    "verlauf": "#0050b4",       # Schnittgrößenverlauf: Kontur
-    "verlauf_flaeche": "#dbe6f5",
+    "bauteil": "#e6e6e6",       # Balken/Stab-Füllung
+    "lager": "#d9d9d9",         # Lagerkörper
+    "verlauf": "#d40000",       # Schnittgrößenverlauf: Kontur
+    "verlauf_flaeche": "#fbe3e3",
     "hinweis": "#7a7a7a",       # Hilfslinien
 }
-SCHRIFT = "'STIX Two Text','Times New Roman',serif"
+SCHRIFT = "'Latin Modern Roman','LM Roman 10','CMU Serif',serif"
 GROESSE = 19          # Schriftgröße Formelzeichen
 STRICH = {"duenn": 0.8, "normal": 1.25, "dick": 1.9}
 
@@ -64,11 +64,13 @@ def _tspans(label: str, italic: bool = True) -> str:
     return "".join(out)
 
 
-def text(x, y, label, farbe="#000000", groesse=GROESSE, anker="middle", italic=True, id_=None):
-    """Text mit Referenzpunkt (x, y) = Mitte der Zeile (vertikal zentriert)."""
+def text(x, y, label, farbe="#000000", groesse=GROESSE, anker="middle", italic=True, id_=None, halo=True):
+    """Text mit Referenzpunkt (x, y) = Mitte der Zeile (vertikal zentriert).
+    halo: weißer Rand, damit Beschriftungen über Linien und Flächen lesbar bleiben."""
     style = "italic" if italic else "normal"
     idattr = f' id="{id_}"' if id_ else ""
-    return (f'<text{idattr} x="{f(x)}" y="{f(y + 0.34 * groesse)}" fill="{farbe}" '
+    h = ' stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke"' if halo else ""
+    return (f'<text{idattr} x="{f(x)}" y="{f(y + 0.34 * groesse)}" fill="{farbe}"{h} '
             f'font-family="{SCHRIFT}" font-size="{f(groesse)}" font-style="{style}" '
             f'text-anchor="{anker}" xml:space="preserve">{_tspans(label, italic)}</text>')
 
@@ -124,26 +126,30 @@ def pfeil(x1, y1, x2, y2, farbe="#000000", breite=STRICH["dick"], spitze=(12, 8)
 
 
 # ---------------------------------------------------------------- Lasten
-def kraft(x, y, winkel, label="", farbe=None, laenge=55, ziehend=False, label_abstand=13,
-          label_seite=1, id_=None):
+def kraft(x, y, winkel, label="", farbe=None, laenge=55, ziehend=False, label_abstand=9,
+          label_seite=1, label_pos=0.7, id_=None):
     """Einzelkraft mit Angriffspunkt (x, y).
 
     winkel: Richtung des Pfeils in Grad, mathematisch (0 = nach rechts, 90 = nach oben).
     ziehend=False: Spitze sitzt am Angriffspunkt (drückend), sonst beginnt der Pfeil dort.
     label_seite: +1 / -1 Seite des Labels neben dem Pfeil.
+    label_pos: Lage des Labels längs des Pfeils (0 = Angriffspunkt, 1 = freies Pfeilende).
     """
     farbe = farbe or FARBE["last"]
     ux, uy = math.cos(math.radians(winkel)), -math.sin(math.radians(winkel))
     if ziehend:
         x1, y1, x2, y2 = x, y, x + ux * laenge, y + uy * laenge
-        lx, ly = x2, y2
+        px, py = x + ux * laenge * label_pos, y + uy * laenge * label_pos
     else:
         x1, y1, x2, y2 = x - ux * laenge, y - uy * laenge, x, y
-        lx, ly = x1, y1
+        px, py = x - ux * laenge * label_pos, y - uy * laenge * label_pos
     teile = [pfeil(x1, y1, x2, y2, farbe)]
     if label:
         nx, ny = -uy * label_seite, ux * label_seite
-        teile.append(text(lx + nx * label_abstand, ly + ny * label_abstand, label, farbe))
+        # Text so ausrichten, dass er neben (nicht auf) dem Pfeil steht
+        anker = "start" if nx > 0.3 else ("end" if nx < -0.3 else "middle")
+        dy = ny * 9 if anker == "middle" else 0
+        teile.append(text(px + nx * label_abstand, py + ny * label_abstand + dy, label, farbe, anker=anker))
     return gruppe(teile, id_)
 
 
@@ -225,7 +231,7 @@ def festlager(x, y, groesse=13, drehung=0, label="", label_pos=(-16, 10), id_=No
     g = gruppe(teile, transform=f"rotate({f(drehung)} {f(x)} {f(y)})" if drehung else None)
     out = [g]
     if label:
-        out.append(text(x + label_pos[0], y + label_pos[1], label))
+        out.append(text(x + label_pos[0], y + label_pos[1], label, FARBE["mass"]))
     return gruppe(out, id_)
 
 
@@ -241,19 +247,20 @@ def loslager(x, y, groesse=13, drehung=0, label="", label_pos=(-16, 10), id_=Non
     g = gruppe(teile, transform=f"rotate({f(drehung)} {f(x)} {f(y)})" if drehung else None)
     out = [g]
     if label:
-        out.append(text(x + label_pos[0], y + label_pos[1], label))
+        out.append(text(x + label_pos[0], y + label_pos[1], label, FARBE["mass"]))
     return gruppe(out, id_)
 
 
 def einspannung(x, y, hoehe=44, seite="links", label="", id_=None):
-    """Feste Einspannung an der Stelle x (Wand links oder rechts vom Balken)."""
-    w = 10
-    xr = x - w if seite == "links" else x
-    teile = [f'<rect x="{f(xr)}" y="{f(y - hoehe / 2)}" width="{w}" height="{f(hoehe)}" fill="{FARBE["lager"]}"/>',
-             linie(x, y - hoehe / 2, x, y + hoehe / 2, FARBE["linie"], STRICH["dick"])]
+    """Feste Einspannung an der Stelle x: Wandlinie mit Schraffur (Wand links oder rechts vom Balken)."""
+    s = -1 if seite == "links" else 1
+    teile = [linie(x, y - hoehe / 2, x, y + hoehe / 2, FARBE["linie"], STRICH["dick"])]
+    yy = y - hoehe / 2
+    while yy <= y + hoehe / 2 - 7.9:
+        teile.append(linie(x, yy, x + s * 8, yy + 8, FARBE["linie"], STRICH["duenn"]))
+        yy += 6
     if label:
-        lx = x - w - 10 if seite == "links" else x + w + 10
-        teile.append(text(lx, y - hoehe / 2 - 4, label))
+        teile.append(text(x + s * 16, y - hoehe / 2 - 8, label, FARBE["mass"]))
     return gruppe(teile, id_)
 
 
@@ -303,7 +310,8 @@ def nummer(x, y, n, r=9.5, farbe="#000000", id_=None):
                    text(x, y, f"[{n}]", farbe, 14, italic=False)], id_)
 
 
-def winkelbogen(x, y, r, von, bis, label="", farbe="#000000", id_=None):
+def winkelbogen(x, y, r, von, bis, label="", farbe=None, id_=None):
+    farbe = farbe or FARBE["mass"]
     pts = [(x + r * math.cos(math.radians(von + (bis - von) * i / 20)),
             y - r * math.sin(math.radians(von + (bis - von) * i / 20))) for i in range(21)]
     teile = [polylinie(pts, farbe, STRICH["duenn"])]
@@ -331,8 +339,9 @@ def schnittufer(x, y, positiv=True, N="N", Q="Q", M="M", farbe=None, dicke=7, la
         xq = x + s * 4
         y1, y2 = (y - laenge / 2, y + laenge / 2) if positiv else (y + laenge / 2, y - laenge / 2)
         teile.append(pfeil(xq, y1, xq, y2, farbe))
-        teile.append(text(xq + s * 9, y + laenge / 2 - 4, Q, farbe,
-                          anker="start" if positiv else "end"))
+        # Label unter dem Balken auf der Seite des Teilsystems (dort ist Platz)
+        teile.append(text(xq - s * 8, y + laenge / 2 - 2, Q, farbe,
+                          anker="end" if positiv else "start"))
     if "M" in zeige:
         # untere Faser auf Zug: am positiven Ufer gegen den Uhrzeigersinn (bei z nach unten),
         # am negativen Ufer im Uhrzeigersinn
@@ -352,8 +361,16 @@ def schnittlinie(x, y, hoehe=34, label="", farbe="#000000", id_=None):
     return gruppe(teile, id_)
 
 
+def vorzeichen_symbol(x, y, positiv, r=7.5, farbe="#000000"):
+    """⊕ bzw. ⊖ als gezeichnetes Symbol (unabhängig von der Schrift)."""
+    teile = [kreis(x, y, r, farbe, "#ffffff", 1.0), linie(x - r * 0.55, y, x + r * 0.55, y, farbe, 1.2)]
+    if positiv:
+        teile.append(linie(x, y - r * 0.55, x, y + r * 0.55, farbe, 1.2))
+    return gruppe(teile)
+
+
 def verlauf(x0, punkte, skala, y0, laenge, label="", positiv_unten=False, schraffur=8,
-            farbe=None, fuellung=None, werte=(), achse_label=True, id_=None):
+            farbe=None, fuellung=None, werte=(), achse_label=True, vorzeichen=True, id_=None):
     """Schnittgrößenverlauf über der Balkenachse.
 
     punkte: Liste (xi, wert) mit xi in px relativ zu x0 (Sprünge: gleiche xi doppelt).
@@ -378,6 +395,27 @@ def verlauf(x0, punkte, skala, y0, laenge, label="", positiv_unten=False, schraf
     teile.append(linie(x0 - 8, y0, x0 + laenge + 14, y0, "#000000", STRICH["normal"]))
     if label:
         teile.append(text(x0 - 16, y0, label, farbe, anker="end"))
+    if vorzeichen:
+        # ⊕/⊖ in der Mitte des jeweils größten positiven bzw. negativen Abschnitts
+        for pos in (True, False):
+            abschnitte, akt = [], []
+            x_a, x_e = punkte[0][0], punkte[-1][0]
+            proben = [(x_a + (x_e - x_a) * k / 200, _interp(punkte, x_a + (x_e - x_a) * k / 200)) for k in range(201)]
+            for xi, v in proben:
+                if (v > 1e-9) if pos else (v < -1e-9):
+                    akt.append((xi, v))
+                elif akt:
+                    abschnitte.append(akt); akt = []
+            if akt:
+                abschnitte.append(akt)
+            abschnitte = [a for a in abschnitte if a[-1][0] - a[0][0] > 20]
+            if abschnitte:
+                a = max(abschnitte, key=lambda a: (a[-1][0] - a[0][0]) * max(abs(v) for _, v in a))
+                xm = (a[0][0] + a[-1][0]) / 2
+                # Symbol dort, wo die Fläche am höchsten ist (innerhalb des Abschnitts)
+                xm, vm = max(a[len(a) // 5: len(a) - len(a) // 5] or a, key=lambda p: abs(p[1]))
+                if abs(vm * skala) > 18:
+                    teile.append(vorzeichen_symbol(x0 + xm, y0 + s * vm * skala / 2, pos))
     for xi, v, t, anker in werte:
         dy = s * (14 if v >= 0 else -14)
         teile.append(text(x0 + xi, y0 + s * v * skala + dy, t, farbe, 15, anker=anker,

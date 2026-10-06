@@ -9,7 +9,13 @@ format:
       x: 2cm
       y: 2cm
     fontsize: 11pt
-    mainfont: "STIX Two Text"
+    mainfont: "Source Sans Pro"
+    font-paths: ["../assets/fonts"]
+    include-in-header:
+      text: |
+        #show math.equation.where(block: true): set align(left)
+        #set text(lang: "de")
+        #set page(header: align(right, image("../assets/logos/htwk-schwarz.svg", height: 0.8cm)), footer: context [#text(size: 8pt)[Technische Mechanik · Prof. Dr.-Ing. Stephan Schönfelder #h(1fr) #counter(page).display()]])
 ---
 
 ::: {.content-visible when-format="html"}

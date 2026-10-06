@@ -38,12 +38,12 @@ def vorzeichen():
     e.append(text((xs + x1) / 2 + 30, yt + 34, "[rechtes Teilsystem]", "#444444", 14, italic=False))
 
     e = abb.ebene("ufer-pos", "positives Schnittufer")
-    e.append(schnittufer(xs - d / 2, yt, positiv=True))
+    e.append(schnittufer(xs - d / 2, yt, positiv=True, N="N(x)", Q="Q(x)", M="M(x)"))
     e.append(pfeil(xs - d / 2 - 70, yt - 72, xs - d / 2 - 4, yt - 8, "#444444", 0.9, (7, 5)))
     e.append(text(xs - d / 2 - 74, yt - 82, "[positives Schnittufer]", "#444444", 14, anker="end", italic=False))
 
     e = abb.ebene("ufer-neg", "negatives Schnittufer")
-    e.append(schnittufer(xs + d / 2, yt, positiv=False))
+    e.append(schnittufer(xs + d / 2, yt, positiv=False, N="N(x)", Q="Q(x)", M="M(x)"))
     e.append(pfeil(xs + d / 2 + 70, yt - 72, xs + d / 2 + 4, yt - 8, "#444444", 0.9, (7, 5)))
     e.append(text(xs + d / 2 + 74, yt - 82, "[negatives Schnittufer]", "#444444", 14, anker="start", italic=False))
 
@@ -66,7 +66,7 @@ def beispiel_einzelkraefte():
     FB = (F1 * math.sin(math.radians(alpha)) + 4 * F2) / 3
     FAV = F1 * math.sin(math.radians(alpha)) + F2 - FB
 
-    abb = Abbildung(740, 610, "Träger mit Kragarm – Schnittgrößen")
+    abb = Abbildung(790, 610, "Träger mit Kragarm – Schnittgrößen")
 
     # --- System
     e = abb.ebene("traeger", "Träger und Bemaßung")
@@ -76,14 +76,14 @@ def beispiel_einzelkraefte():
     e.append(mass(xB, y, xE, y, "a", abstand=-62))
 
     e = abb.ebene("lasten", "Lasten")
-    e.append(kraft(xF1, y - t, 180 + alpha, "F_1", laenge=62, label_seite=-1))
+    e.append(kraft(xF1, y - t, 180 + alpha, "F_1", laenge=62, label_seite=1))
     e.append(winkelbogen(xF1, y - t, 30, 0, alpha, "α"))
     e.append(linie(xF1, y - t, xF1 + 44, y - t, FARBE["hinweis"], 0.6, strich="3 2"))
     e.append(kraft(xE, y - t, -90, "F_2", laenge=55, label_seite=-1))
 
     e = abb.ebene("lager", "Lager")
-    e.append(festlager(xA, y + t, label="A", label_pos=(-22, 6)))
-    e.append(loslager(xB, y + t, label="B", label_pos=(22, 6)))
+    e.append(festlager(xA, y + t, label="A", label_pos=(-26, 22)))
+    e.append(loslager(xB, y + t, label="B", label_pos=(26, 22)))
 
     # --- Freikörperbild: Lager durch Reaktionen ersetzt
     e = abb.ebene("reaktionen", "Lagerreaktionen")
@@ -102,34 +102,34 @@ def beispiel_einzelkraefte():
     # --- Schnitte (Teilsysteme unterhalb)
     yt = 300
 
-    def links(xs, mit_F1, deckkraft=1.0):
+    def links(xs, mit_F1, i, deckkraft=1.0):
         g = [balken(xA, yt, xs, yt),
              kraft(xA - 4, yt, 0, "F_{AH}", farbe=R, laenge=40),
              kraft(xA, yt + t, 90, "F_{AV}", farbe=R, laenge=40)]
         if mit_F1:
-            g.append(kraft(xF1, yt - t, 180 + alpha, "F_1", laenge=55, label_seite=-1))
+            g.append(kraft(xF1, yt - t, 180 + alpha, "F_1", laenge=55, label_seite=1))
         if xs > xB:
             g.append(kraft(xB, yt + t, 90, "F_B", farbe=R, laenge=40, label_seite=-1))
-        g.append(schnittufer(xs, yt, positiv=True, N="N", Q="Q", M="M"))
+        g.append(schnittufer(xs, yt, positiv=True, N=f"N(x_{i})", Q=f"Q(x_{i})", M=f"M(x_{i})"))
         return f'<g opacity="{deckkraft}">' + "".join(g) + "</g>"
 
-    def rechts(xs, deckkraft=1.0):
-        d = 150  # Versatz des rechten Teils
+    def rechts(xs, i, deckkraft=1.0):
+        d = 200  # Versatz des rechten Teils
         g = [balken(xs + d, yt, xE + d, yt),
              kraft(xE + d, yt - t, -90, "F_2", laenge=45, label_seite=-1)]
         if xs < xB:
             g.append(kraft(xB + d, yt + t, 90, "F_B", farbe=R, laenge=40, label_seite=-1))
         if xs < xF1:
-            g.append(kraft(xF1 + d, yt - t, 180 + alpha, "F_1", laenge=55, label_seite=-1))
-        g.append(schnittufer(xs + d, yt, positiv=False, N="N", Q="Q", M="M"))
+            g.append(kraft(xF1 + d, yt - t, 180 + alpha, "F_1", laenge=55, label_seite=1))
+        g.append(schnittufer(xs + d, yt, positiv=False, N=f"N(x_{i})", Q=f"Q(x_{i})", M=f"M(x_{i})"))
         return f'<g opacity="{deckkraft}">' + "".join(g) + "</g>"
 
     for i, (xs, l_aktiv) in enumerate(((xA + 0.55 * a, True), (xF1 + 1.0 * a, True), (xB + 0.5 * a, False)), 1):
         e = abb.ebene(f"schnitt-{i}", f"Schnitt Bereich {['I', 'II', 'III'][i - 1]}")
         e.append(schnittlinie(xs, y, 40))
         e.append(text(xs + 2, y - 30, "S", "#000000", 15))
-        e.append(links(xs, xs > xF1, 1.0 if l_aktiv else 0.35))
-        e.append(rechts(xs, 0.35 if l_aktiv else 1.0))
+        e.append(links(xs, xs > xF1, i, 1.0 if l_aktiv else 0.35))
+        e.append(rechts(xs, i, 0.35 if l_aktiv else 1.0))
         e.append(text(xA - 50, yt - 58, "[linkes Teilsystem]" if l_aktiv else "[rechtes Teilsystem]",
                       "#444444", 14, anker="start", italic=False))
 
@@ -141,23 +141,25 @@ def beispiel_einzelkraefte():
     sN, sQ, sM = 36 / 1732, 34 / 500, 40 / 500
 
     e = abb.ebene("verlauf-N", "Normalkraftverlauf")
-    e.append(verlauf(xA, P([(xA, -FAH), (xF1, -FAH), (xF1, 0), (xE, 0)]), sN, yN, 4 * a, "N",
+    e.append(verlauf(xA, P([(xA, -FAH), (xF1, -FAH), (xF1, 0), (xE, 0)]), sN, yN, 4 * a, "N(x)",
                      werte=[(a / 2, -FAH, "−1732 N", "middle")]))
     e = abb.ebene("verlauf-Q", "Querkraftverlauf")
     e.append(verlauf(xA, P([(xA, FAV), (xF1, FAV), (xF1, FAV - 1000), (xB, FAV - 1000), (xB, F2), (xE, F2), (xE, 0)]),
-                     sQ, yQ, 4 * a, "Q",
+                     sQ, yQ, 4 * a, "Q(x)",
                      werte=[(a / 2, FAV, "500 N", "middle"), (2 * a, -500, "−500 N", "middle"),
                             (3.5 * a, F2, "500 N", "middle")]))
     e = abb.ebene("verlauf-M", "Momentenverlauf")
-    e.append(verlauf(xA, P([(xA, 0), (xF1, FAV * 1), (xB, FAV * 3 - 1000 * 2), (xE, 0)]), sM, yM, 4 * a, "M",
+    e.append(verlauf(xA, P([(xA, 0), (xF1, FAV * 1), (xB, FAV * 3 - 1000 * 2), (xE, 0)]), sM, yM, 4 * a, "M(x)",
                      werte=[(a, 500, "500 Nm", "middle"), (3 * a, -500, "−500 Nm", "middle")]))
 
     e = abb.ebene("bezug", "Bezug Last – Verlauf")
     for xs, txt in ((xF1, "F_1 sin α"), (xB, "F_B"), (xE, "F_2")):
         e.append(linie(xs, y + 30, xs, yM + 50, FARBE["hinweis"], 0.8, strich="4 3"))
-    e.append(text(xF1 + 8, yQ - 6, "[Sprung = ]F_1[ sin ]α", FARBE["last"], 14, anker="start"))
-    e.append(text(xB + 8, yQ - 6, "[Sprung = ]F_B", R, 14, anker="start"))
-    e.append(text(xF1 + 8, yM - 52, "[Knick]", FARBE["last"], 14, anker="start"))
+    e.append(text(xF1 + 8, yQ - 14, "[Sprung = ]F_1[ sin ]α", FARBE["last"], 14, anker="start"))
+    e.append(text(xB - 8, yQ + 14, "[Sprung = ]F_B", R, 14, anker="end"))
+    e.append(text(xF1 - 30, yM - 54, "[Knick]", FARBE["last"], 14, anker="end"))
+    e.append(text(xB + 8, yM + 30, "[Knick]", FARBE["last"], 14, anker="start"))
+    e.append(text(xF1 + 8, yN - 14, "[Sprung = ]F_1[ cos ]α", FARBE["last"], 14, anker="start"))
 
     return abb.speichern(ZIEL / "traeger-einzelkraefte.svg")
 
@@ -194,8 +196,8 @@ def beispiel_dreieckslast():
     e.append(balken(xel, ye, xel + w, ye, dicke=24))
     e.append(streckenlast(xel + 34, xel + w - 34, ye - 12, 30, 34, "q", n=6))
     e.append(mass(xel, ye, xel + w, ye, "[d]x", abstand=-48))
-    e.append(schnittufer(xel + w, ye, positiv=True, N="", Q="Q + [d]Q", M="M + [d]M", zeige=("Q", "M"), laenge=56))
-    e.append(schnittufer(xel, ye, positiv=False, N="", Q="Q", M="M", zeige=("Q", "M"), laenge=56))
+    e.append(schnittufer(xel + w, ye, positiv=True, N="", Q="Q(x) + [d]Q", M="M(x) + [d]M", zeige=("Q", "M"), laenge=56))
+    e.append(schnittufer(xel, ye, positiv=False, N="", Q="Q(x)", M="M(x)", zeige=("Q", "M"), laenge=56))
 
     # Verläufe
     n = 60
@@ -204,11 +206,11 @@ def beispiel_dreieckslast():
     M = [(xi * L, xi / 6 - xi ** 3 / 6) for xi in xs]
     yQ, yM = 330, 500
     e = abb.ebene("verlauf-Q", "Querkraftverlauf")
-    e.append(verlauf(xA, Q, 150, yQ, L, "Q",
+    e.append(verlauf(xA, Q, 150, yQ, L, "Q(x)",
                      werte=[(0, 1 / 6, "q_0L/6", "start"), (L, -1 / 3, "−q_0L/3", "end")]))
     e = abb.ebene("verlauf-M", "Momentenverlauf")
     x0 = 1 / math.sqrt(3)
-    e.append(verlauf(xA, M, 1000, yM, L, "M",
+    e.append(verlauf(xA, M, 1000, yM, L, "M(x)",
                      werte=[(x0 * L, x0 / 6 - x0 ** 3 / 6, "M_{max} = q_0L^2/(9√3)", "middle")]))
 
     e = abb.ebene("extremum", "Q = 0 ⇒ M extremal")

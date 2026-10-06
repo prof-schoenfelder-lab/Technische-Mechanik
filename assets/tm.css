@@ -1,6 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap");
+/* HTWK-Hausschrift (Source Sans Pro) für Text, Latin Modern für Formelzeichen in Grafiken */
+@font-face { font-family: "Source Sans Pro"; src: url("fonts/SourceSansPro-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Source Sans Pro"; src: url("fonts/SourceSansPro-Italic.ttf") format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Source Sans Pro"; src: url("fonts/SourceSansPro-SemiBold.ttf") format("truetype"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Source Sans Pro"; src: url("fonts/SourceSansPro-SemiBoldItalic.ttf") format("truetype"); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: "Source Sans Pro"; src: url("fonts/SourceSansPro-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Source Sans Pro"; src: url("fonts/SourceSansPro-Light.ttf") format("truetype"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Latin Modern Roman"; src: url("fonts/lmroman10-regular.otf") format("opentype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Latin Modern Roman"; src: url("fonts/lmroman10-italic.otf") format("opentype"); font-weight: 400; font-style: italic; font-display: swap; }
 
 :root {
+  --bs-body-font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  --bs-font-sans-serif: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
   --tm-last: #ff0000;
   --tm-reaktion: #0050b4;
   --tm-mass: #006414;
@@ -85,6 +95,8 @@ html.beamer .beamer-schalter { background: #0050b4; color: #fff; }
 html.beamer .scrolly-sticky { top: 3.6rem; height: calc(100vh - 4.5rem); }
 html.beamer #quarto-header { opacity: 0.25; }
 html.beamer .schritt:not(.aktiv) { opacity: 0.12; }
+html.beamer .scrolly { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 1.5rem; }
+html.beamer .schritt > * { max-width: 100%; }
 
 /* ------------------------------------------------ Aufgaben */
 .aufgabe {
@@ -99,3 +111,30 @@ html.beamer .schritt:not(.aktiv) { opacity: 0.12; }
   padding: 0.6rem 1rem;
   background: #f6f8fb;
 }
+
+/* ------------------------------------------------ Corporate Design */
+body, .navbar, h1, h2, h3, h4, h5, h6, .title, .subtitle {
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+}
+h1, h2, h3, .title { font-weight: 600; }
+.navbar-brand img { max-height: 28px; margin-right: 0.4rem; }
+.tm-dozent { font-size: 0.95rem; color: #555; }
+.tm-fusszeile { display: flex; align-items: center; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+.tm-fusszeile img { height: 34px; }
+
+/* Formeln linksbündig (MathJax) */
+mjx-container[display="true"] { text-align: left !important; margin-left: 0 !important; }
+
+/* ------------------------------------------------ Vertiefung („Ausführlicher“) */
+details.vertiefung {
+  border-left: 3px solid #b8c4d6;
+  background: #f6f8fb;
+  padding: 0.3rem 0.9rem;
+  margin: 0.8rem 0;
+  border-radius: 0 0.3rem 0.3rem 0;
+}
+details.vertiefung > summary {
+  cursor: pointer; color: #0050b4; font-weight: 600; font-size: 0.92rem;
+}
+details.vertiefung[open] > summary { margin-bottom: 0.4rem; }
+details.vertiefung p:last-child { margin-bottom: 0.2rem; }

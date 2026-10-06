@@ -20,16 +20,21 @@ marimo-Notebooks zur Selbstkontrolle.
 ## Bauen und Ansehen
 
 ```bash
-quarto render          # Grafiken erzeugen, Seiten + PDFs rendern, Notebooks exportieren
-python3 -m http.server 8765 --directory _site
+./bauen.sh vorschau
 ```
 
-Dann <http://localhost:8765> öffnen. Die Notebooks brauchen einen HTTP-Server,
-direkt per Doppelklick (`file://`) laufen sie nicht.
+Das Skript spiegelt das Projekt nach `~/Library/Caches/tm-kurs-build`, rendert dort
+(auf dem Netzlaufwerk ist Quarto sehr langsam bzw. bleibt hängen), kopiert `_site/` zurück
+und startet mit `vorschau` einen Server auf <http://localhost:8765>.
+Die Notebooks brauchen einen HTTP-Server, per Doppelklick (`file://`) laufen sie nicht.
 
-Einmalig für die Notebooks: `python3 -m venv .venv && .venv/bin/pip install marimo numpy matplotlib uv`
+Notebook bearbeiten: `~/Library/Caches/tm-kurs-venv/bin/marimo edit notebooks/schnittgroessen.py`
 
-Notebook bearbeiten: `.venv/bin/marimo edit notebooks/schnittgroessen.py`
+## Planung
+
+`planung/semesterplan.md` ist die zentrale Vorgabe für alle 14 Wochen. Eigene Beispiele
+(Skizze/Scan) unter `planung/beispiele/` mit Beispiel-ID ablegen (`B05-2-name.jpg`) und
+die ID im Semesterplan eintragen.
 
 ## Scrollytelling schreiben
 
@@ -63,8 +68,8 @@ Die SVGs lassen sich direkt in Inkscape öffnen; jede Ebene ist ein Scroll-Schri
   Soll sie wieder aus Python erzeugt werden: Datei löschen und `quarto render` aufrufen.
 - Neue Ebene in Inkscape: Ebenen-ID über *Objekt → Objekteigenschaften* (oder XML-Editor)
   sinnvoll benennen, z. B. `verlauf-M`, und diese ID in `zeige="…"` verwenden.
-- Farben: Lasten rot `#ff0000`, Reaktionen/Schnittgrößen blau `#0050b4`,
-  Bemaßung grün `#006414`, Bauteile grau `#c8c8c8`, Lager `#919191`
+- Farben (wie Gross): Lasten, Reaktionen und Schnittgrößen rot `#ff0000`, Verläufe rot gefüllt,
+  Bemaßung/Lagerbezeichnungen/Winkel grün `#006414`, Bauteile grau `#e6e6e6`, Lager `#d9d9d9`
   (zentral in `werkzeuge/tmzeichnen.py`, Dict `FARBE`).
 
 ## Konventionen (wie Vorlesung 2013)

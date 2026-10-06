@@ -25,7 +25,23 @@ local function lies(pfad)
   return inhalt
 end
 
+-- ::: {.vertiefung titel="…"} … :::  →  aufklappbarer Erklärtext (HTML),
+-- in PDF als normaler Absatz mit Überschrift
+local function vertiefung(el)
+  local titel = el.attributes["titel"] or "Ausführlicher"
+  if quarto.doc.is_format("html") then
+    local out = { pandoc.RawBlock("html", '<details class="vertiefung"><summary>' .. titel .. '</summary>') }
+    for _, b in ipairs(el.content) do table.insert(out, b) end
+    table.insert(out, pandoc.RawBlock("html", "</details>"))
+    return out
+  end
+  local out = { pandoc.Para({ pandoc.Strong({ pandoc.Str(titel) }) }) }
+  for _, b in ipairs(el.content) do table.insert(out, b) end
+  return out
+end
+
 function Div(el)
+  if el.classes:includes("vertiefung") then return vertiefung(el) end
   if not el.classes:includes("scrolly") then return nil end
   local src = el.attributes["svg"]
   local basis = pandoc.path.directory(quarto.doc.input_file)

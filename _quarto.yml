@@ -8,13 +8,23 @@ project:
     - index.qmd
     - vorlesung/*.qmd
     - seminar/*.qmd
+  resources:
+    - assets/fonts/
+    - assets/logos/
 
 lang: de
+
+# Lehrender (zentral, wird in Kopf- und Fußzeile verwendet)
+# TODO: Link auf die persönliche Seite eintragen
+dozent: "Prof. Dr.-Ing. Stephan Schönfelder"
+dozent-url: "https://www.htwk-leipzig.de"
 
 website:
   title: "Technische Mechanik"
   page-navigation: true
   navbar:
+    logo: assets/logos/htwk-schwarz.svg
+    logo-alt: "HTWK Leipzig"
     left:
       - href: index.qmd
         text: Übersicht
@@ -26,12 +36,21 @@ website:
         menu:
           - href: seminar/03-schnittgroessen.qmd
             text: "3 · Schnittgrößen"
+    right:
+      - text: "Prof. Dr.-Ing. Stephan Schönfelder"
+        href: "https://www.htwk-leipzig.de"
+        target: _blank
   page-footer:
-    center: "HTWK Leipzig · Technische Mechanik (M279)"
+    center: |
+      <div class="tm-fusszeile">
+        <img src="/assets/logos/fakultaet-ing-schwarz.png" alt="Fakultät Ingenieurwissenschaften">
+        <span>Technische Mechanik (M279) · <a href="https://www.htwk-leipzig.de" target="_blank">Prof. Dr.-Ing. Stephan Schönfelder</a></span>
+      </div>
 
 format:
   html:
     theme: cosmo
+    mainfont: "Source Sans Pro"
     css: assets/tm.css
     include-after-body: assets/scrolly.html
     html-math-method: mathjax
