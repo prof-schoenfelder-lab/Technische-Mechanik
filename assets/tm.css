@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap");
+
+:root {
+  --tm-last: #ff0000;
+  --tm-reaktion: #0050b4;
+  --tm-mass: #006414;
+  --tm-karte: #ffffff;
+  --tm-rand: #d8dde3;
+}
+
+/* Farbige Formelzeichen im Text passend zu den Grafiken */
+.last { color: var(--tm-last); }
+.reaktion { color: var(--tm-reaktion); }
+.mass { color: var(--tm-mass); }
+
+/* ------------------------------------------------ Scrollytelling */
+.scrolly {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  gap: 2.5rem;
+  margin: 2rem 0 4rem;
+}
+.scrolly-grafik { position: relative; }
+.scrolly-sticky {
+  position: sticky;
+  top: 4.5rem;
+  height: calc(100vh - 6rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scrolly-sticky svg { width: 100%; height: 100%; max-height: 100%; }
+.scrolly-zaehler {
+  position: absolute; right: 0; bottom: 0.25rem;
+  font-size: 0.8rem; color: #8a8f96;
+}
+
+.scrolly svg > g[data-ebene] { opacity: 0; transition: opacity 0.6s ease; }
+.scrolly svg > g[data-ebene].sichtbar { opacity: 1; }
+.scrolly svg > g[data-ebene].gedimmt { opacity: 0.22; }
+.scrolly svg > g[data-ebene].neu { animation: tm-auftauchen 0.9s ease; }
+@keyframes tm-auftauchen {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.scrolly-schritte { padding: 30vh 0 45vh; }
+.schritt {
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0.35;
+  transition: opacity 0.4s ease;
+}
+.schritt.aktiv { opacity: 1; }
+.schritt > * { max-width: 34rem; }
+.schritt mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
+.schritt h3, .schritt h4 { margin-top: 0; }
+
+/* Smartphone / schmale Fenster: Grafik oben fixiert, Text darunter */
+@media (max-width: 900px) {
+  .scrolly { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .scrolly-grafik {
+    position: sticky; top: 0; z-index: 2; height: 40vh;
+    background: var(--bs-body-bg, #fff);
+    border-bottom: 1px solid var(--tm-rand);
+  }
+  .scrolly-sticky { position: relative; top: 0; height: 100%; }
+  .scrolly-schritte { padding: 2rem 0 30vh; }
+  .schritt { min-height: 50vh; justify-content: flex-start; }
+  .schritt > * { max-width: 100%; }
+}
+
+/* ------------------------------------------------ Beamer-Modus */
+.beamer-schalter {
+  position: fixed; right: 1rem; bottom: 1rem; z-index: 50;
+  border: 1px solid var(--tm-rand); background: #fff; color: #555;
+  border-radius: 0.4rem; padding: 0.25rem 0.7rem; font-size: 0.8rem;
+  opacity: 0.6;
+}
+.beamer-schalter:hover { opacity: 1; }
+html.beamer { font-size: 125%; }
+html.beamer .beamer-schalter { background: #0050b4; color: #fff; }
+html.beamer .scrolly-sticky { top: 3.6rem; height: calc(100vh - 4.5rem); }
+html.beamer #quarto-header { opacity: 0.25; }
+html.beamer .schritt:not(.aktiv) { opacity: 0.12; }
+
+/* ------------------------------------------------ Aufgaben */
+.aufgabe {
+  border-left: 4px solid var(--tm-reaktion);
+  padding: 0.2rem 0 0.2rem 1rem;
+  margin: 2rem 0;
+}
+.aufgabe img { max-width: 100%; }
+.merke {
+  border: 1px solid var(--tm-rand);
+  border-radius: 0.4rem;
+  padding: 0.6rem 1rem;
+  background: #f6f8fb;
+}

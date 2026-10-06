@@ -1,0 +1,41 @@
+project:
+  type: website
+  output-dir: _site
+  # Grafiken vor jedem Rendern neu erzeugen, marimo-Notebooks danach exportieren
+  pre-render: werkzeuge/vor_render.py
+  post-render: werkzeuge/nach_render.py
+  render:
+    - index.qmd
+    - vorlesung/*.qmd
+    - seminar/*.qmd
+
+lang: de
+
+website:
+  title: "Technische Mechanik"
+  page-navigation: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Übersicht
+      - text: Vorlesung
+        menu:
+          - href: vorlesung/03-schnittgroessen.qmd
+            text: "3 · Schnittgrößen"
+      - text: Seminar
+        menu:
+          - href: seminar/03-schnittgroessen.qmd
+            text: "3 · Schnittgrößen"
+  page-footer:
+    center: "HTWK Leipzig · Technische Mechanik (M279)"
+
+format:
+  html:
+    theme: cosmo
+    css: assets/tm.css
+    include-after-body: assets/scrolly.html
+    html-math-method: mathjax
+    toc: false
+
+filters:
+  - assets/scrolly.lua

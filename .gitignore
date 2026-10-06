@@ -1,0 +1,10 @@
+.venv/
+_site/
+.quarto/
+__pycache__/
+*.pdf
+/.DS_Store
+**/.DS_Store
+
+/.quarto/
+**/*.quarto_ipynb
