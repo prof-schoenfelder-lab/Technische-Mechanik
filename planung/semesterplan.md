@@ -29,26 +29,28 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
 
 ---
 
-## Woche 1 · Einführung, Kräfte und Momente, Gleichgewicht ⬜
+## Woche 1 · Einführung, Kräfte und Momente, Gleichgewicht ✅ (Entwurf, bitte prüfen)
 
 - **Lernziele:** Kraft als gebundener Vektor; Moment und Kräftepaar; Axiome und Schnittprinzip; Gleichgewicht im zentralen und allgemeinen ebenen Kraftsystem
 - **Inhalte Vorlesung:**
   1. Einordnung: Statik, Festigkeitslehre, Dynamik; Modelle und Annahmen (starrer Körper)
   2. Vektorrechnung kompakt (Komponenten, Betrag, Winkel, Kreuzprodukt)
-  3. Kraft, Wirkungslinie, Axiome der Statik, Schnittprinzip / Freikörperbild
+  3. Kraft, Wirkungslinie, Axiome der Statik, Schnittprinzip nach Euler / Freikörperbild
   4. Zentrales Kraftsystem: Resultierende, Krafteck, Gleichgewicht
   5. Moment, Kräftepaar, Versatzmoment; allgemeines Kraftsystem, 3 GGB in der Ebene
 - **Beispiele Vorlesung:**
-  - B01-1 · Zwei Kräfte, Resultierende ($F_R \approx 31{,}4$ N) – VL 2013 Teil 1
-  - B01-2 · Masse an zwei Seilen (277,7 / 298,1 N) – VL 2013 Teil 1
+  - B01-1: Zwei Kräfte, Resultierende ($F_R \approx 31{,}4$ N) – VL 2013 Teil 1
+  -  B01-2 · Auslenkung einer Masse am Seil mit der Kraft F (Datei: beispiele/B01-1-Auslenkung-Masse-Seil.png)
+    Schritte: System => Freischnitt => Gleichgewichtsreaktionen => Kraft F
   - B01-3 · Scheibe mit 4 Kräften, Wirkungslinie der Resultierenden – VL 2013 Teil 1 (Achtung: $\alpha_R$ im Original falsch, richtig −36,9°)
-- **Seminar:** G 1.1.1, G 1.1.4, G 1.2.x (auswählen)
-- **Hausaufgaben:**
-- **Notebook-Idee:** Kräfte per Regler, Krafteck und Resultierende live
+- **Seminar:** G 1.1.3, G 1.1.4, G 1.2.x (auswählen)
+- **Hausaufgaben:** B01-4-Hausaufgabe.png, B01-5-Hausaufgabe.png
+- **Notebook-Idee:** Krafteck und Resultierende live, Lösung der Aufgabe G 1.1.5 in Abhängigkeit von F in grafischer Darstellung der Auslenkung und Belastung des Seils
 - **Quellen:** Transkript 1; Gross Kap. 1–3; Dankert Kap. 1–3
+- **Umsetzung:** `vorlesung/01-grundlagen.qmd`, `seminar/01-grundlagen.qmd` (Seminar 1.1–1.4 = G 1.1.3, G 1.1.4, G 1.2.1, G 1.2.4; Hausaufgaben 1.5 = B01-4, 1.6 = B01-5; Zusatz 1.7 = G 1.1.5), `notebooks/grundlagen.py`, Grafiken `grafiken/grundlagen/` aus `werkzeuge/grafiken_grundlagen.py`
 - **Wünsche/Notizen:**
 
-## Woche 2 · Lager- und Gelenkreaktionen, Streckenlasten, Haftung ⬜
+## Woche 2 · Lager- und Gelenkreaktionen, Streckenlasten 🟨
 
 - **Lernziele:** Lagerarten und Wertigkeit; statische Bestimmtheit; Lagerreaktionen ein- und mehrteiliger Systeme; Streckenlasten ersetzen; Haftbedingung
 - **Inhalte Vorlesung:**

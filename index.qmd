@@ -14,25 +14,27 @@ Willkommen! Diese Seite begleitet Vorlesung und Seminar.
 
 | Woche | Thema | Vorlesung | Seminar |
 |:-:|:--|:-:|:-:|
-| 1 | Einführung, Kräfte und Momente, Gleichgewicht | – | – |
-| 2 | Lager- und Gelenkreaktionen, Haftreibung | – | – |
+| 1 | **Kräfte, Momente, Gleichgewicht** | [Vorlesung](vorlesung/01-grundlagen.qmd) | [Seminar](seminar/01-grundlagen.qmd) |
+| 2 | Lager- und Gelenkreaktionen, Streckenlasten | – | – |
 | 3 | **Schnittgrößen** | [Vorlesung](vorlesung/03-schnittgroessen.qmd) | [Seminar](seminar/03-schnittgroessen.qmd) |
 | 4 | Wiederholung Statik | – | – |
-| 5 | Einführung Festigkeitslehre: Spannungs- und Verformungszustand | – | – |
-| 6 | Stoffgesetze, Zugversuch | – | – |
-| 7 | Zug und Druck | – | – |
-| 8 | Torsion | – | – |
-| 9 | Gerade Biegung | – | – |
-| 10 | Schiefe Biegung | – | – |
-| 11 | Zusammengesetzte Beanspruchung, Festigkeitshypothesen | – | – |
-| 12 | Knickung | – | – |
-| 13 | Energiemethoden | – | – |
+| 5 | Einführung Festigkeitslehre: Spannung und Verformung | – | – |
+| 6 | Stoffgesetz, Zugversuch | – | – |
+| 7 | Zug und Druck, statisch unbestimmte Stabsysteme | – | – |
+| 8 | Flächenmomente | – | – |
+| 9 | Torsion | – | – |
+| 10 | Gerade Biegung | – | – |
+| 11 | Schiefe Biegung, Biegung mit Längskraft | – | – |
+| 12 | Zusammengesetzte Beanspruchung, Festigkeitshypothesen | – | – |
+| 13 | Knickung | – | – |
 | 14 | Wiederholung und Prüfungsvorbereitung | – | – |
 
-: Stand: Prototyp. Weitere Kapitel folgen. {.striped}
+: Weitere Kapitel folgen. {.striped}
 
 ## Farben in den Grafiken
 
-<span class="last">**Rot**</span>: eingeprägte Lasten ($F$, $q$, $M$) ·
-<span class="reaktion">**Blau**</span>: Reaktionen und Schnittgrößen ·
-<span class="mass">**Grün**</span>: Bemaßung und Koordinaten
+<span class="last">**Rot**</span>: Kräfte und Momente (Lasten, Reaktionen, Schnittgrößen) ·
+<span class="mass">**Grün**</span>: Bemaßung, Winkel, Koordinaten, Lagerbezeichnungen
+
+Schnittgrößenverläufe: positive Bereiche <span class="last">**rot**</span>,
+negative Bereiche <span style="color:#0050b4">**blau**</span>.

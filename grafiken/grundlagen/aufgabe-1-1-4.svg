@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="480" height="280" viewBox="0 0 480 280" class="tm-grafik">
+<title>Stahlträger am Kran</title>
+<g inkscape:groupmode="layer" id="system" inkscape:label="01 System" data-ebene="system">
+<g><path d="M 60,207 L 400,207 L 400,193 L 60,193 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/></g>
+<path d="M 140,193 L 224,89" fill="none" stroke="#000000" stroke-width="1.8" stroke-linecap="butt"/>
+<path d="M 320,193 L 236,89" fill="none" stroke="#000000" stroke-width="1.8" stroke-linecap="butt"/>
+<circle cx="230" cy="83" r="9" fill="#ffffff" stroke="#000000" stroke-width="3"/>
+<path d="M 230,74 L 230,13" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="butt"/>
+<text x="230" y="159.76" fill="#000000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="14" font-style="normal" text-anchor="middle" xml:space="preserve"><tspan font-style="normal">Seil</tspan></text>
+<g><path d="M 140,211 L 140,243" fill="none" stroke="#006414" stroke-width="0.8" stroke-linecap="butt"/><path d="M 320,211 L 320,243" fill="none" stroke="#006414" stroke-width="0.8" stroke-linecap="butt"/><g><path d="M 146.4,237 L 313.6,237" fill="none" stroke="#006414" stroke-width="0.8" stroke-linecap="butt"/><path d="M 320,237 L 312,239.5 L 312,234.5 Z" fill="#006414" stroke="none" stroke-linejoin="round"/><path d="M 140,237 L 148,234.5 L 148,239.5 Z" fill="#006414" stroke="none" stroke-linejoin="round"/></g><text x="230" y="254.46" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>l</tspan></text></g>
+<g><path d="M 84,193 L 104,193" fill="none" stroke="#006414" stroke-width="0.8" stroke-linecap="butt"/><path d="M 84,83 L 104,83" fill="none" stroke="#006414" stroke-width="0.8" stroke-linecap="butt"/><g><path d="M 98,186.6 L 98,89.4" fill="none" stroke="#006414" stroke-width="0.8" stroke-linecap="butt"/><path d="M 98,83 L 100.5,91 L 95.5,91 Z" fill="#006414" stroke="none" stroke-linejoin="round"/><path d="M 98,193 L 95.5,185 L 100.5,185 Z" fill="#006414" stroke="none" stroke-linejoin="round"/></g><text x="109" y="144.46" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>h</tspan></text></g>
+<path d="M 70,83 L 218,83" fill="none" stroke="#006414" stroke-width="0.8" stroke-linecap="butt"/>
+<text x="380" y="176.8" fill="#000000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="20" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>m</tspan></text>
+<g><path d="M 430,60 L 430,103.6" fill="none" stroke="#006414" stroke-width="1.25" stroke-linecap="butt"/><path d="M 430,110 L 427.5,102 L 432.5,102 Z" fill="#006414" stroke="none" stroke-linejoin="round"/></g>
+<text x="444" y="82.12" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>g</tspan></text>
+</g>
+</svg>

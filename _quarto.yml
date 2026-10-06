@@ -29,10 +29,14 @@ website:
         text: Übersicht
       - text: Vorlesung
         menu:
+          - href: vorlesung/01-grundlagen.qmd
+            text: "1 · Kräfte, Momente, Gleichgewicht"
           - href: vorlesung/03-schnittgroessen.qmd
             text: "3 · Schnittgrößen"
       - text: Seminar
         menu:
+          - href: seminar/01-grundlagen.qmd
+            text: "1 · Kräfte, Momente, Gleichgewicht"
           - href: seminar/03-schnittgroessen.qmd
             text: "3 · Schnittgrößen"
     right:

@@ -1,0 +1,594 @@
+---
+title: "Kräfte, Momente, Gleichgewicht"
+subtitle: "Statik · Vorlesung 1"
+page-layout: full
+---
+
+::: {.merke}
+**Worum geht es?** Die Statik fragt, welche Kräfte an einem ruhenden Bauteil wirken. Dazu brauchen wir
+nur wenige Werkzeuge: die Kraft als Vektor, das Moment, vier Axiome und die Gleichgewichtsbedingungen.
+Alles, was in diesem Semester folgt, baut darauf auf.
+
+Tipp: Mit **Bild↓ / Bild↑** oder **→ / ←** springen Sie von Schritt zu Schritt; Taste **B** schaltet den Beamer-Modus.
+Hinter **„Ausführlicher“** finden Sie zu vielen Schritten eine längere Erklärung zum Nachlesen.
+:::
+
+## Einordnung
+
+:::: {.scrolly svg="../grafiken/grundlagen/einordnung.svg"}
+
+::: {.schritt zeige="baum" zoom="0 0 770 330"}
+### Was ist Technische Mechanik?
+
+Die Mechanik beschreibt, wie Kräfte auf Körper wirken. Die **Technische Mechanik** liefert dafür
+Rechenverfahren für Maschinenbau, Bauwesen und Gebäudetechnik.
+
+- **Dynamik:** Körper in Bewegung
+- **Statik:** Körper in Ruhe (oder in gleichförmiger, geradliniger Bewegung)
+:::
+
+::: {.schritt zeige="baum inhalt" zoom="0 0 770 330"}
+### Inhalt dieser Lehrveranstaltung
+
+- **Stereostatik** (Wochen 1–4): Der Körper ist **starr**, er verformt sich nicht.
+  Gesucht sind Kräfte: Lagerreaktionen und Schnittgrößen.
+- **Elastostatik** oder Festigkeitslehre (Wochen 5–14): Der Körper **verformt** sich.
+  Gesucht sind Spannungen und Verformungen. Hält das Bauteil? Biegt es sich zu stark durch?
+
+::: {.vertiefung titel="Ausführlicher: Das Modell des starren Körpers"}
+Kein Bauteil ist wirklich starr: Ein Stahlträger biegt sich unter Last durch, nur eben sehr wenig.
+Für die Frage nach den Kräften ist diese Verformung meist bedeutungslos. Wir rechnen deshalb am
+**unverformten** System und nennen den Körper *starr*. Das ist ein **Modell**, eine bewusste
+Vereinfachung.
+
+Die Axiome der Statik gelten nur für den starren Körper. Für Gummi oder sehr schlanke Bauteile passt
+das Modell schlecht. Für Stahl, Beton und Holz bei üblichen Lasten passt es sehr gut. Erst in der
+Festigkeitslehre nehmen wir die Verformungen wieder ernst.
+:::
+:::
+
+::::
+
+## Die Kraft
+
+:::: {.scrolly svg="../grafiken/grundlagen/kraft-vektor.svg"}
+
+::: {.schritt zeige="kraft" zoom="0 30 560 330"}
+### Kraft als gebundener Vektor
+
+Kräfte sieht man nicht, nur ihre Wirkungen: Sie **beschleunigen** einen Körper oder **verformen** ihn.
+
+$$
+F = m\,a, \qquad [F] = \text{N} = \frac{\text{kg}\,\text{m}}{\text{s}^2}
+$$
+
+Eine Kraft ist erst vollständig beschrieben durch
+
+- ihren **Betrag** (Länge des Pfeils),
+- ihre **Wirkungslinie** (Richtung),
+- ihren **Richtungssinn** (Pfeilspitze),
+- ihren **Angriffspunkt**.
+
+Die Gewichtskraft einer Masse $m$ ist $F_G = m\,g$ mit $g = 9{,}81\ \text{m/s}^2$.
+
+::: {.vertiefung titel="Ausführlicher: Einzelkraft als Idealisierung"}
+Eine Kraft, die in einem einzigen Punkt angreift, gibt es in Wirklichkeit nicht. Das Gewicht ist über
+das ganze Volumen verteilt (**Volumenkraft**), Wasser drückt auf die ganze Fläche einer Staumauer
+(**Flächenkraft**). Für die Statik des starren Körpers dürfen wir solche verteilten Kräfte durch eine
+**resultierende Einzelkraft** ersetzen, beim Gewicht zum Beispiel im Schwerpunkt. Wie man die
+Resultierende einer Streckenlast berechnet, zeigt Woche 2.
+:::
+:::
+
+::: {.schritt zeige="koordinaten kraft komponenten" zoom="0 30 560 330"}
+### Komponenten
+
+Im kartesischen Koordinatensystem zerlegen wir die Kraft in **Komponenten** längs der Achsen:
+
+$$
+\begin{aligned}
+F_x &= F\cos\alpha\\
+F_y &= F\sin\alpha
+\end{aligned}
+$$
+
+Die Winkel messen wir **von der positiven $x$-Achse aus, gegen den Uhrzeigersinn**.
+Dann haben $F_x$ und $F_y$ automatisch das richtige Vorzeichen.
+:::
+
+::: {.schritt zeige="koordinaten kraft komponenten einheitsvektoren" zoom="0 30 560 330"}
+### Vektorschreibweise
+
+Mit den Einheitsvektoren $\vec e_x$, $\vec e_y$:
+
+$$
+\vec F = F_x\,\vec e_x + F_y\,\vec e_y
+= \begin{pmatrix} F_x \\ F_y \end{pmatrix}
+$$
+
+Umgekehrt folgen Betrag und Winkel aus den Komponenten:
+
+$$
+\begin{aligned}
+F &= \sqrt{F_x^2 + F_y^2}\\[2pt]
+\tan\alpha &= \frac{F_y}{F_x}
+\end{aligned}
+$$
+
+::: {.vertiefung titel="Ausführlicher: Achtung beim Arkustangens (Quadrantenregel)"}
+Der Taschenrechner liefert $\arctan(F_y/F_x)$ nur zwischen $-90^\circ$ und $+90^\circ$.
+Er kann nicht unterscheiden, ob $F_x$ oder $F_y$ negativ war. Deshalb:
+
+| Quadrant | $F_x$ | $F_y$ | Winkel $\alpha$ |
+|:-:|:-:|:-:|:--|
+| I | $>0$ | $>0$ | $\arctan(F_y/F_x)$ |
+| II | $<0$ | $>0$ | $\arctan(F_y/F_x) + 180^\circ$ |
+| III | $<0$ | $<0$ | $\arctan(F_y/F_x) + 180^\circ$ |
+| IV | $>0$ | $<0$ | $\arctan(F_y/F_x)$ (oder $+360^\circ$) |
+
+Merkregel: Ist $F_x$ negativ, $180^\circ$ addieren. Eine kurze Skizze zeigt immer, ob das Ergebnis
+plausibel ist. In Tabellenkalkulation und Programmiersprachen erledigt `atan2(Fy, Fx)` das automatisch.
+:::
+
+::: {.vertiefung titel="Ausführlicher: Räumliche Kräfte"}
+Im Raum kommt die Komponente $F_z$ hinzu:
+$\vec F = F_x\,\vec e_x + F_y\,\vec e_y + F_z\,\vec e_z$, $F = \sqrt{F_x^2 + F_y^2 + F_z^2}$.
+Die Winkel $\alpha$, $\beta$, $\gamma$ zu den drei Achsen heißen Richtungswinkel,
+ihre Kosinus **Richtungskosinus**: $\cos\alpha = F_x/F$, $\cos\beta = F_y/F$, $\cos\gamma = F_z/F$.
+In dieser Lehrveranstaltung bleiben wir in der Ebene.
+:::
+:::
+
+::::
+
+## Axiome der Statik
+
+Axiome sind Grundsätze, die aus der Erfahrung stammen und nicht bewiesen werden. Sie gelten für den
+**starren Körper**.
+
+:::: {.scrolly svg="../grafiken/grundlagen/axiome.svg"}
+
+::: {.schritt zeige="linienfluechtig" zoom="0 0 400 280"}
+### 1 · Linienflüchtigkeit
+
+Eine Kraft darf auf einem starren Körper **längs ihrer Wirkungslinie verschoben** werden.
+Ihre Wirkung ändert sich dabei nicht.
+
+Ob man an einem Wagen zieht oder ihn mit derselben Kraft auf derselben Linie schiebt, macht für die
+Bewegung keinen Unterschied.
+:::
+
+::: {.schritt zeige="linienfluechtig parallelogramm" dimmen="linienfluechtig" zoom="400 0 400 280"}
+### 2 · Kräfteparallelogramm
+
+Zwei Kräfte mit **gemeinsamem Angriffspunkt** lassen sich durch eine einzige Kraft ersetzen,
+die Diagonale des Parallelogramms:
+
+$$
+\vec F_R = \vec F_1 + \vec F_2
+$$
+
+Systeme mit gleicher Wirkung heißen **statisch äquivalent**.
+:::
+
+::: {.schritt zeige="parallelogramm gleichgewicht" dimmen="parallelogramm" zoom="0 280 400 280"}
+### 3 · Gleichgewicht zweier Kräfte
+
+Zwei Kräfte sind im Gleichgewicht, wenn sie
+
+- **gleich groß** sind,
+- auf **derselben Wirkungslinie** liegen und
+- **entgegengesetzt** gerichtet sind.
+
+Gleich groß und entgegengesetzt allein genügt nicht: Auf versetzten Wirkungslinien würden die
+beiden Kräfte den Körper drehen.
+:::
+
+::: {.schritt zeige="gleichgewicht wechselwirkung" dimmen="gleichgewicht" zoom="400 280 400 280"}
+### 4 · Wechselwirkung
+
+Übt ein Körper auf einen zweiten eine Kraft aus, so wirkt der zweite mit einer **gleich großen,
+entgegengesetzten Kraft auf derselben Wirkungslinie** zurück: *actio = reactio* (Newton).
+
+Daraus folgt das wichtigste Werkzeug der Statik, das **Schnittprinzip** (Euler).
+:::
+
+::: {.schritt zeige="wechselwirkung" zoom="400 280 400 280"}
+### Schnittprinzip und Freikörperbild
+
+Kräfte zwischen Körpern oder im Inneren eines Körpers werden sichtbar, wenn wir **gedanklich schneiden**:
+
+1. Den Körper vollständig von seiner Umgebung trennen.
+2. An **jeder** Schnittstelle die übertragenen Kräfte antragen.
+3. Am anderen Schnittufer wirken sie **entgegengesetzt** (Wechselwirkung).
+
+Die Skizze des freigeschnittenen Körpers mit allen Kräften heißt **Freikörperbild**.
+Ohne Freikörperbild keine Statik.
+
+::: {.vertiefung titel="Ausführlicher: Was überträgt eine Schnittstelle?"}
+- Ein **Seil** überträgt nur Zug in Seilrichtung. Seilkräfte werden deshalb **vom Schnittufer weg**
+  angetragen.
+- Eine **glatte Berührfläche** überträgt nur eine Druckkraft senkrecht zur Fläche.
+- Ein **Stab** mit Gelenken an beiden Enden überträgt eine Kraft in Stabrichtung, Zug oder Druck.
+- Lager und Einspannungen folgen in Woche 2, der Schnitt durch einen Balken in Woche 3.
+
+Wie herum man eine unbekannte Kraft einzeichnet, ist gleichgültig: Ein **negatives Ergebnis**
+heißt, dass sie in Wirklichkeit andersherum wirkt.
+:::
+:::
+
+::::
+
+## Zentrales Kraftsystem
+
+::: {.merke}
+Ein **zentrales Kraftsystem** liegt vor, wenn sich alle Wirkungslinien in **einem Punkt** schneiden.
+Nach dem 1. Axiom können wir dann alle Kräfte in diesen Punkt verschieben und nach dem 2. Axiom
+addieren.
+:::
+
+:::: {.scrolly svg="../grafiken/grundlagen/resultierende-zwei-kraefte.svg"}
+
+::: {.schritt zeige="system" zoom="30 40 470 360"}
+### Beispiel: Resultierende zweier Kräfte
+
+Zwei Kräfte greifen in einem Punkt an.
+
+**Gegeben:** $F_1 = 20$ N unter $30^\circ$, $F_2 = 30$ N unter $45^\circ$ zur negativen $x$-Achse
+
+**Gesucht:** Betrag und Richtung der Resultierenden $F_R$
+:::
+
+::: {.schritt zeige="system komponenten" zoom="30 40 470 360"}
+### ① Komponenten
+
+$$
+\begin{aligned}
+F_{1x} &= F_1\cos 30^\circ = 17{,}32\ \text{N}\\
+F_{1y} &= F_1\sin 30^\circ = 10{,}00\ \text{N}\\[4pt]
+F_{2x} &= -F_2\cos 45^\circ = -21{,}21\ \text{N}\\
+F_{2y} &= F_2\sin 45^\circ = 21{,}21\ \text{N}
+\end{aligned}
+$$
+
+Das Minuszeichen bei $F_{2x}$ kommt aus der Skizze: $F_2$ zeigt nach links.
+:::
+
+::: {.schritt zeige="system komponenten resultierende" dimmen="komponenten" zoom="30 40 470 360"}
+### ② Komponenten addieren
+
+$$
+\begin{aligned}
+F_{Rx} &= \textstyle\sum F_{ix} = -3{,}89\ \text{N}\\
+F_{Ry} &= \textstyle\sum F_{iy} = 31{,}21\ \text{N}\\[4pt]
+F_R &= \sqrt{F_{Rx}^2 + F_{Ry}^2} = 31{,}5\ \text{N}
+\end{aligned}
+$$
+
+Richtung: $\arctan(F_{Ry}/F_{Rx}) = -82{,}9^\circ$. Da $F_{Rx} < 0$ (II. Quadrant):
+
+$$
+\alpha_R = -82{,}9^\circ + 180^\circ = 97{,}1^\circ
+$$
+:::
+
+::: {.schritt zeige="system resultierende krafteck" zoom="30 40 690 360"}
+### Grafisch: das Krafteck
+
+Man hängt die Kraftpfeile **maßstäblich** aneinander, Spitze an Fuß. Die Resultierende führt vom
+Anfang des ersten zur Spitze des letzten Pfeils.
+
+Die Reihenfolge der Pfeile ist beliebig. Das Krafteck ist heute kein Rechenverfahren mehr,
+aber es macht sichtbar, was die Komponentensummen tun, und es ist eine schnelle **Plausibilitätskontrolle**.
+:::
+
+::::
+
+::: {.merke}
+**Resultierende im zentralen Kraftsystem**
+
+$$
+\begin{aligned}
+F_{Rx} &= \textstyle\sum_i F_{ix}\\
+F_{Ry} &= \textstyle\sum_i F_{iy}\\
+F_R &= \sqrt{F_{Rx}^2 + F_{Ry}^2}
+\end{aligned}
+$$
+
+Winkel mit $\tan\alpha_R = F_{Ry}/F_{Rx}$, Quadrant beachten.
+:::
+
+## Gleichgewicht im zentralen Kraftsystem
+
+Ein Körper ist im Gleichgewicht, wenn die Resultierende verschwindet: $\vec F_R = \vec 0$.
+Grafisch heißt das: Das **Krafteck schließt sich**.
+
+:::: {.scrolly svg="../grafiken/grundlagen/seil-masse.svg"}
+
+::: {.schritt zeige="system" zoom="40 20 330 400"}
+### Beispiel: Masse am Seil
+
+Eine Masse hängt an einem masselosen Seil. Wie groß muss die **horizontale** Kraft $F$ sein,
+damit das Seil um den Winkel $\alpha$ ausgelenkt bleibt?
+
+**Gegeben:** $m = 20$ kg, $\alpha = 30^\circ$, $g = 9{,}81\ \text{m/s}^2$
+
+**Gesucht:** $F$ und die Seilkraft $F_S$
+:::
+
+::: {.schritt zeige="system freischnitt" dimmen="system" zoom="40 20 600 400"}
+### ① Freischneiden
+
+Wir schneiden das schräge Seil durch und betrachten Knoten und Masse zusammen.
+
+Seile übertragen nur **Zug in Seilrichtung**: $F_S$ zeigt vom Schnittufer weg.
+
+Am freigeschnittenen System wirken $F_S$, $F$ und das Gewicht $m g$. Alle drei Wirkungslinien gehen
+durch den Knoten: ein **zentrales Kraftsystem**.
+:::
+
+::: {.schritt zeige="freischnitt" zoom="320 20 300 400"}
+### ② Gleichgewicht
+
+$$
+\begin{aligned}
+&\rightarrow: && F - F_S\sin\alpha = 0\\
+&\uparrow: && F_S\cos\alpha - m g = 0
+\end{aligned}
+$$
+
+Aus der zweiten Gleichung:
+
+$$
+F_S = \frac{m g}{\cos\alpha} = 226{,}6\ \text{N}
+$$
+
+Eingesetzt in die erste:
+
+$$
+F = m g\tan\alpha = 113{,}3\ \text{N}
+$$
+
+Beide Ergebnisse sind positiv: Die Kräfte wirken wie eingezeichnet.
+:::
+
+::: {.schritt zeige="freischnitt krafteck" zoom="320 20 540 400"}
+### Kontrolle am Krafteck
+
+Die drei Kräfte bilden ein **geschlossenes** Dreieck. Daraus liest man die Lösung direkt ab:
+
+$$
+\tan\alpha = \frac{F}{m g}, \qquad \cos\alpha = \frac{m g}{F_S}
+$$
+
+Je weiter die Masse ausgelenkt wird, desto größer werden $F$ und $F_S$. Für $\alpha \to 90^\circ$
+wachsen beide über alle Grenzen: Ganz waagerecht lässt sich das Seil nicht ziehen.
+
+::: {.vertiefung titel="Ausführlicher: Kochrezept für Gleichgewichtsaufgaben"}
+1. **Freischneiden:** Körper von allen Bindungen trennen, Freikörperbild zeichnen.
+2. **Alle Kräfte antragen:** eingeprägte Lasten (Gewicht, gegebene Kräfte) und Reaktionen
+   (Seil-, Kontakt-, Lagerkräfte). Unbekannte in beliebiger Richtung, Seilkräfte als Zug.
+3. **Koordinatensystem** wählen. Es darf auch schräg liegen, wenn das die Gleichungen vereinfacht.
+4. **Gleichgewichtsbedingungen** aufstellen: im zentralen Kraftsystem $\sum F_x = 0$, $\sum F_y = 0$.
+5. **Auflösen** und Ergebnis deuten: Ein negatives Vorzeichen heißt „andersherum“.
+6. **Kontrolle:** Einheiten, Grenzfälle (was passiert bei $\alpha = 0$?), Krafteck.
+:::
+:::
+
+::::
+
+::: {.merke}
+**Gleichgewicht im ebenen zentralen Kraftsystem: zwei Gleichungen**
+
+$$
+\begin{aligned}
+\textstyle\sum F_{ix} &= 0\\
+\textstyle\sum F_{iy} &= 0
+\end{aligned}
+$$
+
+Damit lassen sich höchstens **zwei** Unbekannte bestimmen.
+:::
+
+## Das Moment
+
+:::: {.scrolly svg="../grafiken/grundlagen/moment.svg"}
+
+::: {.schritt zeige="kraeftepaar" zoom="0 0 520 330"}
+### Kräftepaar
+
+Zwei gleich große, entgegengesetzte Kräfte auf **parallelen** Wirkungslinien heißen **Kräftepaar**.
+Sie haben keine Resultierende, der Körper wird aber **gedreht**.
+
+Die Drehwirkung ist das **Moment**:
+
+$$
+M = F\,b, \qquad [M] = \text{N\,m}
+$$
+
+Ein Kräftepaar darf in der Ebene beliebig verschoben werden. Für das Moment kommt es also nicht auf
+den Ort an, sondern nur auf Betrag und **Drehsinn**.
+:::
+
+::: {.schritt zeige="hebelarm" zoom="520 0 500 330"}
+### Moment einer Kraft um einen Punkt
+
+Eine einzelne Kraft $F$ dreht den Körper um einen Bezugspunkt $0$ mit
+
+$$
+M^{(0)} = F\,b
+$$
+
+Der **Hebelarm** $b$ ist der **senkrechte Abstand** des Punktes $0$ von der Wirkungslinie.
+
+- Verschiebt man $F$ auf ihrer Wirkungslinie, bleibt $M$ gleich.
+- Wählt man einen anderen Bezugspunkt, ändert sich $M$.
+- Wir zählen $M$ **positiv gegen den Uhrzeigersinn** ($\curvearrowleft$).
+:::
+
+::: {.schritt zeige="hebelarm" zoom="520 0 500 330"}
+### Moment aus den Komponenten
+
+Statt den Hebelarm geometrisch zu suchen, rechnet man meist mit den Komponenten.
+Greift $\vec F$ im Punkt $(x,\,y)$ an, gilt um den Ursprung:
+
+$$
+M_z = x\,F_y - y\,F_x
+$$
+
+Jede Komponente bringt ihren eigenen, leicht ablesbaren Hebelarm mit: $F_y$ den Abstand $x$,
+$F_x$ den Abstand $y$.
+
+::: {.vertiefung titel="Ausführlicher: Das Moment als Kreuzprodukt"}
+Allgemein ist das Moment ein Vektor, das **Kreuzprodukt** aus Ortsvektor und Kraft:
+
+$$
+\vec M = \vec r \times \vec F
+= \begin{pmatrix} y F_z - z F_y \\ z F_x - x F_z \\ x F_y - y F_x \end{pmatrix}
+$$
+
+Sein Betrag ist $|\vec r|\,|\vec F|\sin\varphi = F\,b$, seine Richtung steht senkrecht auf $\vec r$
+und $\vec F$ (Rechte-Hand-Regel). Liegen alle Kräfte in der $x$-$y$-Ebene, sind $z = 0$ und $F_z = 0$.
+Dann bleibt nur die dritte Komponente $M_z = xF_y - yF_x$ übrig, und das Moment ist ein Drehpfeil
+in der Ebene.
+:::
+:::
+
+::: {.schritt zeige="versatz" zoom="0 0 520 330"}
+### Parallelverschiebung einer Kraft
+
+Eine Kraft darf auch **parallel** verschoben werden, wenn man das dabei entstehende
+**Versatzmoment** hinzufügt:
+
+$$
+M = F\,a
+$$
+
+$a$ ist der Abstand zwischen alter und neuer Wirkungslinie. Damit lässt sich jedes ebene
+Kraftsystem in einen beliebigen Punkt verschieben: Übrig bleiben **eine Resultierende** und
+**ein resultierendes Moment**.
+:::
+
+::::
+
+## Allgemeines ebenes Kraftsystem
+
+Schneiden sich die Wirkungslinien nicht in einem Punkt, kommt zur Resultierenden ein Moment hinzu.
+
+:::: {.scrolly svg="../grafiken/grundlagen/scheibe-vier-kraefte.svg"}
+
+::: {.schritt zeige="system" zoom="40 20 640 380"}
+### Beispiel: Scheibe mit vier Kräften
+
+**Gegeben:** $F_1 = F_4 = F$, $F_2 = 2F$, $F_3 = 3F$, Abmessungen in Vielfachen von $c$
+
+**Gesucht:** Resultierende $F_R$ nach Betrag, Richtung **und Lage** ihrer Wirkungslinie
+
+| Kraft | $F_x$ | $F_y$ | $x$ | $y$ |
+|:-:|:-:|:-:|:-:|:-:|
+| $F_1$ | $F$ | $0$ | $0$ | $2c$ |
+| $F_2$ | $0$ | $-2F$ | $0$ | $2c$ |
+| $F_3$ | $3F$ | $0$ | $6c$ | $-c$ |
+| $F_4$ | $0$ | $-F$ | $6c$ | $0$ |
+:::
+
+::: {.schritt zeige="system ersatz-0" dimmen="system" zoom="40 20 640 380"}
+### ① Resultierende und Moment im Ursprung
+
+$$
+\begin{aligned}
+F_{Rx} &= F + 3F = 4F\\
+F_{Ry} &= -2F - F = -3F\\
+F_R &= \sqrt{16 + 9}\,F = 5F
+\end{aligned}
+$$
+
+$F_{Rx} > 0$, $F_{Ry} < 0$, also IV. Quadrant: $\alpha_R = -36{,}9^\circ$.
+
+$$
+\begin{aligned}
+M_R^{(0)} &= \textstyle\sum (x_i F_{iy} - y_i F_{ix})\\
+&= -2cF + 0 + 3cF - 6cF\\
+&= -5cF
+\end{aligned}
+$$
+
+Negativ: Das Moment dreht **im Uhrzeigersinn**.
+:::
+
+::: {.schritt zeige="system wirkungslinie" dimmen="system" zoom="40 20 640 380"}
+### ② Lage der Wirkungslinie
+
+Wir verschieben $F_R$ parallel, bis sie allein dasselbe Moment erzeugt. Für jeden Punkt $(x_R,\,y_R)$
+ihrer Wirkungslinie gilt:
+
+$$
+M_R^{(0)} = x_R\,F_{Ry} - y_R\,F_{Rx}
+$$
+
+Nach $y_R$ aufgelöst ist das eine Geradengleichung:
+
+$$
+\begin{aligned}
+y_R &= \frac{F_{Ry}}{F_{Rx}}\,x_R - \frac{M_R^{(0)}}{F_{Rx}}\\[2pt]
+&= -\tfrac34\,x_R + \tfrac54\,c
+\end{aligned}
+$$
+
+Die Wirkungslinie schneidet die Achsen bei $y = \tfrac54 c$ und $x = \tfrac53 c$.
+
+::: {.vertiefung titel="Ausführlicher: Hinweis zu den Unterlagen von 2013"}
+In der handschriftlichen Vorlesung von 2013 steht bei diesem Beispiel $\alpha_R = 143{,}1^\circ$.
+Das ist die Richtung der **Geraden**, aber der falsche Richtungssinn: Mit $F_{Rx} > 0$ und
+$F_{Ry} < 0$ zeigt $F_R$ nach rechts unten, also $\alpha_R = -36{,}9^\circ$ (bzw. $323{,}1^\circ$).
+Die Wirkungslinie selbst ist richtig.
+:::
+:::
+
+::::
+
+## Gleichgewicht im allgemeinen ebenen Kraftsystem
+
+::: {.merke}
+Ein starrer Körper ist im Gleichgewicht, wenn er sich **weder verschiebt noch dreht**:
+$\vec F_R = \vec 0$ **und** $\vec M_R = \vec 0$.
+
+In der Ebene sind das **drei Gleichgewichtsbedingungen**:
+
+$$
+\begin{aligned}
+\textstyle\sum F_{ix} &= 0\\
+\textstyle\sum F_{iy} &= 0\\
+\textstyle\sum M_i^{(P)} &= 0
+\end{aligned}
+$$
+
+Damit lassen sich höchstens **drei** Unbekannte bestimmen.
+:::
+
+- Der Bezugspunkt $P$ der Momentenbilanz ist **frei wählbar**. Geschickt ist ein Punkt, durch den
+  möglichst viele unbekannte Kräfte gehen: Sie fallen aus der Gleichung heraus.
+- Die beiden Kraftrichtungen müssen nicht waagerecht und senkrecht sein, nur verschieden.
+- Positive Richtungen und Drehsinn sind frei wählbar, müssen aber in einer Gleichung **einheitlich** bleiben.
+- Verteilte Lasten werden für das Gleichgewicht durch ihre Resultierende ersetzt (Woche 2).
+
+::: {.vertiefung titel="Ausführlicher: Gleichgewicht im Raum"}
+Im Raum gibt es sechs Bedingungen: drei Kraftsummen $\sum F_x = \sum F_y = \sum F_z = 0$ und
+drei Momentensummen um die Achsen $\sum M_x = \sum M_y = \sum M_z = 0$. Die ebene Statik ist der
+Sonderfall, in dem nur $F_x$, $F_y$ und $M_z$ vorkommen.
+:::
+
+::: {.vertiefung titel="Typische Fehler – und wie man sie vermeidet"}
+1. **Kein Freikörperbild.** Ohne vollständiges Freikörperbild werden Kräfte vergessen, besonders Gewichtskräfte und Reaktionen.
+2. **Kraft statt Komponente in die Summe.** In $\sum F_x$ gehören nur $x$-Komponenten, also $F\cos\alpha$ oder $F\sin\alpha$, je nach Winkel.
+3. **Sinus und Kosinus vertauscht.** Prüfen Sie am Grenzfall: Für $\alpha = 0$ muss die Komponente den vollen Betrag haben oder verschwinden.
+4. **Quadrant beim Winkel übersehen.** Bei $F_x < 0$ gehören $180^\circ$ zum Arkustangens.
+5. **Hebelarm nicht senkrecht.** Der Hebelarm ist der *senkrechte* Abstand zur Wirkungslinie, nicht der Abstand zum Angriffspunkt.
+6. **Drehsinn innerhalb einer Momentengleichung gewechselt.** Einen Drehsinn als positiv festlegen und durchhalten.
+:::
+
+**Weiter:** [Seminaraufgaben zu Woche 1](../seminar/01-grundlagen.qmd) ·
+[Interaktives Notebook](../notebooks/grundlagen/index.html){target="_blank"}
+
+<p class="small text-muted">Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 1–3 ·
+Dankert/Dankert, Technische Mechanik, Kap. 1–3</p>
