@@ -11,7 +11,7 @@ def _():
     import matplotlib.pyplot as plt
     from matplotlib.patches import Polygon
 
-    ROT, BLAU, GRUEN, GRAU = "#ff0000", "#0050b4", "#006414", "#c8c8c8"
+    ROT, BLAU, GRUEN, GRAU = "#d40000", "#0050b4", "#006414", "#c8c8c8"
     plt.rcParams.update({"font.family": "serif", "mathtext.fontset": "stix", "font.size": 11})
     return BLAU, GRAU, GRUEN, Polygon, ROT, mo, np, plt
 
@@ -87,16 +87,19 @@ def _(BLAU, F1v, F1h, F2, GRAU, GRUEN, M, N, Polygon, Q, ROT, np, plt, x, xB, xE
 
     # --- Verläufe (positive Werte oberhalb der Achse)
     for ax, y, name, _einheit in ((axs[1], N, "N", "N"), (axs[2], Q, "Q", "N"), (axs[3], M, "M", "Nm")):
-        ax.fill_between(x, y, color="#dbe6f5", step=None)
-        ax.vlines(x[::40], 0, y[::40], color=BLAU, lw=0.5)
-        ax.plot(x, y, color=BLAU, lw=2)
+        # positive Bereiche rot, negative blau
+        ax.fill_between(x, y, where=y >= 0, color="#fbe3e3", interpolate=True)
+        ax.fill_between(x, y, where=y <= 0, color="#dde7f5", interpolate=True)
+        ax.vlines(x[::40], 0, y[::40], color=np.where(y[::40] >= 0, ROT, BLAU), lw=0.5)
+        ax.plot(x, np.where(y >= 0, y, np.nan), color=ROT, lw=2)
+        ax.plot(x, np.where(y <= 0, y, np.nan), color=BLAU, lw=2)
         ax.axhline(0, color="k", lw=1)
-        ax.set_ylabel(f"${name}$ in {_einheit}", color=BLAU)
+        ax.set_ylabel(f"${name}$ in {_einheit}")
         ax.spines[["top", "right"]].set_visible(False)
         _i = np.argmax(np.abs(y))
         if abs(y[_i]) > 1e-6:
             ax.annotate(f"{y[_i]:.0f}", (x[_i], y[_i]), textcoords="offset points",
-                        xytext=(0, 8 if y[_i] > 0 else -14), ha="center", color=BLAU)
+                        xytext=(0, 8 if y[_i] > 0 else -14), ha="center", color=ROT if y[_i] > 0 else BLAU)
         lim = max(1.0, np.max(np.abs(y))) * 1.3
         ax.set_ylim(-lim, lim)
         for xs in (xF, xB):

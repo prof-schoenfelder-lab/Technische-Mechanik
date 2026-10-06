@@ -15,9 +15,8 @@ project:
 lang: de
 
 # Lehrender (zentral, wird in Kopf- und Fußzeile verwendet)
-# TODO: Link auf die persönliche Seite eintragen
 dozent: "Prof. Dr.-Ing. Stephan Schönfelder"
-dozent-url: "https://www.htwk-leipzig.de"
+dozent-url: "https://fing.htwk-leipzig.de/fakultaet/professuren/prof-stephan-schoenfelder"
 
 website:
   title: "Technische Mechanik"
@@ -38,13 +37,13 @@ website:
             text: "3 · Schnittgrößen"
     right:
       - text: "Prof. Dr.-Ing. Stephan Schönfelder"
-        href: "https://www.htwk-leipzig.de"
+        href: "https://fing.htwk-leipzig.de/fakultaet/professuren/prof-stephan-schoenfelder"
         target: _blank
   page-footer:
     center: |
       <div class="tm-fusszeile">
         <img src="/assets/logos/fakultaet-ing-schwarz.png" alt="Fakultät Ingenieurwissenschaften">
-        <span>Technische Mechanik (M279) · <a href="https://www.htwk-leipzig.de" target="_blank">Prof. Dr.-Ing. Stephan Schönfelder</a></span>
+        <span>Technische Mechanik (M279) · <a href="https://fing.htwk-leipzig.de/fakultaet/professuren/prof-stephan-schoenfelder" target="_blank">Prof. Dr.-Ing. Stephan Schönfelder</a></span>
       </div>
 
 format:

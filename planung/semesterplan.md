@@ -6,7 +6,7 @@ Bitte frei bearbeiten: ändern, streichen, umsortieren, ergänzen. Alles unter
 
 **Vorbefüllt aus:** Plan WS 24/25 (L. Merker), Modulbeschreibung M279, handschriftliche
 Vorlesung 2013 (Transkripte in `../quellen-transkript/`), Aufgabensammlung Götz (`G 1.5.1` = Aufgabe 1.5.1),
-Gross TM 1 / Dankert.
+Gross TM 1 und TM 2 (Elastostatik, 10. Aufl. 2009, Seitenangaben = Buchseiten) / Dankert.
 
 ## So stellen Sie den Bezug zu eigenen Beispielen her
 
@@ -64,7 +64,7 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
   - B02-4 · Leiter an der Wand (Haftung) – VL 2013 Teil 4
 - **Seminar:** G 1.3.x, G 1.7.x (auswählen)
 - **Hausaufgaben:**
-- **Offene Frage:** Fachwerke (VL 2013 Teil 2: Knotenschnitt, Ritterschnitt) – eigene Einheit, hier integrieren oder weglassen?
+- **Fachwerke:** entfallen (Entscheidung 06.10.2026); VL 2013 Teil 2 wird nicht verwendet.
 - **Quellen:** Transkripte 1, 2, 4; Gross Kap. 5, 6, 9; Dankert Kap. 5, 6, 9
 - **Wünsche/Notizen:**
 
@@ -75,7 +75,7 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
 - **Beispiele Vorlesung:**
   - B03-1 · Träger mit Kragarm, $F_1$ schräg, $F_2$ am Ende – VL 2013 Teil 3 S. 5–8 ✅
   - B03-2 · Einfeldträger mit Dreieckslast, Integration – VL 2013 Teil 3 S. 11–14 ✅
-  - B03-3 · Dreigelenkrahmen – VL 2013 Teil 3 S. 17–23 ⬜ (**Entscheidung nötig:** Auftragsseite von $M$ beim Rahmen, siehe unten)
+  - B03-3 · Dreigelenkrahmen – VL 2013 Teil 3 S. 17–23 ⬜ – $M$ wie Gross/Dankert aufgetragen (positiv auf der der Bezugsfaser abgewandten Seite), mit Hinweis auf die Zugseiten-Darstellung der Tragwerksplanung
 - **Seminar:** G 1.5.1, G 1.5.6, G 1.5.3 ✅
 - **Hausaufgaben:** G 1.5.8, G 1.5.5 ✅
 - **Notebook:** `notebooks/schnittgroessen.py` ✅
@@ -103,7 +103,7 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
   - B05-1 · Hängender Stab / veränderlicher Querschnitt (qualitativ) – VL 2013 Teil 6 S. 7
   - B05-2 · Bohrung in Platte, $k_t \approx 3$ – VL 2013 Teil 6 S. 10
 - **Seminar:** G 2.1.x
-- **Quellen:** Transkript 6; Gross TM 2 (fehlt im Ordner); Dankert Kap. 12
+- **Quellen:** Transkript 6; Gross TM 2 Einführung S. 1–6, §1.1–1.2 S. 7–14, §2.1–2.2 S. 43–62 (Spannungszustand, Mohrscher Kreis); Dankert Kap. 12
 - **Wünsche/Notizen:**
 
 ## Woche 6 · Stoffgesetz, Zugversuch ⬜
@@ -112,7 +112,7 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
 - **Beispiele Vorlesung:**
   - B06-1 · Zugversuch S235 ($\varepsilon \approx 0{,}11\,\%$) – VL 2013 Teil 6 S. 14
 - **Seminar:**
-- **Quellen:** Transkript 6; Dankert Kap. 12–14
+- **Quellen:** Transkript 6; Gross TM 2 §1.3 S. 14–18, §3.1–3.2 S. 71–83; Dankert Kap. 12–14
 - **Wünsche/Notizen:**
 
 ## Woche 7 · Zug und Druck, statisch unbestimmte Stabsysteme ⬜
@@ -123,60 +123,71 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
   - B07-2 · Stab zwischen zwei Wänden, Wärmespannung (−252 N/mm²) – VL 2013 Teil 7 S. 1–5
   - B07-3 · Starrer Balken an zwei Stäben – VL 2013 Teil 7 S. 5–9 (Achtung: $F_{AV} = -0{,}082F$, nicht −0,084F)
 - **Seminar:** G 2.2.x
-- **Quellen:** Transkripte 6, 7; Dankert Kap. 14
+- **Quellen:** Transkripte 6, 7; Gross TM 2 §1.4–1.6 S. 18–40; Dankert Kap. 14
 - **Wünsche/Notizen:**
 
-## Woche 8 · Torsion ⬜
+## Woche 8 · Flächenmomente ⬜
 
-- **Inhalte:** Kreis- und Kreisringquerschnitt, Spannungs- und Verformungsgleichung, polares Flächenmoment, dünnwandige geschlossene Profile
+Eigene Woche (Entscheidung 06.10.2026), bewusst **vor** Torsion und Biegung: dort werden
+polares Flächenmoment bzw. $I_y$ und Widerstandsmomente nur noch angewendet.
+
+- **Lernziele:** Schwerpunkt zusammengesetzter Flächen; axiale, polare und Deviationsmomente berechnen; Satz von Steiner; Hauptachsen und Hauptträgheitsmomente; Tabellenwerte (Profile) nutzen
+- **Inhalte Vorlesung:**
+  1. Flächenschwerpunkt (Wiederholung Statik), zusammengesetzte Flächen, Tabellenschema
+  2. Definition $I_y$, $I_z$, $I_{yz}$, $I_p = I_y + I_z$; Rechteck, Kreis, Kreisring
+  3. Satz von Steiner (Parallelverschiebung)
+  4. Drehung des Bezugssystems, Hauptachsen, Hauptträgheitsmomente
+  5. Widerstandsmomente $W$, $W_p$; Walzprofile aus Tabellen
+- **Beispiele Vorlesung:**
+  - B08-1 · L-Profil: $I_{xx}$, $I_{yy}$, $I_{xy}$, Hauptachsen – VL 2013 Teil 5
+  - B08-2 · Kreis/Kreisring/Rechteck gleicher Fläche im Vergleich – VL 2013 Teil 8 S. 12–15 (Querschnittsteil)
+- **Seminar:** G 1.8.x, G 1.9.x
+- **Quellen:** Transkript 5; Gross TM 2 §4.2 S. 91–108; Gross TM 1 Kap. 4 (Schwerpunkt); Dankert Kap. 16
+- **Wünsche/Notizen:**
+
+## Woche 9 · Torsion ⬜
+
+- **Inhalte:** Kreis- und Kreisringquerschnitt, Spannungs- und Verformungsgleichung, polares Flächenmoment (aus Woche 8), dünnwandige geschlossene Profile (Bredt)
 - **Beispiele Vorlesung:** (keine Unterlagen aus 2013 – **bitte Beispiele/Skizzen beisteuern**)
 - **Seminar:** G 2.3.x
-- **Quellen:** Dankert Kap. 21
+- **Quellen:** Gross TM 2 §5.1–5.3 S. 177–197 (offene Profile §5.4 optional); Dankert Kap. 21
 - **Wünsche/Notizen:**
 
-## Woche 9 · Flächenmomente, gerade Biegung ⬜
+## Woche 10 · Gerade Biegung ⬜
 
-- **Inhalte:** Schwerpunkt, Flächenträgheitsmomente, Steiner; Bernoulli-Hypothese, $\sigma = M_y z / I_{yy}$, Widerstandsmoment, Bemessung
+- **Inhalte:** Bernoulli-Hypothese, Grundgleichungen, $\sigma = \dfrac{M_y}{I_y}\,z$, Widerstandsmoment, Bemessung; Biegelinie (Einfeldbalken), Schubspannungen qualitativ
 - **Beispiele Vorlesung:**
-  - B09-1 · L-Profil: $I_{xx}$, $I_{yy}$, $I_{xy}$ – VL 2013 Teil 5
-  - B09-2 · Kragträger Kreis/Ring/Rechteck im Vergleich – VL 2013 Teil 8 S. 12–15
-  - B09-3 · 3-Punkt-Biegung – VL 2013 Teil 8 S. 19–22
-- **Seminar:** G 1.8.x, G 1.9.x, G 2.4.x
-- **Quellen:** Transkripte 5, 8; Dankert Kap. 16
-- **Offene Frage:** Flächenmomente als eigene Woche oder hier integriert?
-- **Wünsche/Notizen:**
-
-## Woche 10 · Schiefe Biegung, Biegung mit Längskraft ⬜
-
-- **Inhalte:** Hauptachsen, Superposition $N/A + M z/I$, Nulllinie
-- **Beispiele Vorlesung:**
-  - B10-1 · Exzentrischer Zug, Nulllinie bei $h/6$ – VL 2013 Teil 9 S. 2–3
-  - B10-2 · Schräge Endlast, Nulllinie diagonal – VL 2013 Teil 9 S. 8–10
-  - B10-3 · Welle (Ü 13 4.5) – VL 2013 Teil 9 S. 11–17 (Achtung: $\sigma_{max} \approx 13{,}8$ statt 18,0 N/mm²)
+  - B10-1 · Kragträger Kreis/Ring/Rechteck – Spannungen im Vergleich – VL 2013 Teil 8 S. 12–15
+  - B10-2 · 3-Punkt-Biegung – VL 2013 Teil 8 S. 19–22
 - **Seminar:** G 2.4.x
-- **Quellen:** Transkript 9; Dankert Kap. 19
+- **Quellen:** Transkript 8; Gross TM 2 §4.1, §4.3–4.5 S. 89–133, §4.6.1 S. 143–153; Dankert Kap. 16–18
 - **Wünsche/Notizen:**
 
-## Woche 11 · Zusammengesetzte Beanspruchung, Festigkeitshypothesen ⬜
+## Woche 11 · Schiefe Biegung, Biegung mit Längskraft ⬜
 
-- **Inhalte:** mehrachsiger Spannungszustand, Vergleichsspannung (Normalspannungs-, Schubspannungs-, Gestaltänderungsenergiehypothese), Auslegen und Nachweisen
+- **Inhalte:** Hauptachsen (aus Woche 8), Superposition $N/A + M z/I$, Nulllinie, Kern des Querschnitts
+- **Beispiele Vorlesung:**
+  - B11-1 · Exzentrischer Zug, Nulllinie bei $h/6$ – VL 2013 Teil 9 S. 2–3
+  - B11-2 · Schräge Endlast, Nulllinie diagonal – VL 2013 Teil 9 S. 8–10
+  - B11-3 · Welle (Ü 13 4.5) – VL 2013 Teil 9 S. 11–17 (Achtung: $\sigma_{max} \approx 13{,}8$ statt 18,0 N/mm²)
+- **Seminar:** G 2.4.x
+- **Quellen:** Transkript 9; Gross TM 2 §4.7–4.9 S. 155–169; Dankert Kap. 19
+- **Wünsche/Notizen:**
+
+## Woche 12 · Zusammengesetzte Beanspruchung, Festigkeitshypothesen ⬜
+
+- **Inhalte:** mehrachsiger Spannungszustand (Rückgriff auf Woche 5), Vergleichsspannung (Normalspannungs-, Schubspannungs-, Gestaltänderungsenergiehypothese), Auslegen und Nachweisen
 - **Beispiele Vorlesung:** (keine Unterlagen aus 2013 – **bitte beisteuern**)
 - **Seminar:** G 2.5.x, G 2.6.x
-- **Quellen:** Dankert Kap. 22
+- **Quellen:** Gross TM 2 §2.2 S. 46–62, §3.3 S. 83–86; Dankert Kap. 22
 - **Wünsche/Notizen:**
 
-## Woche 12 · Knickung ⬜
+## Woche 13 · Knickung ⬜
 
-- **Inhalte:** Euler-Fälle, Theorie 2. Ordnung an Beispielen
+- **Inhalte:** Verzweigung des Gleichgewichts, Euler-Stab, vier Euler-Fälle, Knicklänge; Theorie 2. Ordnung an Beispielen
 - **Beispiele Vorlesung:** (bitte beisteuern)
 - **Seminar:** G 2.7.x
-- **Wünsche/Notizen:**
-
-## Woche 13 · Energiemethoden ⬜
-
-- **Inhalte:** Prinzip der virtuellen Arbeit, Castigliano, Menabrea
-- **Beispiele Vorlesung:** (bitte beisteuern)
-- **Seminar:**
+- **Quellen:** Gross TM 2 Kap. 7 S. 263–276
 - **Wünsche/Notizen:**
 
 ## Woche 14 · Wiederholung und Prüfungsvorbereitung ⬜
@@ -186,11 +197,19 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
 
 ---
 
-## Offene Entscheidungen
+## Entfallen gegenüber Plan WS 24/25
 
-1. **Rahmen:** Auf welcher Seite wird $M$ aufgetragen? Gross/Dankert: positiv auf der der Bezugsfaser
-   abgewandten Seite (wie beim Balken „positiv oben“). VL 2013 beim Rahmen: auf der Zugseite.
-   Vorschlag: wie Gross/Dankert, mit Hinweis auf die Zugseiten-Darstellung in der Tragwerksplanung.
-2. **Fachwerke:** eigene Einheit, in Woche 2 integrieren oder weglassen?
-3. **Flächenmomente:** eigene Woche oder in Woche 9 integriert?
-4. **Gross TM 2 (Elastostatik):** Falls vorhanden, bitte ebenfalls in `Literatur/` ablegen.
+- **Fachwerke** (Knotenschnitt, Ritterschnitt) – Entscheidung 06.10.2026
+- **Energiemethoden** (Prinzip der virtuellen Kräfte, Castigliano, Menabrea; Gross TM 2 Kap. 6 S. 209–260)
+  – mussten für die eigene Woche Flächenmomente weichen. **Bitte bestätigen**, oder sagen Sie,
+  welche andere Woche stattdessen verkürzt werden soll.
+
+## Entscheidungen (06.10.2026)
+
+1. **Momentenlinie beim Rahmen:** wie Gross/Dankert – positiv auf der der Bezugsfaser (gestrichelte Faser)
+   abgewandten Seite, beim Balken also „positiv oben“. Hinweis auf die Zugseiten-Darstellung der Tragwerksplanung.
+2. **Fachwerke:** entfallen.
+3. **Flächenmomente:** eigene Woche (Woche 8).
+4. **Verläufe zweifarbig:** positive Bereiche rot, negative blau (Grafiken und Notebook).
+5. **Gross TM 2** liegt in `Literatur/Gross_TM2-2014.pdf` (Inhalt = 10. Auflage 2009); Seitenangaben oben sind Buchseiten
+   (PDF-Seite = Buchseite + 10).

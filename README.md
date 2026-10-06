@@ -68,7 +68,8 @@ Die SVGs lassen sich direkt in Inkscape öffnen; jede Ebene ist ein Scroll-Schri
   Soll sie wieder aus Python erzeugt werden: Datei löschen und `quarto render` aufrufen.
 - Neue Ebene in Inkscape: Ebenen-ID über *Objekt → Objekteigenschaften* (oder XML-Editor)
   sinnvoll benennen, z. B. `verlauf-M`, und diese ID in `zeige="…"` verwenden.
-- Farben (wie Gross): Lasten, Reaktionen und Schnittgrößen rot `#ff0000`, Verläufe rot gefüllt,
+- Farben (wie Gross): Lasten, Reaktionen und Schnittgrößen rot `#ff0000`; Verläufe zweifarbig:
+  positive Bereiche rot `#d40000`, negative blau `#0050b4` (jeweils hell gefüllt),
   Bemaßung/Lagerbezeichnungen/Winkel grün `#006414`, Bauteile grau `#e6e6e6`, Lager `#d9d9d9`
   (zentral in `werkzeuge/tmzeichnen.py`, Dict `FARBE`).
 

@@ -30,8 +30,10 @@ FARBE = {
     "linie": "#000000",
     "bauteil": "#e6e6e6",       # Balken/Stab-Füllung
     "lager": "#d9d9d9",         # Lagerkörper
-    "verlauf": "#d40000",       # Schnittgrößenverlauf: Kontur
+    "verlauf": "#d40000",       # Schnittgrößenverlauf positiv: Kontur
     "verlauf_flaeche": "#fbe3e3",
+    "verlauf_neg": "#0050b4",   # Schnittgrößenverlauf negativ: Kontur
+    "verlauf_neg_flaeche": "#dde7f5",
     "hinweis": "#7a7a7a",       # Hilfslinien
 }
 SCHRIFT = "'Latin Modern Roman','LM Roman 10','CMU Serif',serif"
@@ -370,31 +372,37 @@ def vorzeichen_symbol(x, y, positiv, r=7.5, farbe="#000000"):
 
 
 def verlauf(x0, punkte, skala, y0, laenge, label="", positiv_unten=False, schraffur=8,
-            farbe=None, fuellung=None, werte=(), achse_label=True, vorzeichen=True, id_=None):
+            farbe=None, fuellung=None, werte=(), achse_label=True, vorzeichen=True, id_=None,
+            farbe_neg=None, fuellung_neg=None):
     """Schnittgrößenverlauf über der Balkenachse.
 
     punkte: Liste (xi, wert) mit xi in px relativ zu x0 (Sprünge: gleiche xi doppelt).
     skala:  px pro Werteinheit. positiv_unten=False: positive Werte oberhalb der Achse
             (Konvention der Vorlesung 2013); True: in z-Richtung nach unten.
     werte:  [(xi, wert, text, anker)] zusätzliche Beschriftungen an der Kurve.
+    Positive Bereiche rot (farbe/fuellung), negative blau (farbe_neg/fuellung_neg).
     """
-    farbe = farbe or FARBE["verlauf"]
-    fuellung = fuellung or FARBE["verlauf_flaeche"]
+    stil = {1: (farbe or FARBE["verlauf"], fuellung or FARBE["verlauf_flaeche"]),
+            -1: (farbe_neg or FARBE["verlauf_neg"], fuellung_neg or FARBE["verlauf_neg_flaeche"])}
     s = 1 if positiv_unten else -1
-    kurve = [(x0 + xi, y0 + s * v * skala) for xi, v in punkte]
-    flaeche = [(x0 + punkte[0][0], y0)] + kurve + [(x0 + punkte[-1][0], y0)]
-    teile = [polylinie(flaeche, None, fuellung=fuellung, schliessen=True)]
-    if schraffur:
-        xs = punkte[0][0] + schraffur / 2
-        while xs < punkte[-1][0]:
-            v = _interp(punkte, xs)
-            if abs(v * skala) > 1.5:
-                teile.append(linie(x0 + xs, y0, x0 + xs, y0 + s * v * skala, farbe, 0.6))
-            xs += schraffur
-    teile.append(polylinie(kurve, farbe, STRICH["dick"]))
+    teile = []
+    for vz, abschnitt in _vorzeichen_abschnitte(punkte):
+        kontur, flaeche = stil[vz]
+        kurve = [(x0 + xi, y0 + s * v * skala) for xi, v in abschnitt]
+        teile.append(polylinie([(kurve[0][0], y0)] + kurve + [(kurve[-1][0], y0)], None,
+                               fuellung=flaeche, schliessen=True))
+        if schraffur:
+            xs = punkte[0][0] + schraffur / 2
+            while xs < punkte[-1][0]:
+                if abschnitt[0][0] <= xs <= abschnitt[-1][0]:
+                    v = _interp(abschnitt, xs)
+                    if abs(v * skala) > 1.5:
+                        teile.append(linie(x0 + xs, y0, x0 + xs, y0 + s * v * skala, kontur, 0.6))
+                xs += schraffur
+        teile.append(polylinie(kurve, kontur, STRICH["dick"]))
     teile.append(linie(x0 - 8, y0, x0 + laenge + 14, y0, "#000000", STRICH["normal"]))
     if label:
-        teile.append(text(x0 - 16, y0, label, farbe, anker="end"))
+        teile.append(text(x0 - 16, y0, label, "#000000", anker="end"))
     if vorzeichen:
         # ⊕/⊖ in der Mitte des jeweils größten positiven bzw. negativen Abschnitts
         for pos in (True, False):
@@ -418,11 +426,37 @@ def verlauf(x0, punkte, skala, y0, laenge, label="", positiv_unten=False, schraf
                     teile.append(vorzeichen_symbol(x0 + xm, y0 + s * vm * skala / 2, pos))
     for xi, v, t, anker in werte:
         dy = s * (14 if v >= 0 else -14)
-        teile.append(text(x0 + xi, y0 + s * v * skala + dy, t, farbe, 15, anker=anker,
+        teile.append(text(x0 + xi, y0 + s * v * skala + dy, t, stil[1 if v >= 0 else -1][0], 15, anker=anker,
                           italic=not re.match(r"^[−-]?\d", t)))
     if achse_label:
         teile.append(text(x0 + laenge + 18, y0, "x", "#000000", 15, anker="start"))
     return gruppe(teile, id_)
+
+
+def _vorzeichen_abschnitte(punkte):
+    """Zerlegt den Verlauf in Abschnitte gleichen Vorzeichens, Nulldurchgänge eingefügt.
+
+    Liefert [(vorzeichen, [(xi, wert), ...])]; Abschnitte mit Wert 0 entfallen.
+    """
+    sg = lambda v: (v > 1e-9) - (v < -1e-9)
+    abschnitte, akt, akt_vz = [], [], 0
+    for (xa, va), (xb, vb) in zip(punkte, punkte[1:]):
+        if sg(va) * sg(vb) < 0:          # Vorzeichenwechsel: Nullstelle einfügen
+            xn = xa + (xb - xa) * va / (va - vb)
+            stuecke = [((xa, va), (xn, 0.0)), ((xn, 0.0), (xb, vb))]
+        else:
+            stuecke = [((xa, va), (xb, vb))]
+        for (p, q) in stuecke:
+            vz = sg(p[1]) or sg(q[1])
+            if vz != akt_vz:
+                if akt_vz:
+                    abschnitte.append((akt_vz, akt))
+                akt, akt_vz = [p], vz
+            if vz:
+                akt.append(q)
+    if akt_vz:
+        abschnitte.append((akt_vz, akt))
+    return abschnitte
 
 
 def _interp(punkte, x):
