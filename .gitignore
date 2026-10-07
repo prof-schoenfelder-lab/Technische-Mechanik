@@ -8,3 +8,6 @@ __pycache__/
 
 /.quarto/
 **/*.quarto_ipynb
+
+# lokal gebaute Musterlösungen
+loesungen/

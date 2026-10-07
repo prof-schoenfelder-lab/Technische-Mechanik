@@ -14,6 +14,12 @@ venv_bin = projekt / ".venv" / "bin"
 marimo = venv_bin / "marimo" if (venv_bin / "marimo").exists() else shutil.which("marimo")
 env = dict(os.environ, PATH=f"{venv_bin}:{os.environ.get('PATH', '')}")
 
+# Musterlösungen gehören (vorerst) nicht auf die öffentliche Seite: aus _site nach loesungen/ verschieben
+for pdf in sorted((projekt / "_site" / "seminar").glob("*-loesungen.pdf")):
+    (projekt / "loesungen").mkdir(exist_ok=True)
+    shutil.move(str(pdf), projekt / "loesungen" / pdf.name)
+    print(f"Musterlösung (nicht veröffentlicht): loesungen/{pdf.name}")
+
 for nb in sorted((projekt / "notebooks").glob("*.py")):
     ziel = projekt / "_site" / "notebooks" / nb.stem
     if not os.environ.get("QUARTO_PROJECT_RENDER_ALL") and (ziel / "index.html").exists():

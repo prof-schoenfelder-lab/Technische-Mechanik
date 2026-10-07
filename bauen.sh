@@ -8,7 +8,7 @@ QUELLE="$(cd "$(dirname "$0")" && pwd)"
 LOKAL="${HOME}/Library/Caches/tm-kurs-build"
 mkdir -p "$LOKAL"
 rsync -a --delete --exclude _site --exclude .quarto --exclude .git --exclude .venv \
-      --exclude __pycache__ "$QUELLE/" "$LOKAL/"
+      --exclude __pycache__ --exclude loesungen "$QUELLE/" "$LOKAL/"
 # Python-Umgebung für marimo lokal (schnell); einmalig anlegen
 if [ ! -x "$LOKAL/../tm-kurs-venv/bin/marimo" ]; then
   python3 -m venv "$LOKAL/../tm-kurs-venv"
@@ -20,6 +20,7 @@ quarto render
 # Ergebnis zurück (inkl. in Inkscape unveränderter, neu erzeugter Grafiken)
 rsync -a --delete "$LOKAL/_site/" "$QUELLE/_site/"
 rsync -a "$LOKAL/grafiken/" "$QUELLE/grafiken/"
+mkdir -p "$QUELLE/loesungen" && rsync -a "$LOKAL/loesungen/" "$QUELLE/loesungen/" 2>/dev/null || true
 echo "Fertig: $QUELLE/_site"
 if [ "${1:-}" = "vorschau" ]; then
   python3 -m http.server 8765 --directory "$LOKAL/_site"
