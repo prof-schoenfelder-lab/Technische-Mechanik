@@ -76,6 +76,12 @@ def rechter_winkel(x, y, ux, uy, vx, vy, a=9, farbe=GRAU):
                      farbe, STRICH["duenn"])
 
 
+def deckenlager(x, y, label=""):
+    """Festes Gelenklager an der Decke (zweiwertig): Gelenkpunkt bei (x, y), Lagerkörper darüber."""
+    return gruppe([festlager(x, y, groesse=16, drehung=180),
+                   text(x + 26, y - 6, label, GRUEN, anker="start") if label else ""])
+
+
 def punkt(x, y, r=3.2, farbe="#000000"):
     return kreis(x, y, r, farbe, farbe, 0.8)
 
@@ -192,7 +198,7 @@ def axiome():
     e.append(strichpunkt(20, yw - 30, 390, yw + 30))
     m = (30 / 185)
     xa, xb = 118, 300
-    e.append(kraft(xa, yw - 30 + m * (xa - 20) * 1.0, 180 + math.degrees(math.atan(m)), "F", laenge=70,
+    e.append(kraft(xa, yw - 30 + m * (xa - 20) * 1.0, 180 - math.degrees(math.atan(m)), "F", laenge=70,
                    ziehend=True, label_seite=-1))
     e.append(kraft(xb, yw - 30 + m * (xb - 20) * 1.0, -math.degrees(math.atan(m)), "F", laenge=70,
                    ziehend=True, label_seite=1))
@@ -282,7 +288,7 @@ def seil_masse():
 
     e = abb.ebene("system", "System")
     # Aufhängung an der Decke (Festlager um 180° gedreht)
-    e.append(festlager(H[0], H[1], drehung=180))
+    e.append(deckenlager(H[0], H[1]))
     e.append(linie(*H, *K, "#000000", 1.6))
     e.append(linie(K[0], K[1], K[0], yk, "#000000", 1.6))
     e.append(masse(K[0], yk))
@@ -492,12 +498,12 @@ def aufgabe_1_1_4():
 
 
 def aufgabe_1_1_5():
-    abb, e = _aufgabe("Kiste an Stricken", 460, 340)
-    H = (150, 50)
+    abb, e = _aufgabe("Kiste an Seilen", 460, 350)
+    H = (150, 60)
     l = 170
     th = math.radians(35)
     K = (H[0] + l * math.sin(th), H[1] + l * math.cos(th))
-    e.append(festlager(*H, drehung=180))
+    e.append(deckenlager(*H, "A"))
     e.append(linie(*H, *K, "#000000", 1.6))
     e.append(linie(K[0], K[1], K[0], K[1] + 40, "#000000", 1.6))
     e.append(platte([(K[0] - 28, K[1] + 40), (K[0] + 28, K[1] + 40), (K[0] + 28, K[1] + 84), (K[0] - 28, K[1] + 84)],
@@ -519,7 +525,7 @@ def aufgabe_1_1_5():
     return abb.speichern(ZIEL / "aufgabe-1-1-5.svg")
 
 
-def aufgabe_1_2_1():
+def aufgabe_1_2_1(abb_zurueck=False):
     abb, e = _aufgabe("Scheibe mit drei Kräften", 520, 330)
     m = 52
     O = (215, 165)
@@ -544,6 +550,8 @@ def aufgabe_1_2_1():
     e.append(winkelbogen(*P(4, 1), 34, 135, 180, "α_3"))
     for p in (P(-2, 0), P(0, -2), P(4, 1)):
         e.append(punkt(*p, 2.6))
+    if abb_zurueck:
+        return abb, P
     return abb.speichern(ZIEL / "aufgabe-1-2-1.svg")
 
 
@@ -580,7 +588,7 @@ def aufgabe_1_2_4():
     return abb.speichern(ZIEL / "aufgabe-1-2-4.svg")
 
 
-def hausaufgabe_bolzen():
+def aufgabe_b01_4():
     """B01-4: Bolzen mit vier Kräften in der x-y-Ebene (Draufsicht)."""
     abb, e = _aufgabe("Bolzen mit vier Kräften (Draufsicht)", 520, 330)
     O = (270, 130)
@@ -593,10 +601,10 @@ def hausaufgabe_bolzen():
     e.append(winkelbogen(*O, 80, -30, 0, "30°"))
     e.append(winkelbogen(*O, 70, 180, 240, "60°"))
     e.append(hinweis(20, 310, "Draufsicht auf die Platte, Kräfte am Bolzenkopf"))
-    return abb.speichern(ZIEL / "hausaufgabe-bolzen.svg")
+    return abb.speichern(ZIEL / "aufgabe-b01-4.svg")
 
 
-def hausaufgabe_wirkungslinien():
+def aufgabe_b01_5():
     """B01-5: drei Kräfte durch zwei Kräfte auf gegebenen Wirkungslinien ins Gleichgewicht bringen."""
     abb, e = _aufgabe("Gleichgewicht mit zwei Wirkungslinien", 420, 300)
     O = (210, 170)
@@ -609,11 +617,11 @@ def hausaufgabe_wirkungslinien():
     e.append(winkelbogen(*O, 92, 0, 120, ""))
     e.append(text(O[0] + 8, O[1] - 104, "α_5", GRUEN, 15, anker="start"))
     e.append(punkt(*O))
-    return abb.speichern(ZIEL / "hausaufgabe-wirkungslinien.svg")
+    return abb.speichern(ZIEL / "aufgabe-b01-5.svg")
 
 
 if __name__ == "__main__":
     for fn in (einordnung, kraft_vektor, axiome, resultierende_zwei_kraefte, seil_masse, moment_grafik,
                scheibe_vier_kraefte, aufgabe_1_1_3, aufgabe_1_1_4, aufgabe_1_1_5, aufgabe_1_2_1, aufgabe_1_2_4,
-               hausaufgabe_bolzen, hausaufgabe_wirkungslinien):
+               aufgabe_b01_4, aufgabe_b01_5):
         print(fn())

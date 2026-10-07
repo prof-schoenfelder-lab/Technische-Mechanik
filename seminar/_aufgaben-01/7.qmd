@@ -1,0 +1,14 @@
+### Aufgabe 1.7 · Kiste an Seilen
+
+![](../grafiken/grundlagen/aufgabe-1-1-5.svg){width=50%}
+
+Eine Kiste der Masse $m$ hängt an Seil (c). Seil (c) ist im Knoten mit den Seilen (a) und (b)
+verbunden. Seil (a) der Länge $l$ ist oben im Punkt $A$ an einem **festen Gelenklager** befestigt.
+Die waagerechte Kraft $F$ an Seil (b) lenkt den Knoten aus und hebt die Kiste an.
+Jedes Seil hält höchstens die Zugkraft $S_\text{max}$ aus.
+
+a) Auf welche Höhe $h_1$ wird die Kiste mit der Kraft $F_1$ gehoben?
+b) Welche Höhe $h_\text{max}$ ist erreichbar, bevor Seil (a) reißt?
+c) Welche Kraft $F_\text{max}$ ist dafür nötig?
+
+**Gegeben:** $m$ = 50 kg, $l$ = 0,8 m, $F_1$ = 300 N, $S_\text{max}$ = 1,2 kN, $g$ = 9,81 m/s²

@@ -20,21 +20,20 @@ format:
 
 ::: {.content-visible when-format="html"}
 ::: {.merke}
-**So arbeiten Sie mit diesem Blatt**
+**So arbeiten Sie mit dieser Aufgabensammlung**
 
 1. Lösen Sie die Aufgaben **auf Papier**: Freikörperbild, Bereiche, Gleichgewicht, Verläufe skizzieren.
    [Aufgabenblatt als PDF](03-schnittgroessen.pdf)
-2. **Kontrollieren** Sie Ihre Ergebnisse mit dem
-   [interaktiven Notebook](../notebooks/schnittgroessen/index.html){target="_blank"}
-   oder mit den Ergebnissen unten.
-3. Ändern Sie im Notebook Parameter und sagen Sie die Wirkung **vorher** voraus.
+2. **Kontrollieren** Sie Ihre Ergebnisse mit den Ergebnissen unten.
+3. Im [interaktiven Notebook](../notebooks/schnittgroessen/index.html){target="_blank"} können Sie
+   Lasten verändern. Sagen Sie die Wirkung **vorher** voraus.
 :::
 :::
 
 Vorzeichenkonvention wie in der Vorlesung: $N$ positiv als Zug, $Q$ am positiven Schnittufer in $+z$
 (nach unten), $M$ positiv, wenn die untere Faser auf Zug beansprucht wird.
 
-## Seminaraufgaben
+## Aufgaben
 
 ### Aufgabe 3.1 · Träger mit zwei Einzelkräften
 
@@ -62,8 +61,6 @@ Ermitteln Sie die Kraft in der Stütze sowie $N(x)$, $Q(x)$ und $M(x)$ im Träge
 **Gegeben:** $F$ = 30 kN, $l$ = 1 m, $\alpha$ = 60°
 
 {{< pagebreak >}}
-
-## Hausaufgaben
 
 ### Aufgabe 3.4 · Kragträger mit Dreieckslast
 
@@ -117,12 +114,12 @@ $N = -15\,\text{kN}$ · $Q = -13{,}0\,\text{kN}$ bzw. $26{,}0\,\text{kN}$ · $M_
 :::
 
 ::: {.callout-tip collapse="true"}
-## Aufgabe 3.4 (Hausaufgabe)
+## Aufgabe 3.4
 An der Einspannung: $Q = -\tfrac12\,q_0 a$, $M = -\tfrac16\,q_0 a^2$
 :::
 
 ::: {.callout-tip collapse="true"}
-## Aufgabe 3.5 (Hausaufgabe)
+## Aufgabe 3.5
 $F_{AH} = 2598\,\text{N}$, $F_{AV} = 750\,\text{N}$, $|M_A| = 2750\,\text{Nm}$, $F_C = 750\,\text{N}$,
 Gelenkkräfte $G_H = 2598\,\text{N}$, $G_V = 750\,\text{N}$ (Beträge)
 

@@ -1,0 +1,15 @@
+### Aufgabe 1.4 · Fahrradantrieb
+
+![](../grafiken/grundlagen/aufgabe-1-2-4.svg){width=75%}
+
+An der Tretkurbel wirkt die Kraft $F$ senkrecht nach unten. Kettenblatt und Ritzel haben die
+Durchmesser $d_Z$ und $d_R$, das Hinterrad den Durchmesser $d_H$.
+
+a) Moment $M_T$ auf die Tretkurbelwelle
+b) Kettenkraft $F_K$
+c) Moment $M_R$ auf die Ritzelwelle
+d) Vortriebskraft $F_V$ des Hinterrads auf die Straße
+
+**Gegeben:** $F$ = 500 N, $\alpha$ = 40°, $l_K$ = 180 mm, $d_Z$ = 150 mm, $d_R$ = 72 mm, $d_H$ = 730 mm
+
+*Hinweis: Reibung in den Lagern und Rollwiderstand werden vernachlässigt.*

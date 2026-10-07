@@ -47,7 +47,7 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
 - **Hausaufgaben:** B01-4-Hausaufgabe.png, B01-5-Hausaufgabe.png
 - **Notebook-Idee:** Krafteck und Resultierende live, Lösung der Aufgabe G 1.1.5 in Abhängigkeit von F in grafischer Darstellung der Auslenkung und Belastung des Seils
 - **Quellen:** Transkript 1; Gross Kap. 1–3; Dankert Kap. 1–3
-- **Umsetzung:** `vorlesung/01-grundlagen.qmd`, `seminar/01-grundlagen.qmd` (Seminar 1.1–1.4 = G 1.1.3, G 1.1.4, G 1.2.1, G 1.2.4; Hausaufgaben 1.5 = B01-4, 1.6 = B01-5; Zusatz 1.7 = G 1.1.5), `notebooks/grundlagen.py`, Grafiken `grafiken/grundlagen/` aus `werkzeuge/grafiken_grundlagen.py`
+- **Umsetzung:** `vorlesung/01-grundlagen.qmd`, `seminar/01-grundlagen.qmd` (Aufgabensammlung 1.1–1.7: G 1.1.3, G 1.1.4, G 1.2.1, G 1.2.4, B01-4, B01-5, G 1.1.5; Musterlösungen `seminar/01-grundlagen-loesungen.qmd` → PDF), `notebooks/grundlagen.py`, Grafiken `grafiken/grundlagen/` aus `werkzeuge/grafiken_grundlagen.py`
 - **Wünsche/Notizen:**
 
 ## Woche 2 · Lager- und Gelenkreaktionen, Streckenlasten 🟨

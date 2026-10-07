@@ -1,0 +1,8 @@
+### Aufgabe 1.5 · Bolzen mit vier Kräften
+
+![](../grafiken/grundlagen/aufgabe-b01-4.svg){width=60%}
+
+Ein Bolzen wird durch die vier in der $x$-$y$-Ebene liegenden Kräfte $F_1$ bis $F_4$ beansprucht.
+Bestimmen Sie Betrag und Richtung der Resultierenden, rechnerisch und mit einem maßstäblichen Krafteck.
+
+**Gegeben:** $F_1$ = 1000 N, $F_2$ = 500 N, $F_3$ = 1500 N, $F_4$ = 800 N

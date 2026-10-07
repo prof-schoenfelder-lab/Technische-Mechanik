@@ -113,9 +113,9 @@ def _(FR, mo, np):
 @app.cell
 def _(mo):
     mo.md(r"""
-    ## 2 · Kiste an Stricken (Aufgabe 1.7)
+    ## 2 · Kiste an Seilen (Aufgabe 1.7)
 
-    Die waagerechte Kraft $F$ lenkt den Strick (a) aus, die Kiste steigt um $h$.
+    Die waagerechte Kraft $F$ lenkt Seil (a) aus, die Kiste steigt um $h$.
     Am Knoten herrscht Gleichgewicht eines **zentralen Kraftsystems**:
 
     $$
@@ -152,7 +152,13 @@ def _(BLAU, F_regler, GRAU, GRUEN, ROT, S_regler, m_regler, np, plt):
     _fig, (_ax1, _ax2) = plt.subplots(1, 2, figsize=(9, 4.2), gridspec_kw={"width_ratios": [1, 1.4]})
     # Geometrie
     _K = (l * np.sin(phi), -l * np.cos(phi))
-    _ax1.plot([-0.12, 0.12], [0, 0], color="k", lw=2)
+    # festes Gelenklager an der Decke
+    _ax1.fill([0, -0.06, 0.06], [0, 0.09, 0.09], color="#d9d9d9", ec="k", lw=1)
+    _ax1.plot([-0.1, 0.1], [0.09, 0.09], color="k", lw=1.2)
+    for _xs in np.linspace(-0.09, 0.09, 7):
+        _ax1.plot([_xs, _xs + 0.03], [0.09, 0.13], color="k", lw=0.6)
+    _ax1.plot([0], [0], "o", ms=5, mfc="white", mec="k", zorder=5)
+    _ax1.text(0.09, 0.03, "$A$", color=GRUEN, fontsize=13)
     _ax1.plot([0, _K[0]], [0, _K[1]], color=ROT if reisst else "k", lw=2, ls="--" if reisst else "-")
     _ax1.plot([_K[0], _K[0]], [_K[1], _K[1] - 0.15], color="k", lw=1.6)
     _ax1.add_patch(plt.Rectangle((_K[0] - 0.08, _K[1] - 0.27), 0.16, 0.12, fc=GRAU, ec="k"))
@@ -165,10 +171,10 @@ def _(BLAU, F_regler, GRAU, GRUEN, ROT, S_regler, m_regler, np, plt):
     _ax1.annotate("", xy=(-0.2, _K[1]), xytext=(-0.2, -l), arrowprops=dict(arrowstyle="<->", color=GRUEN))
     _ax1.text(-0.23, (_K[1] - l) / 2, "$h$", color=GRUEN, ha="right", va="center", fontsize=13)
     _ax1.set_xlim(-0.35, 1.15)
-    _ax1.set_ylim(-1.15, 0.1)
+    _ax1.set_ylim(-1.15, 0.16)
     _ax1.set_aspect("equal")
     _ax1.axis("off")
-    _ax1.set_title("Strick (a) reißt!" if reisst else "Lage im Gleichgewicht", color=ROT if reisst else "k")
+    _ax1.set_title("Seil (a) reißt!" if reisst else "Lage im Gleichgewicht", color=ROT if reisst else "k")
     # Kennlinien
     _Fs = np.linspace(0, 1500, 400)
     _ax2.plot(_Fs, l * (1 - np.cos(np.arctan2(_Fs, G))) * 1000, color=BLAU, lw=2, label="$h$ in mm")
@@ -197,75 +203,6 @@ def _(Fmax, G, Sa, h, hmax, mo, np, phi):
     Die Kurve $h(F)$ wird immer flacher: Für jeden weiteren Millimeter braucht man mehr Kraft,
     und die Seilkraft $S_a$ wächst schneller als die Hubhöhe.
     """)
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(r"""
-    ## 3 · Ergebnis prüfen
-
-    Wählen Sie eine Aufgabe und tragen Sie **Ihre auf Papier ermittelten Werte** ein
-    (Komma oder Punkt als Dezimaltrennzeichen). Winkel in Grad, von der positiven $x$-Achse gegen
-    den Uhrzeigersinn; Momente gegen den Uhrzeigersinn positiv.
-    """)
-    return
-
-
-@app.cell
-def _(mo):
-    AUFGABEN = {
-        "1.1 Containerschiff": [("\\varphi_1", "°", 21.01), ("F_R", "MN", 1.156)],
-        "1.2 Stahlträger am Kran": [("F_S", "N", 2873.2)],
-        "1.3 Scheibe mit drei Kräften": [
-            ("F_R", "N", 3927.0), ("\\alpha_R", "°", 4.64), ("M_R^{(0)}", "Nm", -7535.2),
-            ("\\text{Steigung der Wirkungslinie}", "–", 0.0812), ("\\text{Achsabschnitt } y_R(0)", "m", 1.925)],
-        "1.4 Fahrradantrieb": [
-            ("M_T", "Nm", 68.94), ("F_K", "N", 919.3), ("M_R", "Nm", 33.09), ("F_V", "N", 90.67)],
-        "1.5 Bolzen (Hausaufgabe)": [
-            ("F_{Rx}", "N", -684.0), ("F_{Ry}", "N", -2299.0), ("F_R", "N", 2398.6), ("\\alpha_R", "°", 253.4)],
-        "1.6 Zwei Wirkungslinien (Hausaufgabe)": [("F_4", "N", -22.68), ("F_5", "N", 57.32)],
-        "1.7 Kiste an Stricken": [("h_1", "m", 0.1175), ("h_{max}", "m", 0.473), ("F_{max}", "N", 1095.2)],
-    }
-    wahl = mo.ui.dropdown(options=list(AUFGABEN), value="1.1 Containerschiff", label="Aufgabe")
-    wahl
-    return AUFGABEN, wahl
-
-
-@app.cell
-def _(AUFGABEN, mo, wahl):
-    eingaben = mo.ui.array(
-        [mo.ui.text(placeholder="Ihr Wert", label=rf"${tex}$ in {einheit}") for tex, einheit, _ in AUFGABEN[wahl.value]])
-    eingaben.vstack()
-    return (eingaben,)
-
-
-@app.cell
-def _(AUFGABEN, eingaben, mo, wahl):
-    def zahl(t):
-        try:
-            return float(t.replace(",", ".").replace("−", "-").strip())
-        except ValueError:
-            return None
-
-    def gleich(a, b):
-        return abs(a - b) <= max(0.01 * abs(b), 1e-3)
-
-    zeilen = []
-    for (tex, _e, soll), feld in zip(AUFGABEN[wahl.value], eingaben.value):
-        w = zahl(feld)
-        if w is None:
-            urteil = "–"
-        elif gleich(w, soll) or (_e == "°" and (gleich(w + 360, soll) or gleich(w - 360, soll))):
-            urteil = "✅ richtig"
-        elif gleich(abs(w), abs(soll)):
-            urteil = "⚠️ Betrag stimmt – Vorzeichen prüfen"
-        elif _e == "°" and (gleich(w + 180, soll) or gleich(w - 180, soll)):
-            urteil = "⚠️ um 180° daneben – Quadrant prüfen"
-        else:
-            urteil = "❌ noch nicht"
-        zeilen.append(f"| ${tex}$ | {feld or ''} | {urteil} |")
-    mo.md("| Größe | Ihr Wert | Bewertung |\n|:--|--:|:--|\n" + "\n".join(zeilen))
     return
 
 

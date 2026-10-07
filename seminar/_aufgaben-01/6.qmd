@@ -1,0 +1,13 @@
+### Aufgabe 1.6 · Gleichgewicht mit zwei vorgegebenen Wirkungslinien
+
+![](../grafiken/grundlagen/aufgabe-b01-5.svg){width=50%}
+
+Die Kräftegruppe $\vec F_1$, $\vec F_2$, $\vec F_3$ greift im Ursprung an. Sie soll durch zwei Kräfte
+$\vec F_4$ und $\vec F_5$ ins Gleichgewicht gebracht werden, deren Wirkungslinien $Wl_4$ und $Wl_5$
+gegeben sind. Bestimmen Sie $F_4$ und $F_5$ und deuten Sie die Vorzeichen.
+
+**Gegeben:**
+$\vec F_1 = (30\ \text{N},\ 20\ \text{N})$,
+$\vec F_2 = (20\ \text{N},\ -30\ \text{N})$,
+$\vec F_3 = (-10\ \text{N},\ -20\ \text{N})$,
+$\alpha_4$ = 60°, $\alpha_5$ = 120°

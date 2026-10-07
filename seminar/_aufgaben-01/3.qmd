@@ -1,0 +1,11 @@
+### Aufgabe 1.3 · Scheibe mit drei Kräften
+
+![](../grafiken/grundlagen/aufgabe-1-2-1.svg){width=65%}
+
+Auf eine starre Scheibe wirken drei Kräfte. Die Maße der Skizze sind in m angegeben.
+
+a) Betrag $F_R$ und Winkel $\alpha_R$ der Resultierenden
+b) resultierendes Moment $M_R^{(0)}$ um den Koordinatenursprung
+c) Gleichung der Wirkungslinie der Resultierenden; zeichnen Sie sie in die Skizze ein.
+
+**Gegeben:** $F_1$ = 2000 N, $\alpha_1$ = 60°, $F_2$ = 1500 N, $F_3$ = 2000 N, $\alpha_3$ = 45°

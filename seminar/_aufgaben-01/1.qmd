@@ -1,0 +1,11 @@
+### Aufgabe 1.1 · Containerschiff mit zwei Schleppern
+
+![](../grafiken/grundlagen/aufgabe-1-1-3.svg){width=70%}
+
+Zwei Schlepper ziehen ein Containerschiff in den Hafen. Das Schiff soll geradeaus entlang der
+eingezeichneten Wirkungslinie gezogen werden.
+
+a) Welcher Winkel $\varphi_1$ ist erforderlich?
+b) Wie groß ist die resultierende Kraft auf das Schiff?
+
+**Gegeben:** $F_1$ = 0,8 MN, $F_2$ = 0,5 MN, $\varphi_2$ = 35°

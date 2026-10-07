@@ -1,0 +1,10 @@
+### Aufgabe 1.2 · Stahlträger am Kran
+
+![](../grafiken/grundlagen/aufgabe-1-1-4.svg){width=55%}
+
+Ein Stahlträger der Masse $m$ wird von einem Kran gehoben. Das Seil ist symmetrisch befestigt,
+der Träger hängt waagerecht. Bestimmen Sie die Seilkraft $F_S$.
+
+**Gegeben:** $m$ = 450 kg, $l$ = 2,5 m, $h$ = 1,5 m, $g$ = 9,81 m/s²
+
+*Hinweis: Schneiden Sie den Kranhaken frei.*
