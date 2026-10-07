@@ -31,7 +31,7 @@ jobs:
           python-version: "3.13"
 
       - name: Python-Pakete (marimo-Export, Grafiken)
-        run: pip install marimo==0.25.1 numpy matplotlib
+        run: pip install marimo==0.25.1 numpy matplotlib uv
 
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
