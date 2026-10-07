@@ -11,3 +11,11 @@ __pycache__/
 
 # lokal gebaute Musterlösungen
 loesungen/
+
+# Nicht veröffentlichen: Musterlösungen und Scans/Vorlagen der Beispiele
+seminar/*-loesungen.qmd
+grafiken/**/loesung-*.svg
+werkzeuge/*_loesungen.py
+planung/beispiele/*
+!planung/beispiele/.gitkeep
+!planung/beispiele/README.md
