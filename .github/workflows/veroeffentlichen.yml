@@ -1,10 +1,5 @@
-# Baut die Kursseite und veröffentlicht sie.
-#
-# Die Quellen (dieses Repository) bleiben privat. Veröffentlicht wird nur die fertige Seite
-# (_site/) im öffentlichen Repository, das in der Repository-Variable ZIEL_REPO steht
-# (z. B. prof-schoenfelder-lab/Technische-Mechanik-Web), Zweig gh-pages.
-# Zugriff darauf über einen Deploy-Key: privater Schlüssel als Secret DEPLOY_KEY hier,
-# öffentlicher Schlüssel mit Schreibrecht im Ziel-Repository.
+# Baut die Kursseite und veröffentlicht sie auf GitHub Pages
+# (Einstellungen → Pages → Source: GitHub Actions).
 #
 # Musterlösungen werden beim Rendern aus _site entfernt (werkzeuge/nach_render.py)
 # und daher nicht veröffentlicht.
@@ -15,6 +10,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
   group: veroeffentlichen
@@ -46,20 +46,16 @@ jobs:
             echo "Musterlösung in _site gefunden – Abbruch"; exit 1
           fi
 
-      - name: Seite als Artefakt sichern
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
-          name: kursseite
           path: _site
-          retention-days: 7
 
-      - name: Veröffentlichen
-        if: ${{ vars.ZIEL_REPO != '' }}
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          deploy_key: ${{ secrets.DEPLOY_KEY }}
-          external_repository: ${{ vars.ZIEL_REPO }}
-          publish_branch: gh-pages
-          publish_dir: ./_site
-          force_orphan: true
-          enable_jekyll: false
+  veroeffentlichen:
+    needs: bauen
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
