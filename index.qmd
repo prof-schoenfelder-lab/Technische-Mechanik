@@ -14,6 +14,7 @@ Willkommen! Diese Seite begleitet Vorlesung und Seminar.
 
 | Woche | Thema | Vorlesung | Seminar |
 |:-:|:--|:-:|:-:|
+| 0 | **Mathematische Werkzeuge** (Einführung, mit Übungen) | [Vorlesung](vorlesung/00-mathematik.qmd) | – |
 | 1 | **Kräfte, Momente, Gleichgewicht** | [Vorlesung](vorlesung/01-grundlagen.qmd) | [Seminar](seminar/01-grundlagen.qmd) |
 | 2 | Lager- und Gelenkreaktionen, Streckenlasten | – | – |
 | 3 | **Schnittgrößen** | [Vorlesung](vorlesung/03-schnittgroessen.qmd) | [Seminar](seminar/03-schnittgroessen.qmd) |

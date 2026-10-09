@@ -1,0 +1,583 @@
+---
+title: "Mathematische Werkzeuge"
+subtitle: "Einführung · Vorlesung 0"
+page-layout: full
+---
+
+::: {.merke}
+**Worum geht es?** Die Technische Mechanik rechnet mit Vektoren. Bevor es in Woche 1 mit Kräften
+und Gleichgewicht losgeht, frischen wir die nötige Mathematik auf: Sinus und Kosinus, Vektoren,
+Skalarprodukt, Kreuzprodukt. Jedes Werkzeug lernen Sie an einer mechanischen Größe kennen:
+die Komponenten an der **Kraft**, das Skalarprodukt an der **Arbeit**, das Kreuzprodukt am **Moment**.
+Zum Schluss zeigt die **Feder**, was Elastizität bedeutet.
+
+Nach jedem Abschnitt folgen kurze **Übungen**. Rechnen Sie sie auf Papier, das Ergebnis können Sie
+aufklappen.
+:::
+
+## Sinus und Kosinus am Einheitskreis
+
+:::: {.scrolly svg="../grafiken/mathematik/einheitskreis.svg"}
+
+::: {.schritt zeige="kreis punkt" zoom="20 10 440 410"}
+### Der Einheitskreis
+
+Ein Kreis mit dem Radius **1** um den Ursprung. Ein Punkt $P$ auf dem Kreis ist durch den
+Winkel $\alpha$ festgelegt, gemessen **von der positiven $x$-Achse gegen den Uhrzeigersinn**.
+:::
+
+::: {.schritt zeige="kreis punkt projektion" zoom="20 10 440 410"}
+### Kosinus und Sinus sind Koordinaten
+
+Die Koordinaten des Punktes $P$ sind
+
+$$
+P = (\cos\alpha,\ \sin\alpha)
+$$
+
+Der **Kosinus** ist die Projektion auf die $x$-Achse, der **Sinus** die Projektion auf die $y$-Achse.
+Weil der Radius 1 ist, folgt aus dem Satz des Pythagoras:
+
+$$
+\sin^2\alpha + \cos^2\alpha = 1
+$$
+:::
+
+::: {.schritt zeige="kreis punkt projektion quadranten" dimmen="projektion" zoom="20 10 440 410"}
+### Vorzeichen
+
+Für Winkel über $90^\circ$ wandert der Punkt in die anderen Quadranten. Kosinus und Sinus werden
+dann **negativ**, wenn der Punkt links bzw. unterhalb des Ursprungs liegt.
+
+Beispiel $Q$ bei $140^\circ$: $\cos 140^\circ = -0{,}766$, $\sin 140^\circ = 0{,}643$.
+
+So stecken die Vorzeichen der Kraftkomponenten automatisch im Winkel. Das spart Fallunterscheidungen.
+:::
+
+::: {.schritt zeige="dreieck" zoom="440 140 380 280"}
+### Vom Einheitskreis zur Kraft
+
+Eine Kraft $F$ unter dem Winkel $\alpha$ ist der Einheitskreis, **gestreckt um den Faktor $F$**:
+
+$$
+\begin{aligned}
+F_x &= F\cos\alpha\\
+F_y &= F\sin\alpha
+\end{aligned}
+$$
+
+Im rechtwinkligen Dreieck heißt das:
+
+$$
+\begin{aligned}
+\cos\alpha &= \frac{\text{Ankathete}}{\text{Hypotenuse}}\\[2pt]
+\sin\alpha &= \frac{\text{Gegenkathete}}{\text{Hypotenuse}}\\[2pt]
+\tan\alpha &= \frac{\text{Gegenkathete}}{\text{Ankathete}} = \frac{F_y}{F_x}
+\end{aligned}
+$$
+
+::: {.vertiefung titel="Ausführlicher: Welcher Winkel? Sinus oder Kosinus?"}
+In Aufgaben ist der Winkel oft nicht zur $x$-Achse angegeben, sondern zur Senkrechten oder zu einem
+Bauteil. Dann hilft eine einfache Regel: Die Komponente **am Winkel** (Ankathete) bekommt den
+**Kosinus**, die Komponente **gegenüber** dem Winkel (Gegenkathete) den **Sinus**.
+
+Kontrolle am Grenzfall: Wird der Winkel null, muss die Komponente am Winkel den vollen Betrag $F$
+haben ($\cos 0 = 1$) und die andere verschwinden ($\sin 0 = 0$).
+:::
+:::
+
+::::
+
+::: {.merke}
+**Werte, die man kennen sollte**
+
+| $\alpha$ | $0^\circ$ | $30^\circ$ | $45^\circ$ | $60^\circ$ | $90^\circ$ |
+|:--|:-:|:-:|:-:|:-:|:-:|
+| $\sin\alpha$ | $0$ | $\tfrac12$ | $\tfrac12\sqrt2 \approx 0{,}707$ | $\tfrac12\sqrt3 \approx 0{,}866$ | $1$ |
+| $\cos\alpha$ | $1$ | $\tfrac12\sqrt3 \approx 0{,}866$ | $\tfrac12\sqrt2 \approx 0{,}707$ | $\tfrac12$ | $0$ |
+
+Umgekehrt liefert $\alpha = \arctan(F_y/F_x)$ nur Winkel zwischen $-90^\circ$ und $+90^\circ$.
+Ist $F_x < 0$, muss man $180^\circ$ addieren. Eine Skizze zeigt immer, in welchem Quadranten die Kraft liegt.
+:::
+
+### Übungen
+
+**Übung 0.1** · Bestimmen Sie am Einheitskreis die Vorzeichen und mit der Tabelle die Werte von
+Sinus und Kosinus für $120^\circ$, $210^\circ$ und $300^\circ$.
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+$120^\circ$: $\cos = -0{,}5$, $\sin = 0{,}866$ · $210^\circ$: $\cos = -0{,}866$, $\sin = -0{,}5$ ·
+$300^\circ$: $\cos = 0{,}5$, $\sin = -0{,}866$
+:::
+
+**Übung 0.2** · Eine Kraft $F = 500$ N wirkt unter $\alpha = 210^\circ$. Berechnen Sie $F_x$ und $F_y$
+und skizzieren Sie die Kraft.
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+$F_x = -433$ N, $F_y = -250$ N (nach links unten)
+:::
+
+**Übung 0.3** · Eine Kraft hat die Komponenten $F_x = -300$ N und $F_y = 400$ N.
+Wie groß sind Betrag und Richtungswinkel?
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+$F = 500$ N · $\arctan(400/(-300)) = -53{,}1^\circ$, wegen $F_x < 0$: $\alpha = 126{,}9^\circ$
+:::
+
+## Die Kraft als Vektor
+
+:::: {.scrolly svg="../grafiken/grundlagen/kraft-vektor.svg"}
+
+::: {.schritt zeige="koordinaten kraft" zoom="0 30 560 330"}
+### Betrag, Richtung, Angriffspunkt
+
+Eine Kraft hat einen **Betrag** (in N), eine **Richtung** mit **Richtungssinn** und einen
+**Angriffspunkt**. Größen dieser Art heißen **Vektoren**, geschrieben $\vec F$.
+
+Größen, die nur einen Betrag haben, wie Masse, Länge, Zeit oder Arbeit, heißen **Skalare**.
+:::
+
+::: {.schritt zeige="koordinaten kraft komponenten einheitsvektoren" zoom="0 30 560 330"}
+### Komponenten und Einheitsvektoren
+
+Mit den **Einheitsvektoren** $\vec e_x$, $\vec e_y$ (Länge 1, in Achsrichtung):
+
+$$
+\vec F = F_x\,\vec e_x + F_y\,\vec e_y
+= \begin{pmatrix} F_x \\ F_y \end{pmatrix}
+$$
+
+$$
+F = |\vec F| = \sqrt{F_x^2 + F_y^2}
+$$
+
+Der Einheitsvektor in Kraftrichtung ist $\vec e_F = \vec F / F = (\cos\alpha,\ \sin\alpha)$,
+also genau der Punkt auf dem Einheitskreis.
+:::
+
+::::
+
+:::: {.scrolly svg="../grafiken/mathematik/vektoraddition.svg"}
+
+::: {.schritt zeige="vektoren" zoom="40 20 500 330"}
+### Kräfte addieren
+
+Zwei Kräfte $\vec F_1$ und $\vec F_2$ greifen im selben Punkt an. Welche einzelne Kraft hat dieselbe
+Wirkung?
+:::
+
+::: {.schritt zeige="vektoren kette summe" zoom="40 20 500 330"}
+### Grafisch: Spitze an Fuß
+
+Man verschiebt $\vec F_2$ parallel an die Spitze von $\vec F_1$. Die **Resultierende** $\vec F_R$ führt
+vom Anfang zur Spitze der Kette.
+:::
+
+::: {.schritt zeige="vektoren kette summe komponenten" dimmen="kette" zoom="40 20 500 330"}
+### Rechnerisch: komponentenweise
+
+$$
+\vec F_R = \vec F_1 + \vec F_2
+= \begin{pmatrix} F_{1x} + F_{2x} \\ F_{1y} + F_{2y} \end{pmatrix}
+$$
+
+Vektoren werden **komponentenweise** addiert. Mit einer Zahl multipliziert man jede Komponente:
+$k\,\vec F = (kF_x,\ kF_y)$.
+:::
+
+::::
+
+### Übung
+
+**Übung 0.4** · Zwei Kräfte greifen in einem Punkt an: $F_1 = 4$ kN unter $30^\circ$ und
+$F_2 = 3$ kN unter $120^\circ$. Bestimmen Sie die Resultierende nach Betrag und Richtung.
+Was fällt Ihnen am Betrag auf?
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+$F_{Rx} = 1{,}96$ kN, $F_{Ry} = 4{,}60$ kN · $F_R = 5{,}00$ kN, $\alpha_R = 66{,}9^\circ$.
+Die beiden Kräfte stehen senkrecht aufeinander: $3^2 + 4^2 = 5^2$.
+:::
+
+## Skalarprodukt und Arbeit
+
+:::: {.scrolly svg="../grafiken/mathematik/skalarprodukt.svg"}
+
+::: {.schritt zeige="vektoren" zoom="30 20 480 270"}
+### Das Skalarprodukt
+
+Das **Skalarprodukt** zweier Vektoren ist eine **Zahl** (ein Skalar):
+
+$$
+\vec a\cdot\vec b = |\vec a|\,|\vec b|\cos\varphi
+$$
+
+$\varphi$ ist der Winkel zwischen den beiden Vektoren.
+:::
+
+::: {.schritt zeige="vektoren projektion" zoom="30 20 480 270"}
+### Projektion
+
+$b\cos\varphi = b_a$ ist die **Projektion** von $\vec b$ auf die Richtung von $\vec a$.
+Das Skalarprodukt ist also „Länge von $\vec a$ mal Anteil von $\vec b$ in Richtung $\vec a$“.
+
+Sonderfälle:
+
+- $\varphi = 0$ (parallel): $\vec a\cdot\vec b = a\,b$
+- $\varphi = 90^\circ$ (senkrecht): $\vec a\cdot\vec b = 0$
+- $\varphi > 90^\circ$: $\vec a\cdot\vec b < 0$
+:::
+
+::: {.schritt zeige="vektoren projektion" zoom="30 20 480 270"}
+### Rechnen mit Komponenten
+
+In Komponenten ist das Skalarprodukt besonders einfach:
+
+$$
+\vec a\cdot\vec b = a_x b_x + a_y b_y \;(+\ a_z b_z)
+$$
+
+In Matrixschreibweise ist das „Zeile mal Spalte“:
+
+$$
+\vec a\cdot\vec b = \underline a^{T}\,\underline b
+= \begin{pmatrix} a_x & a_y \end{pmatrix}\begin{pmatrix} b_x \\ b_y \end{pmatrix}
+$$
+
+::: {.vertiefung titel="Ausführlicher: Vektoren und Matrizen"}
+Ein Vektor ist keine Matrix. Man kann ihn aber als **einspaltige Matrix** $\underline b$ (Spaltenvektor)
+oder als **einzeilige Matrix** $\underline a^T$ (Zeilenvektor) schreiben. Dann wird das Skalarprodukt zu
+einer gewöhnlichen Matrizenmultiplikation. Diese Schreibweise begegnet Ihnen in Tabellenkalkulation,
+Programmen und später in der Finite-Elemente-Methode.
+
+Den Winkel zwischen zwei Vektoren erhält man, indem man beide Formen gleichsetzt:
+$\cos\varphi = \dfrac{a_x b_x + a_y b_y}{|\vec a|\,|\vec b|}$.
+:::
+:::
+
+::::
+
+:::: {.scrolly svg="../grafiken/mathematik/arbeit.svg"}
+
+::: {.schritt zeige="gerade" zoom="10 10 320 310"}
+### Arbeit einer Kraft
+
+Eine Kraft verschiebt ihren Angriffspunkt um den Weg $\vec s$. Die **Arbeit** ist
+
+$$
+W = \vec F\cdot\vec s = F\,s\cos\varphi, \qquad [W] = \text{N\,m} = \text{J}
+$$
+
+Arbeit leistet nur der **Anteil der Kraft in Wegrichtung**:
+
+$$
+W = F_s\,s \quad\text{mit}\quad F_s = F\cos\varphi
+$$
+
+Wer einen Wagen schräg an der Deichsel zieht, verschenkt den Anteil der Kraft, der nach oben zeigt.
+:::
+
+::: {.schritt zeige="hoehe" zoom="320 10 320 310"}
+### Oder: Weg in Kraftrichtung
+
+Man kann den Kosinus auch dem Weg zuschlagen:
+
+$$
+W = F\,s_F \quad\text{mit}\quad s_F = s\cos\varphi
+$$
+
+$s_F$ ist der Anteil des Weges **in Kraftrichtung**. Für die Gewichtskraft ist das die **Höhe** $h$:
+Hebt man eine Last um $h$, ist die Arbeit $m g\,h$, egal ob senkrecht, über eine Rampe oder auf
+Umwegen.
+:::
+
+::: {.schritt zeige="kurve" zoom="620 10 340 310"}
+### Gekrümmter Weg
+
+Ändert sich die Richtung des Weges, zerlegt man ihn in kleine Stücke $\mathrm d\vec s$ und summiert:
+
+$$
+W = \int \vec F\cdot\mathrm d\vec s = \int F_s\,\mathrm ds
+$$
+
+Das Vorzeichen jedes Beitrags hängt nur vom Winkel ab:
+
+- $\varphi < 90^\circ$: $\mathrm dW > 0$, die Kraft wirkt **mit** der Bewegung
+- $\varphi > 90^\circ$: $\mathrm dW < 0$, die Kraft wirkt der Bewegung **entgegen**
+- $\varphi = 90^\circ$: $\mathrm dW = 0$, die Kraft steht **senkrecht** zum Weg
+
+Eine Kraft senkrecht zur Bewegung leistet nie Arbeit, zum Beispiel die Normalkraft einer Unterlage.
+:::
+
+::::
+
+### Übungen
+
+**Übung 0.5** · Ein Wagen wird 50 m weit auf ebener Strecke gezogen. Die Zugkraft $F = 200$ N wirkt
+unter $30^\circ$ gegen die Horizontale. Welche Arbeit verrichtet die Zugkraft?
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+$W = 200\ \text{N}\cdot 50\ \text{m}\cdot\cos 30^\circ = 8660\ \text{J} = 8{,}66$ kJ
+:::
+
+**Übung 0.6** · Berechnen Sie den Winkel zwischen $\vec a = (1,\ 2)$ und $\vec b = (3,\ -1)$.
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+$\vec a\cdot\vec b = 1$, $|\vec a| = \sqrt5$, $|\vec b| = \sqrt{10}$ ·
+$\cos\varphi = 1/\sqrt{50} = 0{,}141$, $\varphi = 81{,}9^\circ$
+:::
+
+**Übung 0.7** · Die Kraft $\vec F = (30\ \text{N},\ -40\ \text{N})$ verschiebt ihren Angriffspunkt um
+$\vec s = (4\ \text{m},\ 3\ \text{m})$. Berechnen Sie die Arbeit. Wie deuten Sie das Ergebnis?
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+$W = 30\cdot 4 + (-40)\cdot 3 = 0$ J. Kraft und Weg stehen senkrecht aufeinander, obwohl beide
+nicht null sind ($F = 50$ N, $s = 5$ m).
+:::
+
+**Übung 0.8** · Eine Kiste ($m = 20$ kg) wird eine 5 m lange Rampe mit $30^\circ$ Neigung
+hinaufgeschoben. Welche Arbeit verrichtet dabei die **Gewichtskraft**, welche die **Normalkraft**
+der Rampe?
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+Gewichtskraft: $W_G = -m g\,h = -20\cdot 9{,}81\cdot 2{,}5\ \text{J} = -490{,}5$ J
+(negativ: sie wirkt der Bewegung entgegen) · Normalkraft: $W_N = 0$ (senkrecht zum Weg)
+:::
+
+## Kreuzprodukt und Moment
+
+:::: {.scrolly svg="../grafiken/mathematik/kreuzprodukt.svg"}
+
+::: {.schritt zeige="ebene" zoom="20 20 420 330"}
+### Drehwirkung einer Kraft
+
+Eine Kraft $\vec F$ greift im Punkt $A$ an, der Ortsvektor $\vec r$ führt vom Bezugspunkt $0$ dorthin.
+Wie stark dreht $\vec F$ den Körper um $0$?
+
+Das beschreibt das **Kreuzprodukt** (Vektorprodukt):
+
+$$
+\vec M = \vec r\times\vec F
+$$
+:::
+
+::: {.schritt zeige="ebene flaeche" zoom="20 20 420 330"}
+### Betrag: Kraft mal Hebelarm
+
+$$
+|\vec M| = r\,F\sin\varphi = F\,b
+$$
+
+$b = r\sin\varphi$ ist der **Hebelarm**: der senkrechte Abstand von $0$ zur Wirkungslinie der Kraft.
+Geometrisch ist $|\vec M|$ die **Fläche des Parallelogramms**, das $\vec r$ und $\vec F$ aufspannen.
+
+- $\varphi = 90^\circ$: größtes Moment, $M = r F$
+- $\varphi = 0$: Die Kraft zeigt auf den Bezugspunkt zu oder von ihm weg, $M = 0$
+:::
+
+::: {.schritt zeige="raum" zoom="420 20 290 330"}
+### Richtung: senkrecht zur Ebene
+
+$\vec M$ steht **senkrecht** auf $\vec r$ und $\vec F$, nach der **Rechte-Hand-Regel**:
+Daumen in Richtung $\vec r$, Zeigefinger in Richtung $\vec F$, dann zeigt der Mittelfinger in
+Richtung $\vec M$. Die gekrümmten Finger der rechten Hand zeigen den Drehsinn.
+
+Die Reihenfolge zählt: $\vec F\times\vec r = -\,\vec r\times\vec F$.
+:::
+
+::: {.schritt zeige="raum" zoom="420 20 290 330"}
+### Berechnung in Komponenten
+
+$$
+\vec r\times\vec F =
+\begin{pmatrix} y F_z - z F_y \\ z F_x - x F_z \\ x F_y - y F_x \end{pmatrix}
+$$
+
+Liegen $\vec r$ und $\vec F$ in der $x$-$y$-Ebene ($z = 0$, $F_z = 0$), bleibt nur
+
+$$
+M_z = x\,F_y - y\,F_x
+$$
+
+In der ebenen Statik ist das Moment deshalb einfach eine Zahl mit Vorzeichen:
+positiv **gegen den Uhrzeigersinn**. Wir zeichnen es als Drehpfeil in der Ebene.
+
+::: {.vertiefung titel="Ausführlicher: Merkhilfe für die Komponenten"}
+Die drei Komponenten entstehen durch zyklisches Vertauschen $x \to y \to z \to x$:
+Aus $M_z = xF_y - yF_x$ wird $M_x = yF_z - zF_y$ und daraus $M_y = zF_x - xF_z$.
+Wer Determinanten kennt: $\vec r\times\vec F$ ist die Determinante der Matrix mit den Zeilen
+$(\vec e_x,\ \vec e_y,\ \vec e_z)$, $(x,\ y,\ z)$, $(F_x,\ F_y,\ F_z)$.
+:::
+:::
+
+::::
+
+### Übungen
+
+**Übung 0.9** · An einem Schraubenschlüssel der Länge 0,25 m wirkt am Griffende eine Kraft
+von 200 N. Wie groß ist das Moment um die Schraube, wenn die Kraft
+
+a) senkrecht zum Schlüssel, b) unter $60^\circ$ zum Schlüssel, c) in Richtung des Schlüssels wirkt?
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+a) 50 Nm · b) $50\cdot\sin 60^\circ = 43{,}3$ Nm · c) 0 Nm
+:::
+
+**Übung 0.10** · Die Kraft $\vec F = (-3\ \text{kN},\ 4\ \text{kN})$ greift im Punkt $(2\ \text{m},\ 1\ \text{m})$ an.
+Berechnen Sie das Moment um den Ursprung. In welchem Drehsinn dreht es?
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+$M_z = 2\cdot 4 - 1\cdot(-3) = 11$ kNm, positiv: gegen den Uhrzeigersinn
+:::
+
+**Übung 0.11** (räumlich) · Berechnen Sie $\vec M = \vec r\times\vec F$ für
+$\vec r = (1,\ 2,\ 0)$ m und $\vec F = (0,\ 0,\ 3)$ kN. Prüfen Sie, dass $\vec M$ senkrecht auf $\vec r$
+und $\vec F$ steht.
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+$\vec M = (6,\ -3,\ 0)$ kNm · Kontrolle mit dem Skalarprodukt:
+$\vec M\cdot\vec r = 6 - 6 + 0 = 0$, $\vec M\cdot\vec F = 0$
+:::
+
+## Feder und Elastizität
+
+:::: {.scrolly svg="../grafiken/mathematik/feder.svg"}
+
+::: {.schritt zeige="feder" zoom="20 20 300 360"}
+### Die Feder
+
+Eine Feder der Länge $l_0$ wird mit der Kraft $F$ belastet. Ihr Ende verschiebt sich um $u$.
+Entlastet man sie, geht sie wieder auf $l_0$ zurück: Die Feder ist **elastisch**.
+:::
+
+::: {.schritt zeige="feder kennlinie" dimmen="feder" zoom="20 20 600 360"}
+### Federgesetz
+
+Bei einer linearen Feder ist die Kraft proportional zur Verschiebung:
+
+$$
+F = c\,u
+$$
+
+$c$ ist die **Federsteifigkeit** in N/mm oder N/m, die Steigung der Kennlinie.
+Eine steife Feder hat ein großes $c$: Sie verschiebt sich unter derselben Kraft wenig.
+
+Die Feder selbst zieht mit $c\,u$ **zurück**, entgegen der Verschiebung. Das ist die
+**Rückstellkraft**.
+:::
+
+::: {.schritt zeige="kennlinie federarbeit" zoom="330 20 300 360"}
+### Federarbeit
+
+Beim Spannen wächst die Kraft von 0 auf $F = c\,u$. Die Arbeit ist deshalb nicht $F\,u$, sondern die
+**Fläche unter der Kennlinie**:
+
+$$
+W = \int_0^{u} c\,\bar u\ \mathrm d\bar u = \tfrac12\,c\,u^2 = \tfrac12\,F\,u
+$$
+
+Diese Arbeit ist in der Feder als **Formänderungsenergie** gespeichert und wird beim Entlasten
+wieder frei.
+:::
+
+::: {.schritt zeige="schaltungen" zoom="620 20 320 360"}
+### Federn kombinieren
+
+**Parallel:** Beide Federn verschieben sich gleich, die Kräfte addieren sich:
+
+$$
+c = c_1 + c_2
+$$
+
+**In Reihe:** Beide Federn tragen dieselbe Kraft, die Verschiebungen addieren sich:
+
+$$
+\frac{1}{c} = \frac{1}{c_1} + \frac{1}{c_2}
+$$
+
+Die Reihenschaltung ist immer **weicher** als die weichste Einzelfeder.
+:::
+
+::::
+
+::: {.merke}
+**Elastizität**
+
+Jedes Bauteil verhält sich bei kleinen Lasten wie eine **sehr steife Feder**: Ein Stahlstab verlängert
+sich unter Zug um Bruchteile eines Millimeters und geht beim Entlasten zurück. Ist der Zusammenhang
+linear, heißt das Material **linear-elastisch** (Robert Hooke, 1678: *ut tensio, sic vis*,
+„wie die Dehnung, so die Kraft“).
+
+Für einen Stab der Länge $l$ mit Querschnitt $A$ aus einem Werkstoff mit dem Elastizitätsmodul $E$ ist
+die Federsteifigkeit
+
+$$
+c = \frac{E\,A}{l}
+$$
+
+Das leiten wir in Woche 6 und 7 her. In der Statik (Wochen 1–4) sind die Bauteile so steif, dass wir die
+Verschiebungen vernachlässigen: Wir rechnen mit **starren** Körpern.
+:::
+
+::: {.vertiefung titel="Ausführlicher: Grenzen der Elastizität"}
+Wird ein Bauteil zu hoch belastet, verformt es sich **bleibend** (plastisch): Ein überdehnter Draht
+bleibt länger, eine Büroklammer bleibt verbogen. Die Kennlinie ist dann nicht mehr linear, und beim
+Entlasten geht das Bauteil nicht mehr auf die Ausgangslänge zurück. Den Übergang zeigt der
+**Zugversuch** in Woche 6. Bemessen wird in der Regel so, dass Bauteile im elastischen Bereich bleiben.
+:::
+
+### Übungen
+
+**Übung 0.12** · Eine Feder mit $c = 20$ N/mm wird mit $F = 500$ N belastet. Wie groß ist die
+Verschiebung $u$, wie groß die gespeicherte Federarbeit?
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+$u = F/c = 25$ mm · $W = \tfrac12\cdot 500\ \text{N}\cdot 0{,}025\ \text{m} = 6{,}25$ J
+:::
+
+**Übung 0.13** · Zwei Federn mit $c_1 = 10$ N/mm und $c_2 = 30$ N/mm tragen zusammen die Last
+$F = 800$ N. Berechnen Sie die Verschiebung, wenn die Federn a) parallel, b) in Reihe geschaltet sind.
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+a) $c = 40$ N/mm, $u = 20$ mm · b) $c = 7{,}5$ N/mm, $u = 106{,}7$ mm
+:::
+
+**Übung 0.14** (Ausblick) · Ein Stahlstab ($E = 210\,000$ N/mm²) ist 1 m lang und hat den Querschnitt
+$A = 100$ mm². Berechnen Sie seine Federsteifigkeit und die Verlängerung unter $F = 10$ kN.
+Vergleichen Sie mit der Feder aus Übung 0.12.
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+$c = EA/l = 21\,000$ N/mm · $u = 0{,}48$ mm. Der Stab ist rund tausendmal steifer als die Feder.
+:::
+
+## Zusammenfassung
+
+::: {.merke}
+| Werkzeug | Formel | in der Mechanik |
+|:--|:--|:--|
+| Komponenten | $F_x = F\cos\alpha$, $F_y = F\sin\alpha$ | Kräfte zerlegen |
+| Betrag, Winkel | $F = \sqrt{F_x^2 + F_y^2}$, $\tan\alpha = F_y/F_x$ | Resultierende |
+| Addition | komponentenweise | Kräfte zusammenfassen |
+| Skalarprodukt | $\vec a\cdot\vec b = ab\cos\varphi = a_xb_x + a_yb_y$ | Arbeit $W = \vec F\cdot\vec s$ |
+| Kreuzprodukt | $\vec r\times\vec F$, eben: $M_z = xF_y - yF_x$ | Moment |
+| Federgesetz | $F = c\,u$ | Elastizität, Steifigkeit |
+:::
+
+**Weiter:** [Vorlesung 1 · Kräfte, Momente, Gleichgewicht](01-grundlagen.qmd)
+
+<p class="small text-muted">Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 1–3;
+Technische Mechanik 2, Kap. 1 (Stoffgesetz) und Kap. 6 (Arbeitsbegriff) ·
+Dankert/Dankert, Technische Mechanik, Kap. 1–3</p>

@@ -29,6 +29,8 @@ website:
         text: Übersicht
       - text: Vorlesung
         menu:
+          - href: vorlesung/00-mathematik.qmd
+            text: "0 · Mathematische Werkzeuge"
           - href: vorlesung/01-grundlagen.qmd
             text: "1 · Kräfte, Momente, Gleichgewicht"
           - href: vorlesung/03-schnittgroessen.qmd
