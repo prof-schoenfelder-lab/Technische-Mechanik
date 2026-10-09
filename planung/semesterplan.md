@@ -31,11 +31,11 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
 
 ## Veranstaltung 0 · Mathematische Werkzeuge ✅ (Entwurf, bitte prüfen)
 
-- **Lernziele:** Sinus/Kosinus am Einheitskreis, Kraft als Vektor (Komponenten, Betrag, Winkel, Addition); Skalarprodukt am Beispiel der Arbeit; Kreuzprodukt am Beispiel des Moments; Feder $F = c\,u$ und Elastizität
-- **Form:** nur Vorlesung mit eingebauten Übungen 0.1–0.14 (aufklappbare Ergebnisse), kein Seminar
+- **Lernziele:** Sinus/Kosinus am Einheitskreis, Kraft als Vektor (Komponenten, Betrag, Winkel, Addition); Skalarprodukt am Beispiel der Arbeit; Moment in der Ebene ($M = Fb = xF_y - yF_x$, Kreuzprodukt nur als Vertiefung); Feder $F = c\,u$, Übergang zum elastischen Körper (Stab $c = EA/l$, starrer und elastischer Balken mit gleichen Lagerkräften)
+- **Form:** nur Vorlesung mit eingebauten Übungen 0.1–0.13 (aufklappbare Ergebnisse), kein Seminar
 - **Beispiele:** B00-2 · Arbeit und Skalarprodukt (Datei: beispiele/B00-2-arbeit-skalarprodukt.pdf): $W = \vec F\cdot\vec s = F_s s = F s_F$, Projektion, Matrixschreibweise, Wegintegral mit $\mathrm dW \lessgtr 0$ ✅
 - **Umsetzung:** `vorlesung/00-mathematik.qmd`, Grafiken `grafiken/mathematik/` aus `werkzeuge/grafiken_mathematik.py`
-- **Hinweis:** Woche 1 wiederholt „Kraft als Vektor“ und das Kreuzprodukt (als Vertiefung); kann bei Bedarf gekürzt werden.
+- **Hinweis:** Woche 1 wiederholt „Kraft als Vektor“ und das Moment; kann bei Bedarf gekürzt werden.
 - **Wünsche/Notizen:**
 
 ## Woche 1 · Einführung, Kräfte und Momente, Gleichgewicht ✅ (Entwurf, bitte prüfen)

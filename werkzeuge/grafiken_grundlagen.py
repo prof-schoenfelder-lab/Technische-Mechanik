@@ -238,7 +238,7 @@ def resultierende_zwei_kraefte():
     FR = (F1[0] + F2[0], F1[1] + F2[1])
 
     e = abb.ebene("system", "Kräfte im Koordinatensystem")
-    e.append(koord_xy(*O, 200, 250, negativ=200))
+    e.append(koord_xy(*O, 200, 250, negativ=200, negativ_y=50))
     e.append(vektor(*O, *P(*F1), "F_1", lx=-8, ly=-18))
     e.append(vektor(*O, *P(*F2), "F_2", lx=-18, ly=-16))
     e.append(winkelbogen(*O, 70, 0, 30, "30°"))
@@ -404,7 +404,7 @@ def moment_grafik():
 #   F1 = F4 = F, F2 = 2F, F3 = 3F; F_R = 5F, M_R0 = −5cF, WL y = −3/4 x + 5/4 c
 # =====================================================================
 def scheibe_vier_kraefte():
-    abb = Abbildung(720, 420, "Scheibe mit vier Kräften")
+    abb = Abbildung(720, 460, "Scheibe mit vier Kräften")
     c = 52
     O = (150, 260)
     P = abbild(*O, c)
@@ -437,7 +437,7 @@ def scheibe_vier_kraefte():
     e.append(text(O[0] - 34, O[1] - 34, "M_R", ROT, 18, anker="end"))
 
     e = abb.ebene("wirkungslinie", "Wirkungslinie der Resultierenden")
-    xa, xb = -0.4, 7.0
+    xa, xb = -0.4, 6.6
     e.append(linie(*P(xa, -0.75 * xa + 1.25), *P(xb, -0.75 * xb + 1.25), ROT, 1.2, strich="10 5"))
     x0 = 5 / 3
     e.append(kraft(*P(x0, 0), -36.87, "F_R", laenge=5 * k * 0.75, ziehend=True, label_seite=-1, farbe=ROT))

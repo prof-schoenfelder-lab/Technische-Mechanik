@@ -7,9 +7,10 @@ page-layout: full
 ::: {.merke}
 **Worum geht es?** Die Technische Mechanik rechnet mit Vektoren. Bevor es in Woche 1 mit Kräften
 und Gleichgewicht losgeht, frischen wir die nötige Mathematik auf: Sinus und Kosinus, Vektoren,
-Skalarprodukt, Kreuzprodukt. Jedes Werkzeug lernen Sie an einer mechanischen Größe kennen:
-die Komponenten an der **Kraft**, das Skalarprodukt an der **Arbeit**, das Kreuzprodukt am **Moment**.
-Zum Schluss zeigt die **Feder**, was Elastizität bedeutet.
+Skalarprodukt, Moment. Jedes Werkzeug lernen Sie an einer mechanischen Größe kennen:
+die Komponenten an der **Kraft** und das Skalarprodukt an der **Arbeit**. Dazu kommen das **Moment**
+und die **Feder**: Sie zeigt, was Elastizität bedeutet und warum wir in der Statik trotzdem mit starren
+Körpern rechnen dürfen.
 
 Nach jedem Abschnitt folgen kurze **Übungen**. Rechnen Sie sie auf Papier, das Ergebnis können Sie
 aufklappen.
@@ -351,69 +352,54 @@ Gewichtskraft: $W_G = -m g\,h = -20\cdot 9{,}81\cdot 2{,}5\ \text{J} = -490{,}5$
 (negativ: sie wirkt der Bewegung entgegen) · Normalkraft: $W_N = 0$ (senkrecht zum Weg)
 :::
 
-## Kreuzprodukt und Moment
+## Das Moment
 
-:::: {.scrolly svg="../grafiken/mathematik/kreuzprodukt.svg"}
+:::: {.scrolly svg="../grafiken/mathematik/moment.svg"}
 
-::: {.schritt zeige="ebene" zoom="20 20 420 330"}
+::: {.schritt zeige="ebene" zoom="20 20 440 310"}
 ### Drehwirkung einer Kraft
 
-Eine Kraft $\vec F$ greift im Punkt $A$ an, der Ortsvektor $\vec r$ führt vom Bezugspunkt $0$ dorthin.
+Eine Kraft $\vec F$ greift im Punkt $A$ an. Der Ortsvektor $\vec r$ führt vom Bezugspunkt $0$ dorthin.
 Wie stark dreht $\vec F$ den Körper um $0$?
 
-Das beschreibt das **Kreuzprodukt** (Vektorprodukt):
-
-$$
-\vec M = \vec r\times\vec F
-$$
+Die Drehwirkung heißt **Moment** $M$. Sie hängt vom Betrag der Kraft ab, aber auch davon, **wo** und
+**in welcher Richtung** die Kraft angreift.
 :::
 
-::: {.schritt zeige="ebene flaeche" zoom="20 20 420 330"}
-### Betrag: Kraft mal Hebelarm
+::: {.schritt zeige="ebene flaeche" zoom="20 20 440 310"}
+### Kraft mal Hebelarm
 
 $$
-|\vec M| = r\,F\sin\varphi = F\,b
+M = F\,b = r\,F\sin\varphi, \qquad [M] = \text{N\,m}
 $$
 
 $b = r\sin\varphi$ ist der **Hebelarm**: der senkrechte Abstand von $0$ zur Wirkungslinie der Kraft.
-Geometrisch ist $|\vec M|$ die **Fläche des Parallelogramms**, das $\vec r$ und $\vec F$ aufspannen.
+Geometrisch ist $|M|$ die **Fläche des Parallelogramms** aus $\vec r$ und $\vec F$.
 
 - $\varphi = 90^\circ$: größtes Moment, $M = r F$
 - $\varphi = 0$: Die Kraft zeigt auf den Bezugspunkt zu oder von ihm weg, $M = 0$
+
+Das Vorzeichen gibt den **Drehsinn** an: positiv **gegen den Uhrzeigersinn**.
 :::
 
-::: {.schritt zeige="raum" zoom="420 20 290 330"}
-### Richtung: senkrecht zur Ebene
+::: {.schritt zeige="ebene komponenten" dimmen="ebene" zoom="20 20 440 310"}
+### Moment aus den Komponenten
 
-$\vec M$ steht **senkrecht** auf $\vec r$ und $\vec F$, nach der **Rechte-Hand-Regel**:
-Daumen in Richtung $\vec r$, Zeigefinger in Richtung $\vec F$, dann zeigt der Mittelfinger in
-Richtung $\vec M$. Die gekrümmten Finger der rechten Hand zeigen den Drehsinn.
-
-Die Reihenfolge zählt: $\vec F\times\vec r = -\,\vec r\times\vec F$.
-:::
-
-::: {.schritt zeige="raum" zoom="420 20 290 330"}
-### Berechnung in Komponenten
+Den Hebelarm muss man nicht geometrisch suchen. Jede Komponente hat ihren eigenen, leicht ablesbaren
+Hebelarm: $F_y$ den Abstand $x$, $F_x$ den Abstand $y$.
 
 $$
-\vec r\times\vec F =
-\begin{pmatrix} y F_z - z F_y \\ z F_x - x F_z \\ x F_y - y F_x \end{pmatrix}
+M = x\,F_y - y\,F_x
 $$
 
-Liegen $\vec r$ und $\vec F$ in der $x$-$y$-Ebene ($z = 0$, $F_z = 0$), bleibt nur
+$F_y$ dreht hier gegen den Uhrzeigersinn (positiv), $F_x$ im Uhrzeigersinn (negativ).
+Mit dieser Formel stimmt das Vorzeichen automatisch, auch für negative Koordinaten und Komponenten.
 
-$$
-M_z = x\,F_y - y\,F_x
-$$
-
-In der ebenen Statik ist das Moment deshalb einfach eine Zahl mit Vorzeichen:
-positiv **gegen den Uhrzeigersinn**. Wir zeichnen es als Drehpfeil in der Ebene.
-
-::: {.vertiefung titel="Ausführlicher: Merkhilfe für die Komponenten"}
-Die drei Komponenten entstehen durch zyklisches Vertauschen $x \to y \to z \to x$:
-Aus $M_z = xF_y - yF_x$ wird $M_x = yF_z - zF_y$ und daraus $M_y = zF_x - xF_z$.
-Wer Determinanten kennt: $\vec r\times\vec F$ ist die Determinante der Matrix mit den Zeilen
-$(\vec e_x,\ \vec e_y,\ \vec e_z)$, $(x,\ y,\ z)$, $(F_x,\ F_y,\ F_z)$.
+::: {.vertiefung titel="Ausführlicher: Moment und Kreuzprodukt"}
+Mathematisch ist das Moment das **Kreuzprodukt** $\vec M = \vec r\times\vec F$, ein Vektor senkrecht zu
+$\vec r$ und $\vec F$. Liegen beide in der $x$-$y$-Ebene, zeigt $\vec M$ in $z$-Richtung, und seine
+einzige Komponente ist $M_z = x F_y - y F_x$. In der ebenen Statik genügt deshalb diese eine Zahl mit
+Vorzeichen; wir zeichnen sie als Drehpfeil.
 :::
 :::
 
@@ -436,17 +422,7 @@ Berechnen Sie das Moment um den Ursprung. In welchem Drehsinn dreht es?
 
 ::: {.callout-tip collapse="true"}
 ## Ergebnis
-$M_z = 2\cdot 4 - 1\cdot(-3) = 11$ kNm, positiv: gegen den Uhrzeigersinn
-:::
-
-**Übung 0.11** (räumlich) · Berechnen Sie $\vec M = \vec r\times\vec F$ für
-$\vec r = (1,\ 2,\ 0)$ m und $\vec F = (0,\ 0,\ 3)$ kN. Prüfen Sie, dass $\vec M$ senkrecht auf $\vec r$
-und $\vec F$ steht.
-
-::: {.callout-tip collapse="true"}
-## Ergebnis
-$\vec M = (6,\ -3,\ 0)$ kNm · Kontrolle mit dem Skalarprodukt:
-$\vec M\cdot\vec r = 6 - 6 + 0 = 0$, $\vec M\cdot\vec F = 0$
+$M = 2\cdot 4 - 1\cdot(-3) = 11$ kNm, positiv: gegen den Uhrzeigersinn
 :::
 
 ## Feder und Elastizität
@@ -460,7 +436,7 @@ Eine Feder der Länge $l_0$ wird mit der Kraft $F$ belastet. Ihr Ende verschiebt
 Entlastet man sie, geht sie wieder auf $l_0$ zurück: Die Feder ist **elastisch**.
 :::
 
-::: {.schritt zeige="feder kennlinie" dimmen="feder" zoom="20 20 600 360"}
+::: {.schritt zeige="feder kennlinie" dimmen="feder" zoom="20 20 610 360"}
 ### Federgesetz
 
 Bei einer linearen Feder ist die Kraft proportional zur Verschiebung:
@@ -490,55 +466,82 @@ Diese Arbeit ist in der Feder als **Formänderungsenergie** gespeichert und wird
 wieder frei.
 :::
 
-::: {.schritt zeige="schaltungen" zoom="620 20 320 360"}
-### Federn kombinieren
+::::
 
-**Parallel:** Beide Federn verschieben sich gleich, die Kräfte addieren sich:
+## Von der Feder zum elastischen Körper
+
+:::: {.scrolly svg="../grafiken/mathematik/elastischer-koerper.svg"}
+
+::: {.schritt zeige="stab" zoom="20 20 260 410"}
+### Jedes Bauteil ist eine Feder
+
+Ein Stahlstab unter Zug verhält sich wie eine **sehr steife Feder**: Er verlängert sich um $u$ und geht
+beim Entlasten zurück. Seine Federsteifigkeit hängt vom Werkstoff (Elastizitätsmodul $E$),
+vom Querschnitt $A$ und von der Länge $l$ ab:
 
 $$
-c = c_1 + c_2
+F = c\,u \qquad\text{mit}\qquad c = \frac{E\,A}{l}
 $$
 
-**In Reihe:** Beide Federn tragen dieselbe Kraft, die Verschiebungen addieren sich:
+Ist der Zusammenhang linear, heißt der Werkstoff **linear-elastisch** (Robert Hooke, 1678:
+*ut tensio, sic vis*, „wie die Dehnung, so die Kraft“). Das leiten wir in Woche 6 und 7 her.
+:::
+
+::: {.schritt zeige="starr reaktionen-starr" zoom="320 30 470 160"}
+### Der starre Balken
+
+Ein Balken auf zwei Lagern trägt die Kraft $F$. Als **starrer** Körper betrachtet, folgen die
+Lagerkräfte allein aus dem Gleichgewicht:
 
 $$
-\frac{1}{c} = \frac{1}{c_1} + \frac{1}{c_2}
+\begin{aligned}
+F_A &= F\,\frac{L - a}{L}\\[2pt]
+F_B &= F\,\frac{a}{L}
+\end{aligned}
 $$
 
-Die Reihenschaltung ist immer **weicher** als die weichste Einzelfeder.
+Wie das genau geht, lernen Sie in Woche 1 und 2.
+:::
+
+::: {.schritt zeige="starr reaktionen-starr elastisch" dimmen="starr reaktionen-starr" zoom="320 30 470 400"}
+### Der elastische Balken
+
+In Wirklichkeit **biegt sich** der Balken unter der Last durch. Auch er ist eine Feder, eine
+**Biegefeder**: Die Durchbiegung $w$ wächst proportional mit $F$, und ohne Last ist der Balken wieder gerade.
+
+Die Durchbiegung ist hier stark überhöht gezeichnet. Bei einem üblichen Träger beträgt sie nur
+etwa $L/300$, bei 6 m Spannweite also rund 2 cm.
+:::
+
+::: {.schritt zeige="starr reaktionen-starr elastisch reaktionen-elastisch" zoom="320 30 470 400"}
+### Gleiche Kräfte nach außen
+
+Starrer und elastischer Balken nehmen **dieselbe Last** auf und geben **dieselben Lagerkräfte** an die
+Lager ab. Denn die Gleichgewichtsbedingungen enthalten nur die Kräfte und ihre Hebelarme, und die
+ändern sich durch die winzige Verformung praktisch nicht.
+
+Daraus folgt die Arbeitsteilung dieses Semesters:
+
+1. **Statik** (Wochen 1–4): Wir rechnen am **starren**, unverformten System und bestimmen die Kräfte.
+2. **Festigkeitslehre** (ab Woche 5): Mit diesen Kräften fragen wir, wie stark sich der **elastische**
+   Körper verformt und wie hoch er beansprucht ist.
+
+::: {.vertiefung titel="Ausführlicher: Wann reicht der starre Körper nicht?"}
+Das Gleichgewicht am unverformten System aufzustellen, nennt man **Theorie 1. Ordnung**. Sie gilt,
+solange die Verformungen klein sind. Zwei Ausnahmen begegnen Ihnen später:
+
+- **Statisch unbestimmte Systeme** (Woche 7): Hat ein Bauteil mehr Lager als nötig, reichen die
+  Gleichgewichtsbedingungen nicht aus. Dann entscheidet die Steifigkeit, welches Lager wie viel trägt.
+- **Knickung** (Woche 13): Bei schlanken Druckstäben verstärkt die Verformung die Belastung. Dann muss
+  man das Gleichgewicht am **verformten** System aufstellen.
+:::
 :::
 
 ::::
 
-::: {.merke}
-**Elastizität**
-
-Jedes Bauteil verhält sich bei kleinen Lasten wie eine **sehr steife Feder**: Ein Stahlstab verlängert
-sich unter Zug um Bruchteile eines Millimeters und geht beim Entlasten zurück. Ist der Zusammenhang
-linear, heißt das Material **linear-elastisch** (Robert Hooke, 1678: *ut tensio, sic vis*,
-„wie die Dehnung, so die Kraft“).
-
-Für einen Stab der Länge $l$ mit Querschnitt $A$ aus einem Werkstoff mit dem Elastizitätsmodul $E$ ist
-die Federsteifigkeit
-
-$$
-c = \frac{E\,A}{l}
-$$
-
-Das leiten wir in Woche 6 und 7 her. In der Statik (Wochen 1–4) sind die Bauteile so steif, dass wir die
-Verschiebungen vernachlässigen: Wir rechnen mit **starren** Körpern.
-:::
-
-::: {.vertiefung titel="Ausführlicher: Grenzen der Elastizität"}
-Wird ein Bauteil zu hoch belastet, verformt es sich **bleibend** (plastisch): Ein überdehnter Draht
-bleibt länger, eine Büroklammer bleibt verbogen. Die Kennlinie ist dann nicht mehr linear, und beim
-Entlasten geht das Bauteil nicht mehr auf die Ausgangslänge zurück. Den Übergang zeigt der
-**Zugversuch** in Woche 6. Bemessen wird in der Regel so, dass Bauteile im elastischen Bereich bleiben.
-:::
-
 ### Übungen
 
-**Übung 0.12** · Eine Feder mit $c = 20$ N/mm wird mit $F = 500$ N belastet. Wie groß ist die
+**Übung 0.11** · Eine Feder mit $c = 20$ N/mm wird mit $F = 500$ N belastet. Wie groß ist die
 Verschiebung $u$, wie groß die gespeicherte Federarbeit?
 
 ::: {.callout-tip collapse="true"}
@@ -546,21 +549,23 @@ Verschiebung $u$, wie groß die gespeicherte Federarbeit?
 $u = F/c = 25$ mm · $W = \tfrac12\cdot 500\ \text{N}\cdot 0{,}025\ \text{m} = 6{,}25$ J
 :::
 
-**Übung 0.13** · Zwei Federn mit $c_1 = 10$ N/mm und $c_2 = 30$ N/mm tragen zusammen die Last
-$F = 800$ N. Berechnen Sie die Verschiebung, wenn die Federn a) parallel, b) in Reihe geschaltet sind.
-
-::: {.callout-tip collapse="true"}
-## Ergebnis
-a) $c = 40$ N/mm, $u = 20$ mm · b) $c = 7{,}5$ N/mm, $u = 106{,}7$ mm
-:::
-
-**Übung 0.14** (Ausblick) · Ein Stahlstab ($E = 210\,000$ N/mm²) ist 1 m lang und hat den Querschnitt
+**Übung 0.12** · Ein Stahlstab ($E = 210\,000$ N/mm²) ist 1 m lang und hat den Querschnitt
 $A = 100$ mm². Berechnen Sie seine Federsteifigkeit und die Verlängerung unter $F = 10$ kN.
-Vergleichen Sie mit der Feder aus Übung 0.12.
+Vergleichen Sie mit der Feder aus Übung 0.11.
 
 ::: {.callout-tip collapse="true"}
 ## Ergebnis
 $c = EA/l = 21\,000$ N/mm · $u = 0{,}48$ mm. Der Stab ist rund tausendmal steifer als die Feder.
+:::
+
+**Übung 0.13** · Ein Balken mit $L = 4$ m trägt im Abstand $a = 1{,}5$ m vom Lager $A$ die Kraft
+$F = 10$ kN. a) Berechnen Sie die Lagerkräfte mit den Formeln oben. b) Unter der Last biegt sich der
+Balken um 8 mm durch. Ändern sich dadurch die Lagerkräfte? Begründen Sie.
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+a) $F_A = 6{,}25$ kN, $F_B = 3{,}75$ kN · b) Praktisch nicht: 8 mm sind 0,2 % der Spannweite. Die
+Hebelarme der Kräfte ändern sich dadurch kaum, die Lagerkräfte bleiben gleich (Theorie 1. Ordnung).
 :::
 
 ## Zusammenfassung
@@ -572,8 +577,11 @@ $c = EA/l = 21\,000$ N/mm · $u = 0{,}48$ mm. Der Stab ist rund tausendmal steif
 | Betrag, Winkel | $F = \sqrt{F_x^2 + F_y^2}$, $\tan\alpha = F_y/F_x$ | Resultierende |
 | Addition | komponentenweise | Kräfte zusammenfassen |
 | Skalarprodukt | $\vec a\cdot\vec b = ab\cos\varphi = a_xb_x + a_yb_y$ | Arbeit $W = \vec F\cdot\vec s$ |
-| Kreuzprodukt | $\vec r\times\vec F$, eben: $M_z = xF_y - yF_x$ | Moment |
+| Moment | $M = F\,b = x F_y - y F_x$ | Drehwirkung |
 | Federgesetz | $F = c\,u$ | Elastizität, Steifigkeit |
+
+Starre und elastische Körper nehmen nach außen **dieselben Kräfte** auf. Die Statik rechnet deshalb
+am starren Körper, die Festigkeitslehre untersucht anschließend die Verformung.
 :::
 
 **Weiter:** [Vorlesung 1 · Kräfte, Momente, Gleichgewicht](01-grundlagen.qmd)

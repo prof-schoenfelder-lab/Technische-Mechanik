@@ -35,6 +35,24 @@
       anim = requestAnimationFrame(schritt);
     }
 
+    // Bildausschnitt eines Schritts: zoom-Angabe (oder ganze Grafik), mindestens aber so groß,
+    // dass alle sichtbaren (nicht gedimmten) Ebenen vollständig hineinpassen
+    function ausschnitt(s) {
+      let [x, y, w, h] = s.dataset.zoom ? zahlen(s.dataset.zoom) : vb0;
+      let x2 = x + w, y2 = y + h;
+      const rand = 12;
+      liste(s.dataset.zeige).forEach(n => {
+        const l = ebenen.find(g => g.dataset.ebene === n);
+        if (!l) return;
+        let b;
+        try { b = l.getBBox(); } catch (e) { return; }
+        if (!b.width && !b.height) return;
+        x = Math.min(x, b.x - rand); y = Math.min(y, b.y - rand);
+        x2 = Math.max(x2, b.x + b.width + rand); y2 = Math.max(y2, b.y + b.height + rand);
+      });
+      return [x, y, x2 - x, y2 - y];
+    }
+
     function aktiviere(s) {
       if (s === aktiv) return;
       aktiv = s;
@@ -48,7 +66,7 @@
         l.classList.toggle("gedimmt", dimmen.includes(n));
         l.classList.toggle("neu", sichtbar && !war && !dimmen.includes(n));
       });
-      zoom(s.dataset.zoom ? zahlen(s.dataset.zoom) : vb0);
+      zoom(ausschnitt(s));
       if (zaehler) zaehler.textContent = (schritte.indexOf(s) + 1) + " / " + schritte.length;
     }
 
@@ -60,7 +78,7 @@
       // Startzustand ohne Animation
       aktiviere(schritte[0]);
       if (anim) cancelAnimationFrame(anim);
-      vb = schritte[0].dataset.zoom ? zahlen(schritte[0].dataset.zoom) : vb0;
+      vb = ausschnitt(schritte[0]);
       svg.setAttribute("viewBox", vb.join(" "));
     }
   });

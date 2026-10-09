@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="720" height="420" viewBox="0 0 720 420" class="tm-grafik">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="720" height="460" viewBox="0 0 720 460" class="tm-grafik">
 <title>Scheibe mit vier Kräften</title>
 <g inkscape:groupmode="layer" id="system" inkscape:label="01 Scheibe mit Kräften" data-ebene="system">
 <path d="M 150,312 L 462,312 L 462,260 L 378.8,156 L 150,156 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
@@ -31,7 +31,7 @@
 <text x="116" y="232.12" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="italic" text-anchor="end" xml:space="preserve"><tspan>M</tspan><tspan baseline-shift="sub" font-size="70%" font-style="normal">R</tspan></text>
 </g>
 <g inkscape:groupmode="layer" id="wirkungslinie" inkscape:label="03 Wirkungslinie der Resultierenden" data-ebene="wirkungslinie">
-<path d="M 129.2,179.4 L 514,468" fill="none" stroke="#ff0000" stroke-width="1.2" stroke-linecap="butt" stroke-dasharray="10 5"/>
+<path d="M 129.2,179.4 L 493.2,452.4" fill="none" stroke="#ff0000" stroke-width="1.2" stroke-linecap="butt" stroke-dasharray="10 5"/>
 <g><g><path d="M 236.67,260 L 318.99,321.74" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 326.67,327.5 L 314.67,323.5 L 319.47,317.1 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g><text x="305.07" y="306.51" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>F</tspan><tspan baseline-shift="sub" font-size="70%" font-style="normal">R</tspan></text></g>
 <circle cx="236.67" cy="260" r="3" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
 <circle cx="150" cy="195" r="3" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
