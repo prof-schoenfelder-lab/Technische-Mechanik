@@ -18,6 +18,17 @@ BLAU = "#0050b4"
 SCHWARZ = "#000000"
 
 
+def integral(x, y, vor, unten, oben, nach, farbe="#444444", groesse=17):
+    """Bestimmtes Integral als Grafiktext: vor ∫ (Grenzen unten/oben) nach."""
+    b = len(vor) * 0.55 * groesse
+    return gruppe([text(x, y, vor, farbe, groesse, anker="start"),
+                   text(x + b, y + 2, "[∫]", farbe, 1.9 * groesse, anker="start"),
+                   text(x + b + 0.75 * groesse, y - 0.85 * groesse, oben, farbe, 0.65 * groesse, anker="start"),
+                   text(x + b + 0.35 * groesse, y + 0.95 * groesse, unten, farbe, 0.65 * groesse, anker="start",
+                        italic=False),
+                   text(x + b + 1.35 * groesse, y, nach, farbe, groesse, anker="start")])
+
+
 def weg(x1, y1, x2, y2, label="", lx=0, ly=0):
     """Verschiebungs-/Wegvektor (schwarz)."""
     return vektor(x1, y1, x2, y2, label, farbe=SCHWARZ, breite=1.6, lx=lx, ly=ly)
@@ -129,6 +140,10 @@ def vektoraddition():
     e.append(vektor(*O, *P(*F2), "F_2", lx=-20))
     e.append(punkt(*O))
 
+    e = abb.ebene("parallelogramm", "Kräfteparallelogramm")
+    e.append(linie(*P(*F1), *P(*FR), GRAU, STRICH["normal"], strich="6 4"))
+    e.append(linie(*P(*F2), *P(*FR), GRAU, STRICH["normal"], strich="6 4"))
+
     e = abb.ebene("kette", "Spitze an Fuß")
     e.append('<g opacity="0.55">' + vektor(*P(*F1), *P(*FR), "F_2", lx=22) + "</g>")
 
@@ -188,7 +203,7 @@ def skalarprodukt():
 # Arbeit: gerader Weg, Höhe, gekrümmter Weg
 # =====================================================================
 def arbeit():
-    abb = Abbildung(980, 345, "Arbeit einer Kraft")
+    abb = Abbildung(1010, 345, "Arbeit einer Kraft")
 
     # Feld 1: gerader Weg, Kraft schräg
     e = abb.ebene("gerade", "Gerader Weg")
@@ -231,7 +246,7 @@ def arbeit():
 
     def kurve(t):                       # t in [0, 1.3]; ab t = 1 waagerecht
         tt = min(t, 1.0)
-        return x0 + breite * t / 1.3, 175 + 60 * math.sin(1.5 * math.pi * tt)
+        return x0 + breite * t / 1.3, 165 + 60 * math.sin(1.5 * math.pi * tt)
 
     def tangente(t):
         tt = min(t, 1.0)
@@ -243,19 +258,21 @@ def arbeit():
     pts = [kurve(1.3 * i / 80) for i in range(81)]
     e.append(polylinie(pts, SCHWARZ, 1.4))
     e.append(_spitze(*pts[-1], 1, 0, SCHWARZ, 10, 7))
-    e.append(text(pts[-1][0] + 4, pts[-1][1] + 20, "s", SCHWARZ, 17))
-    for t, lab, farbe in ((0.12, "dW < 0", ROT), (0.55, "dW > 0", GRUEN), (1.15, "dW = 0", "#555555")):
+    for t, lab, farbe in ((0.12, "dW > 0", GRUEN), (0.55, "dW < 0", ROT), (1.15, "dW = 0", "#555555")):
         x, y = kurve(t)
         ux, uy = tangente(t)
         e.append(vektor(x, y, x + 46 * ux, y + 46 * uy, "", farbe=BLAU, breite=2))       # ds
-        e.append(vektor(x, y, x, y - 62))                                                   # F
-        e.append(vlabel(x - 6, y - 70, "F", ROT, 17, anker="end"))
-        e.append(vlabel(x + 46 * ux + 4, y + 46 * uy + 14, "ds", BLAU, 15, anker="start"))
+        e.append(vektor(x, y, x, y + 62))                                                   # F (Gewicht)
+        e.append(vlabel(x - 6, y + 56, "F", ROT, 17, anker="end"))
+        e.append(vlabel(x + 46 * ux + 4, y + 46 * uy - 10, "ds", BLAU, 15, anker="start"))
         w = math.degrees(math.atan2(-uy, ux))
-        e.append(winkelbogen(x, y, 22, w, 90, ""))
-        e.append(text(x - 4, y + 32, f"[{lab}]", farbe, 14, italic=False))
+        e.append(winkelbogen(x, y, 22, w, -90, ""))
+        e.append(text(x - 2, y - 26, f"[{lab}]", farbe, 14, italic=False))
         e.append(punkt(x, y, 2.6))
-    e.append(text(650, 30, "W = ∫ F_s ds", "#444444", 17, anker="start"))
+    x_a, y_a = kurve(0)
+    e.append(text(x_a - 4, y_a - 18, "s = 0", SCHWARZ, 14, anker="end"))
+    e.append(text(pts[-1][0] + 8, pts[-1][1] + 16, "s = L", SCHWARZ, 14, anker="start"))
+    e.append(integral(650, 34, "W = ", "0", "L", "F_s ds"))
     return abb.speichern(ZIEL / "arbeit.svg")
 
 
@@ -422,7 +439,106 @@ def elastischer_koerper():
     return abb.speichern(ZIEL / "elastischer-koerper.svg")
 
 
+# =====================================================================
+# Zusammenfassung: sechs Kacheln
+# =====================================================================
+def zusammenfassung():
+    from tmzeichnen import balken, festlager, loslager
+    W, H, rand = 300, 220, 15
+    abb = Abbildung(3 * W + 4 * rand, 2 * H + 3 * rand, "Zusammenfassung: mathematische Werkzeuge")
+
+    def kachel(e, spalte, zeile, titel, formel):
+        x, y = rand + spalte * (W + rand), rand + zeile * (H + rand)
+        e.append(polylinie([(x, y), (x + W, y), (x + W, y + H), (x, y + H)], "#c8c8c8", 1.2, "#fafafa",
+                           schliessen=True))
+        e.append(text(x + 14, y + 22, f"[{titel}]", SCHWARZ, 17, anker="start", italic=False))
+        e.append(text(x + W / 2, y + H - 20, formel, ROT, 17))
+        return x, y
+
+    # 1 Komponenten
+    e = abb.ebene("k-komponenten", "Komponenten")
+    x, y = kachel(e, 0, 0, "Komponenten", "F_x = F cos α,  F_y = F sin α")
+    O = (x + 70, y + 160)
+    e.append(koord_xy(*O, 170, 120))
+    E = (O[0] + 140, O[1] - 95)
+    e.append(linie(*E, E[0], O[1], GRAU, STRICH["duenn"], strich="4 3"))
+    e.append(linie(*E, O[0], E[1], GRAU, STRICH["duenn"], strich="4 3"))
+    e.append(vektor(*O, *E, "F", lx=-14, ly=-8))
+    e.append(winkelbogen(*O, 40, 0, math.degrees(math.atan2(95, 140)), "α"))
+
+    # 2 Addition
+    e = abb.ebene("k-addition", "Addition")
+    x, y = kachel(e, 1, 0, "Kräfte addieren", "F_R = F_1 + F_2")
+    O = (x + 60, y + 165)
+    F1, F2 = (150, -30), (40, -100)
+    FR = (F1[0] + F2[0], F1[1] + F2[1])
+    e.append(linie(O[0] + F1[0], O[1] + F1[1], O[0] + FR[0], O[1] + FR[1], GRAU, STRICH["normal"], strich="6 4"))
+    e.append(linie(O[0] + F2[0], O[1] + F2[1], O[0] + FR[0], O[1] + FR[1], GRAU, STRICH["normal"], strich="6 4"))
+    e.append(vektor(*O, O[0] + F1[0], O[1] + F1[1], "F_1", ly=16))
+    e.append(vektor(*O, O[0] + F2[0], O[1] + F2[1], "F_2", lx=-16))
+    e.append(vektor(*O, O[0] + FR[0], O[1] + FR[1], "F_R", lx=-14, ly=-10, breite=2.6))
+
+    # 3 Skalarprodukt / Arbeit
+    e = abb.ebene("k-arbeit", "Arbeit")
+    x, y = kachel(e, 2, 0, "Arbeit (Skalarprodukt)", "W = F s cos φ")
+    O = (x + 40, y + 160)
+    e.append(weg(*O, O[0] + 230, O[1] - 40))
+    e.append(vlabel(O[0] + 200, O[1] - 18, "s"))
+    e.append(vektor(*O, O[0] + 70, O[1] - 110))
+    e.append(vlabel(O[0] + 52, O[1] - 110, "F", ROT, anker="end"))
+    e.append(winkelbogen(*O, 48, math.degrees(math.atan2(40, 230)), math.degrees(math.atan2(110, 70)), "φ"))
+
+    # 4 Moment
+    e = abb.ebene("k-moment", "Moment")
+    x, y = kachel(e, 0, 1, "Moment", "M = F b = x F_y − y F_x")
+    O = (x + 60, y + 150)
+    A = (x + 200, y + 110)
+    u = (math.cos(math.radians(70)), -math.sin(math.radians(70)))
+    t = (O[0] - A[0]) * u[0] + (O[1] - A[1]) * u[1]
+    Fp = (A[0] + t * u[0], A[1] + t * u[1])
+    e.append(linie(Fp[0] + u[0] * 20, Fp[1] + u[1] * 20, A[0] + u[0] * 90, A[1] + u[1] * 90, GRAU, 0.9,
+                   strich="10 4 2 4"))
+    e.append(kraft(*A, 70, "F", laenge=70, ziehend=True, label_seite=-1))
+    e.append(linie(*O, *Fp, BLAU, 2))
+    e.append(text((O[0] + Fp[0]) / 2 + 6, (O[1] + Fp[1]) / 2 + 14, "b", BLAU, 17, anker="start"))
+    e.append(punkt(*O, 3.4))
+    e.append(text(O[0] - 18, O[1] + 16, "0", SCHWARZ, 16))
+    e.append(moment(O[0], O[1], "", gegen_uhrzeiger=True, r=24, start=60, bogen=240))
+
+    # 5 Feder
+    e = abb.ebene("k-feder", "Feder")
+    x, y = kachel(e, 1, 1, "Feder", "F = c u")
+    xf, y0 = x + 90, y + 40
+    e.append(_decke(xf, y0, 40))
+    e.append(feder(xf, y0, y0 + 110, breite=14, windungen=6))
+    e.append(platte([(xf - 16, y0 + 110), (xf + 16, y0 + 110), (xf + 16, y0 + 118), (xf - 16, y0 + 118)], "#cfcfcf"))
+    e.append(kraft(xf, y0 + 118, -90, "F", laenge=35, ziehend=True, label_seite=-1))
+    D = (x + 170, y + 170)
+    e.append(koord_xy(*D, 110, 120, xlabel="u", ylabel="F"))
+    e.append(linie(*D, D[0] + 90, D[1] - 100, ROT, 2))
+    e.append(text(D[0] + 70, D[1] - 50, "c", GRUEN, 16, anker="start"))
+
+    # 6 starr und elastisch
+    e = abb.ebene("k-elastisch", "Starr und elastisch")
+    x, y = kachel(e, 2, 1, "Starr = elastisch nach außen", "gleiche Lagerkräfte")
+    xa, Lb = x + 40, 220
+    for yb, gebogen in ((y + 75, False), (y + 145, True)):
+        if gebogen:
+            pts = [(xa + Lb * i / 40, yb + 12 * math.sin(math.pi * i / 40)) for i in range(41)]
+            e.append(polylinie(pts, SCHWARZ, 7))
+            e.append(polylinie(pts, "#e6e6e6", 4.5))
+        else:
+            e.append(balken(xa, yb, xa + Lb, yb, dicke=6))
+        e.append(festlager(xa, yb + 3, groesse=9))
+        e.append(loslager(xa + Lb, yb + 3, groesse=9))
+        e.append(kraft(xa + Lb * 0.4, yb - 3 + (12 * math.sin(math.pi * 0.4) if gebogen else 0), -90, "F",
+                       laenge=32, label_seite=-1))
+        e.append(kraft(xa, yb + 20, 90, "", laenge=22, farbe=ROT))
+        e.append(kraft(xa + Lb, yb + 20, 90, "", laenge=16, farbe=ROT))
+    return abb.speichern(ZIEL / "zusammenfassung.svg")
+
+
 if __name__ == "__main__":
     for fn in (einheitskreis, vektoraddition, skalarprodukt, arbeit, moment_ebene, feder_grafik,
-               elastischer_koerper):
+               elastischer_koerper, zusammenfassung):
         print(fn())

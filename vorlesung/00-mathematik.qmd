@@ -170,11 +170,19 @@ Zwei Kräfte $\vec F_1$ und $\vec F_2$ greifen im selben Punkt an. Welche einzel
 Wirkung?
 :::
 
-::: {.schritt zeige="vektoren kette summe" zoom="40 20 500 330"}
-### Grafisch: Spitze an Fuß
+::: {.schritt zeige="vektoren parallelogramm summe" zoom="40 20 500 330"}
+### Grafisch: Kräfteparallelogramm
 
-Man verschiebt $\vec F_2$ parallel an die Spitze von $\vec F_1$. Die **Resultierende** $\vec F_R$ führt
-vom Anfang zur Spitze der Kette.
+Man ergänzt die beiden Kräfte mit Parallelen zu einem **Parallelogramm**. Die **Resultierende**
+$\vec F_R$ ist seine Diagonale.
+:::
+
+::: {.schritt zeige="vektoren kette summe" dimmen="parallelogramm" zoom="40 20 500 330"}
+### Kürzer: Spitze an Fuß
+
+Die obere Seite des Parallelogramms ist nichts anderes als $\vec F_2$, **parallel verschoben** an die
+Spitze von $\vec F_1$. Man braucht also nur eine Hälfte: Pfeile aneinanderhängen, Spitze an Fuß.
+$\vec F_R$ führt vom Anfang zur Spitze der Kette. So lassen sich beliebig viele Kräfte addieren.
 :::
 
 ::: {.schritt zeige="vektoren kette summe komponenten" dimmen="kette" zoom="40 20 500 330"}
@@ -298,19 +306,29 @@ Umwegen.
 ::: {.schritt zeige="kurve" zoom="620 10 340 310"}
 ### Gekrümmter Weg
 
-Ändert sich die Richtung des Weges, zerlegt man ihn in kleine Stücke $\mathrm d\vec s$ und summiert:
+Ändert sich die Richtung des Weges, zerlegt man ihn in kleine Stücke $\mathrm d\vec s$ und summiert.
+Die Wegkoordinate $s$ läuft dabei längs des Weges vom Anfang ($s = 0$) bis zum Ende ($s = L$,
+die Weglänge):
 
 $$
-W = \int \vec F\cdot\mathrm d\vec s = \int F_s\,\mathrm ds
+W = \int_0^L \vec F\cdot\mathrm d\vec s = \int_0^L F_s\,\mathrm ds
 $$
 
-Das Vorzeichen jedes Beitrags hängt nur vom Winkel ab:
+Hier wirkt die **Gewichtskraft** nach unten. Das Vorzeichen jedes Beitrags hängt nur vom Winkel ab:
 
-- $\varphi < 90^\circ$: $\mathrm dW > 0$, die Kraft wirkt **mit** der Bewegung
-- $\varphi > 90^\circ$: $\mathrm dW < 0$, die Kraft wirkt der Bewegung **entgegen**
-- $\varphi = 90^\circ$: $\mathrm dW = 0$, die Kraft steht **senkrecht** zum Weg
+- Weg fällt, $\varphi < 90^\circ$: $\mathrm dW > 0$, die Kraft wirkt **mit** der Bewegung
+- Weg steigt, $\varphi > 90^\circ$: $\mathrm dW < 0$, die Kraft wirkt der Bewegung **entgegen**
+- Weg waagerecht, $\varphi = 90^\circ$: $\mathrm dW = 0$
 
-Eine Kraft senkrecht zur Bewegung leistet nie Arbeit, zum Beispiel die Normalkraft einer Unterlage.
+Für die Gewichtskraft heben sich Auf und Ab gegenseitig auf. Übrig bleibt nur der Höhenunterschied
+zwischen Anfang und Ende: $W = m g\,(h_\text{Anfang} - h_\text{Ende})$, egal wie der Weg dazwischen verläuft.
+
+::: {.vertiefung titel="Ausführlicher: Grenzen des Integrals"}
+Allgemein integriert man von einem Punkt 1 zu einem Punkt 2 des Weges:
+$W_{12} = \int_{s_1}^{s_2} F_s\,\mathrm ds$. Beginnt man die Zählung am Anfang des Weges, ist $s_1 = 0$
+und $s_2 = L$. Für eine konstante Kraft auf geradem Weg ist $F_s$ konstant, und das Integral wird wieder
+zu $W = F_s\,L$, dem Fall von oben.
+:::
 :::
 
 ::::
@@ -570,21 +588,50 @@ Hebelarme der Kräfte ändern sich dadurch kaum, die Lagerkräfte bleiben gleich
 
 ## Zusammenfassung
 
-::: {.merke}
-| Werkzeug | Formel | in der Mechanik |
-|:--|:--|:--|
-| Komponenten | $F_x = F\cos\alpha$, $F_y = F\sin\alpha$ | Kräfte zerlegen |
-| Betrag, Winkel | $F = \sqrt{F_x^2 + F_y^2}$, $\tan\alpha = F_y/F_x$ | Resultierende |
-| Addition | komponentenweise | Kräfte zusammenfassen |
-| Skalarprodukt | $\vec a\cdot\vec b = ab\cos\varphi = a_xb_x + a_yb_y$ | Arbeit $W = \vec F\cdot\vec s$ |
-| Moment | $M = F\,b = x F_y - y F_x$ | Drehwirkung |
-| Federgesetz | $F = c\,u$ | Elastizität, Steifigkeit |
+:::: {.scrolly svg="../grafiken/mathematik/zusammenfassung.svg"}
 
-Starre und elastische Körper nehmen nach außen **dieselben Kräfte** auf. Die Statik rechnet deshalb
-am starren Körper, die Festigkeitslehre untersucht anschließend die Verformung.
+::: {.schritt zeige="k-komponenten k-addition" zoom="0 0 950 480"}
+### Kräfte zerlegen und addieren
+
+Eine Kraft ist ein Vektor. Ihre **Komponenten** sind Betrag mal Kosinus bzw. Sinus des Winkels,
+gemessen von der $x$-Achse. Kräfte addiert man **komponentenweise** oder grafisch mit dem
+Kräfteparallelogramm.
 :::
 
+::: {.schritt zeige="k-komponenten k-addition k-arbeit" dimmen="k-komponenten k-addition" zoom="0 0 950 480"}
+### Arbeit: das Skalarprodukt
+
+Arbeit leistet nur der Anteil der Kraft **in Wegrichtung**:
+$W = \vec F\cdot\vec s = F\,s\cos\varphi$. Steht die Kraft senkrecht zum Weg, ist die Arbeit null.
+:::
+
+::: {.schritt zeige="k-komponenten k-addition k-arbeit k-moment" dimmen="k-komponenten k-addition k-arbeit" zoom="0 0 950 480"}
+### Das Moment
+
+Die Drehwirkung einer Kraft ist **Kraft mal Hebelarm**: $M = F\,b = x F_y - y F_x$,
+positiv gegen den Uhrzeigersinn.
+:::
+
+::: {.schritt zeige="k-komponenten k-addition k-arbeit k-moment k-feder k-elastisch" dimmen="k-komponenten k-addition k-arbeit k-moment" zoom="0 0 950 480"}
+### Feder und elastischer Körper
+
+Eine Feder verschiebt sich proportional zur Kraft: $F = c\,u$. Jedes Bauteil verhält sich so,
+nur viel steifer. Starre und elastische Körper nehmen nach außen **dieselben Kräfte** auf.
+:::
+
+::: {.schritt zeige="k-komponenten k-addition k-arbeit k-moment k-feder k-elastisch" zoom="0 0 950 480"}
+### Das Wichtigste auf einen Blick
+
+Mit diesen Werkzeugen beginnt die Statik: Ab Woche 1 zerlegen wir Kräfte, stellen
+**Gleichgewichtsbedingungen** für Kräfte und Momente auf und berechnen Lagerkräfte, immer am
+**starren** Körper.
+
+Die Verformung kommt ab Woche 5 in der Festigkeitslehre dazu.
+
 **Weiter:** [Vorlesung 1 · Kräfte, Momente, Gleichgewicht](01-grundlagen.qmd)
+:::
+
+::::
 
 <p class="small text-muted">Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 1–3;
 Technische Mechanik 2, Kap. 1 (Stoffgesetz) und Kap. 6 (Arbeitsbegriff) ·

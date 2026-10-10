@@ -14,6 +14,7 @@
     if (!svg) return;
     svg.removeAttribute("width");
     svg.removeAttribute("height");
+    svg.setAttribute("preserveAspectRatio", "xMidYMin meet");   // Grafik direkt unter der Überschrift
     // Ebenen = oberste Gruppen (aus dem Baukasten mit data-ebene, aus Inkscape mit groupmode="layer")
     const ebenen = Array.from(svg.children).filter(g => g.tagName.toLowerCase() === "g" &&
       (g.dataset.ebene || g.getAttribute("inkscape:groupmode") === "layer"));
@@ -21,6 +22,11 @@
     const schritte = Array.from(sc.querySelectorAll(".schritt"));
     const zaehler = sc.querySelector(".scrolly-zaehler");
     const vb0 = zahlen(svg.getAttribute("viewBox"));
+    // Überschrift des aktiven Schritts über der Grafik einblenden
+    const titel = document.createElement("div");
+    titel.className = "scrolly-titel";
+    svg.parentNode.insertBefore(titel, svg);
+    schritte.forEach(st => { const h = st.querySelector("h3"); st.dataset.titel = h ? h.innerHTML : ""; });
     let vb = vb0.slice(), anim = null, aktiv = null;
 
     function zoom(ziel) {
@@ -53,6 +59,16 @@
       return [x, y, x2 - x, y2 - y];
     }
 
+    function setzeTitel(s) {
+      titel.innerHTML = s.dataset.titel || "";
+      titel.classList.remove("neu"); void titel.offsetWidth; titel.classList.add("neu");
+      // Formeln in der Überschrift setzen, sobald MathJax bereit ist
+      if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
+        MathJax.startup.promise.then(() => MathJax.typesetPromise ? MathJax.typesetPromise([titel]) : null)
+          .catch(() => {});
+      }
+    }
+
     function aktiviere(s) {
       if (s === aktiv) return;
       aktiv = s;
@@ -67,6 +83,7 @@
         l.classList.toggle("neu", sichtbar && !war && !dimmen.includes(n));
       });
       zoom(ausschnitt(s));
+      setzeTitel(s);
       if (zaehler) zaehler.textContent = (schritte.indexOf(s) + 1) + " / " + schritte.length;
     }
 

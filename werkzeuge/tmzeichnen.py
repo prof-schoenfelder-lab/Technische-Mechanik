@@ -50,19 +50,28 @@ def f(v: float) -> str:
 _TOKEN = re.compile(r"\[([^\]]*)\]|([_^])(\{[^}]*\}|.)|([^\[_^]+)")
 
 
+_VARPHI = '<tspan font-family="\'Latin Modern Math\'" font-style="normal">\U0001D711</tspan>'
+
+
+def _esc(t: str) -> str:
+    """Text maskieren; φ als geschwungenes φ (varphi) aus Latin Modern Math, da Latin Modern Roman
+    nur die gerade Form hat."""
+    return escape(t).replace("φ", _VARPHI)
+
+
 def _tspans(label: str, italic: bool = True) -> str:
     out = []
     for up, op, arg, plain in _TOKEN.findall(label):
         if up:
-            out.append(f'<tspan font-style="normal">{escape(up)}</tspan>')
+            out.append(f'<tspan font-style="normal">{_esc(up)}</tspan>')
         elif op:
             arg = arg[1:-1] if arg.startswith("{") else arg
             shift = "sub" if op == "_" else "super"
             # Indizes aus Ziffern/Großbuchstaben aufrecht, sonst kursiv
             style = "normal" if re.fullmatch(r"[0-9A-ZIV,. ]+|max|min|ges|res", arg) else ("italic" if italic else "normal")
-            out.append(f'<tspan baseline-shift="{shift}" font-size="70%" font-style="{style}">{escape(arg)}</tspan>')
+            out.append(f'<tspan baseline-shift="{shift}" font-size="70%" font-style="{style}">{_esc(arg)}</tspan>')
         else:
-            out.append(f"<tspan>{escape(plain)}</tspan>")
+            out.append(f"<tspan>{_esc(plain)}</tspan>")
     return "".join(out)
 
 
