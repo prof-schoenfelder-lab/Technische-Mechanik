@@ -452,19 +452,22 @@ def zusammenfassung():
         e.append(polylinie([(x, y), (x + W, y), (x + W, y + H), (x, y + H)], "#c8c8c8", 1.2, "#fafafa",
                            schliessen=True))
         e.append(text(x + 14, y + 22, f"[{titel}]", SCHWARZ, 17, anker="start", italic=False))
-        e.append(text(x + W / 2, y + H - 20, formel, ROT, 17))
+        zeilen = formel if isinstance(formel, (list, tuple)) else [formel]
+        for k, z in enumerate(reversed(zeilen)):
+            e.append(text(x + W / 2, y + H - 20 - 24 * k, z, ROT, 17))
         return x, y
 
     # 1 Komponenten
     e = abb.ebene("k-komponenten", "Komponenten")
-    x, y = kachel(e, 0, 0, "Komponenten", "F_x = F cos α,  F_y = F sin α")
-    O = (x + 70, y + 160)
-    e.append(koord_xy(*O, 170, 120))
-    E = (O[0] + 140, O[1] - 95)
+    x, y = kachel(e, 0, 0, "Komponenten", ["F_x = F cos α,  F_y = F sin α",
+                                            "F = √(F_x² + F_y²),  tan α = F_y / F_x"])
+    O = (x + 70, y + 142)
+    e.append(koord_xy(*O, 170, 105))
+    E = (O[0] + 140, O[1] - 85)
     e.append(linie(*E, E[0], O[1], GRAU, STRICH["duenn"], strich="4 3"))
     e.append(linie(*E, O[0], E[1], GRAU, STRICH["duenn"], strich="4 3"))
     e.append(vektor(*O, *E, "F", lx=-14, ly=-8))
-    e.append(winkelbogen(*O, 40, 0, math.degrees(math.atan2(95, 140)), "α"))
+    e.append(winkelbogen(*O, 40, 0, math.degrees(math.atan2(85, 140)), "α"))
 
     # 2 Addition
     e = abb.ebene("k-addition", "Addition")
@@ -480,13 +483,14 @@ def zusammenfassung():
 
     # 3 Skalarprodukt / Arbeit
     e = abb.ebene("k-arbeit", "Arbeit")
-    x, y = kachel(e, 2, 0, "Arbeit (Skalarprodukt)", "W = F s cos φ")
-    O = (x + 40, y + 160)
+    x, y = kachel(e, 2, 0, "Arbeit (Skalarprodukt)", ["W = F s cos φ",
+                                                       "a · b = a_x b_x + a_y b_y"])
+    O = (x + 40, y + 145)
     e.append(weg(*O, O[0] + 230, O[1] - 40))
     e.append(vlabel(O[0] + 200, O[1] - 18, "s"))
-    e.append(vektor(*O, O[0] + 70, O[1] - 110))
-    e.append(vlabel(O[0] + 52, O[1] - 110, "F", ROT, anker="end"))
-    e.append(winkelbogen(*O, 48, math.degrees(math.atan2(40, 230)), math.degrees(math.atan2(110, 70)), "φ"))
+    e.append(vektor(*O, O[0] + 60, O[1] - 92))
+    e.append(vlabel(O[0] + 44, O[1] - 88, "F", ROT, anker="end"))
+    e.append(winkelbogen(*O, 48, math.degrees(math.atan2(40, 230)), math.degrees(math.atan2(92, 60)), "φ"))
 
     # 4 Moment
     e = abb.ebene("k-moment", "Moment")

@@ -633,6 +633,22 @@ Die Verformung kommt ab Woche 5 in der Festigkeitslehre dazu.
 
 ::::
 
+### Zum Nachschlagen
+
+::: {.merke}
+| Werkzeug | Formel | in der Mechanik |
+|:--|:--|:--|
+| Komponenten | $F_x = F\cos\alpha$, $F_y = F\sin\alpha$ | Kräfte zerlegen |
+| Betrag, Winkel | $F = \sqrt{F_x^2 + F_y^2}$, $\tan\alpha = F_y/F_x$ | Resultierende |
+| Addition | komponentenweise | Kräfte zusammenfassen |
+| Skalarprodukt | $\vec a\cdot\vec b = ab\cos\varphi = a_xb_x + a_yb_y$ | Arbeit $W = \vec F\cdot\vec s$ |
+| Moment | $M = F\,b = x F_y - y F_x$ | Drehwirkung |
+| Federgesetz | $F = c\,u$ | Elastizität, Steifigkeit |
+
+Starre und elastische Körper nehmen nach außen **dieselben Kräfte** auf. Die Statik rechnet deshalb
+am starren Körper, die Festigkeitslehre untersucht anschließend die Verformung.
+:::
+
 <p class="small text-muted">Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 1–3;
 Technische Mechanik 2, Kap. 1 (Stoffgesetz) und Kap. 6 (Arbeitsbegriff) ·
 Dankert/Dankert, Technische Mechanik, Kap. 1–3</p>
