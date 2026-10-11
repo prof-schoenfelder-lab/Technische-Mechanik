@@ -27,7 +27,7 @@ def vorzeichen():
     e.append(balken(x0, y, x1, y))
     e.append(koordinaten(x0, y, 40, "x", "z"))
     e.append(schnittlinie(xs, y, 46))
-    e.append(text(xs + 10, y - 30, "S", "#000000", 15))
+    e.append(text(xs + 10, y - 30, "S", FARBE["mass"], 15))
 
     yt = 230
     d = 170
@@ -127,7 +127,7 @@ def beispiel_einzelkraefte():
     for i, (xs, l_aktiv) in enumerate(((xA + 0.55 * a, True), (xF1 + 1.0 * a, True), (xB + 0.5 * a, False)), 1):
         e = abb.ebene(f"schnitt-{i}", f"Schnitt Bereich {['I', 'II', 'III'][i - 1]}")
         e.append(schnittlinie(xs, y, 40))
-        e.append(text(xs + 2, y - 30, "S", "#000000", 15))
+        e.append(text(xs + 2, y - 30, "S", FARBE["mass"], 15))
         e.append(links(xs, xs > xF1, i, 1.0 if l_aktiv else 0.35))
         e.append(rechts(xs, i, 0.35 if l_aktiv else 1.0))
         e.append(text(xA - 50, yt - 58, "[linkes Teilsystem]" if l_aktiv else "[rechtes Teilsystem]",

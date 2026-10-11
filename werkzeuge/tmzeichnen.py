@@ -365,8 +365,26 @@ def schnittufer(x, y, positiv=True, N="N", Q="Q", M="M", farbe=None, dicke=7, la
     return gruppe(teile, id_)
 
 
-def schnittlinie(x, y, hoehe=34, label="", farbe="#000000", id_=None):
-    teile = [linie(x, y - hoehe / 2, x, y + hoehe / 2, farbe, STRICH["normal"], strich="5 3")]
+def schnitt(x1, y1, x2, y2, farbe=None, amplitude=3.2, wellenlaenge=11, breite=1.6, id_=None):
+    """Gedanklicher Schnitt als grüne Schlangenlinie von (x1,y1) nach (x2,y2) –
+    deutlich unterscheidbar von Bauteilen, Hilfs- und Wirkungslinien."""
+    farbe = farbe or FARBE["mass"]
+    L = math.hypot(x2 - x1, y2 - y1)
+    ux, uy = (x2 - x1) / L, (y2 - y1) / L
+    nx, ny = -uy, ux
+    n = max(24, int(L / 2))
+    pts = []
+    for i in range(n + 1):
+        t = L * i / n
+        a = amplitude * math.sin(2 * math.pi * t / wellenlaenge)
+        pts.append((x1 + ux * t + nx * a, y1 + uy * t + ny * a))
+    return gruppe(polylinie(pts, farbe, breite), id_)
+
+
+def schnittlinie(x, y, hoehe=34, label="", farbe=None, id_=None):
+    """Senkrechter Schnitt durch einen Balken an der Stelle x (grüne Schlangenlinie)."""
+    farbe = farbe or FARBE["mass"]
+    teile = [schnitt(x, y - hoehe / 2, x, y + hoehe / 2, farbe)]
     if label:
         teile.append(text(x, y - hoehe / 2 - 9, label, farbe, 15))
     return gruppe(teile, id_)

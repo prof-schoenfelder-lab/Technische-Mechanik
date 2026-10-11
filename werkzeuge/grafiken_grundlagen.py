@@ -11,7 +11,7 @@ import math
 from pathlib import Path
 
 from tmzeichnen import (FARBE, STRICH, Abbildung, _spitze, balken, festlager, gruppe, kraft, kreis, linie,
-                        mass, moment, pfeil, polylinie, text, winkelbogen)
+                        mass, moment, pfeil, polylinie, schnitt, text, winkelbogen)
 
 ZIEL = Path(__file__).resolve().parent.parent / "grafiken" / "grundlagen"
 ROT, GRUEN, GRAU = FARBE["last"], FARBE["mass"], FARBE["hinweis"]
@@ -59,13 +59,13 @@ def platte(punkte, fuellung=HELL):
     return polylinie(punkte, FARBE["linie"], STRICH["normal"], fuellung, schliessen=True)
 
 
-def kasten(x, y, b, h, zeilen, fuellung="#f2f2f2", farbe="#000000", fett=False):
+def kasten(x, y, b, h, zeilen, fuellung="#f2f2f2", farbe="#000000", fett=False, gr1=17, gr2=13):
     teile = [polylinie([(x - b / 2, y - h / 2), (x + b / 2, y - h / 2), (x + b / 2, y + h / 2), (x - b / 2, y + h / 2)],
                        "#444444", STRICH["normal"], fuellung, schliessen=True)]
     n = len(zeilen)
     for i, z in enumerate(zeilen):
-        gr = 17 if i == 0 else 13
-        teile.append(text(x, y + (i - (n - 1) / 2) * 19, f"[{z}]", farbe if i == 0 else "#444444", gr,
+        gr = gr1 if i == 0 else gr2
+        teile.append(text(x, y + (i - (n - 1) / 2) * (gr1 + 4), f"[{z}]", farbe if i == 0 else "#444444", gr,
                           italic=False, halo=False))
     return gruppe(teile)
 
@@ -94,23 +94,23 @@ def hinweis(x, y, s, anker="start", groesse=14):
 # Einordnung: Mechanik → Dynamik / Statik → Stereostatik / Elastostatik
 # =====================================================================
 def einordnung():
-    abb = Abbildung(770, 330, "Einordnung der Technischen Mechanik")
+    abb = Abbildung(645, 430, "Einordnung der Technischen Mechanik")
     e = abb.ebene("baum", "Gliederung der Mechanik")
-    knoten = {"mech": (360, 45), "dyn": (150, 145), "stat": (520, 145), "stereo": (400, 255), "elasto": (650, 255)}
+    knoten = {"mech": (320, 45), "dyn": (112, 182), "stat": (440, 182), "stereo": (330, 322), "elasto": (540, 322)}
+    groesse = {"mech": 340, "dyn": 210, "stat": 220, "stereo": 196, "elasto": 196}
     for a, b in (("mech", "dyn"), ("mech", "stat"), ("stat", "stereo"), ("stat", "elasto")):
         (x1, y1), (x2, y2) = knoten[a], knoten[b]
-        e.append(linie(x1, y1 + 24, x2, y2 - 24, "#444444", STRICH["normal"]))
-    e.append(kasten(*knoten["mech"], 200, 46, ["Technische Mechanik", "Kräfte und ihre Wirkungen"]))
-    e.append(kasten(*knoten["dyn"], 200, 46, ["Dynamik", "Körper in Bewegung"]))
-    e.append(kasten(*knoten["stat"], 220, 46, ["Statik", "Körper in Ruhe"]))
-    e.append(kasten(*knoten["stereo"], 180, 46, ["Stereostatik", "starre Körper"]))
-    e.append(kasten(*knoten["elasto"], 170, 46, ["Elastostatik", "verformbare Körper"]))
+        e.append(linie(x1, y1 + 38, x2, y2 - 38, "#444444", STRICH["normal"]))
+    for k, zeilen in (("mech", ["Technische Mechanik", "Kräfte und ihre Wirkungen"]),
+                      ("dyn", ["Dynamik", "Körper in Bewegung"]), ("stat", ["Statik", "Körper in Ruhe"]),
+                      ("stereo", ["Stereostatik", "starre Körper"]), ("elasto", ["Elastostatik", "verformbare Körper"])):
+        e.append(kasten(*knoten[k], groesse[k], 76, zeilen, gr1=28, gr2=19))
 
     e = abb.ebene("inhalt", "Inhalt dieser Lehrveranstaltung")
-    e.append(polylinie([(300, 110), (755, 110), (755, 318), (300, 318)], ROT, 1.4, schliessen=True, strich="7 4"))
-    e.append(text(750, 98, "[Inhalt dieser Lehrveranstaltung]", ROT, 14, anker="end", italic=False))
-    e.append(text(400, 296, "[Wochen 1–4]", ROT, 13, italic=False))
-    e.append(text(650, 296, "[Wochen 5–14 (Festigkeitslehre)]", ROT, 13, italic=False))
+    e.append(polylinie([(222, 136), (642, 136), (642, 425), (222, 425)], ROT, 1.8, schliessen=True, strich="9 5"))
+    e.append(text(640, 118, "[Inhalt dieser Lehrveranstaltung]", ROT, 21, anker="end", italic=False))
+    e.append(text(330, 395, "[Wochen 1–4]", ROT, 20, italic=False))
+    e.append(text(540, 395, "[Wochen 5–14]", ROT, 20, italic=False))
     return abb.speichern(ZIEL / "einordnung.svg")
 
 
@@ -158,69 +158,72 @@ def kraft_vektor():
 # =====================================================================
 # Axiome der Statik: vier Felder, der Zoom wandert von Feld zu Feld
 # =====================================================================
+def _axiom(e, nr, ox, oy):
+    """Zeichnet Axiom nr in ein Feld 400 x 280 mit linker oberer Ecke (ox, oy)."""
+    titel = {1: "1  Linienflüchtigkeit", 2: "2  Kräfteparallelogramm", 3: "3  Gleichgewicht zweier Kräfte",
+             4: "4  Wechselwirkung (actio = reactio)"}[nr]
+    e.append(text(ox + 20, oy + 26, f"[{titel}]", "#000000", 19, anker="start", italic=False))
+    if nr == 1:
+        e.append(platte([(ox + 90, oy + 120), (ox + 300, oy + 95), (ox + 330, oy + 190), (ox + 250, oy + 235),
+                         (ox + 110, oy + 215)]))
+        y = oy + 160
+        e.append(strichpunkt(ox + 20, y, ox + 390, y))
+        e.append(kraft(ox + 98, y, 0, "F", laenge=60, label_seite=1))
+        e.append(punkt(ox + 98, y))
+        e.append('<g opacity="0.45">' + kraft(ox + 318, y, 0, "F", laenge=60, ziehend=True, label_seite=1) + "</g>")
+        e.append(punkt(ox + 318, y))
+        e.append(hinweis(ox + 200, oy + 262, "gleiche Wirkung am starren Körper", anker="middle", groesse=15))
+    elif nr == 2:
+        A = (ox + 90, oy + 225)
+        f1 = (170 * math.cos(math.radians(12)), -170 * math.sin(math.radians(12)))
+        f2 = (120 * math.cos(math.radians(70)), -120 * math.sin(math.radians(70)))
+        p1, p2 = (A[0] + f1[0], A[1] + f1[1]), (A[0] + f2[0], A[1] + f2[1])
+        pr = (A[0] + f1[0] + f2[0], A[1] + f1[1] + f2[1])
+        e.append(linie(*p1, *pr, GRAU, STRICH["normal"], strich="5 4"))
+        e.append(linie(*p2, *pr, GRAU, STRICH["normal"], strich="5 4"))
+        e.append(vektor(*A, *p1, "F_1", ly=18))
+        e.append(vektor(*A, *p2, "F_2", lx=-20))
+        e.append(vektor(*A, *pr, "F_R", lx=-16, ly=-12))
+        e.append(punkt(*A))
+        e.append(hinweis(ox + 200, oy + 262, "zwei Kräfte = eine Resultierende", anker="middle", groesse=15))
+    elif nr == 3:
+        e.append(platte([(ox + 110, oy + 110), (ox + 290, oy + 95), (ox + 310, oy + 200), (ox + 130, oy + 220)]))
+        m = 30 / 185
+        y0 = oy + 125
+        e.append(strichpunkt(ox + 20, y0, ox + 390, y0 + 60))
+        for xa, w, seite in ((ox + 118, 180 - math.degrees(math.atan(m)), -1), (ox + 300, -math.degrees(math.atan(m)), 1)):
+            e.append(kraft(xa, y0 + m * (xa - ox - 20), w, "F", laenge=70, ziehend=True, label_seite=seite))
+        e.append(hinweis(ox + 200, oy + 262, "gleich groß · gleiche Wirkungslinie · entgegengesetzt", anker="middle",
+                         groesse=15))
+    else:
+        y1, y2 = oy + 95, oy + 190
+        x0, x1, xs = ox + 90, ox + 310, ox + 200
+        e.append(balken(x0, y1, x1, y1, dicke=12))
+        e.append(kraft(x0, y1, 180, "F", laenge=55, ziehend=True, label_seite=1))
+        e.append(kraft(x1, y1, 0, "F", laenge=55, ziehend=True, label_seite=1))
+        e.append(schnitt(xs, y1 - 24, xs, y1 + 24))
+        d = 62
+        e.append(balken(x0, y2, xs - d, y2, dicke=12))
+        e.append(balken(xs + d, y2, x1, y2, dicke=12))
+        e.append(schnitt(xs - d, y2 - 16, xs - d, y2 + 16))
+        e.append(schnitt(xs + d, y2 - 16, xs + d, y2 + 16))
+        e.append(kraft(x0, y2, 180, "F", laenge=55, ziehend=True, label_seite=1))
+        e.append(kraft(x1, y2, 0, "F", laenge=55, ziehend=True, label_seite=1))
+        e.append(kraft(xs - d, y2, 0, "F_i", laenge=44, ziehend=True, label_seite=-1, label_abstand=12))
+        e.append(kraft(xs + d, y2, 180, "F_i", laenge=44, ziehend=True, label_seite=1, label_abstand=12))
+        e.append(hinweis(ox + 200, oy + 262, "Schnitt: Kräfte paarweise entgegengesetzt", anker="middle", groesse=15))
+
+
 def axiome():
-    abb = Abbildung(800, 560, "Axiome der Statik")
-    W, H = 400, 280
-
-    # 1. Linienflüchtigkeit (Feld oben links)
-    e = abb.ebene("linienfluechtig", "1. Axiom: Linienflüchtigkeit")
-    e.append(text(20, 26, "[1  Linienflüchtigkeit]", "#000000", 17, anker="start", italic=False))
-    e.append(platte([(90, 120), (300, 95), (330, 190), (250, 235), (110, 215)]))
-    y = 160
-    e.append(strichpunkt(20, y, 390, y))
-    e.append(kraft(98, y, 0, "F", laenge=60, label_seite=1))
-    e.append(punkt(98, y))
-    e.append('<g opacity="0.45">' + kraft(318, y, 0, "F", laenge=60, ziehend=True, label_seite=1) + "</g>")
-    e.append(punkt(318, y))
-    e.append(hinweis(200, 262, "gleiche Wirkung am starren Körper", anker="middle"))
-
-    # 2. Kräfteparallelogramm (oben rechts)
-    e = abb.ebene("parallelogramm", "2. Axiom: Kräfteparallelogramm")
-    e.append(text(W + 20, 26, "[2  Kräfteparallelogramm]", "#000000", 17, anker="start", italic=False))
-    A = (W + 90, 225)
-    f1 = (170 * math.cos(math.radians(12)), -170 * math.sin(math.radians(12)))
-    f2 = (120 * math.cos(math.radians(70)), -120 * math.sin(math.radians(70)))
-    p1 = (A[0] + f1[0], A[1] + f1[1])
-    p2 = (A[0] + f2[0], A[1] + f2[1])
-    pr = (A[0] + f1[0] + f2[0], A[1] + f1[1] + f2[1])
-    e.append(linie(*p1, *pr, GRAU, STRICH["duenn"], strich="4 3"))
-    e.append(linie(*p2, *pr, GRAU, STRICH["duenn"], strich="4 3"))
-    e.append(vektor(*A, *p1, "F_1", ly=18))
-    e.append(vektor(*A, *p2, "F_2", lx=-20))
-    e.append(vektor(*A, *pr, "F_R", lx=-16, ly=-12))
-    e.append(punkt(*A))
-
-    # 3. Gleichgewicht zweier Kräfte (unten links)
-    e = abb.ebene("gleichgewicht", "3. Axiom: Gleichgewicht")
-    e.append(text(20, H + 26, "[3  Gleichgewicht zweier Kräfte]", "#000000", 17, anker="start", italic=False))
-    e.append(platte([(110, H + 110), (290, H + 95), (310, H + 200), (130, H + 220)]))
-    yw = H + 155
-    e.append(strichpunkt(20, yw - 30, 390, yw + 30))
-    m = (30 / 185)
-    xa, xb = 118, 300
-    e.append(kraft(xa, yw - 30 + m * (xa - 20) * 1.0, 180 - math.degrees(math.atan(m)), "F", laenge=70,
-                   ziehend=True, label_seite=-1))
-    e.append(kraft(xb, yw - 30 + m * (xb - 20) * 1.0, -math.degrees(math.atan(m)), "F", laenge=70,
-                   ziehend=True, label_seite=1))
-    e.append(hinweis(200, H + 258, "gleich groß · gleiche Wirkungslinie · entgegengesetzt", anker="middle"))
-
-    # 4. Wechselwirkung und Schnittprinzip (unten rechts)
-    e = abb.ebene("wechselwirkung", "4. Axiom: Wechselwirkung, Schnittprinzip")
-    e.append(text(W + 20, H + 26, "[4  Wechselwirkung (actio = reactio)]", "#000000", 17, anker="start", italic=False))
-    y1, y2 = H + 95, H + 190
-    x0, x1, xs = W + 90, W + 310, W + 200
-    e.append(balken(x0, y1, x1, y1, dicke=12))
-    e.append(kraft(x0, y1, 180, "F", laenge=55, ziehend=True, label_seite=1))
-    e.append(kraft(x1, y1, 0, "F", laenge=55, ziehend=True, label_seite=1))
-    e.append(linie(xs, y1 - 22, xs, y1 + 22, "#000000", STRICH["normal"], strich="5 3"))
-    d = 62
-    e.append(balken(x0, y2, xs - d, y2, dicke=12))
-    e.append(balken(xs + d, y2, x1, y2, dicke=12))
-    e.append(kraft(x0, y2, 180, "F", laenge=55, ziehend=True, label_seite=1))
-    e.append(kraft(x1, y2, 0, "F", laenge=55, ziehend=True, label_seite=1))
-    e.append(kraft(xs - d, y2, 0, "F_i", laenge=44, ziehend=True, label_seite=-1, label_abstand=12))
-    e.append(kraft(xs + d, y2, 180, "F_i", laenge=44, ziehend=True, label_seite=1, label_abstand=12))
-    e.append(hinweis(W + 200, H + 248, "Schnitt: Kräfte paarweise entgegengesetzt", anker="middle"))
+    """Jedes Axiom einzeln (Ebenen ax-1 … ax-4 an derselben Stelle), zum Schluss alle vier als Übersicht."""
+    abb = Abbildung(800, 900, "Axiome der Statik")
+    for nr in (1, 2, 3, 4):
+        _axiom(abb.ebene(f"ax-{nr}", f"Axiom {nr}"), nr, 0, 0)
+    e = abb.ebene("uebersicht", "Die vier Axiome im Überblick")
+    for nr, (ox, oy) in zip((1, 2, 3, 4), ((0, 320), (400, 320), (0, 600), (400, 600))):
+        e.append(polylinie([(ox + 4, oy + 4), (ox + 396, oy + 4), (ox + 396, oy + 276), (ox + 4, oy + 276)],
+                           "#c8c8c8", 1.0, "none", schliessen=True))
+        _axiom(e, nr, ox, oy)
     return abb.speichern(ZIEL / "axiome.svg")
 
 
@@ -309,8 +312,8 @@ def seil_masse():
     e.append(punkt(*Kf, 2.6))
     # Schnittmarke am Seil
     cx, cy = Kf[0] - 40 * math.sin(alpha), Kf[1] - 40 * math.cos(alpha)
-    e.append(linie(cx - 16 * math.cos(alpha), cy + 16 * math.sin(alpha), cx + 16 * math.cos(alpha),
-                   cy - 16 * math.sin(alpha), "#000000", STRICH["normal"]))
+    e.append(schnitt(cx - 20 * math.cos(alpha), cy + 20 * math.sin(alpha), cx + 20 * math.cos(alpha),
+                     cy - 20 * math.sin(alpha)))
     e.append(kraft(cx, cy, 120, "F_S", laenge=80, ziehend=True, label_seite=-1))
     e.append(kraft(*Kf, 0, "F", laenge=85, ziehend=True, label_seite=1))
     e.append(kraft(Kf[0], yk + 26, -90, "m g", laenge=70, ziehend=True, label_seite=-1, label_pos=0.75))
@@ -338,65 +341,132 @@ def seil_masse():
 # Moment: Kräftepaar, Moment einer Kraft um einen Punkt, Versatzmoment
 # =====================================================================
 def moment_grafik():
-    abb = Abbildung(1020, 330, "Das Moment")
+    """Woche 1: Kräftepaar und freie Verschiebbarkeit des Moments."""
+    abb = Abbildung(960, 330, "Kräftepaar")
 
-    # Feld 1: Kräftepaar
+    def koerper(x0):
+        return platte([(x0 + 20, 100), (x0 + 250, 100), (x0 + 250, 250), (x0 + 20, 250)])
+
     e = abb.ebene("kraeftepaar", "Kräftepaar")
-    e.append(text(20, 26, "[Kräftepaar]", "#000000", 17, anker="start", italic=False))
-    e.append(platte([(60, 110), (250, 100), (260, 240), (70, 250)]))
-    xl, xr = 100, 220
+    e.append(koerper(0))
+    xl, xr = 70, 200
     e.append(strichpunkt(xl, 60, xl, 300))
     e.append(strichpunkt(xr, 60, xr, 300))
     e.append(kraft(xl, 175, 90, "F", laenge=70, ziehend=True, label_seite=1))
     e.append(kraft(xr, 175, -90, "F", laenge=70, ziehend=True, label_seite=1))
-    e.append(mass(xl, 175, xr, 175, "b", abstand=-115))
-    e.append(text(290, 175, "[=]", "#000000", 26, italic=False))
-    e.append(platte([(320, 110), (480, 100), (490, 240), (330, 250)]))
-    e.append(moment(405, 175, "", gegen_uhrzeiger=False, r=26, start=150, bogen=280))
-    e.append(text(405, 120, "M = F b", ROT, 19))
+    e.append(mass(xl, 175, xr, 175, "b", abstand=-118))
+    e.append(text(310, 175, "[=]", "#000000", 30, italic=False))
+    e.append(koerper(350))
+    e.append(moment(485, 175, "", gegen_uhrzeiger=False, r=28, start=150, bogen=280))
+    e.append(text(485, 120, "M = F b", ROT, 21))
 
-    # Feld 2: Moment einer Kraft bezüglich eines Punktes
-    e = abb.ebene("hebelarm", "Moment um einen Punkt, Hebelarm")
-    x0 = 530
-    e.append(text(x0, 26, "[Moment um einen Punkt]", "#000000", 17, anker="start", italic=False))
-    O = (x0 + 50, 250)
-    A = (x0 + 200, 150)
-    w = math.radians(60)
-    u = (math.cos(w), -math.sin(w))
-    e.append(strichpunkt(A[0] - u[0] * 110, A[1] - u[1] * 110, A[0] + u[0] * 120, A[1] + u[1] * 120))
-    e.append(kraft(*A, 60, "F", laenge=85, ziehend=True, label_seite=-1))
-    e.append(vektor(*O, *A, "r", farbe=GRUEN, breite=1.5, lx=-4, ly=-14))
-    # Lotfußpunkt
-    t = (O[0] - A[0]) * u[0] + (O[1] - A[1]) * u[1]
-    Fp = (A[0] + t * u[0], A[1] + t * u[1])
-    e.append(linie(*O, *Fp, GRUEN, STRICH["normal"]))
-    lx, ly = (Fp[0] - O[0]), (Fp[1] - O[1])
-    ll = math.hypot(lx, ly)
-    e.append(rechter_winkel(*Fp, -lx / ll, -ly / ll, u[0], u[1]))
-    e.append(text((O[0] + Fp[0]) / 2 - 4, (O[1] + Fp[1]) / 2 + 18, "b", GRUEN, 19))
-    e.append(punkt(*O, 3.6))
-    e.append(text(O[0] - 14, O[1] + 14, "0", "#000000", 18))
-    e.append(punkt(*A, 2.8))
-    e.append(text(A[0] + 14, A[1] + 12, "A", "#000000", 17))
-    e.append(hinweis(x0 + 20, 305, "Hebelarm b: Abstand von 0 zur Wirkungslinie"))
-
-    # Feld 3 (eigene Ebene, gleiche Position wie Feld 1): Versatzmoment
-    e = abb.ebene("versatz", "Parallelverschiebung, Versatzmoment")
-    e.append(text(20, 26, "[Kraft parallel verschieben]", "#000000", 17, anker="start", italic=False))
-    e.append(platte([(60, 110), (250, 100), (260, 240), (70, 250)]))
-    e.append(strichpunkt(150, 60, 150, 300))
-    e.append(kraft(150, 160, -90, "F", laenge=60, label_seite=1))
-    e.append(punkt(150, 160))
-    e.append(text(290, 175, "[=]", "#000000", 26, italic=False))
-    e.append(platte([(320, 110), (480, 100), (490, 240), (330, 250)]))
-    e.append(strichpunkt(370, 60, 370, 300))
-    e.append(strichpunkt(450, 60, 450, 300, "#bbbbbb"))
-    e.append(kraft(370, 160, -90, "F", laenge=60, label_seite=-1))
-    e.append(punkt(370, 160))
-    e.append(moment(425, 175, "", gegen_uhrzeiger=False, r=20, start=150, bogen=280))
-    e.append(text(425, 218, "M = F a", ROT, 18))
-    e.append(mass(370, 280, 450, 280, "a", abstand=-14))
+    e = abb.ebene("verschieblich", "Moment frei verschieblich")
+    e.append(koerper(650))
+    for (x, y) in ((720, 145), (850, 150), (780, 215)):
+        e.append(moment(x, y, "", gegen_uhrzeiger=False, r=20, start=150, bogen=280))
+        e.append(text(x + 26, y - 22, "M", ROT, 19, anker="start"))
+    e.append(hinweis(785, 290, "überall dieselbe Wirkung", anker="middle", groesse=16))
     return abb.speichern(ZIEL / "moment.svg")
+
+
+def versatz_grafik():
+    """Parallelverschiebung einer Kraft: F im Inneren = F an der Ecke + Versatzmoment."""
+    abb = Abbildung(960, 330, "Parallelverschiebung einer Kraft")
+
+    def koerper(x0):
+        return platte([(x0 + 20, 100), (x0 + 250, 100), (x0 + 250, 250), (x0 + 20, 250)])
+
+    e = abb.ebene("innen", "Kraft im Inneren")
+    e.append(koerper(0))
+    xA = 130
+    e.append(strichpunkt(xA, 50, xA, 300))
+    e.append(kraft(xA, 175, -90, "F", laenge=65, label_seite=1))
+    e.append(punkt(xA, 175))
+    e.append(text(xA - 10, 192, "A", "#000000", 17, anker="end"))
+    e.append(punkt(250, 100, 3.2))
+    e.append(text(258, 92, "B", "#000000", 17, anker="start"))
+
+    e = abb.ebene("nullsystem", "Nullsystem in B ergänzen")
+    e.append(text(300, 175, "[=]", "#000000", 30, italic=False))
+    e.append(koerper(330))
+    xA2, xB2 = xA + 330, 580
+    e.append(strichpunkt(xA2, 50, xA2, 300))
+    e.append(strichpunkt(xB2, 50, xB2, 300))
+    e.append(kraft(xA2, 175, -90, "F", laenge=65, label_seite=1))
+    e.append(punkt(xA2, 175))
+    e.append(kraft(xB2, 100, -90, "F", laenge=65, label_seite=-1))
+    e.append(kraft(xB2, 100, 90, "F", laenge=65, label_seite=1))           # von unten an B (Gegenkraft)
+    e.append(punkt(xB2, 100))
+    e.append(text(xB2 + 10, 92, "B", "#000000", 17, anker="start"))
+    e.append(text((xA2 + xB2) / 2 - 10, 305, "[F in A und Gegenkraft in B: Kräftepaar]", GRUEN, 14, italic=False))
+    e.append(mass(xA2, 250, xB2, 250, "a", abstand=-16))
+
+    e = abb.ebene("ecke", "Kraft an der Ecke mit Versatzmoment")
+    e.append(text(630, 175, "[=]", "#000000", 30, italic=False))
+    e.append(koerper(660))
+    xB3 = 910
+    e.append(strichpunkt(xB3, 50, xB3, 300))
+    e.append(kraft(xB3, 100, -90, "F", laenge=65, label_seite=-1))
+    e.append(punkt(xB3, 100))
+    e.append(text(xB3 + 10, 92, "B", "#000000", 17, anker="start"))
+    e.append(moment(790, 180, "", gegen_uhrzeiger=True, r=26, start=30, bogen=280))
+    e.append(text(790, 230, "M = F a", ROT, 20))
+    return abb.speichern(ZIEL / "versatz.svg")
+
+
+# =====================================================================
+# Träger an zwei Seilen: Schnittprinzip und Gleichgewicht im allgemeinen ebenen Kraftsystem
+#   Seil 1 am linken Ende, Seil 2 bei 3/4 L, Gewicht G in der Mitte  ->  S1 = G/3, S2 = 2G/3
+# =====================================================================
+def traeger_seile():
+    abb = Abbildung(1060, 440, "Träger an zwei Seilen")
+    yd, yb, L = 50, 230, 360
+    t = 6                                          # halbe Balkendicke
+
+    def decke(e, dx):
+        e.append(linie(80 + dx, yd, 540 + dx, yd, "#000000", STRICH["normal"]))
+        xx = 82 + dx
+        while xx < 540 + dx:
+            e.append(linie(xx, yd, xx + 7, yd - 7, "#000000", STRICH["duenn"]))
+            xx += 7
+
+    x1, x2 = 120, 120 + 0.75 * L
+    e = abb.ebene("system", "Träger an zwei Seilen")
+    decke(e, 0)
+    for x in (x1, x2):
+        e.append(linie(x, yd, x, yb - t, "#000000", 1.8))
+    e.append(balken(x1, yb, x1 + L, yb, dicke=2 * t))
+    e.append(kraft(x1 + L / 2, yb, -90, "G", laenge=70, ziehend=True, label_seite=-1))
+    e.append(text(x1 - 10, 120, "[Seil 1]", "#000000", 16, anker="end", italic=False))
+    e.append(text(x2 + 10, 120, "[Seil 2]", "#000000", 16, anker="start", italic=False))
+
+    e = abb.ebene("schnitte", "Schnitte durch die Seile")
+    for x in (x1, x2):
+        e.append(schnitt(x - 26, 150, x + 26, 150))
+
+    dx = 520
+    e = abb.ebene("freikoerper", "Freikörperbilder")
+    f1, f2 = x1 + dx, x2 + dx
+    yb2 = yb + 40
+    decke(e, dx)
+    for x, n in ((f1, "1"), (f2, "2")):
+        e.append(linie(x, yd, x, yd + 45, "#000000", 1.8))
+        e.append(schnitt(x - 20, yd + 45, x + 20, yd + 45))
+        e.append(kraft(x, yd + 45, -90, f"S_{n}", laenge=48, ziehend=True, label_seite=1))
+    e.append(balken(f1, yb2, f1 + L, yb2, dicke=2 * t))
+    for x, n in ((f1, "1"), (f2, "2")):
+        e.append(linie(x, yb2 - t, x, yb2 - 55, "#000000", 1.8))
+        e.append(schnitt(x - 20, yb2 - 55, x + 20, yb2 - 55))
+        e.append(kraft(x, yb2 - 55, 90, f"S_{n}", laenge=48, ziehend=True, label_seite=1))
+    e.append(kraft(f1 + L / 2, yb2, -90, "G", laenge=70, ziehend=True, label_seite=-1))
+
+    e = abb.ebene("mass", "Bemaßung")
+    e.append(mass(f1, yb2 + t, f1 + L / 2, yb2 + t, "L/2", abstand=-92))
+    e.append(mass(f1, yb2 + t, f2, yb2 + t, "3L/4", abstand=-122))
+    e.append(koord_xy(dx + 60, 425, 36, 36))
+    e.append(punkt(f1, yb2, 3))
+    e.append(text(f1 - 10, yb2 + 22, "1", "#000000", 16, anker="end"))
+    return abb.speichern(ZIEL / "traeger-seile.svg")
 
 
 # =====================================================================
@@ -478,19 +548,24 @@ def aufgabe_1_1_3():
 
 
 def aufgabe_1_1_4():
-    abb, e = _aufgabe("Stahlträger am Kran", 480, 280)
-    yb, xm, l, h = 200, 230, 180, 110
+    abb, e = _aufgabe("Stahlträger am Kran", 480, 290)
+    yb, xm, l, h = 215, 230, 180, 120
     xa, xc = xm - l / 2, xm + l / 2
-    e.append(balken(xm - 170, yb, xm + 170, yb, dicke=14))
-    ring = (xm, yb - 7 - h)
-    e.append(linie(xa, yb - 7, ring[0] - 6, ring[1] + 6, "#000000", 1.8))
-    e.append(linie(xc, yb - 7, ring[0] + 6, ring[1] + 6, "#000000", 1.8))
-    e.append(kreis(*ring, 9, "#000000", "#ffffff", 3))
-    e.append(linie(ring[0], ring[1] - 9, ring[0], ring[1] - 70, "#000000", 2))
-    e.append(text(xm, yb - 45, "[Seil]", "#000000", 14, italic=False))
-    e.append(mass(xa, yb + 7, xc, yb + 7, "l", abstand=-30))
-    e.append(mass(xm - 150, yb - 7, xm - 150, ring[1], "h", abstand=-18))
-    e.append(linie(xm - 160, ring[1], ring[0] - 12, ring[1], GRUEN, STRICH["duenn"]))
+    t = 7
+    e.append(balken(xm - 170, yb, xm + 170, yb, dicke=2 * t))
+    A = (xm, yb - t - h)
+    # Seile laufen um den Träger: je zwei senkrechte Striche über die Trägerhöhe
+    for x in (xa, xc):
+        e.append(linie(x - 3, yb - t, x - 3, yb + t, "#000000", 1.6))
+        e.append(linie(x + 3, yb - t, x + 3, yb + t, "#000000", 1.6))
+        e.append(linie(x, yb - t, *A, "#000000", 1.8))
+    e.append(festlager(*A, groesse=15, drehung=180))
+    e.append(text(A[0] + 26, A[1] - 6, "A", GRUEN, anker="start"))
+    e.append(text((xa + A[0]) / 2 - 14, (yb - t + A[1]) / 2, "[Seil 1]", "#000000", 14, anker="end", italic=False))
+    e.append(text((xc + A[0]) / 2 + 14, (yb - t + A[1]) / 2, "[Seil 2]", "#000000", 14, anker="start", italic=False))
+    e.append(mass(xa, yb + t, xc, yb + t, "l", abstand=-30))
+    e.append(mass(xm - 150, yb - t, xm - 150, A[1], "h", abstand=-18))
+    e.append(linie(xm - 160, A[1], A[0] - 14, A[1], GRUEN, STRICH["duenn"]))
     e.append(text(xm + 150, yb - 30, "m", "#000000", 20))
     e.append(pfeil(430, 60, 430, 110, GRUEN, STRICH["normal"], (8, 5)))
     e.append(text(444, 76, "g", GRUEN, 18, anker="start"))
@@ -758,8 +833,88 @@ def aufgabe_b01_7():
     return abb.speichern(ZIEL / "aufgabe-b01-7.svg")
 
 
+# =====================================================================
+# Zusammenfassung Woche 1: sechs Kacheln
+# =====================================================================
+def zusammenfassung():
+    W, H, rand = 300, 220, 15
+    abb = Abbildung(3 * W + 4 * rand, 2 * H + 3 * rand, "Zusammenfassung: Kräfte, Momente, Gleichgewicht")
+
+    def kachel(e, spalte, zeile, titel, formel):
+        x, y = rand + spalte * (W + rand), rand + zeile * (H + rand)
+        e.append(polylinie([(x, y), (x + W, y), (x + W, y + H), (x, y + H)], "#c8c8c8", 1.2, "#fafafa",
+                           schliessen=True))
+        e.append(text(x + 14, y + 22, f"[{titel}]", "#000000", 17, anker="start", italic=False))
+        zeilen = formel if isinstance(formel, (list, tuple)) else [formel]
+        for k, z in enumerate(reversed(zeilen)):
+            e.append(text(x + W / 2, y + H - 20 - 24 * k, z, ROT, 17))
+        return x, y
+
+    e = abb.ebene("k-kraft", "Kraft")
+    x, y = kachel(e, 0, 0, "Kraft als Vektor", ["F_x = F cos α,  F_y = F sin α", "F = √(F_x² + F_y²)"])
+    O = (x + 70, y + 142)
+    e.append(koord_xy(*O, 170, 100))
+    E = (O[0] + 140, O[1] - 80)
+    e.append(linie(*E, E[0], O[1], GRAU, STRICH["duenn"], strich="4 3"))
+    e.append(linie(*E, O[0], E[1], GRAU, STRICH["duenn"], strich="4 3"))
+    e.append(vektor(*O, *E, "F", lx=-14, ly=-8))
+    e.append(winkelbogen(*O, 40, 0, math.degrees(math.atan2(80, 140)), "α"))
+
+    e = abb.ebene("k-axiome", "Axiome und Schnittprinzip")
+    x, y = kachel(e, 1, 0, "Axiome, Schnittprinzip", ["actio = reactio"])
+    yy, x0, x1, xs, d = y + 95, x + 40, x + 260, x + 150, 34
+    e.append(balken(x0, yy, xs - d, yy, dicke=10))
+    e.append(balken(xs + d, yy, x1, yy, dicke=10))
+    e.append(schnitt(xs - d, yy - 14, xs - d, yy + 14))
+    e.append(schnitt(xs + d, yy - 14, xs + d, yy + 14))
+    e.append(kraft(xs - d, yy, 0, "F_i", laenge=30, ziehend=True, label_seite=-1))
+    e.append(kraft(xs + d, yy, 180, "F_i", laenge=30, ziehend=True, label_seite=1))
+    e.append(kraft(x0, yy, 180, "", laenge=30, ziehend=True))
+    e.append(kraft(x1, yy, 0, "", laenge=30, ziehend=True))
+    e.append(hinweis(x + W / 2, y + 150, "Freikörperbild: alle Kräfte antragen", anker="middle", groesse=13))
+
+    e = abb.ebene("k-zentral", "Zentrales Kraftsystem")
+    x, y = kachel(e, 2, 0, "Zentrales Kraftsystem", ["Σ F_x = 0,   Σ F_y = 0"])
+    P0 = (x + 110, y + 50)
+    P1 = (P0[0], P0[1] + 100)
+    P2 = (P1[0] + 70, P1[1])
+    e.append(vektor(*P0, *P1, "m g", lx=-24))
+    e.append(vektor(*P1, *P2, "F", ly=16))
+    e.append(vektor(*P2, *P0, "F_S", lx=24))
+    e.append(hinweis(x + 200, y + 100, "geschlossenes", groesse=13))
+    e.append(hinweis(x + 200, y + 118, "Krafteck", groesse=13))
+
+    e = abb.ebene("k-moment", "Moment")
+    x, y = kachel(e, 0, 1, "Moment, Kräftepaar", ["M = F b = x F_y − y F_x"])
+    e.append(platte([(x + 30, y + 55), (x + 150, y + 55), (x + 150, y + 150), (x + 30, y + 150)]))
+    e.append(kraft(x + 55, y + 102, 90, "F", laenge=40, ziehend=True, label_seite=1))
+    e.append(kraft(x + 125, y + 102, -90, "F", laenge=40, ziehend=True, label_seite=1))
+    e.append(text(x + 175, y + 102, "[=]", "#000000", 24, italic=False))
+    e.append(platte([(x + 195, y + 55), (x + 285, y + 55), (x + 285, y + 150), (x + 195, y + 150)]))
+    e.append(moment(x + 240, y + 102, "", gegen_uhrzeiger=False, r=20, start=150, bogen=280))
+
+    e = abb.ebene("k-versatz", "Versatzmoment")
+    x, y = kachel(e, 1, 1, "Kraft parallel verschieben", ["+ Versatzmoment  M = F a"])
+    e.append(platte([(x + 30, y + 60), (x + 130, y + 60), (x + 130, y + 155), (x + 30, y + 155)]))
+    e.append(kraft(x + 70, y + 112, -90, "F", laenge=40, label_seite=1))
+    e.append(text(x + 150, y + 108, "[=]", "#000000", 24, italic=False))
+    e.append(platte([(x + 170, y + 60), (x + 270, y + 60), (x + 270, y + 155), (x + 170, y + 155)]))
+    e.append(kraft(x + 270, y + 60, -90, "F", laenge=40, label_seite=-1))
+    e.append(moment(x + 215, y + 112, "", gegen_uhrzeiger=True, r=18, start=30, bogen=280))
+
+    e = abb.ebene("k-gleichgewicht", "Gleichgewicht allgemein")
+    x, y = kachel(e, 2, 1, "Gleichgewicht in der Ebene", ["Σ F_x = 0,  Σ F_y = 0,  Σ M = 0"])
+    yb = y + 120
+    e.append(balken(x + 40, yb, x + 260, yb, dicke=10))
+    for xs, lab, seite in ((x + 40, "S_1", 1), (x + 205, "S_2", -1)):
+        e.append(kraft(xs, yb - 5, 90, lab, laenge=45, ziehend=True, label_seite=seite))
+    e.append(kraft(x + 150, yb + 5, -90, "G", laenge=40, ziehend=True, label_seite=-1))
+    return abb.speichern(ZIEL / "zusammenfassung-grundlagen.svg")
+
+
 if __name__ == "__main__":
-    for fn in (einordnung, kraft_vektor, axiome, resultierende_zwei_kraefte, seil_masse, moment_grafik,
+    for fn in (einordnung, kraft_vektor, axiome, resultierende_zwei_kraefte, seil_masse, moment_grafik, versatz_grafik,
+               traeger_seile, zusammenfassung,
                scheibe_vier_kraefte, aufgabe_1_1_3, aufgabe_1_1_4, aufgabe_1_1_5, aufgabe_1_2_1, aufgabe_1_2_4,
                aufgabe_b01_4, aufgabe_b01_5, aufgabe_b01_4_raeumlich, aufgabe_b01_6, aufgabe_b01_7):
         print(fn())

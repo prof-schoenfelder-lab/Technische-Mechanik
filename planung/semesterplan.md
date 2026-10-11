@@ -63,7 +63,7 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
   | Nr. | Aufgabe | Quelle | Ergebnis |
   |:--|:--|:--|:--|
   | 1.1 | Containerschiff mit zwei Schleppern | G 1.1.3 | $\varphi_1 = 21{,}0^\circ$, $F_R = 1{,}156$ MN |
-  | 1.2 | Stahlträger am Kran | G 1.1.4 | $F_S = 2873$ N |
+  | 1.2 | Stahlträger am Kran (Seil 1 und 2, festes Gelenklager $A$) | G 1.1.4 | $S_1 = S_2 = 2873$ N |
   | 1.3 | Kiste am Seil (Seil (a) oben im festen Gelenklager $A$) | G 1.1.5 | $h_1 = 0{,}118$ m, $h_\text{max} = 0{,}473$ m, $F_\text{max} = 1095$ N |
   | 1.4 | Scheibe mit drei Kräften | G 1.2.1 | $F_R = 3927$ N, $\alpha_R = 4{,}64^\circ$, $M_R^{(0)} = -7535$ Nm |
   | 1.5 | Autokran (Kippen) | B01-6 | $\lvert DE\rvert_\text{min} = 2{,}3$ m, $F_{3,\text{max}} = 40{,}25$ kN |

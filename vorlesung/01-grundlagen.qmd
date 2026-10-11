@@ -17,7 +17,7 @@ Hinter **„Ausführlicher“** finden Sie zu vielen Schritten eine längere Erk
 
 :::: {.scrolly svg="../grafiken/grundlagen/einordnung.svg"}
 
-::: {.schritt zeige="baum" zoom="0 0 770 330"}
+::: {.schritt zeige="baum" zoom="0 0 645 430"}
 ### Was ist Technische Mechanik?
 
 Die Mechanik beschreibt, wie Kräfte auf Körper wirken. Die **Technische Mechanik** liefert dafür
@@ -27,7 +27,7 @@ Rechenverfahren für Maschinenbau, Bauwesen und Gebäudetechnik.
 - **Statik:** Körper in Ruhe (oder in gleichförmiger, geradliniger Bewegung)
 :::
 
-::: {.schritt zeige="baum inhalt" zoom="0 0 770 330"}
+::: {.schritt zeige="baum inhalt" zoom="0 0 645 430"}
 ### Inhalt dieser Lehrveranstaltung
 
 - **Stereostatik** (Wochen 1–4): Der Körper ist **starr**, er verformt sich nicht.
@@ -148,7 +148,7 @@ Axiome sind Grundsätze, die aus der Erfahrung stammen und nicht bewiesen werden
 
 :::: {.scrolly svg="../grafiken/grundlagen/axiome.svg"}
 
-::: {.schritt zeige="linienfluechtig" zoom="0 0 400 280"}
+::: {.schritt zeige="ax-1" zoom="0 0 400 280"}
 ### 1 · Linienflüchtigkeit
 
 Eine Kraft darf auf einem starren Körper **längs ihrer Wirkungslinie verschoben** werden.
@@ -158,7 +158,7 @@ Ob man an einem Wagen zieht oder ihn mit derselben Kraft auf derselben Linie sch
 Bewegung keinen Unterschied.
 :::
 
-::: {.schritt zeige="linienfluechtig parallelogramm" dimmen="linienfluechtig" zoom="400 0 400 280"}
+::: {.schritt zeige="ax-2" zoom="0 0 400 280"}
 ### 2 · Kräfteparallelogramm
 
 Zwei Kräfte mit **gemeinsamem Angriffspunkt** lassen sich durch eine einzige Kraft ersetzen,
@@ -171,7 +171,7 @@ $$
 Systeme mit gleicher Wirkung heißen **statisch äquivalent**.
 :::
 
-::: {.schritt zeige="parallelogramm gleichgewicht" dimmen="parallelogramm" zoom="0 280 400 280"}
+::: {.schritt zeige="ax-3" zoom="0 0 400 280"}
 ### 3 · Gleichgewicht zweier Kräfte
 
 Zwei Kräfte sind im Gleichgewicht, wenn sie
@@ -184,25 +184,64 @@ Gleich groß und entgegengesetzt allein genügt nicht: Auf versetzten Wirkungsli
 beiden Kräfte den Körper drehen.
 :::
 
-::: {.schritt zeige="gleichgewicht wechselwirkung" dimmen="gleichgewicht" zoom="400 280 400 280"}
+::: {.schritt zeige="ax-4" zoom="0 0 400 280"}
 ### 4 · Wechselwirkung
 
 Übt ein Körper auf einen zweiten eine Kraft aus, so wirkt der zweite mit einer **gleich großen,
 entgegengesetzten Kraft auf derselben Wirkungslinie** zurück: *actio = reactio* (Newton).
 
-Daraus folgt das wichtigste Werkzeug der Statik, das **Schnittprinzip** (Euler).
+Schneidet man einen Stab gedanklich durch (grüne Schlangenlinie), werden die inneren Kräfte $F_i$
+sichtbar. An den beiden Schnittufern wirken sie **paarweise entgegengesetzt**.
 :::
 
-::: {.schritt zeige="wechselwirkung" zoom="400 280 400 280"}
-### Schnittprinzip und Freikörperbild
+::: {.schritt zeige="uebersicht" zoom="0 320 800 560"}
+### Die vier Axiome im Überblick
 
-Kräfte zwischen Körpern oder im Inneren eines Körpers werden sichtbar, wenn wir **gedanklich schneiden**:
+1. Kräfte sind **linienflüchtig**.
+2. Kräfte addiert man mit dem **Parallelogramm**.
+3. Zwei Kräfte sind im **Gleichgewicht**, wenn sie gleich groß, entgegengesetzt und auf derselben
+   Wirkungslinie sind.
+4. **actio = reactio**.
 
-1. Den Körper vollständig von seiner Umgebung trennen.
-2. An **jeder** Schnittstelle die übertragenen Kräfte antragen.
-3. Am anderen Schnittufer wirken sie **entgegengesetzt** (Wechselwirkung).
+Aus dem vierten Axiom folgt das wichtigste Werkzeug der Statik, das **Schnittprinzip**.
+:::
 
-Die Skizze des freigeschnittenen Körpers mit allen Kräften heißt **Freikörperbild**.
+::::
+
+## Schnittprinzip und Freikörperbild
+
+:::: {.scrolly svg="../grafiken/grundlagen/traeger-seile.svg"}
+
+::: {.schritt zeige="system" zoom="40 0 520 330"}
+### Ein Träger an zwei Seilen
+
+Ein Träger mit dem Gewicht $G$ hängt an zwei Seilen an der Decke.
+Welche Kräfte übertragen die Seile?
+
+Von außen sieht man diese Kräfte nicht. Sie werden erst sichtbar, wenn man das System **gedanklich
+aufschneidet**.
+:::
+
+::: {.schritt zeige="system schnitte" zoom="40 0 520 330"}
+### Gedanklich schneiden
+
+Wir schneiden beide Seile durch. Schnitte zeichnen wir als **grüne Schlangenlinie**, damit man sie
+nicht mit Bauteilen oder Hilfslinien verwechselt.
+
+Ein Schnitt muss den Körper **vollständig** von seiner Umgebung trennen: Jede Verbindung wird
+durchtrennt.
+:::
+
+::: {.schritt zeige="freikoerper" dimmen="system" zoom="540 0 520 440"}
+### Freikörperbild
+
+An **jedem** Schnittufer tragen wir die übertragene Kraft an:
+
+- Seile übertragen nur **Zug in Seilrichtung**: $S_1$ und $S_2$ zeigen **vom Schnittufer weg**.
+- Am Träger zeigen sie nach oben, an den Seilstümpfen der Decke nach unten: **actio = reactio**.
+- Dazu kommt die eingeprägte Last, das Gewicht $G$.
+
+Die Skizze des freigeschnittenen Trägers mit allen Kräften heißt **Freikörperbild**.
 Ohne Freikörperbild keine Statik.
 
 ::: {.vertiefung titel="Ausführlicher: Was überträgt eine Schnittstelle?"}
@@ -218,6 +257,16 @@ heißt, dass sie in Wirklichkeit andersherum wirkt.
 :::
 
 ::::
+
+::: {.merke}
+**Schnittprinzip (Euler)**
+
+1. Den Körper durch Schnitte **vollständig** von seiner Umgebung trennen.
+2. An **jeder** Schnittstelle die übertragenen Kräfte antragen.
+3. Am anderen Schnittufer wirken sie **entgegengesetzt** (actio = reactio).
+
+Wie groß die Seilkräfte sind, berechnen wir am Ende dieser Vorlesung mit den Gleichgewichtsbedingungen.
+:::
 
 ## Zentrales Kraftsystem
 
@@ -392,81 +441,111 @@ Damit lassen sich höchstens **zwei** Unbekannte bestimmen.
 
 ## Das Moment
 
+Das Moment kennen Sie aus [Veranstaltung 0](00-mathematik.qmd#das-moment). Zur Erinnerung:
+
+:::: {.scrolly svg="../grafiken/mathematik/moment.svg"}
+
+::: {.schritt zeige="ebene" zoom="20 20 440 310"}
+### Drehwirkung einer Kraft
+
+Eine Kraft $\vec F$ greift im Punkt $A$ an, der Ortsvektor $\vec r$ führt vom Bezugspunkt $0$ dorthin.
+Ihre Drehwirkung um $0$ heißt **Moment** $M$. Sie hängt vom Betrag der Kraft ab, aber auch davon,
+**wo** und **in welcher Richtung** sie angreift.
+:::
+
+::: {.schritt zeige="ebene flaeche" zoom="20 20 440 310"}
+### Kraft mal Hebelarm
+
+$$
+M = F\,b = r\,F\sin\varphi, \qquad [M] = \text{N\,m}
+$$
+
+Der **Hebelarm** $b$ ist der **senkrechte Abstand** des Bezugspunkts von der Wirkungslinie.
+
+- Verschiebt man $F$ auf ihrer Wirkungslinie, bleibt $M$ gleich (Linienflüchtigkeit).
+- Wählt man einen anderen Bezugspunkt, ändert sich $M$.
+- $M$ zählt **positiv gegen den Uhrzeigersinn**.
+:::
+
+::: {.schritt zeige="ebene komponenten" dimmen="ebene" zoom="20 20 440 310"}
+### Moment aus den Komponenten
+
+$$
+M = x\,F_y - y\,F_x
+$$
+
+Jede Komponente hat ihren eigenen, leicht ablesbaren Hebelarm. Mit dieser Formel stimmt das
+Vorzeichen automatisch.
+:::
+
+::::
+
 :::: {.scrolly svg="../grafiken/grundlagen/moment.svg"}
 
-::: {.schritt zeige="kraeftepaar" zoom="0 0 520 330"}
+::: {.schritt zeige="kraeftepaar" zoom="0 40 620 290"}
 ### Kräftepaar
 
 Zwei gleich große, entgegengesetzte Kräfte auf **parallelen** Wirkungslinien heißen **Kräftepaar**.
-Sie haben keine Resultierende, der Körper wird aber **gedreht**.
-
-Die Drehwirkung ist das **Moment**:
+Ihre Resultierende ist null, der Körper wird also nicht verschoben, aber **gedreht**:
 
 $$
-M = F\,b, \qquad [M] = \text{N\,m}
+M = F\,b
 $$
 
-Ein Kräftepaar darf in der Ebene beliebig verschoben werden. Für das Moment kommt es also nicht auf
-den Ort an, sondern nur auf Betrag und **Drehsinn**.
+$b$ ist der Abstand der beiden Wirkungslinien. Ein Kräftepaar ist gleichwertig zu einem reinen
+Moment, gezeichnet als Drehpfeil.
 :::
 
-::: {.schritt zeige="hebelarm" zoom="520 0 500 330"}
-### Moment einer Kraft um einen Punkt
+::: {.schritt zeige="kraeftepaar verschieblich" dimmen="kraeftepaar" zoom="0 40 960 290"}
+### Ein Moment ist frei verschieblich
 
-Eine einzelne Kraft $F$ dreht den Körper um einen Bezugspunkt $0$ mit
+Berechnet man das Moment eines Kräftepaars um einen **beliebigen** Punkt, kommt immer $F\,b$ heraus:
+Die Abstände zu den beiden Kräften ändern sich, ihre Differenz bleibt $b$.
 
-$$
-M^{(0)} = F\,b
-$$
+Ein Moment darf deshalb **an jede Stelle des starren Körpers** verschoben werden. Es kommt nur auf
+**Betrag** und **Drehsinn** an, nicht auf den Ort.
 
-Der **Hebelarm** $b$ ist der **senkrechte Abstand** des Punktes $0$ von der Wirkungslinie.
-
-- Verschiebt man $F$ auf ihrer Wirkungslinie, bleibt $M$ gleich.
-- Wählt man einen anderen Bezugspunkt, ändert sich $M$.
-- Wir zählen $M$ **positiv gegen den Uhrzeigersinn** ($\curvearrowleft$).
+Das unterscheidet das Moment von der Kraft: Eine Kraft darf nur längs ihrer Wirkungslinie verschoben
+werden.
 :::
 
-::: {.schritt zeige="hebelarm" zoom="520 0 500 330"}
-### Moment aus den Komponenten
+::::
 
-Statt den Hebelarm geometrisch zu suchen, rechnet man meist mit den Komponenten.
-Greift $\vec F$ im Punkt $(x,\,y)$ an, gilt um den Ursprung:
+:::: {.scrolly svg="../grafiken/grundlagen/versatz.svg"}
 
-$$
-M_z = x\,F_y - y\,F_x
-$$
+::: {.schritt zeige="innen" zoom="0 30 330 290"}
+### Eine Kraft parallel verschieben
 
-Jede Komponente bringt ihren eigenen, leicht ablesbaren Hebelarm mit: $F_y$ den Abstand $x$,
-$F_x$ den Abstand $y$.
+Eine Kraft $F$ greift im Inneren eines Körpers im Punkt $A$ an. Für die Rechnung wäre es bequemer,
+sie an der Ecke $B$ zu haben, etwa weil dort ein Lager sitzt.
 
-::: {.vertiefung titel="Ausführlicher: Das Moment als Kreuzprodukt"}
-Allgemein ist das Moment ein Vektor, das **Kreuzprodukt** aus Ortsvektor und Kraft:
-
-$$
-\vec M = \vec r \times \vec F
-= \begin{pmatrix} y F_z - z F_y \\ z F_x - x F_z \\ x F_y - y F_x \end{pmatrix}
-$$
-
-Sein Betrag ist $|\vec r|\,|\vec F|\sin\varphi = F\,b$, seine Richtung steht senkrecht auf $\vec r$
-und $\vec F$ (Rechte-Hand-Regel). Liegen alle Kräfte in der $x$-$y$-Ebene, sind $z = 0$ und $F_z = 0$.
-Dann bleibt nur die dritte Komponente $M_z = xF_y - yF_x$ übrig, und das Moment ist ein Drehpfeil
-in der Ebene.
-:::
+Parallel verschieben dürfen wir sie aber nicht einfach: Ihre Drehwirkung würde sich ändern.
 :::
 
-::: {.schritt zeige="versatz" zoom="0 0 520 330"}
-### Parallelverschiebung einer Kraft
+::: {.schritt zeige="innen nullsystem" dimmen="innen" zoom="0 30 640 290"}
+### Ein Nullsystem ergänzen
 
-Eine Kraft darf auch **parallel** verschoben werden, wenn man das dabei entstehende
-**Versatzmoment** hinzufügt:
+Der Trick: Wir bringen in $B$ **zwei** gleich große, entgegengesetzte Kräfte $F$ an. Sie heben sich
+gegenseitig auf, an der Wirkung ändert sich nichts.
+
+Jetzt bilden die ursprüngliche Kraft in $A$ und die **Gegenkraft** in $B$ ein **Kräftepaar** mit dem
+Abstand $a$.
+:::
+
+::: {.schritt zeige="innen nullsystem ecke" dimmen="innen nullsystem" zoom="0 30 960 290"}
+### Kraft an der Ecke plus Versatzmoment
+
+Das Kräftepaar ersetzen wir durch sein Moment. Übrig bleiben:
+
+- die Kraft $F$ **in $B$**, parallel verschoben,
+- das **Versatzmoment** $M = F\,a$.
 
 $$
-M = F\,a
+F \text{ in } A \quad = \quad F \text{ in } B \;+\; M = F\,a
 $$
 
-$a$ ist der Abstand zwischen alter und neuer Wirkungslinie. Damit lässt sich jedes ebene
-Kraftsystem in einen beliebigen Punkt verschieben: Übrig bleiben **eine Resultierende** und
-**ein resultierendes Moment**.
+$a$ ist der Abstand zwischen alter und neuer Wirkungslinie. Mit diesem Trick lässt sich jedes ebene
+Kraftsystem in einen Punkt verschieben: Übrig bleiben **eine Resultierende** und **ein Moment**.
 :::
 
 ::::
@@ -549,11 +628,58 @@ Die Wirkungslinie selbst ist richtig.
 
 ## Gleichgewicht im allgemeinen ebenen Kraftsystem
 
-::: {.merke}
-Ein starrer Körper ist im Gleichgewicht, wenn er sich **weder verschiebt noch dreht**:
-$\vec F_R = \vec 0$ **und** $\vec M_R = \vec 0$.
+:::: {.scrolly svg="../grafiken/grundlagen/traeger-seile.svg"}
 
-In der Ebene sind das **drei Gleichgewichtsbedingungen**:
+::: {.schritt zeige="freikoerper" zoom="540 0 520 440"}
+### Zurück zum Träger an zwei Seilen
+
+Im Freikörperbild des Trägers wirken das Gewicht $G$ und die beiden Seilkräfte $S_1$, $S_2$.
+Die Wirkungslinien sind parallel, sie schneiden sich **nicht** in einem Punkt: ein allgemeines
+ebenes Kraftsystem.
+
+In der Statik ruht der Träger. Also muss gelten: **Gewichtskraft + Seilkräfte = 0**, und zwar so,
+dass der Träger sich weder verschiebt noch dreht.
+:::
+
+::: {.schritt zeige="freikoerper mass" zoom="540 0 520 440"}
+### Gleichgewichtsbedingungen aufstellen
+
+Momente um den Anschlusspunkt 1 von Seil 1: Dann fällt $S_1$ heraus.
+
+$$
+\begin{aligned}
+&\uparrow: && S_1 + S_2 - G = 0\\[2pt]
+&\curvearrowleft 1: && S_2\,\tfrac34 L - G\,\tfrac{L}{2} = 0
+\end{aligned}
+$$
+
+Waagerechte Kräfte gibt es nicht, $\sum F_x = 0$ ist von selbst erfüllt.
+:::
+
+::: {.schritt zeige="freikoerper mass" zoom="540 0 520 440"}
+### Auflösen
+
+Aus der Momentenbilanz:
+
+$$
+S_2 = \frac{2}{3}\,G
+$$
+
+Eingesetzt in die Kraftbilanz:
+
+$$
+S_1 = G - S_2 = \frac{1}{3}\,G
+$$
+
+Das Seil näher an der Last trägt mehr. **Kontrolle** mit Momenten um den Anschlusspunkt von Seil 2:
+$-S_1\,\tfrac34 L + G\,\tfrac14 L = 0$ liefert ebenfalls $S_1 = G/3$.
+:::
+
+::: {.schritt zeige="freikoerper mass" zoom="540 0 520 440"}
+### Drei Gleichgewichtsbedingungen
+
+Ein starrer Körper ist im Gleichgewicht, wenn er sich **weder verschiebt noch dreht**:
+$\vec F_R = \vec 0$ **und** $\vec M_R = \vec 0$. In der Ebene sind das drei Gleichungen:
 
 $$
 \begin{aligned}
@@ -564,13 +690,14 @@ $$
 $$
 
 Damit lassen sich höchstens **drei** Unbekannte bestimmen.
+
+- Der Bezugspunkt $P$ ist **frei wählbar**. Geschickt ist ein Punkt, durch den möglichst viele
+  unbekannte Kräfte gehen.
+- Die beiden Kraftrichtungen müssen nicht waagerecht und senkrecht sein, nur verschieden.
+- Positive Richtungen und Drehsinn sind frei wählbar, aber innerhalb einer Gleichung **einheitlich**.
 :::
 
-- Der Bezugspunkt $P$ der Momentenbilanz ist **frei wählbar**. Geschickt ist ein Punkt, durch den
-  möglichst viele unbekannte Kräfte gehen: Sie fallen aus der Gleichung heraus.
-- Die beiden Kraftrichtungen müssen nicht waagerecht und senkrecht sein, nur verschieden.
-- Positive Richtungen und Drehsinn sind frei wählbar, müssen aber in einer Gleichung **einheitlich** bleiben.
-- Verteilte Lasten werden für das Gleichgewicht durch ihre Resultierende ersetzt (Woche 2).
+::::
 
 ::: {.vertiefung titel="Ausführlicher: Gleichgewicht im Raum"}
 Im Raum gibt es sechs Bedingungen: drei Kraftsummen $\sum F_x = \sum F_y = \sum F_z = 0$ und
@@ -587,8 +714,67 @@ Sonderfall, in dem nur $F_x$, $F_y$ und $M_z$ vorkommen.
 6. **Drehsinn innerhalb einer Momentengleichung gewechselt.** Einen Drehsinn als positiv festlegen und durchhalten.
 :::
 
-**Weiter:** [Seminaraufgaben zu Woche 1](../seminar/01-grundlagen.qmd) ·
+## Zusammenfassung
+
+:::: {.scrolly svg="../grafiken/grundlagen/zusammenfassung-grundlagen.svg"}
+
+::: {.schritt zeige="k-kraft k-axiome" zoom="0 0 950 480"}
+### Kraft, Axiome, Schnittprinzip
+
+Eine Kraft ist ein **Vektor** mit Betrag, Richtung und Angriffspunkt. Die vier **Axiome** beschreiben,
+wie Kräfte am starren Körper wirken. Mit dem **Schnittprinzip** werden innere und übertragene Kräfte
+sichtbar; das **Freikörperbild** zeigt alle Kräfte am freigeschnittenen Körper.
+:::
+
+::: {.schritt zeige="k-kraft k-axiome k-zentral" dimmen="k-kraft k-axiome" zoom="0 0 950 480"}
+### Zentrales Kraftsystem
+
+Gehen alle Wirkungslinien durch einen Punkt, genügen **zwei** Gleichgewichtsbedingungen
+$\sum F_x = 0$, $\sum F_y = 0$. Grafisch: Das **Krafteck schließt sich**.
+:::
+
+::: {.schritt zeige="k-kraft k-axiome k-zentral k-moment k-versatz" dimmen="k-kraft k-axiome k-zentral" zoom="0 0 950 480"}
+### Moment, Kräftepaar, Versatzmoment
+
+Das Moment ist **Kraft mal Hebelarm**. Ein **Kräftepaar** erzeugt ein reines Moment, das frei
+verschieblich ist. Eine Kraft darf **parallel** verschoben werden, wenn man das **Versatzmoment**
+$M = F\,a$ ergänzt.
+:::
+
+::: {.schritt zeige="k-kraft k-axiome k-zentral k-moment k-versatz k-gleichgewicht" dimmen="k-kraft k-axiome k-zentral k-moment k-versatz" zoom="0 0 950 480"}
+### Gleichgewicht in der Ebene
+
+Ein starrer Körper ist im Gleichgewicht, wenn **drei** Bedingungen erfüllt sind:
+$\sum F_x = 0$, $\sum F_y = 0$, $\sum M = 0$. Damit lassen sich bis zu drei Unbekannte bestimmen,
+zum Beispiel Seil- oder Lagerkräfte.
+:::
+
+::: {.schritt zeige="k-kraft k-axiome k-zentral k-moment k-versatz k-gleichgewicht" zoom="0 0 950 480"}
+### Das Wichtigste auf einen Blick
+
+Freikörperbild zeichnen, Gleichgewicht aufstellen, auflösen, Ergebnis deuten: Dieses Vorgehen
+begleitet Sie durch die ganze Statik. In Woche 2 wenden wir es auf **Lager** und **Streckenlasten** an.
+
+**Weiter:** [Aufgaben zu Woche 1](../seminar/01-grundlagen.qmd) ·
 [Interaktives Notebook](../notebooks/grundlagen/index.html){target="_blank"}
+:::
+
+::::
+
+### Zum Nachschlagen
+
+::: {.merke}
+| Thema | Formel | Bemerkung |
+|:--|:--|:--|
+| Komponenten | $F_x = F\cos\alpha$, $F_y = F\sin\alpha$ | Winkel von der $x$-Achse |
+| Resultierende | $F_{Rx} = \sum F_{ix}$, $F_{Ry} = \sum F_{iy}$ | $\tan\alpha_R = F_{Ry}/F_{Rx}$, Quadrant beachten |
+| Gleichgewicht, zentral | $\sum F_x = 0$, $\sum F_y = 0$ | höchstens 2 Unbekannte |
+| Moment | $M = F\,b = x F_y - y F_x$ | positiv gegen den Uhrzeigersinn |
+| Kräftepaar | $M = F\,b$ | frei verschieblich |
+| Versatzmoment | $M = F\,a$ | beim Parallelverschieben einer Kraft |
+| Wirkungslinie der Resultierenden | $y_R = \dfrac{F_{Ry}}{F_{Rx}}\,x_R - \dfrac{M_R^{(0)}}{F_{Rx}}$ | allgemeines Kraftsystem |
+| Gleichgewicht, allgemein | $\sum F_x = 0$, $\sum F_y = 0$, $\sum M^{(P)} = 0$ | höchstens 3 Unbekannte |
+:::
 
 <p class="small text-muted">Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 1–3 ·
 Dankert/Dankert, Technische Mechanik, Kap. 1–3</p>
