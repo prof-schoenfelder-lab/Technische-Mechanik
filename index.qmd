@@ -39,3 +39,9 @@ Willkommen! Diese Seite begleitet Vorlesung und Seminar.
 
 Schnittgrößenverläufe: positive Bereiche <span class="last">**rot**</span>,
 negative Bereiche <span style="color:#0050b4">**blau**</span>.
+
+::: {#ki-hinweis .ki-hinweis}
+**Hinweis zur KI-Nutzung:** Bei der didaktischen Gestaltung dieser Lehrinhalte wurden Methoden der
+generativen künstlichen Intelligenz eingesetzt. Der Lehrende hat die Inhalte anschließend geprüft,
+angepasst und trägt die Verantwortung für sie.
+:::

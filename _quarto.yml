@@ -49,7 +49,7 @@ website:
     center: |
       <div class="tm-fusszeile">
         <img src="/assets/logos/fakultaet-ing-schwarz.png" alt="Fakultät Ingenieurwissenschaften">
-        <span>Technische Mechanik (M279) · <a href="https://fing.htwk-leipzig.de/fakultaet/professuren/prof-stephan-schoenfelder" target="_blank">Prof. Dr.-Ing. Stephan Schönfelder</a></span>
+        <span>Technische Mechanik (M279) · <a href="https://fing.htwk-leipzig.de/fakultaet/professuren/prof-stephan-schoenfelder" target="_blank">Prof. Dr.-Ing. Stephan Schönfelder</a> · <a href="/index.html#ki-hinweis">Hinweis zur KI-Nutzung</a></span>
       </div>
 
 format:

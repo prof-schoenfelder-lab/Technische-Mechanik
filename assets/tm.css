@@ -164,3 +164,9 @@ details.vertiefung > summary {
 }
 details.vertiefung[open] > summary { margin-bottom: 0.4rem; }
 details.vertiefung p:last-child { margin-bottom: 0.2rem; }
+
+/* ------------------------------------------------ Hinweis zur KI-Nutzung (Startseite) */
+.ki-hinweis {
+  margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--tm-rand, #dee2e6);
+  font-size: 0.9rem; color: #555;
+}
