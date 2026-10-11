@@ -350,7 +350,7 @@ Hebt man eine Last um $h$, ist die Arbeit $m g\,h$, egal ob senkrecht, über ein
 Umwegen.
 :::
 
-::: {.schritt zeige="kurve" zoom="620 10 340 310"}
+::: {.schritt zeige="kurve" zoom="620 10 390 330"}
 ### Gekrümmter Weg
 
 Ändert sich die Richtung des Weges, zerlegt man ihn in kleine Stücke $\mathrm d\vec s$ und summiert.
@@ -361,14 +361,59 @@ $$
 W = \int_0^L \vec F\cdot\mathrm d\vec s = \int_0^L F_s\,\mathrm ds
 $$
 
-Hier wirkt die **Gewichtskraft** nach unten. Das Vorzeichen jedes Beitrags hängt nur vom Winkel ab:
+Als Kraft nehmen wir die **Gewichtskraft**: Sie zeigt überall senkrecht nach unten.
+:::
 
-- Weg fällt, $\varphi < 90^\circ$: $\mathrm dW > 0$, die Kraft wirkt **mit** der Bewegung
-- Weg steigt, $\varphi > 90^\circ$: $\mathrm dW < 0$, die Kraft wirkt der Bewegung **entgegen**
-- Weg waagerecht, $\varphi = 90^\circ$: $\mathrm dW = 0$
+::: {.schritt zeige="kurve kurve-faellt" zoom="620 10 390 330"}
+### Der Weg fällt
 
+$\vec F$ und $\mathrm d\vec s$ schließen einen **spitzen** Winkel ein, $\varphi < 90^\circ$.
+Der Anteil der Kraft in Wegrichtung zeigt **mit** der Bewegung:
+
+$$
+\mathrm dW = F\cos\varphi\ \mathrm ds > 0
+$$
+
+Die Gewichtskraft treibt die Bewegung an, wie bei einer Kugel, die bergab rollt.
+:::
+
+::: {.schritt zeige="kurve kurve-faellt kurve-steigt" dimmen="kurve-faellt" zoom="620 10 390 330"}
+### Der Weg steigt
+
+Jetzt ist der Winkel **stumpf**, $\varphi > 90^\circ$, und $\cos\varphi < 0$:
+
+$$
+\mathrm dW < 0
+$$
+
+Die Gewichtskraft wirkt der Bewegung **entgegen**. Wer die Last bergauf bewegt, muss diese Arbeit
+selbst aufbringen.
+:::
+
+::: {.schritt zeige="kurve kurve-faellt kurve-steigt kurve-waagerecht" dimmen="kurve-faellt kurve-steigt" zoom="620 10 390 330"}
+### Der Weg verläuft waagerecht
+
+Kraft und Weg stehen **senkrecht** aufeinander, $\varphi = 90^\circ$, $\cos\varphi = 0$:
+
+$$
+\mathrm dW = 0
+$$
+
+Eine Kraft senkrecht zur Bewegung leistet keine Arbeit, zum Beispiel auch die Normalkraft einer Unterlage.
+:::
+
+::: {.schritt zeige="kurve kurve-faellt kurve-steigt kurve-waagerecht" zoom="620 10 390 330"}
+### Bilanz über den ganzen Weg
+
+Das Integral summiert alle Beiträge: positive, wo der Weg fällt, negative, wo er steigt.
 Für die Gewichtskraft heben sich Auf und Ab gegenseitig auf. Übrig bleibt nur der Höhenunterschied
-zwischen Anfang und Ende: $W = m g\,(h_\text{Anfang} - h_\text{Ende})$, egal wie der Weg dazwischen verläuft.
+zwischen Anfang und Ende:
+
+$$
+W = m g\,(h_\text{Anfang} - h_\text{Ende})
+$$
+
+Wie der Weg dazwischen verläuft, spielt keine Rolle.
 
 ::: {.vertiefung titel="Ausführlicher: Grenzen des Integrals"}
 Allgemein integriert man von einem Punkt 1 zu einem Punkt 2 des Weges:

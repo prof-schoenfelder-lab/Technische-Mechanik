@@ -288,21 +288,37 @@ def arbeit():
     pts = [kurve(1.3 * i / 80) for i in range(81)]
     e.append(polylinie(pts, SCHWARZ, 1.4))
     e.append(_spitze(*pts[-1], 1, 0, SCHWARZ, 10, 7))
-    for t, lab, farbe in ((0.12, "dW > 0", GRUEN), (0.55, "dW < 0", ROT), (1.15, "dW = 0", "#555555")):
+    x_a, y_a = kurve(0)
+    e.append(punkt(x_a, y_a, 2.6))
+    e.append(text(x_a - 6, y_a - 14, "s = 0", SCHWARZ, 14, anker="end"))
+    e.append(text(pts[-1][0] + 6, pts[-1][1] + 22, "s = L", SCHWARZ, 14, anker="start"))
+    e.append(integral(650, 34, "W = ", "0", "L", "F_s ds"))
+
+    # je eine Ebene pro Konstellation von Kraft und Weg
+    # (t, Ebene, Text, Farbe, Lage des dW-Textes relativ zum Punkt)
+    # ds_lage: Versatz der ds-Beschriftung zur Pfeilspitze (None = senkrecht zur Kurve nach oben)
+    for t, ebene, lab, farbe, (dx_w, dy_w), ds_lage in (
+            (0.12, "kurve-faellt", "dW > 0", GRUEN, (10, 84), (4, 22)),
+            (0.55, "kurve-steigt", "dW < 0", ROT, (10, 84), None),
+            (1.0, "kurve-waagerecht", "dW = 0", "#555555", (10, 84), None)):
+        e = abb.ebene(ebene, f"Gekrümmter Weg: {lab}")
         x, y = kurve(t)
         ux, uy = tangente(t)
-        e.append(vektor(x, y, x + 46 * ux, y + 46 * uy, "", farbe=BLAU, breite=2))       # ds
-        e.append(vektor(x, y, x, y + 62))                                                   # F (Gewicht)
-        e.append(vlabel(x - 6, y + 56, "F", ROT, 17, anker="end"))
-        e.append(vlabel(x + 46 * ux + 4, y + 46 * uy - 10, "ds", BLAU, 15, anker="start"))
+        nx, ny = uy, -ux                         # Normale zur Seite oberhalb der Kurve
+        # Weg-Element ds (blau) und Kraft F (rot, nach unten) mit gemeinsamem Startpunkt
+        e.append(vektor(x, y, x + 50 * ux, y + 50 * uy, "", farbe=BLAU, breite=2.2))
+        e.append(vektor(x, y, x, y + 66))
+        e.append(punkt(x, y, 3))
+        # Winkel zwischen ds und F
         w = math.degrees(math.atan2(-uy, ux))
-        e.append(winkelbogen(x, y, 22, w, -90, ""))
-        e.append(text(x - 2, y - 26, f"[{lab}]", farbe, 14, italic=False))
-        e.append(punkt(x, y, 2.6))
-    x_a, y_a = kurve(0)
-    e.append(text(x_a - 4, y_a - 18, "s = 0", SCHWARZ, 14, anker="end"))
-    e.append(text(pts[-1][0] + 8, pts[-1][1] + 16, "s = L", SCHWARZ, 14, anker="start"))
-    e.append(integral(650, 34, "W = ", "0", "L", "F_s ds"))
+        e.append(winkelbogen(x, y, 24, w, -90, ""))
+        wm = math.radians((w - 90) / 2)
+        e.append(text(x + 36 * math.cos(wm), y - 36 * math.sin(wm), "φ", GRUEN, 15))
+        # Beschriftungen abseits der Pfeile
+        e.append(vlabel(x - 8, y + 62, "F", ROT, 17, anker="end"))
+        lx, ly = ds_lage if ds_lage else (22 * nx + 2, 22 * ny + 4)
+        e.append(vlabel(x + 50 * ux + lx, y + 50 * uy + ly, "ds", BLAU, 15, anker="start"))
+        e.append(text(x + dx_w, y + dy_w, f"[{lab}]", farbe, 15, anker="start", italic=False))
     return abb.speichern(ZIEL / "arbeit.svg")
 
 
