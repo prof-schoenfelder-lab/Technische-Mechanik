@@ -464,6 +464,8 @@ def elastischer_koerper():
     e.append(loslager(xa + Lb, yb + 3.5, label="B", label_pos=(22, 10)))
     e.append(kraft(xf, yb - 3.5, -90, "F", laenge=55, label_seite=-1))
     e.append(text(xa + Lb + 30, yb - 40, "[starr]", "#555555", 14, anker="end", italic=False))
+    e.append(mass(xa, yb + 3.5, xf, yb + 3.5, "a", abstand=-86))
+    e.append(mass(xa, yb + 3.5, xa + Lb, yb + 3.5, "L", abstand=-112))
 
     e = abb.ebene("reaktionen-starr", "Lagerkräfte am starren Balken")
     e.append(kraft(xa, yb + 26, 90, "F_A", laenge=0.625 * 80, label_seite=1, farbe=ROT))
@@ -495,8 +497,6 @@ def elastischer_koerper():
     e = abb.ebene("reaktionen-elastisch", "Lagerkräfte am elastischen Balken")
     e.append(kraft(xa, yb2 + 26, 90, "F_A", laenge=0.625 * 80, label_seite=1, farbe=ROT))
     e.append(kraft(xa + Lb, yb2 + 26, 90, "F_B", laenge=0.375 * 80, label_seite=-1, farbe=ROT))
-    e.append(mass(xa, yb2 + 110, xf, yb2 + 110, "a", abstand=12))
-    e.append(mass(xa, yb2 + 110, xa + Lb, yb2 + 110, "L", abstand=-14))
     return abb.speichern(ZIEL / "elastischer-koerper.svg")
 
 
