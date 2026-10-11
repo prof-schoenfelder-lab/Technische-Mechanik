@@ -126,11 +126,8 @@ Gelenkkräfte $G_H = 2598\,\text{N}$, $G_V = 750\,\text{N}$ (Beträge)
 Im Gelenk ist $M = 0$.
 :::
 
-<p class="small text-muted">Aufgaben nach S. Götz, <em>Aufgaben zur Technischen Mechanik</em>, HTW Berlin (2023),
-Nr. 1.5.1, 1.5.6, 1.5.3, 1.5.8, 1.5.5 – mit freundlicher Genehmigung; Grafiken neu gezeichnet.</p>
 :::
 
 ::: {.content-visible when-format="typst"}
 *Ergebnisse zur Kontrolle und ein interaktives Notebook finden Sie auf der Kurswebseite.*
-Aufgaben nach S. Götz, Aufgaben zur Technischen Mechanik, HTW Berlin (2023), mit freundlicher Genehmigung.
 :::

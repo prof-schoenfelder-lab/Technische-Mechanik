@@ -114,11 +114,8 @@ $M_T = F\,l_K\cos\alpha = 68{,}9\,\text{Nm}$ · $F_K = 919\,\text{N}$ · $M_R = 
 $F_V = 90{,}7\,\text{N}$
 :::
 
-<p class="small text-muted">Aufgaben 1.1–1.4 und 1.9 nach S. Götz, <em>Aufgaben zur Technischen Mechanik</em>,
-HTW Berlin (2023), Nr. 1.1.3, 1.1.4, 1.1.5, 1.2.1, 1.2.4 – mit freundlicher Genehmigung; Grafiken neu gezeichnet.</p>
 :::
 
 ::: {.content-visible when-format="typst"}
 *Ergebnisse zur Kontrolle und ein interaktives Notebook finden Sie auf der Kurswebseite.*
-Aufgaben 1.1–1.4 und 1.9 nach S. Götz, Aufgaben zur Technischen Mechanik, HTW Berlin (2023), mit freundlicher Genehmigung.
 :::

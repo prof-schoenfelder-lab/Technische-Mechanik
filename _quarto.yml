@@ -55,6 +55,8 @@ website:
 format:
   html:
     theme: cosmo
+    # keine Spalte „Andere Formate“ (das PDF ist im Text verlinkt)
+    format-links: false
     mainfont: "Source Sans Pro"
     css: assets/tm.css
     include-after-body: assets/scrolly.html

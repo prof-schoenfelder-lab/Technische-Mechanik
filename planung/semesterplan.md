@@ -76,7 +76,6 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
 - **Notebook:** `notebooks/grundlagen.py` – Krafteck live (3 Kräfte), Kiste am Seil (Aufgabe 1.3) mit $h(F)$ und $S_a(F)$; ohne Ergebnisprüfung
 - **Quellen:** Transkript 1; Gross Kap. 1–3; Dankert Kap. 1–3
 - **Umsetzung:** `vorlesung/01-grundlagen.qmd`, `seminar/01-grundlagen.qmd`, Grafiken `grafiken/grundlagen/` aus `werkzeuge/grafiken_grundlagen.py` (Lösungsgrafiken: `werkzeuge/grafiken_grundlagen_loesungen.py`, nur lokal)
-- **Offen:** Quellenangabe für B01-4 bis B01-7 (Autokran = „Aufgabe 1.2.9“ eines Lehrbuchs) – bitte nennen, dann ergänze ich sie auf dem Aufgabenblatt.
 - **Wünsche/Notizen:**
 
 ## Woche 2 · Lager- und Gelenkreaktionen, Streckenlasten 🟨
@@ -255,3 +254,5 @@ polares Flächenmoment bzw. $I_y$ und Widerstandsmomente nur noch angewendet.
 5. **Veranstaltung 0** (Mathematische Werkzeuge) vor Woche 1, ohne Seminar; Feder mit Verschiebung $u$.
 6. **Darstellung:** $arphi$ (geschwungen) in allen Grafiken; über jeder Scroll-Grafik steht die Themenüberschrift
    des Abschnitts; der Bildausschnitt passt sich automatisch an die sichtbaren Ebenen an.
+7. **Quellenangaben** bei Aufgaben entfallen (persönliche Erlaubnis Götz; Aufgaben gleichen sich über mehrere Quellen).
+8. **Keine Spalte „Andere Formate“** auf den Seiten; später evtl. Jupyter-Notebooks zu den Aufgaben (bei Bedarf).
