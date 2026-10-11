@@ -16,7 +16,7 @@ Nach jedem Abschnitt folgen kurze **Übungen**. Rechnen Sie sie auf Papier, das 
 aufklappen.
 :::
 
-## Sinus und Kosinus am Einheitskreis
+## Sinus, Kosinus und Tangens am Einheitskreis
 
 :::: {.scrolly svg="../grafiken/mathematik/einheitskreis.svg"}
 
@@ -55,6 +55,40 @@ Beispiel $Q$ bei $140^\circ$: $\cos 140^\circ = -0{,}766$, $\sin 140^\circ = 0{,
 So stecken die Vorzeichen der Kraftkomponenten automatisch im Winkel. Das spart Fallunterscheidungen.
 :::
 
+::: {.schritt zeige="kreis punkt projektion tangens" dimmen="projektion" zoom="20 10 440 410"}
+### Der Tangens
+
+Man zeichnet die senkrechte **Tangente** an den Kreis bei $x = 1$ und verlängert den Strahl durch $P$,
+bis er sie trifft. Der Abschnitt auf der Tangente ist der **Tangens** $\tan\alpha$.
+
+Das große Dreieck (Katheten $1$ und $\tan\alpha$) und das kleine (Katheten $\cos\alpha$ und $\sin\alpha$)
+sind ähnlich. Daraus folgt
+
+$$
+\tan\alpha = \frac{\sin\alpha}{\cos\alpha}
+$$
+
+Für $\alpha \to 90^\circ$ wird der Strahl fast parallel zur Tangente: $\tan\alpha$ wächst über alle
+Grenzen, bei $90^\circ$ ist er nicht definiert.
+:::
+
+::: {.schritt zeige="kreis quadranten tangens-quadrant" dimmen="quadranten" zoom="20 10 440 410"}
+### Tangens und Quadrant
+
+Für $Q$ bei $140^\circ$ trifft der Strahl die Tangente nicht. Man verlängert ihn **rückwärts** durch den
+Ursprung: Er trifft sie unterhalb der Achse, also ist $\tan 140^\circ < 0$.
+
+Dieselbe Gerade gehört aber auch zum Winkel $-40^\circ$ (bzw. $320^\circ$):
+
+$$
+\tan\alpha = \tan(\alpha \pm 180^\circ)
+$$
+
+Der Tangens kennt also nur die **Gerade**, nicht die **Richtung** auf ihr. Deshalb liefert der
+Taschenrechner mit $\arctan$ immer einen Winkel zwischen $-90^\circ$ und $+90^\circ$. Zeigt die Kraft
+nach links ($F_x < 0$), muss man $180^\circ$ addieren.
+:::
+
 ::: {.schritt zeige="dreieck" zoom="440 140 380 280"}
 ### Vom Einheitskreis zur Kraft
 
@@ -77,6 +111,9 @@ $$
 \end{aligned}
 $$
 
+$\tan\alpha = F_y/F_x$ ist die **Steigung** der Wirkungslinie. Sie begegnet Ihnen in Woche 1 wieder
+(Geradengleichung der Resultierenden) und in Woche 2 bei der Haftung.
+
 ::: {.vertiefung titel="Ausführlicher: Welcher Winkel? Sinus oder Kosinus?"}
 In Aufgaben ist der Winkel oft nicht zur $x$-Achse angegeben, sondern zur Senkrechten oder zu einem
 Bauteil. Dann hilft eine einfache Regel: Die Komponente **am Winkel** (Ankathete) bekommt den
@@ -96,6 +133,7 @@ haben ($\cos 0 = 1$) und die andere verschwinden ($\sin 0 = 0$).
 |:--|:-:|:-:|:-:|:-:|:-:|
 | $\sin\alpha$ | $0$ | $\tfrac12$ | $\tfrac12\sqrt2 \approx 0{,}707$ | $\tfrac12\sqrt3 \approx 0{,}866$ | $1$ |
 | $\cos\alpha$ | $1$ | $\tfrac12\sqrt3 \approx 0{,}866$ | $\tfrac12\sqrt2 \approx 0{,}707$ | $\tfrac12$ | $0$ |
+| $\tan\alpha$ | $0$ | $\tfrac13\sqrt3 \approx 0{,}577$ | $1$ | $\sqrt3 \approx 1{,}732$ | – |
 
 Umgekehrt liefert $\alpha = \arctan(F_y/F_x)$ nur Winkel zwischen $-90^\circ$ und $+90^\circ$.
 Ist $F_x < 0$, muss man $180^\circ$ addieren. Eine Skizze zeigt immer, in welchem Quadranten die Kraft liegt.
@@ -126,6 +164,15 @@ Wie groß sind Betrag und Richtungswinkel?
 ::: {.callout-tip collapse="true"}
 ## Ergebnis
 $F = 500$ N · $\arctan(400/(-300)) = -53{,}1^\circ$, wegen $F_x < 0$: $\alpha = 126{,}9^\circ$
+:::
+
+**Übung 0.4** · Eine Rampe hat 12 % Steigung, das heißt 12 m Höhe auf 100 m waagerechter Länge.
+Wie groß ist ihr Neigungswinkel? Welche Steigung in Prozent hat eine Rampe mit $30^\circ$ Neigung?
+
+::: {.callout-tip collapse="true"}
+## Ergebnis
+$\tan\alpha = 0{,}12$, $\alpha = 6{,}8^\circ$ · $\tan 30^\circ = 0{,}577$, also 57,7 % Steigung.
+Die Steigung in Prozent ist $100\cdot\tan\alpha$.
 :::
 
 ## Die Kraft als Vektor
@@ -201,7 +248,7 @@ $k\,\vec F = (kF_x,\ kF_y)$.
 
 ### Übung
 
-**Übung 0.4** · Zwei Kräfte greifen in einem Punkt an: $F_1 = 4$ kN unter $30^\circ$ und
+**Übung 0.5** · Zwei Kräfte greifen in einem Punkt an: $F_1 = 4$ kN unter $30^\circ$ und
 $F_2 = 3$ kN unter $120^\circ$. Bestimmen Sie die Resultierende nach Betrag und Richtung.
 Was fällt Ihnen am Betrag auf?
 
@@ -335,7 +382,7 @@ zu $W = F_s\,L$, dem Fall von oben.
 
 ### Übungen
 
-**Übung 0.5** · Ein Wagen wird 50 m weit auf ebener Strecke gezogen. Die Zugkraft $F = 200$ N wirkt
+**Übung 0.6** · Ein Wagen wird 50 m weit auf ebener Strecke gezogen. Die Zugkraft $F = 200$ N wirkt
 unter $30^\circ$ gegen die Horizontale. Welche Arbeit verrichtet die Zugkraft?
 
 ::: {.callout-tip collapse="true"}
@@ -343,7 +390,7 @@ unter $30^\circ$ gegen die Horizontale. Welche Arbeit verrichtet die Zugkraft?
 $W = 200\ \text{N}\cdot 50\ \text{m}\cdot\cos 30^\circ = 8660\ \text{J} = 8{,}66$ kJ
 :::
 
-**Übung 0.6** · Berechnen Sie den Winkel zwischen $\vec a = (1,\ 2)$ und $\vec b = (3,\ -1)$.
+**Übung 0.7** · Berechnen Sie den Winkel zwischen $\vec a = (1,\ 2)$ und $\vec b = (3,\ -1)$.
 
 ::: {.callout-tip collapse="true"}
 ## Ergebnis
@@ -351,7 +398,7 @@ $\vec a\cdot\vec b = 1$, $|\vec a| = \sqrt5$, $|\vec b| = \sqrt{10}$ ·
 $\cos\varphi = 1/\sqrt{50} = 0{,}141$, $\varphi = 81{,}9^\circ$
 :::
 
-**Übung 0.7** · Die Kraft $\vec F = (30\ \text{N},\ -40\ \text{N})$ verschiebt ihren Angriffspunkt um
+**Übung 0.8** · Die Kraft $\vec F = (30\ \text{N},\ -40\ \text{N})$ verschiebt ihren Angriffspunkt um
 $\vec s = (4\ \text{m},\ 3\ \text{m})$. Berechnen Sie die Arbeit. Wie deuten Sie das Ergebnis?
 
 ::: {.callout-tip collapse="true"}
@@ -360,7 +407,7 @@ $W = 30\cdot 4 + (-40)\cdot 3 = 0$ J. Kraft und Weg stehen senkrecht aufeinander
 nicht null sind ($F = 50$ N, $s = 5$ m).
 :::
 
-**Übung 0.8** · Eine Kiste ($m = 20$ kg) wird eine 5 m lange Rampe mit $30^\circ$ Neigung
+**Übung 0.9** · Eine Kiste ($m = 20$ kg) wird eine 5 m lange Rampe mit $30^\circ$ Neigung
 hinaufgeschoben. Welche Arbeit verrichtet dabei die **Gewichtskraft**, welche die **Normalkraft**
 der Rampe?
 
@@ -425,7 +472,7 @@ Vorzeichen; wir zeichnen sie als Drehpfeil.
 
 ### Übungen
 
-**Übung 0.9** · An einem Schraubenschlüssel der Länge 0,25 m wirkt am Griffende eine Kraft
+**Übung 0.10** · An einem Schraubenschlüssel der Länge 0,25 m wirkt am Griffende eine Kraft
 von 200 N. Wie groß ist das Moment um die Schraube, wenn die Kraft
 
 a) senkrecht zum Schlüssel, b) unter $60^\circ$ zum Schlüssel, c) in Richtung des Schlüssels wirkt?
@@ -435,7 +482,7 @@ a) senkrecht zum Schlüssel, b) unter $60^\circ$ zum Schlüssel, c) in Richtung 
 a) 50 Nm · b) $50\cdot\sin 60^\circ = 43{,}3$ Nm · c) 0 Nm
 :::
 
-**Übung 0.10** · Die Kraft $\vec F = (-3\ \text{kN},\ 4\ \text{kN})$ greift im Punkt $(2\ \text{m},\ 1\ \text{m})$ an.
+**Übung 0.11** · Die Kraft $\vec F = (-3\ \text{kN},\ 4\ \text{kN})$ greift im Punkt $(2\ \text{m},\ 1\ \text{m})$ an.
 Berechnen Sie das Moment um den Ursprung. In welchem Drehsinn dreht es?
 
 ::: {.callout-tip collapse="true"}
@@ -559,7 +606,7 @@ solange die Verformungen klein sind. Zwei Ausnahmen begegnen Ihnen später:
 
 ### Übungen
 
-**Übung 0.11** · Eine Feder mit $c = 20$ N/mm wird mit $F = 500$ N belastet. Wie groß ist die
+**Übung 0.12** · Eine Feder mit $c = 20$ N/mm wird mit $F = 500$ N belastet. Wie groß ist die
 Verschiebung $u$, wie groß die gespeicherte Federarbeit?
 
 ::: {.callout-tip collapse="true"}
@@ -567,16 +614,16 @@ Verschiebung $u$, wie groß die gespeicherte Federarbeit?
 $u = F/c = 25$ mm · $W = \tfrac12\cdot 500\ \text{N}\cdot 0{,}025\ \text{m} = 6{,}25$ J
 :::
 
-**Übung 0.12** · Ein Stahlstab ($E = 210\,000$ N/mm²) ist 1 m lang und hat den Querschnitt
+**Übung 0.13** · Ein Stahlstab ($E = 210\,000$ N/mm²) ist 1 m lang und hat den Querschnitt
 $A = 100$ mm². Berechnen Sie seine Federsteifigkeit und die Verlängerung unter $F = 10$ kN.
-Vergleichen Sie mit der Feder aus Übung 0.11.
+Vergleichen Sie mit der Feder aus Übung 0.12.
 
 ::: {.callout-tip collapse="true"}
 ## Ergebnis
 $c = EA/l = 21\,000$ N/mm · $u = 0{,}48$ mm. Der Stab ist rund tausendmal steifer als die Feder.
 :::
 
-**Übung 0.13** · Ein Balken mit $L = 4$ m trägt im Abstand $a = 1{,}5$ m vom Lager $A$ die Kraft
+**Übung 0.14** · Ein Balken mit $L = 4$ m trägt im Abstand $a = 1{,}5$ m vom Lager $A$ die Kraft
 $F = 10$ kN. a) Berechnen Sie die Lagerkräfte mit den Formeln oben. b) Unter der Last biegt sich der
 Balken um 8 mm durch. Ändern sich dadurch die Lagerkräfte? Begründen Sie.
 

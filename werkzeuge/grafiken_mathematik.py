@@ -60,7 +60,7 @@ def feder(x, y1, y2, breite=18, windungen=7, farbe=SCHWARZ):
 # Einheitskreis: Sinus und Kosinus
 # =====================================================================
 def einheitskreis():
-    abb = Abbildung(820, 420, "Sinus und Kosinus am Einheitskreis")
+    abb = Abbildung(820, 420, "Sinus, Kosinus und Tangens am Einheitskreis")
     R = 150
     O = (230, 215)
     a = math.radians(40)
@@ -103,6 +103,36 @@ def einheitskreis():
     for qx, qy, s in ((1, -1, "I: cos > 0, sin > 0"), (-1, -1, "II: cos < 0, sin > 0"),
                       (-1, 1, "III: cos < 0, sin < 0"), (1, 1, "IV: cos > 0, sin < 0")):
         e.append(text(O[0] + qx * 112, O[1] + qy * 172, f"[{s}]", "#555555", 12, italic=False))
+
+    # Tangens als Abschnitt auf der Tangente bei x = 1
+    ORANGE = "#c86400"
+    xt = O[0] + R
+    T = (xt, O[1] - R * math.tan(a))
+    e = abb.ebene("tangens", "Tangens am Einheitskreis")
+    e.append(polylinie([O, (xt, O[1]), T], None, fuellung="#fdebd0", schliessen=True))
+    e.append(linie(xt, O[1] - R - 50, xt, O[1] + R + 30, "#888888", STRICH["normal"]))
+    e.append(linie(*P, *T, SCHWARZ, 1.6, strich="6 4"))
+    e.append(linie(xt, O[1], *T, ORANGE, 4))
+    e.append(punkt(*T, 3.6))
+    e.append(text(xt + 10, (O[1] + T[1]) / 2, "tan α", ORANGE, 17, anker="start"))
+    e.append(text(xt + 10, O[1] - R - 40, "[Tangente bei x = 1]", "#555555", 12, anker="start", italic=False))
+    e.append(linie(*O, *P, SCHWARZ, 1.6))
+    e.append(punkt(*P, 3.6))
+    e.append(text(P[0] - 8, P[1] - 16, "P", SCHWARZ, 18, anker="end"))
+
+    # Tangens im II. Quadranten: Strahl rückwärts durch den Ursprung verlängern
+    e = abb.ebene("tangens-quadrant", "Tangens im II. Quadranten")
+    b = math.radians(140)
+    Q = (O[0] + R * math.cos(b), O[1] - R * math.sin(b))
+    T2 = (xt, O[1] - R * math.tan(b))
+    e.append(linie(xt, O[1] - R - 50, xt, O[1] + R + 30, "#888888", STRICH["normal"]))
+    e.append(linie(*Q, *T2, SCHWARZ, 1.4, strich="6 4"))
+    e.append(linie(xt, O[1], *T2, ORANGE, 4))
+    e.append(punkt(*T2, 3.6))
+    e.append(text(xt + 10, (O[1] + T2[1]) / 2 - 8, "tan 140°", ORANGE, 17, anker="start"))
+    e.append(text(xt + 10, (O[1] + T2[1]) / 2 + 14, "[< 0]", ORANGE, 15, anker="start", italic=False))
+    e.append(winkelbogen(*O, 32, 0, -40, ""))
+    e.append(text(O[0] + 40, O[1] + 26, "−40° ≙ 320°", GRUEN, 13, anker="start"))
 
     # rechtwinkliges Dreieck mit Hypotenuse F
     e = abb.ebene("dreieck", "Rechtwinkliges Dreieck: Kraftkomponenten")

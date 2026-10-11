@@ -37,8 +37,8 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
 
 ## Veranstaltung 0 · Mathematische Werkzeuge ✅ (online)
 
-- **Lernziele:** Sinus/Kosinus am Einheitskreis, Kraft als Vektor (Komponenten, Betrag, Winkel, Addition: Parallelogramm, Spitze an Fuß); Skalarprodukt am Beispiel der Arbeit (gerader Weg, Höhe, gekrümmter Weg mit $W = \int_0^L F_s\,\mathrm ds$, Gewichtskraft); Moment in der Ebene ($M = Fb = xF_y - yF_x$, Kreuzprodukt nur als Vertiefung); Feder $F = c\,u$, Übergang zum elastischen Körper (Stab $c = EA/l$, starrer und elastischer Balken mit gleichen Lagerkräften)
-- **Form:** nur Vorlesung mit eingebauten Übungen 0.1–0.13 (aufklappbare Ergebnisse), kein Seminar; Abschluss: Zusammenfassung als Scroll-Abschnitt (6 Kacheln) und Tabelle „Zum Nachschlagen“
+- **Lernziele:** Sinus/Kosinus/Tangens am Einheitskreis (Tangens als Abschnitt auf der Tangente, $\tan\alpha = \tan(\alpha\pm180^\circ)$ als Begründung der Quadrantenregel, Steigung), Kraft als Vektor (Komponenten, Betrag, Winkel, Addition: Parallelogramm, Spitze an Fuß); Skalarprodukt am Beispiel der Arbeit (gerader Weg, Höhe, gekrümmter Weg mit $W = \int_0^L F_s\,\mathrm ds$, Gewichtskraft); Moment in der Ebene ($M = Fb = xF_y - yF_x$, Kreuzprodukt nur als Vertiefung); Feder $F = c\,u$, Übergang zum elastischen Körper (Stab $c = EA/l$, starrer und elastischer Balken mit gleichen Lagerkräften)
+- **Form:** nur Vorlesung mit eingebauten Übungen 0.1–0.14 (aufklappbare Ergebnisse), kein Seminar; Abschluss: Zusammenfassung als Scroll-Abschnitt (6 Kacheln) und Tabelle „Zum Nachschlagen“
 - **Beispiele:** B00-2 · Arbeit und Skalarprodukt (Datei: beispiele/B00-2-arbeit-skalarprodukt.pdf): $W = \vec F\cdot\vec s = F_s s = F s_F$, Projektion, Matrixschreibweise, Wegintegral mit $\mathrm dW \lessgtr 0$ ✅
 - **Umsetzung:** `vorlesung/00-mathematik.qmd`, Grafiken `grafiken/mathematik/` aus `werkzeuge/grafiken_mathematik.py`
 - **Hinweis:** Woche 1 wiederholt „Kraft als Vektor“ und das Moment; kann bei Bedarf gekürzt werden.
