@@ -365,11 +365,13 @@ def schnittufer(x, y, positiv=True, N="N", Q="Q", M="M", farbe=None, dicke=7, la
     return gruppe(teile, id_)
 
 
-def schnitt(x1, y1, x2, y2, farbe=None, amplitude=3.2, wellenlaenge=11, breite=1.6, id_=None):
-    """Gedanklicher Schnitt als grüne Schlangenlinie von (x1,y1) nach (x2,y2) –
+def schnitt(x1, y1, x2, y2, farbe=None, amplitude=None, wellenlaenge=None, breite=1.6, id_=None):
+    """Gedanklicher Schnitt als grüne Schlangenlinie von (x1,y1) nach (x2,y2): genau eine Sinuswelle,
     deutlich unterscheidbar von Bauteilen, Hilfs- und Wirkungslinien."""
     farbe = farbe or FARBE["mass"]
     L = math.hypot(x2 - x1, y2 - y1)
+    wellenlaenge = wellenlaenge or L
+    amplitude = amplitude or min(0.16 * L, 6)
     ux, uy = (x2 - x1) / L, (y2 - y1) / L
     nx, ny = -uy, ux
     n = max(24, int(L / 2))
