@@ -1,0 +1,15 @@
+### Aufgabe 1.5 · Autokran
+
+![](../grafiken/grundlagen/aufgabe-b01-6.svg){width=80%}
+
+Ein Autokran mit der Gewichtskraft $F_1$ im Punkt $C$ besitzt ein Gegengewicht $B$ mit der
+Gewichtskraft $F_2$. An seinem Haken hängt die Last $A$ mit der Gewichtskraft $F_3$.
+Der Kran steht mit den Rädern in $D$ und $E$ auf dem Boden.
+
+a) Wie groß muss der Radabstand $|\overrightarrow{DE}|$ mindestens sein, damit der Kran **ohne** Last $A$
+   nicht nach hinten kippt?
+b) Welche Last $F_3$ darf der Kran mit diesem Radabstand höchstens heben, ohne nach vorn zu kippen?
+
+**Gegeben:** $F_1$ = 50 kN, $F_2$ = 20 kN, $a$ = 4 m, $b$ = 1,5 m, $c$ = 2 m
+
+*Hinweis: Kurz vor dem Kippen hebt ein Rad ab. Die Kraft in diesem Rad ist dann null.*

@@ -35,23 +35,27 @@ gemessen. Momente zählen gegen den Uhrzeigersinn positiv.
 
 ## Aufgaben
 
-{{< include _aufgaben-01/1.qmd >}}
+{{< include _aufgaben-01/schiff.qmd >}}
 
-{{< include _aufgaben-01/2.qmd >}}
+{{< include _aufgaben-01/kran.qmd >}}
 
-{{< include _aufgaben-01/3.qmd >}}
+{{< include _aufgaben-01/kiste.qmd >}}
 
-{{< include _aufgaben-01/4.qmd >}}
+*Im Notebook können Sie bei Aufgabe 1.3 die Kraft $F$ verändern und beobachten, wie Auslenkung und Seilkraft wachsen.*
+
+{{< include _aufgaben-01/scheibe.qmd >}}
 
 {{< pagebreak >}}
 
-{{< include _aufgaben-01/5.qmd >}}
+{{< include _aufgaben-01/autokran.qmd >}}
 
-{{< include _aufgaben-01/6.qmd >}}
+{{< include _aufgaben-01/bolzen.qmd >}}
 
-{{< include _aufgaben-01/7.qmd >}}
+{{< include _aufgaben-01/mast.qmd >}}
 
-*Im Notebook können Sie bei Aufgabe 1.7 die Kraft $F$ verändern und beobachten, wie Auslenkung und Seilkraft wachsen.*
+{{< include _aufgaben-01/wirkungslinien.qmd >}}
+
+{{< include _aufgaben-01/fahrrad.qmd >}}
 
 ::: {.content-visible when-format="html"}
 
@@ -70,39 +74,51 @@ $F_S = \dfrac{m g}{2\sin\beta} = 2873\,\text{N}$
 
 ::: {.callout-tip collapse="true"}
 ## Aufgabe 1.3
+$h_1 = 0{,}118\,\text{m}$ · $h_\text{max} = 0{,}473\,\text{m}$ · $F_\text{max} = 1095\,\text{N}$
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 1.4
 $F_{Rx} = 3914\,\text{N}$, $F_{Ry} = 318\,\text{N}$ · $F_R = 3927\,\text{N}$, $\alpha_R = 4{,}64^\circ$ ·
 $M_R^{(0)} = -7535\,\text{Nm}$ (im Uhrzeigersinn) ·
 Wirkungslinie $y_R = 0{,}081\,x_R + 1{,}925\,\text{m}$
 :::
 
 ::: {.callout-tip collapse="true"}
-## Aufgabe 1.4
-$M_T = F\,l_K\cos\alpha = 68{,}9\,\text{Nm}$ · $F_K = 919\,\text{N}$ · $M_R = 33{,}1\,\text{Nm}$ ·
-$F_V = 90{,}7\,\text{N}$
+## Aufgabe 1.5
+a) Kippen um $E$: $|\overrightarrow{DE}|_\text{min} = b + c\,F_2/F_1 = 2{,}3\,\text{m}$ ·
+b) Kippen um $D$: $F_{3,\text{max}} = \dfrac{F_1\,b + F_2\,(|\overrightarrow{DE}| + c)}{a} = 40{,}25\,\text{kN}$
 :::
 
 ::: {.callout-tip collapse="true"}
-## Aufgabe 1.5
+## Aufgabe 1.6
 $F_{Rx} = -684\,\text{N}$, $F_{Ry} = -2299\,\text{N}$ · $F_R = 2399\,\text{N}$ ·
 $\alpha_R = 253{,}4^\circ$ (III. Quadrant)
 :::
 
 ::: {.callout-tip collapse="true"}
-## Aufgabe 1.6
+## Aufgabe 1.7
+a) $\sin\alpha = 0{,}777$, $\alpha = 51{,}0^\circ$ · b) zwei: auch $\alpha = 129{,}0^\circ$ (Seil $F_3$ dann
+nach oben gerichtet) · c) $R = 7{,}85\,\text{kN}$ bzw. $4{,}07\,\text{kN}$ · d) $F_{3,\text{min}} = 2{,}33\,\text{kN}$
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 1.8
 $F_4 = -22{,}7\,\text{N}$, $F_5 = 57{,}3\,\text{N}$ (Kräfte in Richtung $\alpha_4$ bzw. $\alpha_5$ gezählt).
 Das Minuszeichen heißt: $\vec F_4$ zeigt nach links unten.
 :::
 
 ::: {.callout-tip collapse="true"}
-## Aufgabe 1.7
-$h_1 = 0{,}118\,\text{m}$ · $h_\text{max} = 0{,}473\,\text{m}$ · $F_\text{max} = 1095\,\text{N}$
+## Aufgabe 1.9
+$M_T = F\,l_K\cos\alpha = 68{,}9\,\text{Nm}$ · $F_K = 919\,\text{N}$ · $M_R = 33{,}1\,\text{Nm}$ ·
+$F_V = 90{,}7\,\text{N}$
 :::
 
-<p class="small text-muted">Aufgaben 1.1–1.4 und 1.7 nach S. Götz, <em>Aufgaben zur Technischen Mechanik</em>,
-HTW Berlin (2023), Nr. 1.1.3, 1.1.4, 1.2.1, 1.2.4, 1.1.5 – mit freundlicher Genehmigung; Grafiken neu gezeichnet.</p>
+<p class="small text-muted">Aufgaben 1.1–1.4 und 1.9 nach S. Götz, <em>Aufgaben zur Technischen Mechanik</em>,
+HTW Berlin (2023), Nr. 1.1.3, 1.1.4, 1.1.5, 1.2.1, 1.2.4 – mit freundlicher Genehmigung; Grafiken neu gezeichnet.</p>
 :::
 
 ::: {.content-visible when-format="typst"}
 *Ergebnisse zur Kontrolle und ein interaktives Notebook finden Sie auf der Kurswebseite.*
-Aufgaben 1.1–1.4 und 1.7 nach S. Götz, Aufgaben zur Technischen Mechanik, HTW Berlin (2023), mit freundlicher Genehmigung.
+Aufgaben 1.1–1.4 und 1.9 nach S. Götz, Aufgaben zur Technischen Mechanik, HTW Berlin (2023), mit freundlicher Genehmigung.
 :::

@@ -1,4 +1,4 @@
-### Aufgabe 1.4 · Fahrradantrieb
+### Aufgabe 1.9 · Fahrradantrieb
 
 ![](../grafiken/grundlagen/aufgabe-1-2-4.svg){width=75%}
 

@@ -8,6 +8,12 @@ Bitte frei bearbeiten: ändern, streichen, umsortieren, ergänzen. Alles unter
 Vorlesung 2013 (Transkripte in `../quellen-transkript/`), Aufgabensammlung Götz (`G 1.5.1` = Aufgabe 1.5.1),
 Gross TM 1 und TM 2 (Elastostatik, 10. Aufl. 2009, Seitenangaben = Buchseiten) / Dankert.
 
+**Stand 11.10.2026:** Veranstaltung 0, Woche 1 und Woche 3 sind online unter
+<https://prof-schoenfelder-lab.github.io/Technische-Mechanik/>. Quellen im öffentlichen Repository
+`prof-schoenfelder-lab/Technische-Mechanik`; jede Änderung auf `main` wird automatisch gebaut und veröffentlicht.
+**Nicht** im Repository (nur lokal): Musterlösungen (`seminar/*-loesungen.qmd`, PDF in `loesungen/`),
+Lösungsgrafiken und Scans in `planung/beispiele/`.
+
 ## So stellen Sie den Bezug zu eigenen Beispielen her
 
 1. Skizze, Scan oder Foto in `planung/beispiele/` ablegen, Dateiname beginnt mit der **Beispiel-ID**:
@@ -29,34 +35,48 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
 
 ---
 
-## Veranstaltung 0 · Mathematische Werkzeuge ✅ (Entwurf, bitte prüfen)
+## Veranstaltung 0 · Mathematische Werkzeuge ✅ (online)
 
-- **Lernziele:** Sinus/Kosinus am Einheitskreis, Kraft als Vektor (Komponenten, Betrag, Winkel, Addition); Skalarprodukt am Beispiel der Arbeit; Moment in der Ebene ($M = Fb = xF_y - yF_x$, Kreuzprodukt nur als Vertiefung); Feder $F = c\,u$, Übergang zum elastischen Körper (Stab $c = EA/l$, starrer und elastischer Balken mit gleichen Lagerkräften)
-- **Form:** nur Vorlesung mit eingebauten Übungen 0.1–0.13 (aufklappbare Ergebnisse), kein Seminar
+- **Lernziele:** Sinus/Kosinus am Einheitskreis, Kraft als Vektor (Komponenten, Betrag, Winkel, Addition: Parallelogramm, Spitze an Fuß); Skalarprodukt am Beispiel der Arbeit (gerader Weg, Höhe, gekrümmter Weg mit $W = \int_0^L F_s\,\mathrm ds$, Gewichtskraft); Moment in der Ebene ($M = Fb = xF_y - yF_x$, Kreuzprodukt nur als Vertiefung); Feder $F = c\,u$, Übergang zum elastischen Körper (Stab $c = EA/l$, starrer und elastischer Balken mit gleichen Lagerkräften)
+- **Form:** nur Vorlesung mit eingebauten Übungen 0.1–0.13 (aufklappbare Ergebnisse), kein Seminar; Abschluss: Zusammenfassung als Scroll-Abschnitt (6 Kacheln) und Tabelle „Zum Nachschlagen“
 - **Beispiele:** B00-2 · Arbeit und Skalarprodukt (Datei: beispiele/B00-2-arbeit-skalarprodukt.pdf): $W = \vec F\cdot\vec s = F_s s = F s_F$, Projektion, Matrixschreibweise, Wegintegral mit $\mathrm dW \lessgtr 0$ ✅
 - **Umsetzung:** `vorlesung/00-mathematik.qmd`, Grafiken `grafiken/mathematik/` aus `werkzeuge/grafiken_mathematik.py`
 - **Hinweis:** Woche 1 wiederholt „Kraft als Vektor“ und das Moment; kann bei Bedarf gekürzt werden.
 - **Wünsche/Notizen:**
 
-## Woche 1 · Einführung, Kräfte und Momente, Gleichgewicht ✅ (Entwurf, bitte prüfen)
+## Woche 1 · Einführung, Kräfte und Momente, Gleichgewicht ✅ (online)
 
 - **Lernziele:** Kraft als gebundener Vektor; Moment und Kräftepaar; Axiome und Schnittprinzip; Gleichgewicht im zentralen und allgemeinen ebenen Kraftsystem
 - **Inhalte Vorlesung:**
   1. Einordnung: Statik, Festigkeitslehre, Dynamik; Modelle und Annahmen (starrer Körper)
-  2. Vektorrechnung kompakt (Komponenten, Betrag, Winkel, Kreuzprodukt)
-  3. Kraft, Wirkungslinie, Axiome der Statik, Schnittprinzip nach Euler / Freikörperbild
+  2. Kraft als Vektor (Komponenten, Betrag, Winkel, Quadrantenregel)
+  3. Axiome der Statik, Schnittprinzip nach Euler / Freikörperbild
   4. Zentrales Kraftsystem: Resultierende, Krafteck, Gleichgewicht
   5. Moment, Kräftepaar, Versatzmoment; allgemeines Kraftsystem, 3 GGB in der Ebene
 - **Beispiele Vorlesung:**
-  - B01-1: Zwei Kräfte, Resultierende ($F_R \approx 31{,}4$ N) – VL 2013 Teil 1
-  -  B01-2 · Auslenkung einer Masse am Seil mit der Kraft F (Datei: beispiele/B01-1-Auslenkung-Masse-Seil.png)
-    Schritte: System => Freischnitt => Gleichgewichtsreaktionen => Kraft F
-  - B01-3 · Scheibe mit 4 Kräften, Wirkungslinie der Resultierenden – VL 2013 Teil 1 (Achtung: $\alpha_R$ im Original falsch, richtig −36,9°)
-- **Seminar:** G 1.1.3, G 1.1.4, G 1.2.x (auswählen)
-- **Hausaufgaben:** B01-4-Hausaufgabe.png, B01-5-Hausaufgabe.png
-- **Notebook-Idee:** Krafteck und Resultierende live, Lösung der Aufgabe G 1.1.5 in Abhängigkeit von F in grafischer Darstellung der Auslenkung und Belastung des Seils
+  - B01-1 · Zwei Kräfte, Resultierende ($F_R = 31{,}5$ N, $\alpha_R = 97{,}1^\circ$) – VL 2013 Teil 1 ✅
+  - B01-2 · Auslenkung einer Masse am Seil mit der Kraft $F$ (Datei: beispiele/B01-1-Auslenkung-Masse-Seil.png) ✅
+    Schritte: System → Freischnitt → Gleichgewicht → Kraft $F$ (+ geschlossenes Krafteck)
+  - B01-3 · Scheibe mit 4 Kräften, Wirkungslinie der Resultierenden – VL 2013 Teil 1 (Achtung: $\alpha_R$ im Original falsch, richtig −36,9°) ✅
+- **Aufgabensammlung** (eine Liste, keine Trennung Seminar/Hausaufgabe; Kontrollergebnisse aufklappbar auf der Webseite):
+
+  | Nr. | Aufgabe | Quelle | Ergebnis |
+  |:--|:--|:--|:--|
+  | 1.1 | Containerschiff mit zwei Schleppern | G 1.1.3 | $\varphi_1 = 21{,}0^\circ$, $F_R = 1{,}156$ MN |
+  | 1.2 | Stahlträger am Kran | G 1.1.4 | $F_S = 2873$ N |
+  | 1.3 | Kiste am Seil (Seil (a) oben im festen Gelenklager $A$) | G 1.1.5 | $h_1 = 0{,}118$ m, $h_\text{max} = 0{,}473$ m, $F_\text{max} = 1095$ N |
+  | 1.4 | Scheibe mit drei Kräften | G 1.2.1 | $F_R = 3927$ N, $\alpha_R = 4{,}64^\circ$, $M_R^{(0)} = -7535$ Nm |
+  | 1.5 | Autokran (Kippen) | B01-6 | $\lvert DE\rvert_\text{min} = 2{,}3$ m, $F_{3,\text{max}} = 40{,}25$ kN |
+  | 1.6 | Bolzen mit vier Kräften, **räumliche Darstellung** (Draufsicht selbst zeichnen; auf der Webseite aufklappbar zur Kontrolle) | B01-4 | $F_R = 2399$ N, $\alpha_R = 253{,}4^\circ$ |
+  | 1.7 | Mast mit drei Seilen | B01-7 | $\alpha = 51{,}0^\circ$ (auch $129{,}0^\circ$), $R = 7{,}85$ kN, $F_{3,\text{min}} = 2{,}33$ kN |
+  | 1.8 | Gleichgewicht mit zwei Wirkungslinien | B01-5 | $F_4 = -22{,}7$ N, $F_5 = 57{,}3$ N |
+  | 1.9 | Fahrradantrieb | G 1.2.4 | $M_T = 68{,}9$ Nm, $F_K = 919$ N, $F_V = 90{,}7$ N |
+
+- **Musterlösungen:** `seminar/01-grundlagen-loesungen.qmd` → `loesungen/01-grundlagen-loesungen.pdf` (nur lokal; Aufgabentexte aus `seminar/_aufgaben-01/*.qmd`)
+- **Notebook:** `notebooks/grundlagen.py` – Krafteck live (3 Kräfte), Kiste am Seil (Aufgabe 1.3) mit $h(F)$ und $S_a(F)$; ohne Ergebnisprüfung
 - **Quellen:** Transkript 1; Gross Kap. 1–3; Dankert Kap. 1–3
-- **Umsetzung:** `vorlesung/01-grundlagen.qmd`, `seminar/01-grundlagen.qmd` (Aufgabensammlung 1.1–1.7: G 1.1.3, G 1.1.4, G 1.2.1, G 1.2.4, B01-4, B01-5, G 1.1.5; Musterlösungen `seminar/01-grundlagen-loesungen.qmd` → PDF), `notebooks/grundlagen.py`, Grafiken `grafiken/grundlagen/` aus `werkzeuge/grafiken_grundlagen.py`
+- **Umsetzung:** `vorlesung/01-grundlagen.qmd`, `seminar/01-grundlagen.qmd`, Grafiken `grafiken/grundlagen/` aus `werkzeuge/grafiken_grundlagen.py` (Lösungsgrafiken: `werkzeuge/grafiken_grundlagen_loesungen.py`, nur lokal)
+- **Offen:** Quellenangabe für B01-4 bis B01-7 (Autokran = „Aufgabe 1.2.9“ eines Lehrbuchs) – bitte nennen, dann ergänze ich sie auf dem Aufgabenblatt.
 - **Wünsche/Notizen:**
 
 ## Woche 2 · Lager- und Gelenkreaktionen, Streckenlasten 🟨
@@ -79,7 +99,7 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
 - **Quellen:** Transkripte 1, 2, 4; Gross Kap. 5, 6, 9; Dankert Kap. 5, 6, 9
 - **Wünsche/Notizen:**
 
-## Woche 3 · Schnittgrößen ✅ (Prototyp)
+## Woche 3 · Schnittgrößen ✅ (online, Prototyp)
 
 - **Lernziele:** Schnittgrößen definieren, Vorzeichenkonvention anwenden; Bereiche einteilen; $N(x)$, $Q(x)$, $M(x)$ berechnen und zeichnen; Differentialbeziehungen nutzen
 - **Inhalte Vorlesung:** siehe Seite `vorlesung/03-schnittgroessen.qmd`
@@ -87,9 +107,8 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
   - B03-1 · Träger mit Kragarm, $F_1$ schräg, $F_2$ am Ende – VL 2013 Teil 3 S. 5–8 ✅
   - B03-2 · Einfeldträger mit Dreieckslast, Integration – VL 2013 Teil 3 S. 11–14 ✅
   - B03-3 · Dreigelenkrahmen – VL 2013 Teil 3 S. 17–23 ⬜ – $M$ wie Gross/Dankert aufgetragen (positiv auf der der Bezugsfaser abgewandten Seite), mit Hinweis auf die Zugseiten-Darstellung der Tragwerksplanung
-- **Seminar:** G 1.5.1, G 1.5.6, G 1.5.3 ✅
-- **Hausaufgaben:** G 1.5.8, G 1.5.5 ✅
-- **Notebook:** `notebooks/schnittgroessen.py` ✅
+- **Aufgabensammlung:** 3.1 G 1.5.1 · 3.2 G 1.5.6 · 3.3 G 1.5.3 · 3.4 G 1.5.8 · 3.5 G 1.5.5 ✅ (Musterlösungen noch offen)
+- **Notebook:** `notebooks/schnittgroessen.py` (Träger mit Kragarm interaktiv, ohne Ergebnisprüfung) ✅
 - **Quellen:** Transkript 3; `planung/abgleich-literatur-schnittgroessen.md`; Gross Kap. 7; Dankert Kap. 7
 - **Wünsche/Notizen:**
 
@@ -224,3 +243,15 @@ polares Flächenmoment bzw. $I_y$ und Widerstandsmomente nur noch angewendet.
 4. **Verläufe zweifarbig:** positive Bereiche rot, negative blau (Grafiken und Notebook).
 5. **Gross TM 2** liegt in `Literatur/Gross_TM2-2014.pdf` (Inhalt = 10. Auflage 2009); Seitenangaben oben sind Buchseiten
    (PDF-Seite = Buchseite + 10).
+
+## Entscheidungen (07.–11.10.2026)
+
+1. **Aufgaben:** je Woche eine Aufgabensammlung ohne Trennung in Seminar- und Hausaufgaben; Kontrollergebnisse
+   aufklappbar auf der Webseite; Musterlösungen als PDF (Aufgabe, Freikörperbilder, Gleichgewicht, Ergebnis).
+2. **Notebooks** dienen nur dem Ausprobieren, keine Ergebnisprüfung.
+3. **Begriffe:** „Seil“ statt „Strick“; Lager eindeutig zeichnen (z. B. festes Gelenklager an der Decke).
+4. **Veröffentlichung:** GitHub Pages aus `prof-schoenfelder-lab/Technische-Mechanik`. Musterlösungen und Scans
+   werden **nicht** auf GitHub abgelegt. Zeitgesteuerte Freigabe von Hilfen/Lösungen vorerst zurückgestellt.
+5. **Veranstaltung 0** (Mathematische Werkzeuge) vor Woche 1, ohne Seminar; Feder mit Verschiebung $u$.
+6. **Darstellung:** $arphi$ (geschwungen) in allen Grafiken; über jeder Scroll-Grafik steht die Themenüberschrift
+   des Abschnitts; der Bildausschnitt passt sich automatisch an die sichtbaren Ebenen an.

@@ -620,8 +620,146 @@ def aufgabe_b01_5():
     return abb.speichern(ZIEL / "aufgabe-b01-5.svg")
 
 
+def aufgabe_b01_4_raeumlich():
+    """B01-4: Bolzen mit vier Kräften, räumliche Darstellung wie in der Vorlage (zum Abstrahieren)."""
+    abb, e = _aufgabe("Bolzen mit vier Kräften (räumlich)", 520, 340)
+    O = (250, 120)                           # Mitte Bolzenkopf
+    hoehe = 90
+
+    def R3(x, y, z=0.0):                    # schräge Parallelprojektion: y nach hinten rechts
+        return (O[0] + x + 0.5 * y, O[1] - z - 0.42 * y)
+
+    zb = -hoehe                              # Plattenoberkante
+    platte_pts = [R3(-120, -90, zb), R3(130, -90, zb), R3(130, 90, zb), R3(-120, 90, zb)]
+    e.append(polylinie(platte_pts, "#000000", STRICH["normal"], "#ececec", schliessen=True))
+    unten = [(px, py + 14) for px, py in platte_pts]
+    e.append(polylinie([platte_pts[0], unten[0], unten[1], platte_pts[1]], "#000000", STRICH["normal"], "#d9d9d9",
+                       schliessen=True))
+    e.append(polylinie([platte_pts[1], unten[1], unten[2], platte_pts[2]], "#000000", STRICH["normal"], "#cfcfcf",
+                       schliessen=True))
+    # Bolzen (Zylinder)
+    r = 16
+    oben, fuss = R3(0, 0, 0), R3(0, 0, zb)
+    e.append(polylinie([(oben[0] - r, oben[1]), (fuss[0] - r, fuss[1]), (fuss[0] + r, fuss[1]), (oben[0] + r, oben[1])],
+                       "#000000", STRICH["normal"], "#d9d9d9"))
+    e.append(f'<ellipse cx="{fuss[0]:.1f}" cy="{fuss[1]:.1f}" rx="{r}" ry="6" fill="#d9d9d9" stroke="#000" '
+             f'stroke-width="1.25"/>')
+    e.append(polylinie([(oben[0] - r, oben[1]), (fuss[0] - r, fuss[1]), (fuss[0] + r, fuss[1]), (oben[0] + r, oben[1])],
+                       None, fuellung="#d9d9d9"))
+    e.append(linie(oben[0] - r, oben[1], fuss[0] - r, fuss[1], "#000000", STRICH["normal"]))
+    e.append(linie(oben[0] + r, oben[1], fuss[0] + r, fuss[1], "#000000", STRICH["normal"]))
+    e.append(f'<ellipse cx="{oben[0]:.1f}" cy="{oben[1]:.1f}" rx="{r}" ry="6" fill="#ececec" stroke="#000" '
+             f'stroke-width="1.25"/>')
+    # Achsen in der Kraftebene
+    for (x, y), lab in (((200, 0), "x"), ((0, 170), "y")):
+        e.append(strichpunkt(*R3(-x * 0.9, -y * 0.55), *R3(x, y), GRAU))
+        e.append(pfeil(*R3(x * 0.85, y * 0.85), *R3(x, y), GRUEN, STRICH["normal"], (8, 5)))
+        px, py = R3(x, y)
+        e.append(text(px + 8, py, lab, GRUEN, 17, anker="start"))
+    # Kräfte in der x-y-Ebene am Bolzenkopf
+    L = 130
+    for w, name, lx, ly in ((-30, "F_1", 12, 8), (-90, "F_2", -16, 4), (240, "F_3", -18, 2), (180, "F_4", 0, -16)):
+        ex, ey = L * math.cos(math.radians(w)), L * math.sin(math.radians(w))
+        E = R3(ex, ey)
+        e.append(vektor(*O, *E))
+        e.append(text(E[0] + lx, E[1] + ly, name, ROT, anker="middle"))
+    # Winkel in der Ebene (projizierte Kreisbögen)
+    for von, bis, rad, lab in ((-30, 0, 85, "30°"), (180, 240, 75, "60°")):
+        pts = [R3(rad * math.cos(math.radians(von + (bis - von) * k / 20)),
+                  rad * math.sin(math.radians(von + (bis - von) * k / 20))) for k in range(21)]
+        e.append(polylinie(pts, GRUEN, STRICH["duenn"]))
+        mx, my = R3((rad + 16) * math.cos(math.radians((von + bis) / 2)), (rad + 16) * math.sin(math.radians((von + bis) / 2)))
+        e.append(text(mx, my, lab, GRUEN, 15))
+    return abb.speichern(ZIEL / "aufgabe-b01-4-raeumlich.svg")
+
+
+def aufgabe_b01_6():
+    """B01-6: Autokran mit Gegengewicht (Kippen)."""
+    abb, e = _aufgabe("Autokran", 640, 380)
+    m = 52                                   # px je m
+    yb = 300                                 # Boden (Radaufstand)
+    xA = 50
+    xD, xC = xA + 4 * m, xA + 5.5 * m
+    xE = xD + 3.0 * m                        # DE beliebig gezeichnet (gesucht)
+    xB = xE + 2 * m
+    # Boden
+    e.append(linie(20, yb, 620, yb, "#000000", STRICH["normal"]))
+    xx = 22
+    while xx < 620:
+        e.append(linie(xx, yb, xx - 7, yb + 7, "#000000", STRICH["duenn"]))
+        xx += 8
+    # Fahrzeug
+    rad = 20
+    e.append(platte([(xD - 40, yb - 2 * rad - 18), (xD - 22, yb - 2 * rad - 70), (xD + 40, yb - 2 * rad - 70),
+                     (xD + 46, yb - 2 * rad - 36), (xB + 30, yb - 2 * rad - 36), (xB + 30, yb - 2 * rad + 4),
+                     (xD - 40, yb - 2 * rad + 4)], "#e6e6e6"))
+    for x in (xD, xE):
+        e.append(kreis(x, yb - rad, rad, "#000000", "#cfcfcf", 1.4))
+        e.append(kreis(x, yb - rad, 5, "#000000", "#ffffff", 1))
+    # Ausleger (Fachwerk vereinfacht) vom Drehpunkt bis über die Last
+    P = (xE - 10, yb - 2 * rad - 60)
+    S = (xA, yb - 230)
+    e.append(linie(*P, *S, "#000000", 2))
+    e.append(linie(P[0] + 22, P[1] - 30, S[0] + 30, S[1] - 34, "#000000", 2))
+    n = 7
+    for k in range(n + 1):
+        t = k / n
+        a1 = (P[0] + (S[0] - P[0]) * t, P[1] + (S[1] - P[1]) * t)
+        a2 = (P[0] + 22 + (S[0] + 30 - P[0] - 22) * t, P[1] - 30 + (S[1] - 34 - P[1] + 30) * t)
+        e.append(linie(*a1, *a2, "#000000", 1))
+        if k < n:
+            t2 = (k + 1) / n
+            b2 = (P[0] + 22 + (S[0] + 30 - P[0] - 22) * t2, P[1] - 30 + (S[1] - 34 - P[1] + 30) * t2)
+            e.append(linie(*a1, *b2, "#000000", 0.8))
+    e.append(kreis(*P, 5, "#000000", "#ffffff", 1.2))
+    e.append(linie(S[0] + 15, S[1] - 17, xB - 30, P[1] - 30, "#000000", 1))
+    # Gegengewicht B
+    e.append(platte([(xB - 30, yb - 2 * rad - 140), (xB + 30, yb - 2 * rad - 140), (xB + 30, yb - 2 * rad - 36),
+                     (xB - 30, yb - 2 * rad - 36)], "#bdbdbd"))
+    e.append(text(xB, yb - 2 * rad - 118, "B", "#000000", 18))
+    # Last A
+    e.append(linie(xA, S[1], xA, yb - 130, "#000000", 1.2))
+    e.append(platte([(xA - 18, yb - 130), (xA + 18, yb - 130), (xA + 18, yb - 92), (xA - 18, yb - 92)], "#bdbdbd"))
+    e.append(text(xA, yb - 111, "A", "#000000", 18))
+    # Kräfte
+    e.append(kraft(xA, yb - 92, -90, "F_3", laenge=55, ziehend=True, label_seite=1))
+    e.append(punkt(xC, yb - 2 * rad - 30, 2.6))
+    e.append(text(xC + 10, yb - 2 * rad - 42, "C", "#000000", 16, anker="start"))
+    e.append(kraft(xC, yb - 2 * rad - 30, -90, "F_1", laenge=60, ziehend=True, label_seite=-1))
+    e.append(kraft(xB, yb - 2 * rad - 90, -90, "F_2", laenge=70, ziehend=True, label_seite=1))
+    # Punkte D, E und Bemaßung
+    for x, lab in ((xD, "D"), (xE, "E")):
+        e.append(punkt(x, yb, 2.6))
+        e.append(text(x, yb + 16, lab, "#000000", 16))
+    e.append(mass(xA, yb, xD, yb, "a", abstand=-48))
+    e.append(mass(xD, yb, xC, yb, "b", abstand=-48))
+    e.append(mass(xE, yb, xB, yb, "c", abstand=-48))
+    return abb.speichern(ZIEL / "aufgabe-b01-6.svg")
+
+
+def aufgabe_b01_7():
+    """B01-7: Mast mit drei Seilkräften."""
+    abb, e = _aufgabe("Mast mit drei Seilen", 440, 330)
+    T = (220, 60)
+    yb = 300
+    e.append(balken(T[0], T[1], T[0], yb, dicke=8))
+    e.append(linie(80, yb, 360, yb, "#000000", STRICH["normal"]))
+    xx = 82
+    while xx < 360:
+        e.append(linie(xx, yb, xx - 8, yb + 8, "#000000", STRICH["duenn"]))
+        xx += 8
+    for w, name, laenge, seite in ((-150, "F_1", 150, 1), (-60, "F_2", 110, -1), (-39, "F_3", 125, -1)):
+        e.append(kraft(*T, w, name, laenge=laenge, ziehend=True, label_seite=seite, label_pos=0.95))
+    e.append(linie(T[0], T[1], T[0], T[1] + 120, GRAU, STRICH["duenn"], strich="4 3"))
+    e.append(winkelbogen(*T, 55, -150, -90, "60°"))
+    e.append(winkelbogen(*T, 82, -90, -60, "30°"))
+    e.append(winkelbogen(*T, 40, -90, -39, "α"))
+    e.append(punkt(*T, 2.6))
+    return abb.speichern(ZIEL / "aufgabe-b01-7.svg")
+
+
 if __name__ == "__main__":
     for fn in (einordnung, kraft_vektor, axiome, resultierende_zwei_kraefte, seil_masse, moment_grafik,
                scheibe_vier_kraefte, aufgabe_1_1_3, aufgabe_1_1_4, aufgabe_1_1_5, aufgabe_1_2_1, aufgabe_1_2_4,
-               aufgabe_b01_4, aufgabe_b01_5):
+               aufgabe_b01_4, aufgabe_b01_5, aufgabe_b01_4_raeumlich, aufgabe_b01_6, aufgabe_b01_7):
         print(fn())

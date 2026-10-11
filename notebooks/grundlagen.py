@@ -113,7 +113,7 @@ def _(FR, mo, np):
 @app.cell
 def _(mo):
     mo.md(r"""
-    ## 2 · Kiste an Seilen (Aufgabe 1.7)
+    ## 2 · Kiste am Seil (Aufgabe 1.3)
 
     Die waagerechte Kraft $F$ lenkt Seil (a) aus, die Kiste steigt um $h$.
     Am Knoten herrscht Gleichgewicht eines **zentralen Kraftsystems**:

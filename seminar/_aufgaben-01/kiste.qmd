@@ -1,4 +1,4 @@
-### Aufgabe 1.7 · Kiste an Seilen
+### Aufgabe 1.3 · Kiste am Seil
 
 ![](../grafiken/grundlagen/aufgabe-1-1-5.svg){width=50%}
 

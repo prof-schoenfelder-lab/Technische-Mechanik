@@ -1,0 +1,18 @@
+### Aufgabe 1.6 · Bolzen mit vier Kräften
+
+![](../grafiken/grundlagen/aufgabe-b01-4-raeumlich.svg){width=60%}
+
+::: {.content-visible when-format="html"}
+::: {.callout-note collapse="true"}
+## Draufsicht zur Kontrolle (erst selbst zeichnen!)
+![](../grafiken/grundlagen/aufgabe-b01-4.svg){width=80%}
+:::
+:::
+
+Ein Bolzen wird durch die vier in der $x$-$y$-Ebene liegenden Kräfte $F_1$ bis $F_4$ beansprucht.
+Die Skizze zeigt die Kräfte räumlich, die Winkel erscheinen darin verzerrt.
+
+a) Zeichnen Sie die Kräfte in einer Draufsicht auf die $x$-$y$-Ebene mit den wahren Winkeln.
+b) Bestimmen Sie Betrag und Richtung der Resultierenden, rechnerisch und mit einem maßstäblichen Krafteck.
+
+**Gegeben:** $F_1$ = 1000 N, $F_2$ = 500 N, $F_3$ = 1500 N, $F_4$ = 800 N

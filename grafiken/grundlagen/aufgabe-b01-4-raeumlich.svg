@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="520" height="340" viewBox="0 0 520 340" class="tm-grafik">
+<title>Bolzen mit vier Kräften (räumlich)</title>
+<g inkscape:groupmode="layer" id="system" inkscape:label="01 System" data-ebene="system">
+<path d="M 85,247.8 L 335,247.8 L 425,172.2 L 175,172.2 Z" fill="#ececec" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<path d="M 85,247.8 L 85,261.8 L 335,261.8 L 335,247.8 Z" fill="#d9d9d9" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<path d="M 335,247.8 L 335,261.8 L 425,186.2 L 425,172.2 Z" fill="#cfcfcf" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<path d="M 234,120 L 234,210 L 266,210 L 266,120" fill="#d9d9d9" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<ellipse cx="250.0" cy="210.0" rx="16" ry="6" fill="#d9d9d9" stroke="#000" stroke-width="1.25"/>
+<path d="M 234,120 L 234,210 L 266,210 L 266,120" fill="#d9d9d9" stroke="none" stroke-linejoin="round"/>
+<path d="M 234,120 L 234,210" fill="none" stroke="#000000" stroke-width="1.25" stroke-linecap="butt"/>
+<path d="M 266,120 L 266,210" fill="none" stroke="#000000" stroke-width="1.25" stroke-linecap="butt"/>
+<ellipse cx="250.0" cy="120.0" rx="16" ry="6" fill="#ececec" stroke="#000" stroke-width="1.25"/>
+<path d="M 70,120 L 450,120" fill="none" stroke="#7a7a7a" stroke-width="0.9" stroke-linecap="butt" stroke-dasharray="14 4 2 4"/>
+<g><path d="M 420,120 L 443.6,120" fill="none" stroke="#006414" stroke-width="1.25" stroke-linecap="butt"/><path d="M 450,120 L 442,122.5 L 442,117.5 Z" fill="#006414" stroke="none" stroke-linejoin="round"/></g>
+<text x="458" y="125.78" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="17" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>x</tspan></text>
+<path d="M 203.25,159.27 L 335,48.6" fill="none" stroke="#7a7a7a" stroke-width="0.9" stroke-linecap="butt" stroke-dasharray="14 4 2 4"/>
+<g><path d="M 322.25,59.31 L 330.1,52.72" fill="none" stroke="#006414" stroke-width="1.25" stroke-linecap="butt"/><path d="M 335,48.6 L 330.48,55.66 L 327.27,51.83 Z" fill="#006414" stroke="none" stroke-linejoin="round"/></g>
+<text x="343" y="54.38" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="17" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>y</tspan></text>
+<g><path d="M 250,120 L 321,144.2" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 330.08,147.3 L 317.43,147.21 L 320.02,139.64 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<text x="342.08" y="161.76" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>F</tspan><tspan baseline-shift="sub" font-size="70%" font-style="normal">1</tspan></text>
+<g><path d="M 250,120 L 192.35,168.43" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 185,174.6 L 191.62,163.82 L 196.76,169.94 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<text x="169" y="185.06" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>F</tspan><tspan baseline-shift="sub" font-size="70%" font-style="normal">2</tspan></text>
+<g><path d="M 250,120 L 137.65,163.8" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 128.71,167.28 L 138.44,159.2 L 141.34,166.65 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<text x="110.71" y="175.74" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>F</tspan><tspan baseline-shift="sub" font-size="70%" font-style="normal">3</tspan></text>
+<g><path d="M 250,120 L 129.6,120" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 120,120 L 132,116 L 132,124 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<text x="120" y="110.46" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>F</tspan><tspan baseline-shift="sub" font-size="70%" font-style="normal">4</tspan></text>
+<path d="M 302.36,137.85 L 304.42,137.03 L 306.44,136.21 L 308.42,135.37 L 310.37,134.52 L 312.27,133.66 L 314.12,132.79 L 315.94,131.92 L 317.71,131.03 L 319.43,130.14 L 321.1,129.24 L 322.73,128.33 L 324.31,127.42 L 325.83,126.51 L 327.31,125.58 L 328.73,124.66 L 330.09,123.73 L 331.4,122.8 L 332.66,121.87 L 333.86,120.93 L 335,120" fill="none" stroke="#006414" stroke-width="0.8" stroke-linejoin="round"/>
+<text x="334.49" y="136.08" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="15" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>30°</tspan></text>
+<path d="M 175,120 L 173.14,121.65 L 171.49,123.29 L 170.06,124.93 L 168.84,126.55 L 167.85,128.15 L 167.08,129.73 L 166.54,131.29 L 166.23,132.81 L 166.15,134.3 L 166.3,135.75 L 166.68,137.16 L 167.28,138.52 L 168.11,139.82 L 169.17,141.08 L 170.45,142.27 L 171.95,143.41 L 173.66,144.48 L 175.58,145.48 L 177.7,146.42 L 180.02,147.28" fill="none" stroke="#006414" stroke-width="0.8" stroke-linejoin="round"/>
+<text x="148.44" y="144.21" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="15" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>60°</tspan></text>
+</g>
+</svg>
