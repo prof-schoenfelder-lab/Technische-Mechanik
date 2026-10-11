@@ -411,6 +411,19 @@ def feder_grafik():
     return abb.speichern(ZIEL / "feder.svg")
 
 
+def biegebalken(pts, dicke=7):
+    """Verformter Balken als geschlossene Fläche um die Biegelinie pts (gleiches Aussehen wie balken())."""
+    oben, unten = [], []
+    for k, (x, y) in enumerate(pts):
+        xa, ya = pts[max(k - 1, 0)]
+        xb, yb = pts[min(k + 1, len(pts) - 1)]
+        n = math.hypot(xb - xa, yb - ya)
+        nx, ny = -(yb - ya) / n * dicke / 2, (xb - xa) / n * dicke / 2
+        oben.append((x - nx, y - ny))
+        unten.append((x + nx, y + ny))
+    return polylinie(oben + unten[::-1], SCHWARZ, STRICH["normal"], "#e6e6e6", schliessen=True)
+
+
 def _decke(x, y, breite=50):
     teile = [linie(x - breite / 2, y, x + breite / 2, y, SCHWARZ, STRICH["normal"])]
     xx = x - breite / 2 + 2
@@ -466,14 +479,16 @@ def elastischer_koerper():
         return a * (1 - xi) * (1 - a * a - (1 - xi) ** 2)
     wmax = max(w(i / 200) for i in range(201))
     pts = [(xa + Lb * i / 120, yb2 + 30 * w(i / 120) / wmax) for i in range(121)]
-    e.append(linie(xa, yb2, xa + Lb, yb2, GRAU, STRICH["duenn"], strich="6 4"))
-    e.append(polylinie(pts, SCHWARZ, 9))
-    e.append(polylinie(pts, "#e6e6e6", 6.5))
+    t2 = 3.5                                     # halbe Balkendicke
+    e.append(linie(xa, yb2 - t2, xa + Lb, yb2 - t2, GRAU, STRICH["duenn"], strich="6 4"))   # unverformte Oberkante
+    e.append(biegebalken(pts))
     e.append(festlager(xa, yb2 + 3.5, label="A", label_pos=(-22, 10)))
     e.append(loslager(xa + Lb, yb2 + 3.5, label="B", label_pos=(22, 10)))
     yF = yb2 + 30 * w(a) / wmax
     e.append(kraft(xf, yF - 3.5, -90, "F", laenge=55, label_seite=-1))
-    e.append(mass(xf + 40, yb2, xf + 40, yF, "w", abstand=-12))
+    xw = xf + 40                                 # Bemaßung der Durchbiegung neben der Last, an der Oberkante
+    yw = yb2 + 30 * w((xw - xa) / Lb) / wmax
+    e.append(mass(xw, yb2 - t2, xw, yw - t2, "w", abstand=-12, hilfslinien=False))
     e.append(text(xa + Lb + 30, yb2 - 40, "[elastisch (Durchbiegung überhöht)]", "#555555", 14, anker="end",
                   italic=False))
 
@@ -575,8 +590,7 @@ def zusammenfassung():
     for yb, gebogen in ((y + 75, False), (y + 145, True)):
         if gebogen:
             pts = [(xa + Lb * i / 40, yb + 12 * math.sin(math.pi * i / 40)) for i in range(41)]
-            e.append(polylinie(pts, SCHWARZ, 7))
-            e.append(polylinie(pts, "#e6e6e6", 4.5))
+            e.append(biegebalken(pts, dicke=6))
         else:
             e.append(balken(xa, yb, xa + Lb, yb, dicke=6))
         e.append(festlager(xa, yb + 3, groesse=9))
