@@ -40,8 +40,28 @@ local function vertiefung(el)
   return out
 end
 
+-- ::: {.notebook titel="…" src="…"} Text :::  →  aufklappbares, eingebettetes marimo-Notebook
+-- (iframe erst beim Aufklappen geladen) mit Link zum Öffnen im eigenen Tab; in PDF nur Text + Hinweis
+local function notebook(el)
+  local titel = el.attributes["titel"] or "Interaktives Notebook"
+  local src = el.attributes["src"]
+  if quarto.doc.is_format("html") then
+    local out = { pandoc.RawBlock("html", '<details class="notebook"><summary>' .. titel .. '</summary>') }
+    for _, b in ipairs(el.content) do table.insert(out, b) end
+    table.insert(out, pandoc.RawBlock("html",
+      '<p class="small"><a href="' .. src .. '" target="_blank">Im eigenen Tab öffnen</a> ' ..
+      '(der erste Start dauert einige Sekunden)</p>' ..
+      '<iframe class="notebook-rahmen" loading="lazy" src="' .. src .. '" title="' .. titel .. '"></iframe></details>'))
+    return out
+  end
+  local out = { pandoc.Para({ pandoc.Strong({ pandoc.Str(titel) }) }) }
+  for _, b in ipairs(el.content) do table.insert(out, b) end
+  return out
+end
+
 function Div(el)
   if el.classes:includes("vertiefung") then return vertiefung(el) end
+  if el.classes:includes("notebook") then return notebook(el) end
   if not el.classes:includes("scrolly") then return nil end
   local src = el.attributes["svg"]
   local basis = pandoc.path.directory(quarto.doc.input_file)

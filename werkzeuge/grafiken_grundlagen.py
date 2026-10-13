@@ -257,6 +257,10 @@ def resultierende_zwei_kraefte():
     e.append(vektor(*P(F1[0], 0), *P(*F1), "F_{1y}", gestrichelt=True, breite=1.4, lx=26, groesse=16))
     e.append(vektor(*P(F2[0], 0), *P(*F2), "F_{2y}", gestrichelt=True, breite=1.4, lx=-28, groesse=16))
 
+    e = abb.ebene("winkel135", "Richtungswinkel 135°")
+    e.append(winkelbogen(*O, 100, 0, 135, ""))
+    e.append(text(O[0] + 22, O[1] - 104, "135°", GRUEN, 17, anker="start"))
+
     e = abb.ebene("krafteck", "Krafteck")
     K0 = (520, 330)
     Q = abbild(*K0, s)
@@ -422,7 +426,7 @@ def versatz_grafik():
 #   Seil 1 am linken Ende, Seil 2 bei 3/4 L, Gewicht G in der Mitte  ->  S1 = G/3, S2 = 2G/3
 # =====================================================================
 def traeger_seile():
-    abb = Abbildung(1060, 440, "Träger an zwei Seilen")
+    abb = Abbildung(1200, 440, "Träger an zwei Seilen")
     yd, yb, L = 50, 230, 360
     t = 6                                          # halbe Balkendicke
 
@@ -462,6 +466,19 @@ def traeger_seile():
         e.append(schnitt(x - 20, yb2 - 55, x + 20, yb2 - 55))
         e.append(kraft(x, yb2 - 55, 90, f"S_{n}", laenge=48, ziehend=True, label_seite=1))
     e.append(kraft(f1 + L / 2, yb2, -90, "G", laenge=70, ziehend=True, label_seite=-1))
+
+    e = abb.ebene("summe", "Summe der Kräfte: Krafteck")
+    G = 160                                       # px für G
+    x0, y0 = 1080, 330
+    d = 26
+    e.append(vektor(x0, y0, x0, y0 - G / 3, "S_1", lx=-18))
+    e.append(vektor(x0 + d, y0 - G / 3, x0 + d, y0 - G, "S_2", lx=-20))
+    e.append(linie(x0, y0 - G / 3, x0 + d, y0 - G / 3, GRAU, STRICH["duenn"], strich="2 2"))
+    e.append(vektor(x0 + 2 * d, y0 - G, x0 + 2 * d, y0, "G", lx=18))
+    e.append(linie(x0 + d, y0 - G, x0 + 2 * d, y0 - G, GRAU, STRICH["duenn"], strich="2 2"))
+    e.append(linie(x0 + 2 * d, y0, x0, y0, GRAU, STRICH["duenn"], strich="2 2"))
+    e.append(text(x0 + d, y0 + 26, "[Krafteck]", "#555555", 14, italic=False))
+    e.append(text(x0 + d, y0 + 46, "F_R = 0", ROT, 16))
 
     e = abb.ebene("mass", "Bemaßung")
     e.append(mass(f1, yb2 + t, f1 + L / 2, yb2 + t, "L/2", abstand=-92))
