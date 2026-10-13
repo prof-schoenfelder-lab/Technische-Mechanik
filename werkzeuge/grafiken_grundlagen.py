@@ -930,7 +930,7 @@ def mast_gleichgewicht():
 
 # =====================================================================
 # Einstieg Moment: Spielplatz-Wippe
-#   G1 = 400 N bei a1 = 1,2 m links, G2 = 300 N bei a2 = 1,6 m rechts → G1 a1 = G2 a2 = 480 Nm
+#   F_G1 = 400 N bei a1 = 1,2 m links, F_G2 = 300 N bei a2 = 1,6 m rechts → F_G1 a1 = F_G2 a2 = 480 Nm
 # =====================================================================
 def wippe():
     abb = Abbildung(760, 370, "Spielplatz-Wippe")
@@ -955,8 +955,8 @@ def wippe():
     e.append(text(D[0] + 14, D[1] + 22, "D", "#000000", 17, anker="start"))
 
     e = abb.ebene("kraefte", "Gewichtskräfte und Hebelarme")
-    e.append(kraft(x1, D[1] + 5, -90, "G_1", laenge=80, ziehend=True, label_seite=-1))
-    e.append(kraft(x2, D[1] + 5, -90, "G_2", laenge=60, ziehend=True, label_seite=1))
+    e.append(kraft(x1, D[1] + 5, -90, "F_{G1}", laenge=80, ziehend=True, label_seite=-1))
+    e.append(kraft(x2, D[1] + 5, -90, "F_{G2}", laenge=60, ziehend=True, label_seite=1))
     e.append(mass(x1, 75, D[0], 75, "a_1", abstand=0, hilfslinien=False))
     e.append(mass(D[0], 75, x2, 75, "a_2", abstand=0, hilfslinien=False))
     for x, y_bis in ((x1, 92), (x2, 102)):
@@ -964,13 +964,14 @@ def wippe():
     e.append(linie(D[0], 65, D[0], D[1] - 8, FARBE["mass"], STRICH["duenn"], strich="4 3"))
 
     e = abb.ebene("momente", "Drehwirkungen um D")
-    e.append(moment(*D, "", gegen_uhrzeiger=True, r=262, start=164, bogen=30))
-    e.append(text(115, 305, "M_1 = G_1 a_1", ROT, 17, anker="middle"))
-    e.append(moment(*D, "", gegen_uhrzeiger=False, r=290, start=16, bogen=30))
-    e.append(text(655, 320, "M_2 = G_2 a_2", ROT, 17, anker="middle"))
+    # kleine runde Drehpfeile um D: links gegen, rechts im Uhrzeigersinn
+    e.append(moment(*D, "", gegen_uhrzeiger=True, r=44, start=100, bogen=140))
+    e.append(text(D[0] - 54, D[1] - 40, "M_1 = F_{G1} a_1", ROT, 17, anker="end"))
+    e.append(moment(*D, "", gegen_uhrzeiger=False, r=44, start=80, bogen=140))
+    e.append(text(D[0] + 54, D[1] - 40, "M_2 = F_{G2} a_2", ROT, 17, anker="start"))
 
     e = abb.ebene("gleichgewicht", "Gleichgewicht der Momente")
-    e.append(text(D[0], 300, "G_1 a_1 = G_2 a_2", "#000000", 19))
+    e.append(text(D[0], 300, "F_{G1} a_1 = F_{G2} a_2", "#000000", 19))
     e.append(text(D[0], 330, "400 N · 1,2 m = 300 N · 1,6 m", "#444444", 16, italic=False))
     return abb.speichern(ZIEL / "wippe.svg")
 

@@ -642,8 +642,8 @@ sind, sondern auch, **wo** sie sitzen. Das schwerere Kind rückt zur Mitte, dann
 
 Auf die Wippe wirken die Gewichtskräfte der Kinder:
 
-- $G_1 = 400$ N im Abstand $a_1 = 1{,}2$ m links von $D$,
-- $G_2 = 300$ N im Abstand $a_2 = 1{,}6$ m rechts von $D$.
+- $F_{G1} = 400$ N im Abstand $a_1 = 1{,}2$ m links von $D$,
+- $F_{G2} = 300$ N im Abstand $a_2 = 1{,}6$ m rechts von $D$.
 
 Die Abstände $a_1$ und $a_2$ zwischen dem Drehpunkt und den Wirkungslinien der Kräfte heißen
 **Hebelarme**.
@@ -658,8 +658,8 @@ $$
 M = \text{Kraft} \cdot \text{Hebelarm}
 $$
 
-- $G_1$ dreht **gegen** den Uhrzeigersinn: $M_1 = G_1\,a_1 = 480$ Nm.
-- $G_2$ dreht **im** Uhrzeigersinn: $M_2 = G_2\,a_2 = 480$ Nm.
+- $F_{G1}$ dreht **gegen** den Uhrzeigersinn: $M_1 = F_{G1}\,a_1 = 480$ Nm.
+- $F_{G2}$ dreht **im** Uhrzeigersinn: $M_2 = F_{G2}\,a_2 = 480$ Nm.
 
 Zählen wir gegen den Uhrzeigersinn positiv, ist die Summe der Momente $M_1 - M_2$.
 :::
@@ -670,14 +670,14 @@ Zählen wir gegen den Uhrzeigersinn positiv, ist die Summe der Momente $M_1 - M_
 Die Wippe bleibt in Ruhe, wenn sich die Drehwirkungen aufheben:
 
 $$
-G_1\,a_1 - G_2\,a_2 = 0
+F_{G1}\,a_1 - F_{G2}\,a_2 = 0
 \quad\Rightarrow\quad
 400\ \text{N}\cdot 1{,}2\ \text{m} = 300\ \text{N}\cdot 1{,}6\ \text{m}
 $$
 
 Das leichtere Kind gleicht sein geringeres Gewicht durch den **längeren Hebelarm** aus.
 
-Die Kräfte allein entscheiden das nicht: Das Lager in $D$ trägt in jedem Fall $G_1 + G_2 = 700$ N.
+Die Kräfte allein entscheiden das nicht: Das Lager in $D$ trägt in jedem Fall $F_{G1} + F_{G2} = 700$ N.
 Ob sich die Wippe dreht, sagt erst das Moment.
 :::
 
