@@ -321,7 +321,7 @@ $$
 $$
 :::
 
-::: {.schritt zeige="system resultierende krafteck" zoom="30 40 690 360"}
+::: {.schritt zeige="system resultierende krafteck" zoom="30 40 650 360"}
 ### Grafisch: das Krafteck
 
 Man hängt die Kraftpfeile **maßstäblich** aneinander, Spitze an Fuß. Die Resultierende führt vom

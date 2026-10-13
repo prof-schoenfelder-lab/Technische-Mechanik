@@ -232,7 +232,7 @@ def axiome():
 #   F1 = 20 N unter 30°, F2 = 30 N unter 135°
 # =====================================================================
 def resultierende_zwei_kraefte():
-    abb = Abbildung(720, 400, "Resultierende zweier Kräfte")
+    abb = Abbildung(680, 400, "Resultierende zweier Kräfte")
     s = 6.0                                  # px je N
     O = (250, 320)
     P = abbild(*O, s)
@@ -258,15 +258,15 @@ def resultierende_zwei_kraefte():
     e.append(vektor(*P(F2[0], 0), *P(*F2), "F_{2y}", gestrichelt=True, breite=1.4, lx=-28, groesse=16))
 
     e = abb.ebene("krafteck", "Krafteck")
-    K0 = (560, 330)
+    K0 = (520, 330)
     Q = abbild(*K0, s)
     e.append(hinweis(K0[0] - 30, K0[1] + 40, "Krafteck", anker="middle"))
     e.append(vektor(*K0, *Q(*F1), "F_1", ly=18))
     e.append(vektor(*Q(*F1), *Q(*FR), "F_2", lx=18, ly=-4))
+    e.append(vektor(*K0, *Q(*FR), "F_R", farbe=ROT, lx=-22, breite=2.6))
     e.append(punkt(*K0))
 
     e = abb.ebene("resultierende", "Resultierende")
-    e.append(vektor(*K0, *Q(*FR), "F_R", farbe=ROT, lx=-22, breite=2.6))
     e.append(vektor(*O, *P(*FR), "F_R", farbe=ROT, lx=20, ly=-40, breite=2.6))
     e.append(winkelbogen(*O, 34, 0, math.degrees(math.atan2(FR[1], FR[0])), ""))
     e.append(text(O[0] + 12, O[1] - 46, "α_R", GRUEN, 16, anker="start"))
