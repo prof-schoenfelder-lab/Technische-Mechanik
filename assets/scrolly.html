@@ -98,11 +98,11 @@
       svg.dataset.ziel = vb.join(" ");
     }
 
-    // Knopf: aktuellen Schritt als Bild (für eigene Notizen, z. B. GoodNotes)
+    // Knopf: aktuellen Schritt als Bild (für eigene Notizen)
     const knopfBild = document.createElement("button");
     knopfBild.type = "button";
     knopfBild.className = "scrolly-bild";
-    knopfBild.title = "Diesen Schritt als Bild kopieren, teilen oder speichern (für eigene Notizen)";
+    knopfBild.title = "Diesen Schritt als Bild kopieren oder speichern (für eigene Notizen)";
     knopfBild.textContent = "Bild";
     knopfBild.addEventListener("click", () => window.tmBildDialog && window.tmBildDialog(sc, svg));
     svg.parentNode.appendChild(knopfBild);
@@ -111,7 +111,7 @@
   // ---------------------------------------------------------------- Bild-Export
   // Klont die Grafik im aktuellen Zustand (nur sichtbare Ebenen, Endausschnitt), bettet die
   // Schriften ein und rendert sie als PNG. Der Dialog zeigt das fertige Bild, damit Kopieren und
-  // Teilen direkt im Klick passieren (Safari verlangt das).
+  // Speichern direkt im Klick passieren (Safari verlangt das).
   let schriftCSS = null;
   async function schriften() {
     if (schriftCSS !== null) return schriftCSS;
@@ -185,16 +185,13 @@
     const karte = dlg.querySelector(".bild-karte");
     if (!blob) { karte.querySelector(".bild-status").textContent = "Das Bild konnte nicht erstellt werden."; return; }
     const name = dateiname(sc);
-    const datei = new File([blob], name, { type: "image/png" });
     const url = URL.createObjectURL(blob);
-    const teilenGeht = navigator.canShare && navigator.canShare({ files: [datei] });
     karte.innerHTML = `
       <img src="${url}" alt="Grafik des aktuellen Schritts" draggable="true">
-      <p class="bild-hinweis">Kopieren und in Ihre Notizen (z. B. GoodNotes) einfügen${teilenGeht ? ", über „Teilen“ direkt an die App senden" : ""}
-        oder das Bild mit dem Finger bzw. der Maus in die Notiz ziehen.</p>
+      <p class="bild-hinweis">Kopieren und in Ihre Notizen einfügen, als Datei speichern oder das Bild
+        mit dem Finger bzw. der Maus direkt in die Notizen ziehen.</p>
       <div class="bild-knoepfe">
         <button type="button" data-aktion="kopieren">Kopieren</button>
-        ${teilenGeht ? '<button type="button" data-aktion="teilen">Teilen …</button>' : ""}
         <a href="${url}" download="${name}">Speichern</a>
         <button type="button" data-aktion="zu">Schließen</button>
       </div>
@@ -206,11 +203,8 @@
       if (a === "kopieren") {
         try {
           await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
-          status.textContent = "Kopiert. Jetzt in GoodNotes einfügen.";
+          status.textContent = "Kopiert. Jetzt in Ihre Notizen einfügen.";
         } catch (err) { status.textContent = "Kopieren ist hier nicht möglich. Bitte „Speichern“ oder Ziehen verwenden."; }
-      }
-      if (a === "teilen") {
-        try { await navigator.share({ files: [datei], title: name }); } catch (err) { /* abgebrochen */ }
       }
     });
   };
