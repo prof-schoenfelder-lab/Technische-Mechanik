@@ -48,7 +48,7 @@ jobs:
           if ls _site/seminar/*-loesungen* 2>/dev/null; then
             echo "Musterlösung in _site gefunden – Abbruch"; exit 1
           fi
-          grep -v '^#' entwuerfe.txt | sed 's/\.qmd$/.html/' | while read -r f; do
+          grep -v '^#' entwuerfe.txt | sed -e 's/\.qmd$/.html/' -e 's/\.py$//' | while read -r f; do
             if [ -n "$f" ] && [ -e "_site/$f" ]; then echo "Entwurf $f in _site – Abbruch"; exit 1; fi
           done
 
