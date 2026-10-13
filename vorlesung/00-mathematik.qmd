@@ -15,9 +15,6 @@ Körpern rechnen dürfen.
 Nach jedem Abschnitt folgen kurze **Übungen**. Rechnen Sie sie auf Papier, das Ergebnis können Sie
 aufklappen.
 
-::: {.content-visible when-format="html"}
-**Skript:** Diese Vorlesung gibt es auch [als PDF](00-mathematik.pdf) zum Ausdrucken und Nachlesen.
-:::
 :::
 
 ## Sinus, Kosinus und Tangens am Einheitskreis

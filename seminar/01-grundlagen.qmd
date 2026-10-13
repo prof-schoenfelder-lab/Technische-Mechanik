@@ -25,8 +25,8 @@ format:
 1. Lösen Sie die Aufgaben **auf Papier**: Skizze, Freikörperbild, Koordinatensystem, Gleichungen.
    [Aufgaben als PDF](01-grundlagen.pdf)
 2. **Kontrollieren** Sie Ihre Ergebnisse mit den Ergebnissen unten.
-3. In den interaktiven Notebooks [Resultierende](../notebooks/resultierende/index.html){target="_blank"} und
-   [Gleichgewicht](../notebooks/gleichgewicht/index.html){target="_blank"} können Sie Kräfte und Winkel verändern. Sagen Sie die Wirkung **vorher** voraus.
+3. Bei Aufgabe 1.3 können Sie im interaktiven Notebook die Kraft $F$ verändern. Sagen Sie die Wirkung
+   **vorher** voraus.
 :::
 :::
 
@@ -41,7 +41,12 @@ gemessen. Momente zählen gegen den Uhrzeigersinn positiv.
 
 {{< include _aufgaben-01/kiste.qmd >}}
 
-*Im Notebook „Gleichgewicht“ können Sie bei Aufgabe 1.3 die Kraft $F$ verändern und beobachten, wie Auslenkung und Seilkraft wachsen.*
+::: {.content-visible when-format="html"}
+::: {.notebook titel="Ausprobieren: Kiste am Seil" src="../notebooks/kiste/index.html"}
+Verändern Sie die Kraft $F$, die Masse und die zulässige Seilkraft und beobachten Sie, wie Hubhöhe und
+Seilkraft wachsen. Rechnen Sie zuerst selbst und prüfen Sie dann hier nach.
+:::
+:::
 
 {{< include _aufgaben-01/scheibe.qmd >}}
 
@@ -50,8 +55,6 @@ gemessen. Momente zählen gegen den Uhrzeigersinn positiv.
 {{< include _aufgaben-01/autokran.qmd >}}
 
 {{< include _aufgaben-01/bolzen.qmd >}}
-
-{{< include _aufgaben-01/mast.qmd >}}
 
 {{< include _aufgaben-01/wirkungslinien.qmd >}}
 
@@ -98,18 +101,12 @@ $\alpha_R = 253{,}4^\circ$ (III. Quadrant)
 
 ::: {.callout-tip collapse="true"}
 ## Aufgabe 1.7
-a) $\sin\alpha = 0{,}777$, $\alpha = 51{,}0^\circ$ · b) zwei: auch $\alpha = 129{,}0^\circ$ (Seil $F_3$ dann
-nach oben gerichtet) · c) $R = 7{,}85\,\text{kN}$ bzw. $4{,}07\,\text{kN}$ · d) $F_{3,\text{min}} = 2{,}33\,\text{kN}$
-:::
-
-::: {.callout-tip collapse="true"}
-## Aufgabe 1.8
 $F_4 = -22{,}7\,\text{N}$, $F_5 = 57{,}3\,\text{N}$ (Kräfte in Richtung $\alpha_4$ bzw. $\alpha_5$ gezählt).
 Das Minuszeichen heißt: $\vec F_4$ zeigt nach links unten.
 :::
 
 ::: {.callout-tip collapse="true"}
-## Aufgabe 1.9
+## Aufgabe 1.8
 $M_T = F\,l_K\cos\alpha = 68{,}9\,\text{Nm}$ · $F_K = 919\,\text{N}$ · $M_R = 33{,}1\,\text{Nm}$ ·
 $F_V = 90{,}7\,\text{N}$
 :::

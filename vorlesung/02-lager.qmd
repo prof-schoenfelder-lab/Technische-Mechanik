@@ -12,8 +12,6 @@ In dieser Vorlesung lernen Sie, welche Lasten auf ein Bauteil wirken können, wi
 
 ::: {.content-visible when-format="html"}
 Tipp: Mit **Bild↓ / Bild↑** oder **→ / ←** springen Sie von Schritt zu Schritt; Taste **B** schaltet den Beamer-Modus.
-
-**Skript:** Diese Vorlesung gibt es auch [als PDF](02-lager.pdf) zum Ausdrucken und Nachlesen.
 :::
 :::
 

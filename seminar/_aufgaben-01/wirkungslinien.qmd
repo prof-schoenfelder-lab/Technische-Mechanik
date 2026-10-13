@@ -1,4 +1,4 @@
-### Aufgabe 1.8 · Gleichgewicht mit zwei vorgegebenen Wirkungslinien
+### Aufgabe 1.7 · Gleichgewicht mit zwei vorgegebenen Wirkungslinien
 
 ![](../grafiken/grundlagen/aufgabe-b01-5.svg){width=50%}
 

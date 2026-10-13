@@ -27,6 +27,10 @@ def _(mo):
     Voreingestellt ist das Beispiel aus der Vorlesung: $F_1 = 20$ N unter $30^\circ$, $F_2 = 30$ N unter $135^\circ$.
 
     > Überlegen Sie **vor** jeder Änderung: Wohin dreht sich die Resultierende, wird sie größer oder kleiner?
+    > Stellen Sie die drei Kräfte so ein, dass sich das **Krafteck schließt**, also $F_R = 0$ wird.
+
+    **Eigene Rechnung prüfen:** Wählen Sie beliebige Beträge und Winkel, rechnen Sie $F_R$ und $\alpha_R$ zuerst
+    von Hand aus und vergleichen Sie dann mit der Tabelle unten.
     """)
     return
 

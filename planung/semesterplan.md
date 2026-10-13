@@ -68,12 +68,12 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
   | 1.4 | Scheibe mit drei Kräften | G 1.2.1 | $F_R = 3927$ N, $\alpha_R = 4{,}64^\circ$, $M_R^{(0)} = -7535$ Nm |
   | 1.5 | Autokran (Kippen) | B01-6 | $\lvert DE\rvert_\text{min} = 2{,}3$ m, $F_{3,\text{max}} = 40{,}25$ kN |
   | 1.6 | Bolzen mit vier Kräften, **räumliche Darstellung** (Draufsicht selbst zeichnen; auf der Webseite aufklappbar zur Kontrolle) | B01-4 | $F_R = 2399$ N, $\alpha_R = 253{,}4^\circ$ |
-  | 1.7 | Mast mit drei Seilen | B01-7 | $\alpha = 51{,}0^\circ$ (auch $129{,}0^\circ$), $R = 7{,}85$ kN, $F_{3,\text{min}} = 2{,}33$ kN |
-  | 1.8 | Gleichgewicht mit zwei Wirkungslinien | B01-5 | $F_4 = -22{,}7$ N, $F_5 = 57{,}3$ N |
-  | 1.9 | Fahrradantrieb | G 1.2.4 | $M_T = 68{,}9$ Nm, $F_K = 919$ N, $F_V = 90{,}7$ N |
+  | 1.7 | Gleichgewicht mit zwei Wirkungslinien | B01-5 | $F_4 = -22{,}7$ N, $F_5 = 57{,}3$ N |
+  | 1.8 | Fahrradantrieb | G 1.2.4 | $M_T = 68{,}9$ Nm, $F_K = 919$ N, $F_V = 90{,}7$ N |
 
 - **Musterlösungen:** `seminar/01-grundlagen-loesungen.qmd` → `loesungen/01-grundlagen-loesungen.pdf` (nur lokal; Aufgabentexte aus `seminar/_aufgaben-01/*.qmd`)
-- **Notebook:** `notebooks/grundlagen.py` – Krafteck live (3 Kräfte), Kiste am Seil (Aufgabe 1.3) mit $h(F)$ und $S_a(F)$; ohne Ergebnisprüfung
+- **Mast mit drei Seilen (B01-7)** jetzt vollständig in der Vorlesung (Übergang zum Gleichgewicht, Schnitt am Boden), nicht mehr im Seminar
+- **Notebooks** (in die Seiten eingebettet): `resultierende.py` (Krafteck, 3 Kräfte), `mast.py` (Gleichgewicht am Mast) und `masse-am-seil.py` in der Vorlesung; `kiste.py` (Aufgabe 1.3) im Seminar
 - **Quellen:** Transkript 1; Gross Kap. 1–3; Dankert Kap. 1–3
 - **Umsetzung:** `vorlesung/01-grundlagen.qmd`, `seminar/01-grundlagen.qmd`, Grafiken `grafiken/grundlagen/` aus `werkzeuge/grafiken_grundlagen.py` (Lösungsgrafiken: `werkzeuge/grafiken_grundlagen_loesungen.py`, nur lokal)
 - **Wünsche/Notizen:**

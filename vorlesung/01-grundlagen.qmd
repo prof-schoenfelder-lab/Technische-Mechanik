@@ -12,8 +12,6 @@ Alles, was in diesem Semester folgt, baut darauf auf.
 ::: {.content-visible when-format="html"}
 Tipp: Mit **Bild↓ / Bild↑** oder **→ / ←** springen Sie von Schritt zu Schritt; Taste **B** schaltet den Beamer-Modus.
 Hinter **„Ausführlicher“** finden Sie zu vielen Schritten eine längere Erklärung zum Nachlesen.
-
-**Skript:** Diese Vorlesung gibt es auch [als PDF](01-grundlagen.pdf) zum Ausdrucken und Nachlesen.
 :::
 :::
 
@@ -412,27 +410,64 @@ Resultierende und Krafteck. Überlegen Sie **vorher**, wohin sich $F_R$ dreht.
 ::: {.schritt zeige="system" zoom="40 30 320 320"}
 ### Beispiel: Mast mit drei Seilen
 
-An der Spitze eines Mastes ziehen drei Seile mit den Kräften $F_1$, $F_2$ und $F_3$
-(Aufgabe 1.7 im Seminar). Alle Wirkungslinien gehen durch die Mastspitze: ein **zentrales
-Kraftsystem**.
+An der Spitze eines Mastes ziehen drei Seile. Alle Wirkungslinien gehen durch die Mastspitze:
+ein **zentrales Kraftsystem**.
 
-Der Winkel $\alpha$ ist so gewählt, dass die Resultierende der Seilkräfte genau in Richtung des
-Mastes zeigt. Wie groß er ist, berechnen Sie in Aufgabe 1.7.
+**Gegeben:** $F_1 = 5$ kN, $F_2 = 4$ kN, $F_3 = 3$ kN, Winkel zur Mastachse wie skizziert
+
+**Gesucht:**
+
+1. der Winkel $\alpha$, unter dem die Resultierende der Seilkräfte **in Richtung des Mastes** zeigt,
+2. der Betrag dieser Resultierenden,
+3. die Kraft, mit der der **Boden** den Mast hält.
+:::
+
+::: {.schritt zeige="system" zoom="40 30 320 320"}
+### ① Winkel $\alpha$
+
+$F_R$ zeigt in Mastrichtung, wenn die **waagerechte** Komponente verschwindet
+($x$ nach rechts, Winkel von der Mastachse gemessen):
+
+$$
+F_{Rx} = -F_1\sin 60^\circ + F_2\sin 30^\circ + F_3\sin\alpha = 0
+$$
+
+$$
+\sin\alpha = \frac{F_1\sin 60^\circ - F_2\sin 30^\circ}{F_3} = \frac{4{,}330 - 2{,}000}{3} = 0{,}777
+\quad\Rightarrow\quad \alpha = 51{,}0^\circ
+$$
+
+::: {.vertiefung titel="Ausführlicher: Zwei Lösungen und eine Mindestkraft"}
+Der Sinus nimmt zwischen $0^\circ$ und $180^\circ$ jeden Wert zweimal an. Auch $\alpha = 129{,}0^\circ$ erfüllt die
+Gleichung. Dann zeigt Seil 3 schräg **nach oben**; es müsste oberhalb der Mastspitze verankert sein.
+
+Eine Lösung gibt es nur, solange $\sin\alpha \le 1$ ist. Daraus folgt die kleinste mögliche Seilkraft:
+$F_{3,\min} = F_1\sin 60^\circ - F_2\sin 30^\circ = 2{,}33$ kN, dann mit $\alpha = 90^\circ$.
+:::
 :::
 
 ::: {.schritt zeige="system resultierende" zoom="40 30 480 320"}
-### Resultierende der Seilkräfte
+### ② Resultierende der Seilkräfte
 
-Wie eben setzen wir die Seilkräfte zur Resultierenden $F_R$ zusammen. Sie zeigt senkrecht nach unten,
-**in den Mast hinein**.
+Senkrechte Komponente ($y$ nach oben):
 
-Würden am Mast nur die Seilkräfte wirken, wäre $F_R \neq 0$. Nach Newton ($F_R = m\,a$) würde der
-Mast nach unten **beschleunigt**, er würde in den Boden gedrückt. Er steht aber still. Es muss also
-noch eine Kraft geben, die wir bisher nicht sehen.
+$$
+\begin{aligned}
+F_{Ry} &= -F_1\cos 60^\circ - F_2\cos 30^\circ - F_3\cos\alpha\\
+&= -2{,}500 - 3{,}464 - 1{,}889 = -7{,}85\ \text{kN}
+\end{aligned}
+$$
+
+$F_R = 7{,}85$ kN greift in der Mastspitze an und zeigt senkrecht nach unten, **in den Mast hinein**.
+Das Krafteck rechts zeigt dasselbe grafisch.
+
+Würden am Mast nur die Seilkräfte wirken, wäre $F_R \neq 0$. Nach Newton ($F_R = m\,a$) würde der Mast
+nach unten **beschleunigt**. Er steht aber still. Es muss also noch eine Kraft geben, die wir bisher
+nicht sehen.
 :::
 
 ::: {.schritt zeige="freischnitt" zoom="600 30 300 350"}
-### Schnitt am Boden
+### ③ Schnitt am Boden
 
 Wir schneiden den Mast **vom Boden** frei:
 
@@ -445,10 +480,10 @@ Mastes vernachlässigen wir.
 :::
 
 ::: {.schritt zeige="freischnitt krafteck-zu" zoom="600 30 560 350"}
-### Ruhe heißt: $F_R = 0$
+### ④ Ruhe heißt: $F_R = 0$
 
 Jetzt stehen **alle** Kräfte am Mast im Freikörperbild. Weil der Mast ruht, muss ihre Resultierende
-verschwinden. Grafisch: Das **Krafteck schließt sich**. In Komponenten:
+verschwinden. Grafisch: Das **Krafteck schließt sich**.
 
 $$
 \begin{aligned}
@@ -457,8 +492,13 @@ $$
 \end{aligned}
 $$
 
-Die erste Gleichung liefert $\alpha$, die zweite die Bodenkraft $F_B$: Sie ist genau so groß wie die
-Resultierende der Seilkräfte. Der Mast steht nur, weil der **Boden** diese Kraft aufnimmt.
+Die erste Gleichung ist erfüllt, dafür haben wir $\alpha$ gewählt. Aus der zweiten:
+
+$$
+F_B = 7{,}85\ \text{kN}
+$$
+
+Der Mast steht nur, weil der **Boden** genau diese Kraft aufnimmt. Er wird dabei auf Druck beansprucht.
 :::
 
 ::: {.schritt zeige="freischnitt krafteck-zu" dimmen="freischnitt" zoom="600 30 560 350"}
@@ -476,6 +516,11 @@ Boden hätten wir $F_B$ vergessen.
 :::
 
 ::::
+
+::: {.notebook titel="Ausprobieren: Mast mit drei Seilen" src="../notebooks/mast/index.html"}
+Stellen Sie $F_3$, $\alpha$ und die Bodenkraft $F_B$ so ein, dass sich das Krafteck schließt. Finden Sie
+beide Winkel? Was passiert ohne Boden?
+:::
 
 :::: {.scrolly svg="../grafiken/grundlagen/seil-masse.svg"}
 
@@ -573,14 +618,74 @@ $$
 Damit lassen sich höchstens **zwei** Unbekannte bestimmen.
 :::
 
-::: {.notebook titel="Ausprobieren: Von der Resultierenden zum Gleichgewicht" src="../notebooks/gleichgewicht/index.html"}
-Stellen Sie an einem Mast Seilwinkel und Bodenkraft so ein, dass sich das Krafteck schließt, und lenken
-Sie die Masse am Seil aus. Im dritten Teil verändern Sie bei der Kiste aus Aufgabe 1.3 die Kraft $F$.
+::: {.notebook titel="Ausprobieren: Masse am Seil" src="../notebooks/masse-am-seil/index.html"}
+Lenken Sie die Masse aus und beobachten Sie, wie $F$ und $F_S$ mit dem Winkel wachsen. Prüfen Sie für
+eigene Werte von $m$ und $\alpha$ Ihre Rechnung nach.
 :::
 
 ## Das Moment
 
-Das Moment kennen Sie aus [Veranstaltung 0](00-mathematik.qmd#das-moment). Zur Erinnerung:
+:::: {.scrolly svg="../grafiken/grundlagen/wippe.svg"}
+
+::: {.schritt zeige="wippe" zoom="40 40 680 260"}
+### Beispiel: Spielplatz-Wippe
+
+Zwei Kinder sitzen auf einer Wippe, die in der Mitte im Punkt $D$ drehbar gelagert ist.
+Kind 1 ist schwerer als Kind 2.
+
+Kippt die Wippe nach links? Nicht unbedingt: Es kommt nicht nur darauf an, **wie schwer** die Kinder
+sind, sondern auch, **wo** sie sitzen. Das schwerere Kind rückt zur Mitte, dann geht es.
+:::
+
+::: {.schritt zeige="wippe kraefte" zoom="40 40 680 260"}
+### Kräfte und Hebelarme
+
+Auf die Wippe wirken die Gewichtskräfte der Kinder:
+
+- $G_1 = 400$ N im Abstand $a_1 = 1{,}2$ m links von $D$,
+- $G_2 = 300$ N im Abstand $a_2 = 1{,}6$ m rechts von $D$.
+
+Die Abstände $a_1$ und $a_2$ zwischen dem Drehpunkt und den Wirkungslinien der Kräfte heißen
+**Hebelarme**.
+:::
+
+::: {.schritt zeige="wippe kraefte momente" zoom="40 40 680 330"}
+### Drehwirkung: Kraft mal Hebelarm
+
+Jede Gewichtskraft versucht, die Wippe um $D$ zu **drehen**. Diese Drehwirkung heißt **Moment**:
+
+$$
+M = \text{Kraft} \cdot \text{Hebelarm}
+$$
+
+- $G_1$ dreht **gegen** den Uhrzeigersinn: $M_1 = G_1\,a_1 = 480$ Nm.
+- $G_2$ dreht **im** Uhrzeigersinn: $M_2 = G_2\,a_2 = 480$ Nm.
+
+Zählen wir gegen den Uhrzeigersinn positiv, ist die Summe der Momente $M_1 - M_2$.
+:::
+
+::: {.schritt zeige="wippe kraefte momente gleichgewicht" dimmen="momente" zoom="40 40 680 330"}
+### Gleichgewicht der Momente
+
+Die Wippe bleibt in Ruhe, wenn sich die Drehwirkungen aufheben:
+
+$$
+G_1\,a_1 - G_2\,a_2 = 0
+\quad\Rightarrow\quad
+400\ \text{N}\cdot 1{,}2\ \text{m} = 300\ \text{N}\cdot 1{,}6\ \text{m}
+$$
+
+Das leichtere Kind gleicht sein geringeres Gewicht durch den **längeren Hebelarm** aus.
+
+Die Kräfte allein entscheiden das nicht: Das Lager in $D$ trägt in jedem Fall $G_1 + G_2 = 700$ N.
+Ob sich die Wippe dreht, sagt erst das Moment.
+:::
+
+::::
+
+Bei der Wippe stehen die Kräfte **senkrecht** auf dem Balken, der Hebelarm ist einfach der Abstand
+zum Drehpunkt. Allgemein kann eine Kraft schräg angreifen. Das Moment kennen Sie aus
+[Veranstaltung 0](00-mathematik.qmd#das-moment). Zur Erinnerung:
 
 :::: {.scrolly svg="../grafiken/mathematik/moment.svg"}
 
@@ -896,7 +1001,8 @@ begleitet Sie durch die ganze Statik. In Woche 2 wenden wir es auf **Lager** und
 
 **Weiter:** [Aufgaben zu Woche 1](../seminar/01-grundlagen.qmd) ·
 Notebooks: [Resultierende](../notebooks/resultierende/index.html){target="_blank"} ·
-[Gleichgewicht](../notebooks/gleichgewicht/index.html){target="_blank"}
+[Mast](../notebooks/mast/index.html){target="_blank"} ·
+[Masse am Seil](../notebooks/masse-am-seil/index.html){target="_blank"}
 :::
 
 ::::

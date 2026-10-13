@@ -12,8 +12,6 @@ beanspruchen. Sie sind die Grundlage für die gesamte Festigkeitslehre.
 ::: {.content-visible when-format="html"}
 Tipp: Mit **Bild↓ / Bild↑** oder **→ / ←** springen Sie von Schritt zu Schritt; Taste **B** schaltet den Beamer-Modus.
 Hinter **„Ausführlicher“** finden Sie zu vielen Schritten eine längere Erklärung zum Nachlesen.
-
-**Skript:** Diese Vorlesung gibt es auch [als PDF](03-schnittgroessen.pdf) zum Ausdrucken und Nachlesen.
 :::
 :::
 

@@ -905,7 +905,8 @@ def mast_gleichgewicht():
     e.append(punkt(*T, 2.6))
 
     e = abb.ebene("resultierende", "Resultierende der Seilkräfte")
-    e.append(kraft(T[0] - 20, T[1] + 80, -90, "F_R", laenge=FR * s, ziehend=True, label_seite=1, label_pos=0.5,
+    # Resultierende greift im zentralen Punkt (Mastspitze) an und zeigt längs der Mastachse nach unten
+    e.append(kraft(*T, -90, "F_R", laenge=FR * s, ziehend=True, label_seite=1, label_pos=0.75, label_abstand=10,
                    farbe="#9b0000"))
     krafteck(e, 470, 60, False)
 
@@ -925,6 +926,53 @@ def mast_gleichgewicht():
     e = abb.ebene("krafteck-zu", "Geschlossenes Krafteck")
     krafteck(e, 1010, 60, True)
     return abb.speichern(ZIEL / "mast-gleichgewicht.svg")
+
+
+# =====================================================================
+# Einstieg Moment: Spielplatz-Wippe
+#   G1 = 400 N bei a1 = 1,2 m links, G2 = 300 N bei a2 = 1,6 m rechts → G1 a1 = G2 a2 = 480 Nm
+# =====================================================================
+def wippe():
+    abb = Abbildung(760, 370, "Spielplatz-Wippe")
+    D = (380, 200)
+    x1, x2 = D[0] - 180, D[0] + 240                 # 150 px je m
+
+    e = abb.ebene("wippe", "Wippe mit zwei Kindern")
+    e.append(polylinie([(D[0], D[1] + 5), (D[0] - 26, 250), (D[0] + 26, 250)], "#444444", STRICH["normal"],
+                       "#e6e6e6", schliessen=True))
+    e.append(linie(320, 250, 440, 250, "#000000", STRICH["normal"]))
+    xx = 322
+    while xx < 440:
+        e.append(linie(xx, 250, xx - 7, 257, "#000000", STRICH["duenn"]))
+        xx += 7
+    e.append(balken(120, D[1], 645, D[1], dicke=10))
+    for x, b, h, r, name in ((x1, 32, 46, 12, "Kind 1"), (x2, 26, 38, 10, "Kind 2")):
+        e.append(polylinie([(x - b / 2, D[1] - 5), (x - b / 2, D[1] - 5 - h), (x + b / 2, D[1] - 5 - h),
+                            (x + b / 2, D[1] - 5)], "#444444", STRICH["normal"], "#d9d9d9", schliessen=True))
+        e.append(kreis(x, D[1] - 5 - h - r - 1, r, "#444444", "#d9d9d9"))
+        e.append(text(x, D[1] - 5 - h - 2 * r - 16, f"[{name}]", "#000000", 16, italic=False))
+    e.append(punkt(*D, 3))
+    e.append(text(D[0] + 14, D[1] + 22, "D", "#000000", 17, anker="start"))
+
+    e = abb.ebene("kraefte", "Gewichtskräfte und Hebelarme")
+    e.append(kraft(x1, D[1] + 5, -90, "G_1", laenge=80, ziehend=True, label_seite=-1))
+    e.append(kraft(x2, D[1] + 5, -90, "G_2", laenge=60, ziehend=True, label_seite=1))
+    e.append(mass(x1, 75, D[0], 75, "a_1", abstand=0, hilfslinien=False))
+    e.append(mass(D[0], 75, x2, 75, "a_2", abstand=0, hilfslinien=False))
+    for x, y_bis in ((x1, 92), (x2, 102)):
+        e.append(linie(x, 65, x, y_bis, FARBE["mass"], STRICH["duenn"]))
+    e.append(linie(D[0], 65, D[0], D[1] - 8, FARBE["mass"], STRICH["duenn"], strich="4 3"))
+
+    e = abb.ebene("momente", "Drehwirkungen um D")
+    e.append(moment(*D, "", gegen_uhrzeiger=True, r=262, start=164, bogen=30))
+    e.append(text(115, 305, "M_1 = G_1 a_1", ROT, 17, anker="middle"))
+    e.append(moment(*D, "", gegen_uhrzeiger=False, r=290, start=16, bogen=30))
+    e.append(text(655, 320, "M_2 = G_2 a_2", ROT, 17, anker="middle"))
+
+    e = abb.ebene("gleichgewicht", "Gleichgewicht der Momente")
+    e.append(text(D[0], 300, "G_1 a_1 = G_2 a_2", "#000000", 19))
+    e.append(text(D[0], 330, "400 N · 1,2 m = 300 N · 1,6 m", "#444444", 16, italic=False))
+    return abb.speichern(ZIEL / "wippe.svg")
 
 
 # =====================================================================
@@ -1008,7 +1056,7 @@ def zusammenfassung():
 
 if __name__ == "__main__":
     for fn in (einordnung, kraft_vektor, axiome, resultierende_zwei_kraefte, seil_masse, moment_grafik, versatz_grafik,
-               traeger_seile, mast_gleichgewicht, zusammenfassung,
+               traeger_seile, mast_gleichgewicht, wippe, zusammenfassung,
                scheibe_vier_kraefte, aufgabe_1_1_3, aufgabe_1_1_4, aufgabe_1_1_5, aufgabe_1_2_1, aufgabe_1_2_4,
                aufgabe_b01_4, aufgabe_b01_5, aufgabe_b01_4_raeumlich, aufgabe_b01_6, aufgabe_b01_7):
         print(fn())
