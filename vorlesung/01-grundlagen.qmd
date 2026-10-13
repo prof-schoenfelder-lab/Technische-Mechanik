@@ -496,7 +496,7 @@ $b$ ist der Abstand der beiden Wirkungslinien. Ein Kräftepaar ist gleichwertig 
 Moment, gezeichnet als Drehpfeil.
 :::
 
-::: {.schritt zeige="kraeftepaar verschieblich" dimmen="kraeftepaar" zoom="0 40 960 290"}
+::: {.schritt zeige="kraeftepaar verschieblich" dimmen="kraeftepaar" zoom="0 40 620 500"}
 ### Ein Moment ist frei verschieblich
 
 Berechnet man das Moment eines Kräftepaars um einen **beliebigen** Punkt, kommt immer $F\,b$ heraus:
@@ -532,7 +532,7 @@ Jetzt bilden die ursprüngliche Kraft in $A$ und die **Gegenkraft** in $B$ ein *
 Abstand $a$.
 :::
 
-::: {.schritt zeige="innen nullsystem ecke" dimmen="innen nullsystem" zoom="0 30 960 290"}
+::: {.schritt zeige="innen nullsystem ecke" dimmen="innen nullsystem" zoom="0 30 640 580"}
 ### Kraft an der Ecke plus Versatzmoment
 
 Das Kräftepaar ersetzen wir durch sein Moment. Übrig bleiben:

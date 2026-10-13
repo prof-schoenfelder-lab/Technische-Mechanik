@@ -342,7 +342,7 @@ def seil_masse():
 # =====================================================================
 def moment_grafik():
     """Woche 1: Kräftepaar und freie Verschiebbarkeit des Moments."""
-    abb = Abbildung(960, 330, "Kräftepaar")
+    abb = Abbildung(620, 540, "Kräftepaar")
 
     def koerper(x0):
         return platte([(x0 + 20, 100), (x0 + 250, 100), (x0 + 250, 250), (x0 + 20, 250)])
@@ -361,17 +361,19 @@ def moment_grafik():
     e.append(text(485, 120, "M = F b", ROT, 21))
 
     e = abb.ebene("verschieblich", "Moment frei verschieblich")
-    e.append(koerper(650))
-    for (x, y) in ((720, 145), (850, 150), (780, 215)):
+    dy = 230                                     # zweite Zeile, unter dem Moment-Körper
+    e.append(text(310, 175 + dy, "[=]", "#000000", 30, italic=False))
+    e.append(platte([(370, 100 + dy), (600, 100 + dy), (600, 250 + dy), (370, 250 + dy)]))
+    for (x, y) in ((420, 145 + dy), (550, 150 + dy), (480, 215 + dy)):
         e.append(moment(x, y, "", gegen_uhrzeiger=False, r=20, start=150, bogen=280))
         e.append(text(x + 26, y - 22, "M", ROT, 19, anker="start"))
-    e.append(hinweis(785, 290, "überall dieselbe Wirkung", anker="middle", groesse=16))
+    e.append(hinweis(485, 280 + dy, "überall dieselbe Wirkung", anker="middle", groesse=16))
     return abb.speichern(ZIEL / "moment.svg")
 
 
 def versatz_grafik():
     """Parallelverschiebung einer Kraft: F im Inneren = F an der Ecke + Versatzmoment."""
-    abb = Abbildung(960, 330, "Parallelverschiebung einer Kraft")
+    abb = Abbildung(620, 610, "Parallelverschiebung einer Kraft")
 
     def koerper(x0):
         return platte([(x0 + 20, 100), (x0 + 250, 100), (x0 + 250, 250), (x0 + 20, 250)])
@@ -398,19 +400,20 @@ def versatz_grafik():
     e.append(kraft(xB2, 100, 90, "F", laenge=65, label_seite=1))           # von unten an B (Gegenkraft)
     e.append(punkt(xB2, 100))
     e.append(text(xB2 + 10, 92, "B", "#000000", 17, anker="start"))
-    e.append(text((xA2 + xB2) / 2 - 10, 305, "[F in A und Gegenkraft in B: Kräftepaar]", GRUEN, 14, italic=False))
+    e.append(text(455, 300, "[F in A und Gegenkraft in B: Kräftepaar]", GRUEN, 14, italic=False))
     e.append(mass(xA2, 250, xB2, 250, "a", abstand=-16))
 
     e = abb.ebene("ecke", "Kraft an der Ecke mit Versatzmoment")
-    e.append(text(630, 175, "[=]", "#000000", 30, italic=False))
-    e.append(koerper(660))
-    xB3 = 910
-    e.append(strichpunkt(xB3, 50, xB3, 300))
-    e.append(kraft(xB3, 100, -90, "F", laenge=65, label_seite=-1))
-    e.append(punkt(xB3, 100))
-    e.append(text(xB3 + 10, 92, "B", "#000000", 17, anker="start"))
-    e.append(moment(790, 180, "", gegen_uhrzeiger=True, r=26, start=30, bogen=280))
-    e.append(text(790, 230, "M = F a", ROT, 20))
+    dy = 300                                     # zweite Zeile, unter dem Nullsystem
+    e.append(text(300, 175 + dy, "[=]", "#000000", 30, italic=False))
+    e.append(platte([(350, 100 + dy), (580, 100 + dy), (580, 250 + dy), (350, 250 + dy)]))
+    xB3 = 580
+    e.append(strichpunkt(xB3, 25 + dy, xB3, 300 + dy))
+    e.append(kraft(xB3, 100 + dy, -90, "F", laenge=65, label_seite=-1))
+    e.append(punkt(xB3, 100 + dy))
+    e.append(text(xB3 + 10, 92 + dy, "B", "#000000", 17, anker="start"))
+    e.append(moment(460, 180 + dy, "", gegen_uhrzeiger=True, r=26, start=30, bogen=280))
+    e.append(text(460, 230 + dy, "M = F a", ROT, 20))
     return abb.speichern(ZIEL / "versatz.svg")
 
 
