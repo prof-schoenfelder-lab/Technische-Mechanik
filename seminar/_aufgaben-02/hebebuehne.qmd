@@ -1,0 +1,12 @@
+### Aufgabe 2.3 · Hebebühne
+
+![](../grafiken/lager/aufgabe-1-3-4.svg){width=60%}
+
+Die Bühne einer Hebebühne ist in $B$ gelenkig gelagert und wird in $C$ von einem Hydraulikzylinder
+gestützt. Der Zylinder ist an beiden Enden gelenkig angeschlossen und selbst unbelastet.
+Die Gewichtskraft $F_G$ der Bühne greift über $C$ an, die Last $F_L$ am Bühnenende.
+Ermitteln Sie die Kräfte in $B$ und im Zylinder.
+
+**Gegeben:** $F_G$ = 400 N, $F_L$ = 1500 N, $a$ = 0,8 m, $b$ = 1,0 m, $d$ = 0,25 m, $h$ = 0,6 m
+
+*Hinweis: Welches Lager ist der Zylinder?*

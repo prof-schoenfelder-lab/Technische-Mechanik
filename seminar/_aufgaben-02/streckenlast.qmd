@@ -1,0 +1,7 @@
+### Aufgabe 2.4 · Träger mit Streckenlast und Einzelkräften
+
+![](../grafiken/lager/aufgabe-1-3-8.svg){width=75%}
+
+Ermitteln Sie die Lagerreaktionen in $A$ und $B$.
+
+**Gegeben:** $F$ = 1000 N, $q$ = 1,25 N/mm, $l$ = 0,8 m

@@ -1,0 +1,90 @@
+---
+title: "Seminar 2 · Lager und Lagerreaktionen"
+subtitle: "Technische Mechanik · Statik"
+format:
+  html: default
+  typst:
+    papersize: a4
+    margin:
+      x: 2cm
+      y: 2cm
+    fontsize: 11pt
+    mainfont: "Source Sans Pro"
+    font-paths: ["../assets/fonts"]
+    include-in-header:
+      text: |
+        #show math.equation.where(block: true): set align(left)
+        #set text(lang: "de")
+        #set page(header: align(right, image("../assets/logos/htwk-schwarz.svg", height: 0.8cm)), footer: context [#text(size: 8pt)[Technische Mechanik · Prof. Dr.-Ing. Stephan Schönfelder #h(1fr) #counter(page).display()]])
+---
+
+::: {.content-visible when-format="html"}
+::: {.merke}
+**So arbeiten Sie mit dieser Aufgabensammlung**
+
+1. Lösen Sie die Aufgaben **auf Papier**: Abzählen, Freikörperbild, Gleichgewicht, Kontrolle.
+   [Aufgaben als PDF](02-lager.pdf)
+2. **Kontrollieren** Sie Ihre Ergebnisse mit den Ergebnissen unten.
+:::
+:::
+
+Koordinaten: $x$ nach rechts, $y$ nach oben. Momente zählen gegen den Uhrzeigersinn positiv.
+Unbekannte Lagerkräfte werden in positiver Koordinatenrichtung angenommen.
+
+## Aufgaben
+
+{{< include _aufgaben-02/traeger.qmd >}}
+
+{{< include _aufgaben-02/winkel.qmd >}}
+
+{{< include _aufgaben-02/hebebuehne.qmd >}}
+
+{{< pagebreak >}}
+
+{{< include _aufgaben-02/streckenlast.qmd >}}
+
+{{< include _aufgaben-02/dreieck.qmd >}}
+
+{{< include _aufgaben-02/gelenktraeger.qmd >}}
+
+::: {.content-visible when-format="html"}
+
+## Ergebnisse zur Kontrolle
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 2.1
+$F_{AH} = 1000\,\text{N}$ · $F_{AV} = 366\,\text{N}$ · $F_B = 2366\,\text{N}$
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 2.2
+$F_{BH} = 100\,\text{N}$ · $F_{BV} = 200\,\text{N}$ · $M_B = 350\,\text{Nm}$ (gegen den Uhrzeigersinn)
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 2.3
+Zylinderkraft $F_C = 7609\,\text{N}$ (Druck) · $F_{BH} = -6606\,\text{N}$ · $F_{BV} = -1875\,\text{N}$
+(beide entgegen der positiven Achsrichtung)
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 2.4
+$F_{AH} = 0$ · $F_{AV} = 5167\,\text{N}$ · $F_B = 833\,\text{N}$
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 2.5
+$F_{AH} = 0$ · $F_{AV} = 300\,\text{N}$ · $F_B = 60\,\text{N}$
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 2.6
+$F_B = 1200\,\text{N}$ · Gelenkkräfte $|G_H| = 400\,\text{N}$, $|G_V| = 800\,\text{N}$ ·
+$F_{AH} = -400\,\text{N}$ · $F_{AV} = 560\,\text{N}$ · $M_A = 204\,\text{Nm}$
+:::
+
+:::
+
+::: {.content-visible when-format="typst"}
+*Ergebnisse zur Kontrolle finden Sie auf der Kurswebseite.*
+:::

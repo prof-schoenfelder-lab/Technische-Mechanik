@@ -78,25 +78,25 @@ Status-Kürzel: ⬜ offen · 🟨 in Arbeit · ✅ fertig · 🔁 Überarbeitung
 - **Umsetzung:** `vorlesung/01-grundlagen.qmd`, `seminar/01-grundlagen.qmd`, Grafiken `grafiken/grundlagen/` aus `werkzeuge/grafiken_grundlagen.py` (Lösungsgrafiken: `werkzeuge/grafiken_grundlagen_loesungen.py`, nur lokal)
 - **Wünsche/Notizen:**
 
-## Woche 2 · Lager- und Gelenkreaktionen, Streckenlasten 🟨
+## Woche 2 · Lager- und Gelenkreaktionen, Streckenlasten ✅ (Entwurf, bitte prüfen)
 
-- **Lernziele:** Lagerarten und Wertigkeit; statische Bestimmtheit; Lagerreaktionen ein- und mehrteiliger Systeme; Streckenlasten ersetzen; Haftbedingung
+- **Lernziele:** Verschiedene Arten der Kraft (Einzelkraft, Linienlast, Flächenlast, Volumenkraft); Lagerarten und Wertigkeit; statische Bestimmtheit; Lagerreaktionen ein- und mehrteiliger Systeme; Streckenlasten ersetzen
 - **Inhalte Vorlesung:**
-  1. Lagerarten (Los-/Festlager, Einspannung, Gelenk, Pendelstütze), Abzählkriterium $3n = a + z$
-  2. Lagerreaktionen: Rechenschema
-  3. Streckenlasten: Resultierende und Lage (Rechteck, Dreieck)
-  4. Systeme mit Gelenk
-  5. Haftung (Coulomb), Haftungskegel, Fallunterscheidung
+  1. Arten der Kräfte
+  2. Lagerarten (Los-/Festlager, Einspannung, Gelenk, Pendelstütze), Abzählkriterium $3n = a + z$
+  3. Lagerreaktionen: Rechenschema
+  4. Streckenlasten: Resultierende und Lage (Rechteck, Dreieck)
+  5. Systeme mit Gelenk
 - **Beispiele Vorlesung:**
   - B02-1 · Einfeldträger mit Kragarm ($2{,}7F$ / $0{,}3F$) – VL 2013 Teil 1
   - B02-2 · Eingespannter Balken ($-3F$, $-2{,}5FL$) – VL 2013 Teil 1
   - B02-3 · Kfz mit Anhänger – VL 2013 Teil 1
-  - B02-4 · Leiter an der Wand (Haftung) – VL 2013 Teil 4
-- **Seminar:** G 1.3.x, G 1.7.x (auswählen)
+- **Seminar:** G 1.3.1, G 1.3.2, G 1.3.4, G 1.3.8, G 1.3.9, G 1.3.11
 - **Hausaufgaben:**
 - **Fachwerke:** entfallen (Entscheidung 06.10.2026); VL 2013 Teil 2 wird nicht verwendet.
 - **Quellen:** Transkripte 1, 2, 4; Gross Kap. 5, 6, 9; Dankert Kap. 5, 6, 9
-- **Wünsche/Notizen:**
+- **Umsetzung:** `vorlesung/02-lager.qmd` (Arten der Kräfte; Lager mit Freiheitsgraden, Übersicht; statische Bestimmtheit mit Ausnahme und Zwängungsfreiheit; B02-1, B02-2; Streckenlasten; B02-3 Pkw mit Anhänger, Achse 1,2 m hinter der Kupplung → Stützlast $G_V = 417$ N; Lkw mit Deichselanhänger: Deichsel = Pendelstütze, keine Stützlast; Zusammenfassung), `seminar/02-lager.qmd` (Aufgaben 2.1–2.6 = G 1.3.1, 1.3.2, 1.3.4, 1.3.8, 1.3.9, 1.3.11), Grafiken `grafiken/lager/` aus `werkzeuge/grafiken_lager.py`, Musterlösungen lokal
+- **Wünsche/Notizen:** kfz mit anhänger - lohne ein  übergang zum lkw mit zweiachs-anhänger mit deichsel? → umgesetzt als letzter Schritt bei „Systeme mit Gelenk“
 
 ## Woche 3 · Schnittgrößen ✅ (online, Prototyp)
 
