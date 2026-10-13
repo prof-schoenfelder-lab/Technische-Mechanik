@@ -50,6 +50,17 @@ def vektor(x1, y1, x2, y2, label="", farbe=ROT, breite=STRICH["dick"], gestriche
     return gruppe(teile)
 
 
+def vlabel(x, y, name, farbe="#000000", groesse=19, anker="middle", index=""):
+    """Formelzeichen mit Vektorpfeil darüber, z. B. vlabel(..., "F") → F mit Pfeil; index wird tiefgestellt."""
+    b = 0.55 * groesse                                   # ungefähre Breite des Buchstabens
+    x0 = x - b / 2 if anker == "middle" else (x if anker == "start" else x - b - (0.45 * groesse if index else 0))
+    yp = y - 0.62 * groesse
+    teile = [text(x0, y, name + (f"_{{{index}}}" if index else ""), farbe, groesse, anker="start"),
+             linie(x0 + 0.5, yp, x0 + b + 1, yp, farbe, 1.1),
+             _spitze(x0 + b + 3, yp, 1, 0, farbe, 5, 4)]
+    return gruppe(teile)
+
+
 def strichpunkt(x1, y1, x2, y2, farbe=GRAU, breite=0.9):
     """Wirkungslinie (Strich-Punkt)."""
     return linie(x1, y1, x2, y2, farbe, breite, strich="14 4 2 4")
@@ -181,9 +192,13 @@ def _axiom(e, nr, ox, oy):
         pr = (A[0] + f1[0] + f2[0], A[1] + f1[1] + f2[1])
         e.append(linie(*p1, *pr, GRAU, STRICH["normal"], strich="5 4"))
         e.append(linie(*p2, *pr, GRAU, STRICH["normal"], strich="5 4"))
-        e.append(vektor(*A, *p1, "F_1", ly=18))
-        e.append(vektor(*A, *p2, "F_2", lx=-20))
-        e.append(vektor(*A, *pr, "F_R", lx=-16, ly=-12))
+        # ohne Koordinatensystem: Kräfte als Vektoren bezeichnen
+        e.append(vektor(*A, *p1))
+        e.append(vlabel((A[0] + p1[0]) / 2, (A[1] + p1[1]) / 2 + 22, "F", ROT, index="1"))
+        e.append(vektor(*A, *p2))
+        e.append(vlabel((A[0] + p2[0]) / 2 - 18, (A[1] + p2[1]) / 2, "F", ROT, anker="end", index="2"))
+        e.append(vektor(*A, *pr))
+        e.append(vlabel((A[0] + pr[0]) / 2 - 14, (A[1] + pr[1]) / 2 - 12, "F", ROT, anker="end", index="R"))
         e.append(punkt(*A))
         e.append(hinweis(ox + 200, oy + 262, "zwei Kräfte = eine Resultierende", anker="middle", groesse=15))
     elif nr == 3:
@@ -426,7 +441,7 @@ def versatz_grafik():
 #   Seil 1 am linken Ende, Seil 2 bei 3/4 L, Gewicht G in der Mitte  ->  S1 = G/3, S2 = 2G/3
 # =====================================================================
 def traeger_seile():
-    abb = Abbildung(1200, 440, "Träger an zwei Seilen")
+    abb = Abbildung(1080, 440, "Träger an zwei Seilen")
     yd, yb, L = 50, 230, 360
     t = 6                                          # halbe Balkendicke
 
@@ -466,19 +481,6 @@ def traeger_seile():
         e.append(schnitt(x - 20, yb2 - 55, x + 20, yb2 - 55))
         e.append(kraft(x, yb2 - 55, 90, f"S_{n}", laenge=48, ziehend=True, label_seite=1))
     e.append(kraft(f1 + L / 2, yb2, -90, "G", laenge=70, ziehend=True, label_seite=-1))
-
-    e = abb.ebene("summe", "Summe der Kräfte: Krafteck")
-    G = 160                                       # px für G
-    x0, y0 = 1080, 330
-    d = 26
-    e.append(vektor(x0, y0, x0, y0 - G / 3, "S_1", lx=-18))
-    e.append(vektor(x0 + d, y0 - G / 3, x0 + d, y0 - G, "S_2", lx=-20))
-    e.append(linie(x0, y0 - G / 3, x0 + d, y0 - G / 3, GRAU, STRICH["duenn"], strich="2 2"))
-    e.append(vektor(x0 + 2 * d, y0 - G, x0 + 2 * d, y0, "G", lx=18))
-    e.append(linie(x0 + d, y0 - G, x0 + 2 * d, y0 - G, GRAU, STRICH["duenn"], strich="2 2"))
-    e.append(linie(x0 + 2 * d, y0, x0, y0, GRAU, STRICH["duenn"], strich="2 2"))
-    e.append(text(x0 + d, y0 + 26, "[Krafteck]", "#555555", 14, italic=False))
-    e.append(text(x0 + d, y0 + 46, "F_R = 0", ROT, 16))
 
     e = abb.ebene("mass", "Bemaßung")
     e.append(mass(f1, yb2 + t, f1 + L / 2, yb2 + t, "L/2", abstand=-92))
@@ -854,6 +856,78 @@ def aufgabe_b01_7():
 
 
 # =====================================================================
+# Gleichgewicht im zentralen Kraftsystem: Mast mit drei Seilen (Aufgabe 1.7)
+#   F1 = 5 kN (60° links der Senkrechten), F2 = 4 kN (30° rechts), F3 = 3 kN unter α;
+#   α so, dass die Resultierende der Seilkräfte in Mastrichtung zeigt (sin α = 0,777 → α = 51°)
+# =====================================================================
+def mast_gleichgewicht():
+    abb = Abbildung(1180, 380, "Mast mit drei Seilen: Gleichgewicht")
+    s = 21                                         # px je kN
+    al = math.degrees(math.asin((5 * math.sin(math.radians(60)) - 4 * math.sin(math.radians(30))) / 3))
+    seile = ((-150, "F_1", 5, 1), (-60, "F_2", 4, -1), (-90 + al, "F_3", 3, -1))
+    FR = sum(F * math.cos(math.radians(w + 90)) for w, _, F, _ in seile)
+
+    def boden(e, x0, x1, y):
+        e.append(linie(x0, y, x1, y, "#000000", STRICH["normal"]))
+        xx = x0 + 2
+        while xx < x1:
+            e.append(linie(xx, y, xx - 8, y + 8, "#000000", STRICH["duenn"]))
+            xx += 8
+
+    def seilkraefte(e, T, winkel=True):
+        for w, name, F, seite in seile:
+            e.append(kraft(*T, w, name, laenge=F * s, ziehend=True, label_seite=seite, label_pos=0.95))
+        if winkel:
+            e.append(linie(T[0], T[1], T[0], T[1] + 90, GRAU, STRICH["duenn"], strich="4 3"))
+            e.append(winkelbogen(*T, 46, -150, -90, "60°"))
+            e.append(winkelbogen(*T, 70, -90, -60, "30°"))
+            e.append(winkelbogen(*T, 30, -90, -90 + al, "α"))
+
+    def krafteck(e, x0, y0, schluss):
+        P = (x0, y0)
+        for w, name, F, seite in seile:
+            Q = (P[0] + F * s * math.cos(math.radians(w)), P[1] - F * s * math.sin(math.radians(w)))
+            lx = -16 if name == "F_1" else 16
+            e.append(vektor(*P, *Q, name, lx=lx, ly=-6))
+            P = Q
+        if schluss:
+            e.append(vektor(*P, x0, y0, "F_B", lx=18))
+            e.append(text(x0 - 10, y0 + FR * s + 34, "F_R = 0", ROT, 17))
+        else:
+            e.append(vektor(x0, y0, *P, "F_R", lx=-20, farbe="#9b0000"))
+        e.append(text(x0 - 10, y0 + FR * s + 14, "[Krafteck]", "#555555", 14, italic=False))
+
+    T, yb = (200, 70), 320
+    e = abb.ebene("system", "Mast mit drei Seilen")
+    boden(e, 70, 330, yb)
+    e.append(balken(T[0], T[1], T[0], yb, dicke=8))
+    seilkraefte(e, T)
+    e.append(punkt(*T, 2.6))
+
+    e = abb.ebene("resultierende", "Resultierende der Seilkräfte")
+    e.append(kraft(T[0] - 20, T[1] + 80, -90, "F_R", laenge=FR * s, ziehend=True, label_seite=1, label_pos=0.5,
+                   farbe="#9b0000"))
+    krafteck(e, 470, 60, False)
+
+    T2, yfuss, yb2 = (740, 70), 225, 345
+    e = abb.ebene("freischnitt", "Schnitt am Boden")
+    e.append(balken(T2[0], T2[1], T2[0], yfuss, dicke=8))
+    seilkraefte(e, T2, winkel=False)
+    e.append(punkt(*T2, 2.6))
+    e.append(schnitt(T2[0] - 22, yfuss + 4, T2[0] + 22, yfuss + 4))
+    e.append(kraft(T2[0], yfuss + 4, 90, "F_B", laenge=40, label_seite=-1, label_pos=0.5))
+    boden(e, T2[0] - 110, T2[0] + 110, yb2)
+    e.append(schnitt(T2[0] - 22, yb2 - 4, T2[0] + 22, yb2 - 4))
+    e.append(kraft(T2[0], yb2 - 4, -90, "F_B", laenge=40, label_seite=1, label_pos=0.5))
+    e.append(text(T2[0] - 70, 160, "[Mast]", "#000000", 16, anker="end", italic=False))
+    e.append(text(T2[0] + 120, yb2 + 22, "[Boden]", "#000000", 16, anker="start", italic=False))
+
+    e = abb.ebene("krafteck-zu", "Geschlossenes Krafteck")
+    krafteck(e, 1010, 60, True)
+    return abb.speichern(ZIEL / "mast-gleichgewicht.svg")
+
+
+# =====================================================================
 # Zusammenfassung Woche 1: sechs Kacheln
 # =====================================================================
 def zusammenfassung():
@@ -934,7 +1008,7 @@ def zusammenfassung():
 
 if __name__ == "__main__":
     for fn in (einordnung, kraft_vektor, axiome, resultierende_zwei_kraefte, seil_masse, moment_grafik, versatz_grafik,
-               traeger_seile, zusammenfassung,
+               traeger_seile, mast_gleichgewicht, zusammenfassung,
                scheibe_vier_kraefte, aufgabe_1_1_3, aufgabe_1_1_4, aufgabe_1_1_5, aufgabe_1_2_1, aufgabe_1_2_4,
                aufgabe_b01_4, aufgabe_b01_5, aufgabe_b01_4_raeumlich, aufgabe_b01_6, aufgabe_b01_7):
         print(fn())

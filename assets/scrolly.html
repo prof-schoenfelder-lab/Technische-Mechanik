@@ -125,6 +125,19 @@
   const knopf = document.querySelector(".beamer-schalter");
   if (knopf) knopf.addEventListener("click", () => document.documentElement.classList.toggle("beamer"));
 
+  // Hilfe-Schaltfläche (ARSnova Q&A) auf Vorlesungs- und Seminarseiten
+  if (/\/(vorlesung|seminar)\//.test(location.pathname)) {
+    const hilfe = document.createElement("a");
+    hilfe.className = "hilfe-schalter";
+    hilfe.href = "https://arsnova.imn.htwk-leipzig.de/p/41272814";
+    hilfe.target = "_blank";
+    hilfe.rel = "noopener";
+    hilfe.title = "Frage stellen: Fragen und Antworten auf ARSnova (öffnet in neuem Tab)";
+    hilfe.innerHTML = '<span class="hilfe-zeichen" aria-hidden="true">?</span><span class="hilfe-text">Frage stellen</span>';
+    document.body.appendChild(hilfe);
+    document.documentElement.classList.add("mit-hilfe");
+  }
+
   // Abgesetzte Formeln, die breiter als die Textspalte sind, verkleinern statt abschneiden
   function formelnEinpassen() {
     document.querySelectorAll('mjx-container[display="true"]').forEach(m => {

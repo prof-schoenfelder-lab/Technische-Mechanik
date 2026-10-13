@@ -8,7 +8,7 @@ Ergebnis: grafiken/mathematik/*.svg (Inkscape-Ebenen = Scroll-Schritte)
 import math
 from pathlib import Path
 
-from grafiken_grundlagen import (GRAU, GRUEN, ROT, abbild, hinweis, koord_xy, platte, punkt,
+from grafiken_grundlagen import (GRAU, GRUEN, ROT, abbild, vlabel, hinweis, koord_xy, platte, punkt,
                                  rechter_winkel, vektor)
 from tmzeichnen import STRICH, Abbildung, _spitze, gruppe, kraft, kreis, linie, mass, moment, polylinie, text, \
     winkelbogen
@@ -191,17 +191,6 @@ def vektoraddition():
 # =====================================================================
 # Skalarprodukt: Projektion
 # =====================================================================
-def vlabel(x, y, name, farbe=SCHWARZ, groesse=19, anker="middle", index=""):
-    """Formelzeichen mit Vektorpfeil darüber, z. B. vlabel(..., "F") → F mit Pfeil; index wird tiefgestellt."""
-    b = 0.55 * groesse                                   # ungefähre Breite des Buchstabens
-    x0 = x - b / 2 if anker == "middle" else (x if anker == "start" else x - b - (0.45 * groesse if index else 0))
-    yp = y - 0.62 * groesse
-    teile = [text(x0, y, name + (f"_{{{index}}}" if index else ""), farbe, groesse, anker="start"),
-             linie(x0 + 0.5, yp, x0 + b + 1, yp, farbe, 1.1),
-             _spitze(x0 + b + 3, yp, 1, 0, farbe, 5, 4)]
-    return gruppe(teile)
-
-
 def skalarprodukt():
     abb = Abbildung(520, 300, "Skalarprodukt als Projektion")
     O = (70, 240)

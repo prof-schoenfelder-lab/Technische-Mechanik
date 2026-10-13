@@ -9,8 +9,12 @@ page-layout: full
 Jetzt schneiden wir *durch das Tragwerk selbst*. So werden die inneren Kräfte sichtbar, die das Bauteil
 beanspruchen. Sie sind die Grundlage für die gesamte Festigkeitslehre.
 
+::: {.content-visible when-format="html"}
 Tipp: Mit **Bild↓ / Bild↑** oder **→ / ←** springen Sie von Schritt zu Schritt; Taste **B** schaltet den Beamer-Modus.
 Hinter **„Ausführlicher“** finden Sie zu vielen Schritten eine längere Erklärung zum Nachlesen.
+
+**Skript:** Diese Vorlesung gibt es auch [als PDF](03-schnittgroessen.pdf) zum Ausdrucken und Nachlesen.
+:::
 :::
 
 ## Was sind Schnittgrößen?
@@ -408,5 +412,7 @@ festzulegen. Das ist in Klausur und Praxis meist das schnellste Verfahren.
 **Weiter:** [Seminaraufgaben zu Schnittgrößen](../seminar/03-schnittgroessen.qmd) ·
 [Interaktives Notebook](../notebooks/schnittgroessen/index.html){target="_blank"}
 
-<p class="small text-muted">Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 7 ·
-Dankert/Dankert, Technische Mechanik, Kap. 7</p>
+::: {.small .text-muted}
+Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 7 ·
+Dankert/Dankert, Technische Mechanik, Kap. 7
+:::

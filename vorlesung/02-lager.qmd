@@ -10,7 +10,11 @@ an anderen Bauteilen. Die Lager halten das Bauteil fest, indem sie Kräfte und M
 In dieser Vorlesung lernen Sie, welche Lasten auf ein Bauteil wirken können, wie man Lager durch ihre
 **Reaktionen** ersetzt und wie man diese mit den Gleichgewichtsbedingungen aus Woche 1 berechnet.
 
+::: {.content-visible when-format="html"}
 Tipp: Mit **Bild↓ / Bild↑** oder **→ / ←** springen Sie von Schritt zu Schritt; Taste **B** schaltet den Beamer-Modus.
+
+**Skript:** Diese Vorlesung gibt es auch [als PDF](02-lager.pdf) zum Ausdrucken und Nachlesen.
+:::
 :::
 
 ## Arten der Kräfte
@@ -560,5 +564,7 @@ Tragwerk selbst auf und bestimmen die **inneren** Kräfte, die Schnittgrößen.
 | Dreieckslast | $F_R = \tfrac12 q_0 L$ bei $\tfrac23 L$ | vom Nullpunkt der Last |
 :::
 
-<p class="small text-muted">Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 5 ·
-Dankert/Dankert, Technische Mechanik, Kap. 5–6</p>
+::: {.small .text-muted}
+Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 5 ·
+Dankert/Dankert, Technische Mechanik, Kap. 5–6
+:::

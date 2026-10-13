@@ -9,8 +9,12 @@ page-layout: full
 nur wenige Werkzeuge: die Kraft als Vektor, das Moment, vier Axiome und die Gleichgewichtsbedingungen.
 Alles, was in diesem Semester folgt, baut darauf auf.
 
+::: {.content-visible when-format="html"}
 Tipp: Mit **Bild↓ / Bild↑** oder **→ / ←** springen Sie von Schritt zu Schritt; Taste **B** schaltet den Beamer-Modus.
 Hinter **„Ausführlicher“** finden Sie zu vielen Schritten eine längere Erklärung zum Nachlesen.
+
+**Skript:** Diese Vorlesung gibt es auch [als PDF](01-grundlagen.pdf) zum Ausdrucken und Nachlesen.
+:::
 :::
 
 ## Einordnung
@@ -25,6 +29,15 @@ Rechenverfahren für Maschinenbau, Bauwesen und Gebäudetechnik.
 
 - **Dynamik:** Körper in Bewegung
 - **Statik:** Körper in Ruhe (oder in gleichförmiger, geradliniger Bewegung)
+
+::: {.vertiefung titel="Ausführlicher: Auch Bewegtes lässt sich oft statisch rechnen"}
+Ein Kran bewegt sich, wenn er eine Last hebt oder schwenkt. Hängt die Last aber ruhig am Haken,
+können wir ihn so betrachten, als stünde er still: **quasistatisch**. Die Bewegung ist so langsam, dass
+keine nennenswerten Beschleunigungen auftreten.
+
+Nicht statisch rechnen lassen sich dagegen **Stoßvorgänge**: Wie groß die Kraft ist, wenn ein Ball auf
+den Boden prallt, beantwortet erst die Dynamik.
+:::
 :::
 
 ::: {.schritt zeige="baum inhalt" zoom="0 0 645 430"}
@@ -169,6 +182,10 @@ $$
 $$
 
 Systeme mit gleicher Wirkung heißen **statisch äquivalent**.
+
+Beispiel Schlitten: Ziehen zwei Personen an zwei Seilen **in dieselbe Richtung**, addieren sich die
+Beträge. Ziehen sie **unter einem Winkel**, ist die Resultierende kleiner als die Summe der Beträge.
+Wie groß sie ist, hängt vom Winkel zwischen den Kräften ab.
 :::
 
 ::: {.schritt zeige="ax-3" zoom="0 0 400 280"}
@@ -254,6 +271,15 @@ Ohne Freikörperbild keine Statik.
 Wie herum man eine unbekannte Kraft einzeichnet, ist gleichgültig: Ein **negatives Ergebnis**
 heißt, dass sie in Wirklichkeit andersherum wirkt.
 :::
+
+::: {.vertiefung titel="Häufige Frage: Schneidet man das Seil wirklich durch?"}
+Nein, der Schnitt ist **nur gedacht**. Schnitte man das Seil wirklich durch, würde der Träger
+herunterfallen. Das wäre ein Fall für die Dynamik.
+
+Stellen Sie sich vor, Sie nehmen die beiden Seile genau an der Schnittstelle in die Hände und halten
+den Träger selbst. Ihre Hände müssen **nach oben** ziehen, damit er in Ruhe bleibt. Genau diese Kraft
+ist die Seilkraft am Träger. Der gedachte Schnitt macht sie sichtbar, damit wir sie berechnen können.
+:::
 :::
 
 ::::
@@ -301,6 +327,9 @@ F_{2y} &= F_2\sin 45^\circ = 21{,}21\ \text{N}
 $$
 
 Das Minuszeichen bei $F_{2x}$ kommt aus der Skizze: $F_2$ zeigt nach links.
+
+**Vorsicht:** Ein vergessenes Minus ist der häufigste Fehler. Mit $F_{2x} = +21{,}21$ N würde $F_2$
+nach rechts oben zeigen. Das ist ein ganz anderes Kraftsystem.
 :::
 
 ::: {.schritt zeige="system komponenten winkel135" dimmen="komponenten" zoom="30 40 470 360"}
@@ -352,7 +381,13 @@ aber es macht sichtbar, was die Komponentensummen tun, und es ist eine schnelle 
 ::::
 
 ::: {.merke}
-**Resultierende im zentralen Kraftsystem**
+**Resultierende im zentralen Kraftsystem: der Fahrplan**
+
+1. Jede Kraft in **Komponenten** zerlegen, Vorzeichen aus der Skizze oder aus dem Richtungswinkel.
+2. Die Komponenten **getrennt addieren**.
+3. Betrag mit dem **Satz des Pythagoras**, Winkel mit dem Arkustangens, **Quadrant beachten**.
+
+Dieses Vorgehen brauchen Sie in jeder Aufgabe.
 
 $$
 \begin{aligned}
@@ -372,56 +407,75 @@ Resultierende und Krafteck. Überlegen Sie **vorher**, wohin sich $F_R$ dreht.
 
 ## Gleichgewicht im zentralen Kraftsystem
 
-:::: {.scrolly svg="../grafiken/grundlagen/traeger-seile.svg"}
+:::: {.scrolly svg="../grafiken/grundlagen/mast-gleichgewicht.svg"}
 
-::: {.schritt zeige="freikoerper" zoom="540 0 520 440"}
-### Von der Resultierenden zum Gleichgewicht
+::: {.schritt zeige="system" zoom="40 30 320 320"}
+### Beispiel: Mast mit drei Seilen
 
-Zurück zum Träger an zwei Seilen. Am Freikörperbild wirken drei senkrechte Kräfte: $S_1$, $S_2$
-nach oben, $G$ nach unten. Wie eben addieren wir sie zur Resultierenden:
+An der Spitze eines Mastes ziehen drei Seile mit den Kräften $F_1$, $F_2$ und $F_3$
+(Aufgabe 1.7 im Seminar). Alle Wirkungslinien gehen durch die Mastspitze: ein **zentrales
+Kraftsystem**.
 
-$$
-F_{Ry} = S_1 + S_2 - G = F_R
-$$
-
-Wäre $F_R \neq 0$, würde der Träger nach Newton ($F_R = m\,a$) **beschleunigt**: bei $F_R > 0$
-nach oben, bei $F_R < 0$ nach unten.
+Der Winkel $\alpha$ ist so gewählt, dass die Resultierende der Seilkräfte genau in Richtung des
+Mastes zeigt. Wie groß er ist, berechnen Sie in Aufgabe 1.7.
 :::
 
-::: {.schritt zeige="freikoerper summe" zoom="540 0 660 440"}
+::: {.schritt zeige="system resultierende" zoom="40 30 480 320"}
+### Resultierende der Seilkräfte
+
+Wie eben setzen wir die Seilkräfte zur Resultierenden $F_R$ zusammen. Sie zeigt senkrecht nach unten,
+**in den Mast hinein**.
+
+Würden am Mast nur die Seilkräfte wirken, wäre $F_R \neq 0$. Nach Newton ($F_R = m\,a$) würde der
+Mast nach unten **beschleunigt**, er würde in den Boden gedrückt. Er steht aber still. Es muss also
+noch eine Kraft geben, die wir bisher nicht sehen.
+:::
+
+::: {.schritt zeige="freischnitt" zoom="600 30 300 350"}
+### Schnitt am Boden
+
+Wir schneiden den Mast **vom Boden** frei:
+
+- Der Boden drückt mit der Kraft $F_B$ von unten **auf den Mast**.
+- Der Mast drückt mit einer gleich großen Kraft $F_B$ **auf den Boden** (actio = reactio).
+
+Die Wirkungslinie von $F_B$ ist die Mastachse. Sie geht ebenfalls durch die Spitze: Am
+freigeschnittenen Mast greift ein zentrales Kraftsystem aus **vier** Kräften an. Das Eigengewicht des
+Mastes vernachlässigen wir.
+:::
+
+::: {.schritt zeige="freischnitt krafteck-zu" zoom="600 30 560 350"}
 ### Ruhe heißt: $F_R = 0$
 
-Der Träger hängt aber in Ruhe. Also **muss** die Resultierende verschwinden:
+Jetzt stehen **alle** Kräfte am Mast im Freikörperbild. Weil der Mast ruht, muss ihre Resultierende
+verschwinden. Grafisch: Das **Krafteck schließt sich**. In Komponenten:
 
 $$
-F_R = S_1 + S_2 - G = 0
+\begin{aligned}
+&\rightarrow: && -F_1\sin 60^\circ + F_2\sin 30^\circ + F_3\sin\alpha = 0\\
+&\uparrow: && -F_1\cos 60^\circ - F_2\cos 30^\circ - F_3\cos\alpha + F_B = 0
+\end{aligned}
 $$
 
-Das ist eine **Gleichgewichtsbedingung**. Aus „Resultierende ausrechnen“ wird „Resultierende
-gleich null setzen“, und die Gleichung bestimmt die unbekannten Kräfte.
-
-Grafisch: Die Kraftpfeile aneinandergehängt kommen wieder am Anfang an, das **Krafteck schließt sich**.
+Die erste Gleichung liefert $\alpha$, die zweite die Bodenkraft $F_B$: Sie ist genau so groß wie die
+Resultierende der Seilkräfte. Der Mast steht nur, weil der **Boden** diese Kraft aufnimmt.
 :::
 
-::: {.schritt zeige="freikoerper summe" dimmen="freikoerper" zoom="540 0 660 440"}
+::: {.schritt zeige="freischnitt krafteck-zu" dimmen="freischnitt" zoom="600 30 560 350"}
 ### Gleichgewicht
 
 ::: {.merke}
-Ein Körper ist im **Gleichgewicht**, wenn die Resultierende aller an ihm angreifenden Kräfte
-verschwindet: $\vec F_R = \vec 0$, also $\sum F_{ix} = 0$ und $\sum F_{iy} = 0$.
+Ein Körper ist im **Gleichgewicht**, wenn die Resultierende **aller** an ihm angreifenden Kräfte
+verschwindet, der eingeprägten Lasten und der Kräfte an den Schnittstellen:
+$\vec F_R = \vec 0$, also $\sum F_{ix} = 0$ und $\sum F_{iy} = 0$.
 :::
 
-Beim Träger reicht das noch nicht, um $S_1$ und $S_2$ einzeln zu bestimmen: zwei Unbekannte, aber
-nur eine Gleichung. Seine Kräfte gehen nicht durch einen Punkt, er könnte sich auch **drehen**.
-Das klären wir mit dem **Moment**. Im zentralen Kraftsystem dagegen genügt $\vec F_R = \vec 0$.
+Aus „Resultierende ausrechnen“ wird „Resultierende **gleich null setzen**“. So entstehen Gleichungen
+für die unbekannten Kräfte. Dazu muss das Freikörperbild **vollständig** sein: Ohne den Schnitt am
+Boden hätten wir $F_B$ vergessen.
 :::
 
 ::::
-
-::: {.notebook titel="Ausprobieren: Von der Resultierenden zum Gleichgewicht" src="../notebooks/gleichgewicht/index.html"}
-Stellen Sie die Seilkräfte so ein, dass $F_R = 0$ wird, und lassen Sie die Masse am Seil auslenken.
-Im dritten Teil verändern Sie bei der Kiste aus Aufgabe 1.3 die Kraft $F$.
-:::
 
 :::: {.scrolly svg="../grafiken/grundlagen/seil-masse.svg"}
 
@@ -470,6 +524,15 @@ F = m g\tan\alpha = 113{,}3\ \text{N}
 $$
 
 Beide Ergebnisse sind positiv: Die Kräfte wirken wie eingezeichnet.
+
+::: {.vertiefung titel="Häufige Frage: Trägt das Seil nicht einfach das Gewicht?"}
+Nur die **senkrechte Komponente** $F_S\cos\alpha$ der Seilkraft kann das Gewicht tragen. Die
+waagerechte Komponente $F_S\sin\alpha$ hat keinen Anteil nach oben, so groß sie auch ist. Sie hält
+der Kraft $F$ das Gleichgewicht.
+
+Deshalb ist die Seilkraft **größer** als das Gewicht: $F_S = 226{,}6$ N, aber $m g = 196{,}2$ N.
+Gleich groß sind beide nur bei $\alpha = 0$, wenn das Seil senkrecht hängt.
+:::
 :::
 
 ::: {.schritt zeige="freischnitt krafteck" zoom="320 20 540 400"}
@@ -508,6 +571,11 @@ $$
 $$
 
 Damit lassen sich höchstens **zwei** Unbekannte bestimmen.
+:::
+
+::: {.notebook titel="Ausprobieren: Von der Resultierenden zum Gleichgewicht" src="../notebooks/gleichgewicht/index.html"}
+Stellen Sie an einem Mast Seilwinkel und Bodenkraft so ein, dass sich das Krafteck schließt, und lenken
+Sie die Masse am Seil aus. Im dritten Teil verändern Sie bei der Kiste aus Aufgabe 1.3 die Kraft $F$.
 :::
 
 ## Das Moment
@@ -848,5 +916,7 @@ Notebooks: [Resultierende](../notebooks/resultierende/index.html){target="_blank
 | Gleichgewicht, allgemein | $\sum F_x = 0$, $\sum F_y = 0$, $\sum M^{(P)} = 0$ | höchstens 3 Unbekannte |
 :::
 
-<p class="small text-muted">Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 1–3 ·
-Dankert/Dankert, Technische Mechanik, Kap. 1–3</p>
+::: {.small .text-muted}
+Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 1–3 ·
+Dankert/Dankert, Technische Mechanik, Kap. 1–3
+:::

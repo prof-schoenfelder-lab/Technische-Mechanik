@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="257.4" height="279.8" viewBox="357.5 49.9 257.4 279.8" class="tm-grafik">
+<title>Feder und Elastizität</title>
+<g inkscape:groupmode="layer" id="kennlinie" inkscape:label="02 Kennlinie F = c u" data-ebene="kennlinie">
+<g><g><path d="M 370,300 L 583.6,300" fill="none" stroke="#006414" stroke-width="1.25" stroke-linecap="butt" /><path d="M 590,300 L 582,302.5 L 582,297.5 Z" fill="#006414" stroke="none" stroke-linejoin="round" /></g><text x="594" y="317.46" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>u</tspan></text><g><path d="M 370,300 L 370,76.4" fill="none" stroke="#006414" stroke-width="1.25" stroke-linecap="butt" /><path d="M 370,70 L 372.5,78 L 367.5,78 Z" fill="#006414" stroke="none" stroke-linejoin="round" /></g><text x="378" y="74.46" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>F</tspan></text></g>
+<path d="M 370,300 L 570,62.5" fill="none" stroke="#ff0000" stroke-width="2.2" stroke-linecap="butt" />
+<circle cx="530" cy="110" r="3.4" fill="#000000" stroke="#000000" stroke-width="0.8" />
+<path d="M 530,110 L 530,300" fill="none" stroke="#7a7a7a" stroke-width="0.8" stroke-linecap="butt" stroke-dasharray="4 3" />
+<path d="M 530,110 L 370,110" fill="none" stroke="#7a7a7a" stroke-width="0.8" stroke-linecap="butt" stroke-dasharray="4 3" />
+<path d="M 410,252.5 L 460,252.5 L 460,193.12" fill="none" stroke="#006414" stroke-width="1.25" stroke-linejoin="round" />
+<text x="468" y="228.59" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="17" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>c</tspan></text>
+<text x="465" y="101.12" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="italic" text-anchor="end" xml:space="preserve"><tspan>F = c u</tspan></text>
+</g>
+<g inkscape:groupmode="layer" id="federarbeit" inkscape:label="03 Federarbeit als Fläche" data-ebene="federarbeit">
+<path d="M 370,300 L 530,110 L 530,300 Z" fill="#fbe3e3" stroke="none" stroke-linejoin="round" />
+<text x="475.6" y="263.64" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="16" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>W = ½ c u²</tspan></text>
+</g>
+</svg>

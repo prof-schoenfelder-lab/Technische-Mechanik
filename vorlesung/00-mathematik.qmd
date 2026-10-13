@@ -14,6 +14,10 @@ Körpern rechnen dürfen.
 
 Nach jedem Abschnitt folgen kurze **Übungen**. Rechnen Sie sie auf Papier, das Ergebnis können Sie
 aufklappen.
+
+::: {.content-visible when-format="html"}
+**Skript:** Diese Vorlesung gibt es auch [als PDF](00-mathematik.pdf) zum Ausdrucken und Nachlesen.
+:::
 :::
 
 ## Sinus, Kosinus und Tangens am Einheitskreis
@@ -741,6 +745,8 @@ Starre und elastische Körper nehmen nach außen **dieselben Kräfte** auf. Die 
 am starren Körper, die Festigkeitslehre untersucht anschließend die Verformung.
 :::
 
-<p class="small text-muted">Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 1–3;
+::: {.small .text-muted}
+Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 1–3;
 Technische Mechanik 2, Kap. 1 (Stoffgesetz) und Kap. 6 (Arbeitsbegriff) ·
-Dankert/Dankert, Technische Mechanik, Kap. 1–3</p>
+Dankert/Dankert, Technische Mechanik, Kap. 1–3
+:::

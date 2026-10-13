@@ -1,0 +1,22 @@
+# Vorlesungen: Webseite (Scrollytelling) und PDF-Skript (Standbilder je Schrittgruppe, siehe assets/scrolly.lua)
+format:
+  html: default
+  typst:
+    papersize: a4
+    margin:
+      x: 2cm
+      y: 2cm
+    fontsize: 11pt
+    mainfont: "Source Sans Pro"
+    font-paths: ["../assets/fonts"]
+    toc: true
+    toc-depth: 1
+    toc-title: "Inhalt"
+    include-in-header:
+      text: |
+        #show math.equation.where(block: true): set align(left)
+        #set text(lang: "de")
+        #set smartquote(enabled: false)
+        #set par(justify: false)
+        #show heading.where(level: 3): set text(size: 11.5pt)
+        #set page(header: align(right, image("../assets/logos/htwk-schwarz.svg", height: 0.8cm)), footer: context [#text(size: 8pt)[Technische Mechanik · Skript zur Vorlesung · Prof. Dr.-Ing. Stephan Schönfelder #h(1fr) #counter(page).display()]])
