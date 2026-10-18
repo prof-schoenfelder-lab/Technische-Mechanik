@@ -32,9 +32,8 @@ Notebook bearbeiten: `~/Library/Caches/tm-kurs-venv/bin/marimo edit notebooks/sc
 
 ## Planung
 
-`planung/semesterplan.md` ist die zentrale Vorgabe für alle 14 Wochen. Eigene Beispiele
-(Skizze/Scan) unter `planung/beispiele/` mit Beispiel-ID ablegen (`B05-2-name.jpg`) und
-die ID im Semesterplan eintragen.
+Semesterplan, Planungsnotizen und Skizzen/Scans zu den Beispielen liegen **nicht** im Repository,
+sondern in den (privaten) Kursnotizen des Dozenten. Hier stehen nur die Unterlagen zur Veröffentlichung.
 
 ## Scrollytelling schreiben
 

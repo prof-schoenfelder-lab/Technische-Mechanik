@@ -16,6 +16,5 @@ loesungen/
 seminar/*-loesungen.qmd
 grafiken/**/loesung-*.svg
 werkzeuge/*_loesungen.py
-planung/beispiele/*
-!planung/beispiele/.gitkeep
-!planung/beispiele/README.md
+# Planung liegt in Obsidian (Kursaufbau/Planung), nie im öffentlichen Repository
+planung/
