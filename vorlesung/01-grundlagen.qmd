@@ -679,6 +679,12 @@ Das leichtere Kind gleicht sein geringeres Gewicht durch den **längeren Hebelar
 
 Die Kräfte allein entscheiden das nicht: Das Lager in $D$ trägt in jedem Fall $F_{G1} + F_{G2} = 700$ N.
 Ob sich die Wippe dreht, sagt erst das Moment.
+
+In der Statik gilt das immer: Ein Körper in Ruhe dreht sich nicht, die Momente müssen **im
+Gleichgewicht** sein. Bleibt ein **resultierendes Moment** übrig, beginnt der Körper sich zu drehen,
+er ist nicht mehr im Gleichgewicht. Rückt Kind 2 auf $a_2 = 1{,}4$ m nach innen, bleibt
+$M_1 - M_2 = 480\ \text{Nm} - 420\ \text{Nm} = 60\ \text{Nm}$ übrig: Die Wippe kippt nach links.
+Rückt es nach außen, kippt sie nach rechts.
 :::
 
 ::::
