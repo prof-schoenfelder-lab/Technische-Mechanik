@@ -341,9 +341,11 @@ def moment_ebene():
     u = (math.cos(wf), -math.sin(wf))
     t = (O[0] - A[0]) * u[0] + (O[1] - A[1]) * u[1]
     Fp = (A[0] + t * u[0], A[1] + t * u[1])
-    e.append(linie(Fp[0] + u[0] * 30, Fp[1] + u[1] * 30, *A, GRAU, STRICH["duenn"], strich="10 4 2 4"))
+    e.append(linie(*Fp, *A, GRAU, STRICH["duenn"], strich="10 4 2 4"))
     n = math.hypot(O[0] - Fp[0], O[1] - Fp[1])
     e.append(rechter_winkel(*Fp, (O[0] - Fp[0]) / n, (O[1] - Fp[1]) / n, -u[0], -u[1]))
+    # φ noch einmal im rechtwinkligen Dreieck 0–Fp–A (Wechselwinkel): b liegt φ gegenüber → b = r sin φ
+    e.append(winkelbogen(*A, 30, 180 + math.degrees(wr), 180 + math.degrees(wf), "φ"))
     e.append(linie(*O, *Fp, BLAU, 2))
     e.append(text((O[0] + Fp[0]) / 2 + 2, (O[1] + Fp[1]) / 2 + 18, "b = r sin φ", BLAU, 15, anker="start"))
     e.append(text(O[0] + 120, O[1] - 95, "[Fläche = |M|]", ROT, 14, italic=False))

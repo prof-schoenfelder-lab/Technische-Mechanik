@@ -27,7 +27,7 @@
 /* ------------------------------------------------ Scrollytelling */
 .scrolly {
   display: grid;
-  grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
   gap: 2.5rem;
   margin: 2rem 0 4rem;
 }
@@ -127,7 +127,7 @@ html.beamer .scrolly-sticky { top: 3.6rem; height: calc(100vh - 4.5rem); }
 html.beamer .scrolly-titel { font-size: 1.7rem; }
 html.beamer #quarto-header { opacity: 0.25; }
 html.beamer .schritt:not(.aktiv) { opacity: 0.12; }
-html.beamer .scrolly { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 1.5rem; }
+html.beamer .scrolly { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 1.5rem; }
 html.beamer .schritt > * { max-width: 100%; }
 
 /* ------------------------------------------------ Aufgaben */
@@ -228,3 +228,14 @@ iframe.notebook-rahmen {
 .bild-knoepfe button:first-child { background: #0050b4; color: #fff; }
 .bild-status { font-size: 0.9rem; color: #006414; margin-top: 0.5rem; min-height: 1.2rem; }
 @media print { .scrolly-bild { display: none; } }
+
+/* ------------------------------------------------ Scroll-Abschnitte in voller Bildschirmbreite
+   Der Fließtext bleibt in der Lesespalte; Grafik und Schritte nutzen auf breiten Bildschirmen
+   (Full-HD-Beamer) fast die ganze Breite, zentriert über der Lesespalte. */
+@media (min-width: 1200px) {
+  .scrolly {
+    --scrolly-breite: min(1840px, calc(100vw - 4rem));
+    width: var(--scrolly-breite);
+    margin-left: calc((100% - var(--scrolly-breite)) / 2);
+  }
+}

@@ -683,14 +683,14 @@ Ob sich die Wippe dreht, sagt erst das Moment.
 
 ::::
 
-Bei der Wippe stehen die Kräfte **senkrecht** auf dem Balken, der Hebelarm ist einfach der Abstand
-zum Drehpunkt. Allgemein kann eine Kraft schräg angreifen. Das Moment kennen Sie aus
-[Veranstaltung 0](00-mathematik.qmd#das-moment). Zur Erinnerung:
-
 :::: {.scrolly svg="../grafiken/mathematik/moment.svg"}
 
 ::: {.schritt zeige="ebene" zoom="20 20 440 310"}
 ### Drehwirkung einer Kraft
+
+Bei der Wippe stehen die Kräfte **senkrecht** auf dem Balken, der Hebelarm ist einfach der Abstand
+zum Drehpunkt. Allgemein kann eine Kraft schräg angreifen. Das Moment kennen Sie aus
+[Veranstaltung 0](00-mathematik.qmd#das-moment), zur Erinnerung:
 
 Eine Kraft $\vec F$ greift im Punkt $A$ an, der Ortsvektor $\vec r$ führt vom Bezugspunkt $0$ dorthin.
 Ihre Drehwirkung um $0$ heißt **Moment** $M$. Sie hängt vom Betrag der Kraft ab, aber auch davon,
@@ -859,13 +859,6 @@ y_R &= \frac{F_{Ry}}{F_{Rx}}\,x_R - \frac{M_R^{(0)}}{F_{Rx}}\\[2pt]
 $$
 
 Die Wirkungslinie schneidet die Achsen bei $y = \tfrac54 c$ und $x = \tfrac53 c$.
-
-::: {.vertiefung titel="Ausführlicher: Hinweis zu den Unterlagen von 2013"}
-In der handschriftlichen Vorlesung von 2013 steht bei diesem Beispiel $\alpha_R = 143{,}1^\circ$.
-Das ist die Richtung der **Geraden**, aber der falsche Richtungssinn: Mit $F_{Rx} > 0$ und
-$F_{Ry} < 0$ zeigt $F_R$ nach rechts unten, also $\alpha_R = -36{,}9^\circ$ (bzw. $323{,}1^\circ$).
-Die Wirkungslinie selbst ist richtig.
-:::
 :::
 
 ::::
