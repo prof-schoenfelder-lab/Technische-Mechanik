@@ -9,6 +9,8 @@ import subprocess
 import tempfile
 from pathlib import Path
 
+import offline
+
 projekt = Path(__file__).resolve().parent.parent
 venv_bin = projekt / ".venv" / "bin"
 marimo = venv_bin / "marimo" if (venv_bin / "marimo").exists() else shutil.which("marimo")
@@ -31,3 +33,6 @@ for nb in sorted((projekt / "notebooks").glob("*.py")):
         ziel.mkdir(parents=True, exist_ok=True)
         subprocess.run(["rsync", "-a", "--delete", f"{tmp}/", f"{ziel}/"], check=True)
     print(f"marimo-Notebook exportiert: {ziel.relative_to(projekt)}")
+
+# Offline-Fassung (Service Worker, Manifest) – zuletzt, damit alle Dateien feststehen
+offline.erzeugen(projekt / "_site")
