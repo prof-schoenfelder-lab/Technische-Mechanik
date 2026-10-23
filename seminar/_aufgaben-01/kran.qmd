@@ -3,8 +3,9 @@
 ![](../grafiken/grundlagen/aufgabe-1-1-4.svg){width=55%}
 
 Ein Stahlträger der Masse $m$ hängt waagerecht an zwei Seilen. Die Seile sind um den Träger
-geschlungen und laufen oben im festen Gelenklager $A$ zusammen. Bestimmen Sie die Seilkräfte $S_1$ und $S_2$.
+geschlungen und laufen oben im Knoten $K$ zusammen, der an Seil 3 am festen Gelenklager $A$ hängt.
+Bestimmen Sie die Seilkräfte $S_1$ und $S_2$.
 
 **Gegeben:** $m$ = 450 kg, $l$ = 2,5 m, $h$ = 1,5 m, $g$ = 9,81 m/s²
 
-*Hinweis: Schneiden Sie zuerst das ganze System frei, dann den Knoten in $A$.*
+*Hinweis: Schneiden Sie zuerst das ganze System frei (Schnitt durch Seil 3), dann den Knoten $K$.*

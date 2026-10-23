@@ -71,7 +71,7 @@ $\varphi_1 = 21{,}0^\circ$ (aus $F_1\sin\varphi_1 = F_2\sin\varphi_2$) · $F_R =
 
 ::: {.callout-tip collapse="true"}
 ## Aufgabe 1.2
-Seilneigung gegen die Waagerechte: $\tan\beta = 2h/l$, $\beta = 50{,}2^\circ$ ·
+$S_3 = m g = 4414{,}5\,\text{N}$ · Seilneigung gegen die Waagerechte: $\tan\beta = 2h/l$, $\beta = 50{,}2^\circ$ ·
 $S_1 = S_2 = \dfrac{m g}{2\sin\beta} = 2873\,\text{N}$
 :::
 

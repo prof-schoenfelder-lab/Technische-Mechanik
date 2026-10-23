@@ -318,8 +318,8 @@ def seil_masse():
     e.append(linie(H[0], H[1], H[0], H[1] + 230, GRAU, STRICH["duenn"], strich="4 3"))
     e.append(winkelbogen(*H, 120, -90, -60, "α"))
     e.append(kraft(*K, 0, "F", laenge=85, ziehend=True, label_seite=1))
-    e.append(text(H[0] - 30, 380, "g", GRUEN, 18))
-    e.append(pfeil(H[0] - 14, 345, H[0] - 14, 400, GRUEN, STRICH["normal"], (8, 5)))
+    e.append(text(H[0] - 30, 380, "g", ROT, 18))
+    e.append(pfeil(H[0] - 14, 345, H[0] - 14, 400, ROT, STRICH["normal"], (8, 5)))
 
     # Freikörperbild: rechts daneben
     dx = 290
@@ -570,27 +570,32 @@ def aufgabe_1_1_3():
 
 
 def aufgabe_1_1_4():
-    abb, e = _aufgabe("Stahlträger am Kran", 480, 290)
-    yb, xm, l, h = 215, 230, 180, 120
+    abb, e = _aufgabe("Stahlträger am Kran", 480, 330)
+    yb, xm, l, h = 255, 230, 180, 120
     xa, xc = xm - l / 2, xm + l / 2
     t = 7
     e.append(balken(xm - 170, yb, xm + 170, yb, dicke=2 * t))
-    A = (xm, yb - t - h)
+    K = (xm, yb - t - h)                 # Knoten der Seile 1 und 2
+    A = (xm, K[1] - 50)                  # Lager, Seil 3 senkrecht von K nach A
     # Seile laufen um den Träger: je zwei senkrechte Striche über die Trägerhöhe
     for x in (xa, xc):
         e.append(linie(x - 3, yb - t, x - 3, yb + t, "#000000", 1.6))
         e.append(linie(x + 3, yb - t, x + 3, yb + t, "#000000", 1.6))
-        e.append(linie(x, yb - t, *A, "#000000", 1.8))
+        e.append(linie(x, yb - t, *K, "#000000", 1.8))
+    e.append(linie(*K, *A, "#000000", 1.8))
+    e.append(punkt(*K, 3.2))
     e.append(festlager(*A, groesse=15, drehung=180))
     e.append(text(A[0] + 26, A[1] - 6, "A", GRUEN, anker="start"))
-    e.append(text((xa + A[0]) / 2 - 14, (yb - t + A[1]) / 2, "[Seil 1]", "#000000", 14, anker="end", italic=False))
-    e.append(text((xc + A[0]) / 2 + 14, (yb - t + A[1]) / 2, "[Seil 2]", "#000000", 14, anker="start", italic=False))
+    e.append(text(K[0] + 12, K[1] + 4, "K", "#000000", anker="start"))
+    e.append(text(A[0] + 10, (A[1] + K[1]) / 2, "[Seil 3]", "#000000", 14, anker="start", italic=False))
+    e.append(text((xa + K[0]) / 2 - 14, (yb - t + K[1]) / 2, "[Seil 1]", "#000000", 14, anker="end", italic=False))
+    e.append(text((xc + K[0]) / 2 + 14, (yb - t + K[1]) / 2, "[Seil 2]", "#000000", 14, anker="start", italic=False))
     e.append(mass(xa, yb + t, xc, yb + t, "l", abstand=-30))
-    e.append(mass(xm - 150, yb - t, xm - 150, A[1], "h", abstand=-18))
-    e.append(linie(xm - 160, A[1], A[0] - 14, A[1], GRUEN, STRICH["duenn"]))
+    e.append(mass(xm - 150, yb - t, xm - 150, K[1], "h", abstand=-18))
+    e.append(linie(xm - 160, K[1], K[0] - 8, K[1], GRUEN, STRICH["duenn"]))
     e.append(text(xm + 150, yb - 30, "m", "#000000", 20))
-    e.append(pfeil(430, 60, 430, 110, GRUEN, STRICH["normal"], (8, 5)))
-    e.append(text(444, 76, "g", GRUEN, 18, anker="start"))
+    e.append(pfeil(430, 70, 430, 120, ROT, STRICH["normal"], (8, 5)))
+    e.append(text(444, 86, "g", ROT, 18, anker="start"))
     return abb.speichern(ZIEL / "aufgabe-1-1-4.svg")
 
 

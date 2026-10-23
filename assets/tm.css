@@ -210,6 +210,10 @@ iframe.notebook-rahmen {
   border-radius: 0.4rem; padding: 0.1rem 0.6rem; font-size: 0.8rem; opacity: 0.7;
 }
 .scrolly-bild:hover { opacity: 1; color: #0050b4; border-color: #0050b4; }
+/* feste Grafiken (Seminar): Knopf „Bild“ links unter der Grafik */
+.bild-rahmen { display: inline-block; max-width: 100%; vertical-align: top; }
+.bild-rahmen > img { display: block; }
+.bild-rahmen > .scrolly-bild { position: static; display: block; margin-top: 0.2rem; }
 .bild-dialog {
   position: fixed; inset: 0; z-index: 2000; background: rgba(0, 0, 0, 0.45);
   display: flex; align-items: center; justify-content: center; padding: 1rem;
@@ -227,7 +231,7 @@ iframe.notebook-rahmen {
 }
 .bild-knoepfe button:first-child { background: #0050b4; color: #fff; }
 .bild-status { font-size: 0.9rem; color: #006414; margin-top: 0.5rem; min-height: 1.2rem; }
-@media print { .scrolly-bild { display: none; } }
+@media print { .scrolly-bild, .bild-rahmen > .scrolly-bild { display: none; } }
 
 /* ------------------------------------------------ Scroll-Abschnitte in voller Bildschirmbreite
    Der Fließtext bleibt in der Lesespalte; Grafik und Schritte nutzen auf breiten Bildschirmen

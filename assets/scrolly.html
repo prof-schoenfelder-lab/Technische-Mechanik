@@ -131,11 +131,11 @@
     return schriftCSS;
   }
 
-  async function alsPNG(svg) {
+  async function alsPNG(svg, alleEbenen) {
     const vb = zahlen(svg.dataset.ziel || svg.getAttribute("viewBox"));
     const kopie = svg.cloneNode(true);
     Array.from(kopie.children).forEach(g => {
-      if (!g.dataset || !g.dataset.ebene) return;
+      if (alleEbenen || !g.dataset || !g.dataset.ebene) return;
       if (!g.classList.contains("sichtbar")) { g.remove(); return; }
       g.setAttribute("opacity", g.classList.contains("gedimmt") ? "0.22" : "1");
       g.removeAttribute("class");
@@ -171,7 +171,7 @@
     return `TM-${seite}-grafik${alle.indexOf(sc) + 1}-schritt${nr}.png`;
   }
 
-  window.tmBildDialog = async function (sc, svg) {
+  window.tmBildDialog = async function (sc, svg, optionen = {}) {
     const dlg = document.createElement("div");
     dlg.className = "bild-dialog";
     dlg.innerHTML = '<div class="bild-karte"><div class="bild-status">Bild wird erstellt …</div></div>';
@@ -181,13 +181,13 @@
     document.addEventListener("keydown", esc);
     dlg.addEventListener("click", e => { if (e.target === dlg) schliessen(); });
     let blob;
-    try { blob = await alsPNG(svg); } catch (e) { blob = null; }
+    try { blob = await alsPNG(svg, optionen.alleEbenen); } catch (e) { blob = null; }
     const karte = dlg.querySelector(".bild-karte");
     if (!blob) { karte.querySelector(".bild-status").textContent = "Das Bild konnte nicht erstellt werden."; return; }
-    const name = dateiname(sc);
+    const name = optionen.name || dateiname(sc);
     const url = URL.createObjectURL(blob);
     karte.innerHTML = `
-      <img src="${url}" alt="Grafik des aktuellen Schritts" draggable="true">
+      <img src="${url}" alt="Grafik als Bild" draggable="true">
       <p class="bild-hinweis">Kopieren und in Ihre Notizen einfügen, als Datei speichern oder das Bild
         mit dem Finger bzw. der Maus direkt in die Notizen ziehen.</p>
       <div class="bild-knoepfe">
@@ -208,6 +208,34 @@
       }
     });
   };
+
+  // Knopf „Bild“ auch an festen Grafiken (Seminar: Aufgabenskizzen), ganze Grafik mit allen Ebenen
+  if (/\/(vorlesung|seminar)\//.test(location.pathname)) {
+    document.querySelectorAll('main img[src*="grafiken/"][src$=".svg"]').forEach(img => {
+      if (img.closest(".scrolly")) return;
+      const rahmen = document.createElement("span");
+      rahmen.className = "bild-rahmen";
+      rahmen.style.width = img.style.width || "";       // Breite aus Quarto ({width=55%}) auf den Rahmen
+      img.style.width = "100%";
+      img.parentNode.insertBefore(rahmen, img);
+      rahmen.appendChild(img);
+      const knopf = document.createElement("button");
+      knopf.type = "button";
+      knopf.className = "scrolly-bild";
+      knopf.title = "Grafik als Bild kopieren oder speichern (für eigene Notizen)";
+      knopf.textContent = "Bild";
+      knopf.addEventListener("click", async () => {
+        const text = await (await fetch(img.src)).text();
+        const svg = new DOMParser().parseFromString(text, "image/svg+xml").documentElement;
+        if (!svg.getAttribute("viewBox"))
+          svg.setAttribute("viewBox", `0 0 ${parseFloat(svg.getAttribute("width"))} ${parseFloat(svg.getAttribute("height"))}`);
+        const seite = location.pathname.split("/").pop().replace(/\.html$/, "");
+        const name = `TM-${seite}-${img.src.split("/").pop().replace(/\.svg$/, "")}.png`;
+        window.tmBildDialog(null, svg, { alleEbenen: true, name });
+      });
+      rahmen.appendChild(knopf);
+    });
+  }
 
   // Tastatur / Presenter: Bild↓, Bild↑, →, ← springen von Schritt zu Schritt
   function naechster(richtung) {
