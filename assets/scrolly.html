@@ -119,12 +119,14 @@
     const basis = css ? css.href : location.href;
     const dateien = [["Latin Modern Roman", "normal", "lmroman10-regular.otf"],
                      ["Latin Modern Roman", "italic", "lmroman10-italic.otf"],
-                     ["Latin Modern Math", "normal", "latinmodern-math.otf"]];
+                     ["Latin Modern Math", "normal", "latinmodern-math.otf"],
+                     ["Source Sans Pro", "normal", "SourceSansPro-Regular.ttf"]];
     const teile = await Promise.all(dateien.map(async ([fam, stil, datei]) => {
       try {
         const blob = await (await fetch(new URL("fonts/" + datei, basis))).blob();
         const url = await new Promise(r => { const fr = new FileReader(); fr.onload = () => r(fr.result); fr.readAsDataURL(blob); });
-        return `@font-face{font-family:"${fam}";font-style:${stil};src:url(${url}) format("opentype");}`;
+        const format = datei.endsWith(".ttf") ? "truetype" : "opentype";
+        return `@font-face{font-family:"${fam}";font-style:${stil};src:url(${url}) format("${format}");}`;
       } catch (e) { return ""; }
     }));
     schriftCSS = teile.join("");

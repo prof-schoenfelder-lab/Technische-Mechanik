@@ -592,7 +592,6 @@ def aufgabe_1_1_4():
     e.append(text((xc + K[0]) / 2 + 14, (yb - t + K[1]) / 2, "[Seil 2]", "#000000", 14, anker="start", italic=False))
     e.append(mass(xa, yb + t, xc, yb + t, "l", abstand=-30))
     e.append(mass(xm - 150, yb - t, xm - 150, K[1], "h", abstand=-18))
-    e.append(linie(xm - 160, K[1], K[0] - 8, K[1], GRUEN, STRICH["duenn"]))
     e.append(text(xm + 150, yb - 30, "m", "#000000", 20))
     e.append(pfeil(430, 70, 430, 120, ROT, STRICH["normal"], (8, 5)))
     e.append(text(444, 86, "g", ROT, 18, anker="start"))
@@ -623,7 +622,7 @@ def aufgabe_1_1_5():
                        GRAU, STRICH["duenn"], strich="4 3", schliessen=True))
     e.append(mass(H[0], H[1], H[0], y0, "l", abstand=-70))
     e.append(mass(H[0] - 40, y0, H[0] - 40, K[1], "h", abstand=-18))
-    e.append(linie(H[0] - 64, K[1], K[0], K[1], GRUEN, STRICH["duenn"], strich="2 3"))
+    e.append(linie(H[0] + 6, K[1], K[0] - 6, K[1], GRUEN, STRICH["duenn"], strich="2 3"))
     return abb.speichern(ZIEL / "aufgabe-1-1-5.svg")
 
 
@@ -966,7 +965,7 @@ def wippe():
     e.append(mass(D[0], 75, x2, 75, "a_2", abstand=0, hilfslinien=False))
     for x, y_bis in ((x1, 92), (x2, 102)):
         e.append(linie(x, 65, x, y_bis, FARBE["mass"], STRICH["duenn"]))
-    e.append(linie(D[0], 65, D[0], D[1] - 8, FARBE["mass"], STRICH["duenn"], strich="4 3"))
+    e.append(linie(D[0], 65, D[0], 92, FARBE["mass"], STRICH["duenn"]))
 
     e = abb.ebene("momente", "Drehwirkungen um D")
     # kleine runde Drehpfeile um D: links gegen, rechts im Uhrzeigersinn

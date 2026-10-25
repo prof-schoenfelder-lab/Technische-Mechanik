@@ -19,14 +19,20 @@ Tipp: Mit **Bild↓ / Bild↑** oder **→ / ←** springen Sie von Schritt zu S
 
 :::: {.scrolly svg="../grafiken/lager/kraftarten.svg"}
 
-::: {.schritt zeige="art-1" zoom="0 0 420 260"}
+::: {.schritt zeige="art-1 art-1-last" zoom="0 0 420 260"}
 ### Einzelkraft
 
-Eine **Einzelkraft** $F$ greift in einem Punkt an. Einheit: N.
+Eine Stütze steht auf einem Träger. Ihre Last verteilt sich über die kleine Fläche, mit der sie
+aufsitzt: Eine Kraft, die genau in einem Punkt angreift, gibt es streng genommen nicht.
+:::
 
-Streng genommen gibt es sie nicht, jede Kraft verteilt sich über eine kleine Fläche. Ist diese Fläche
-aber klein gegenüber dem Bauteil, ist die Einzelkraft ein sehr gutes **Modell**, etwa für eine Stütze,
-die auf einem Träger steht.
+::: {.schritt zeige="art-1 art-1-kraft" zoom="0 0 420 260"}
+### Modell: Einzelkraft
+
+Ist die Auflagefläche klein gegenüber dem Bauteil, ersetzen wir die Last durch eine **Einzelkraft** $F$,
+die in einem Punkt angreift. Einheit: N.
+
+Die Einzelkraft ist ein sehr gutes **Modell**.
 :::
 
 ::: {.schritt zeige="art-2" zoom="0 0 420 260"}
@@ -47,14 +53,20 @@ Beispiele: Schnee auf einem Dach, Wind auf einer Fassade, Wasserdruck auf eine S
 Für einen Träger, der einen Streifen der Breite $b$ trägt, wird daraus eine Linienlast $q = p\,b$.
 :::
 
-::: {.schritt zeige="art-4" zoom="0 0 420 260"}
+::: {.schritt zeige="art-4 art-4-last" zoom="0 0 420 260"}
 ### Volumenkraft
 
 Eine **Volumenkraft** wirkt auf jedes Volumenelement des Körpers, zum Beispiel das Gewicht mit
 $\rho\,g$ in N/m³ ($\rho$: Dichte).
+:::
+
+::: {.schritt zeige="art-4 art-4-kraft" zoom="0 0 420 260"}
+### Ersatz: Gewichtskraft im Schwerpunkt
 
 Am starren Körper ersetzt man sie durch **eine** Einzelkraft, die Gewichtskraft $G = m\,g$ im
 **Schwerpunkt**.
+
+$G$ ersetzt die verteilte Last vollständig: Beide dürfen nicht gleichzeitig angetragen werden.
 :::
 
 ::: {.schritt zeige="uebersicht" zoom="0 300 840 520"}
@@ -324,10 +336,16 @@ dass die Kraft entgegen der angenommenen Richtung wirkt.
 ### Streckenlast
 
 Eine Streckenlast $q(x)$ gibt an, wie viel Kraft pro Länge an der Stelle $x$ wirkt.
-Auf ein kleines Stück $\mathrm dx$ entfällt die Kraft
+Auf ein kleines Stück $\mathrm dx$ im Abstand $x$ vom Ursprung entfällt die Kraft
 
 $$
 \mathrm dF = q(x)\,\mathrm dx
+$$
+
+Ihr Moment um den Ursprung ist
+
+$$
+\mathrm dM = x\,\mathrm dF = x\,q(x)\,\mathrm dx
 $$
 :::
 
@@ -335,20 +353,31 @@ $$
 ### Ersatz durch eine Einzelkraft
 
 Für das Gleichgewicht ersetzen wir die Streckenlast durch eine **Resultierende** $F_R$ mit derselben Kraft-
-und Momentenwirkung:
+und Momentenwirkung. Die Kräfte $\mathrm dF$ aller Stücke über die Länge $L$ summieren sich zu
 
 $$
-\begin{aligned}
-F_R &= \int q(x)\,\mathrm dx\\[2pt]
-x_R &= \frac{\int q(x)\,x\,\mathrm dx}{F_R}
-\end{aligned}
+F_R = \int_0^L \mathrm dF = \int_0^L q(x)\,\mathrm dx
+$$
+
+Die Teilmomente $x\,q(x)\,\mathrm dx$ müssen zusammen dasselbe Moment ergeben wie $F_R$ im Abstand $x_R$:
+
+$$
+F_R\,x_R = \int_0^L x\,q(x)\,\mathrm dx
+\quad\Rightarrow\quad
+x_R = \frac{1}{F_R}\int_0^L x\,q(x)\,\mathrm dx
 $$
 
 $F_R$ ist die **Fläche** unter der Lastkurve, $x_R$ die Lage ihres **Schwerpunkts**.
 :::
 
-::: {.schritt zeige="rechteck" zoom="0 0 560 300"}
+::: {.schritt zeige="rechteck rechteck-last" zoom="0 0 560 300"}
 ### Rechtecklast
+
+Die Last $q$ ist über die ganze Länge $L$ konstant.
+:::
+
+::: {.schritt zeige="rechteck rechteck-ersatz" zoom="0 0 560 300"}
+### Resultierende der Rechtecklast
 
 Bei konstanter Last $q$ über die Länge $L$:
 
@@ -359,10 +388,20 @@ $$
 Die Resultierende greift in der **Mitte** an.
 :::
 
-::: {.schritt zeige="dreieck" zoom="0 0 560 300"}
+::: {.schritt zeige="dreieck dreieck-last" zoom="0 0 560 300"}
 ### Dreieckslast
 
-Bei linear von $0$ auf $q_0$ ansteigender Last, $q(x) = q_0\,x/L$:
+Die Last steigt linear von $0$ auf $q_0$ an:
+
+$$
+q(x) = q_0\,\frac{x}{L}
+$$
+:::
+
+::: {.schritt zeige="dreieck dreieck-ersatz" zoom="0 0 560 300"}
+### Resultierende der Dreieckslast
+
+Für diese Last gilt:
 
 $$
 F_R = \tfrac12\,q_0\,L, \qquad x_R = \tfrac23\,L
@@ -392,7 +431,9 @@ ersetzen. Schneidet man den Körper später auf, um innere Kräfte zu berechnen 
 schneiden** und dann nur den Lastanteil am Teilkörper ersetzen.
 :::
 
-::: {.vertiefung titel="Ausführlicher: Druck auf gekrümmte Flächen"}
+::: {.vertiefung titel="Ergänzung: Druck auf gekrümmte Flächen"}
+![Konstanter Druck $p$ auf einen Halbkreisbogen: Die Resultierende ist Druck mal Projektionslänge $2r$](../grafiken/lager/druck-halbkreis.svg){width=60%}
+
 Wirkt ein konstanter Druck $p$ auf einen Halbkreisbogen mit dem Radius $r$, heben sich die waagerechten
 Anteile auf. Die senkrechte Resultierende ist
 
@@ -409,7 +450,7 @@ senkrecht zu dieser Richtung.
 
 :::: {.scrolly svg="../grafiken/lager/kfz-anhaenger.svg"}
 
-::: {.schritt zeige="ansicht" zoom="20 40 840 170"}
+::: {.schritt zeige="ansicht" zoom="20 40 620 170"}
 ### Beispiel: Pkw mit Anhänger
 
 Ein Pkw (1500 kg, mit Fahrer 1600 kg) zieht einen einachsigen Anhänger. Die Ladung des Anhängers
@@ -418,7 +459,7 @@ Ein Pkw (1500 kg, mit Fahrer 1600 kg) zieht einen einachsigen Anhänger. Die Lad
 **Gesucht:** die Achslasten und die Kraft in der Kupplung
 :::
 
-::: {.schritt zeige="modell" zoom="20 230 860 170"}
+::: {.schritt zeige="ansicht modell" dimmen="ansicht" zoom="20 40 620 370"}
 ### Modell
 
 - Pkw und Anhänger sind zwei Balken, verbunden durch das **Gelenk** $G$ (Anhängerkupplung).
@@ -428,7 +469,7 @@ Ein Pkw (1500 kg, mit Fahrer 1600 kg) zieht einen einachsigen Anhänger. Die Lad
 **Abzählen:** $n = 2$, $a = 1 + 2 + 1 = 4$, $z = 2$: $\;6 = 6$, statisch bestimmt.
 :::
 
-::: {.schritt zeige="modell freischnitt" dimmen="modell" zoom="20 230 880 350"}
+::: {.schritt zeige="modell freischnitt" dimmen="modell" zoom="20 230 690 350"}
 ### Am Gelenk trennen
 
 Wir schneiden am Gelenk. Auf beide Teile wirken die Gelenkkräfte $G_H$, $G_V$, **entgegengesetzt**
@@ -437,7 +478,7 @@ Wir schneiden am Gelenk. Auf beide Teile wirken die Gelenkkräfte $G_H$, $G_V$, 
 Wir beginnen mit dem Teil, an dem nur **drei** Unbekannte angreifen: dem Anhänger ($G_H$, $G_V$, $F_C$).
 :::
 
-::: {.schritt zeige="freischnitt" zoom="20 380 880 200"}
+::: {.schritt zeige="freischnitt" zoom="20 380 690 200"}
 ### ① Anhänger
 
 Resultierende der Ladung: $F_q = q_0 L_A = 2500$ N, 1,0 m hinter der Kupplung.
@@ -455,7 +496,7 @@ $$
 Die Achse sitzt hinter der Lastmitte: Ein Teil der Ladung stützt sich auf die Kupplung, die **Stützlast** $G_V$.
 :::
 
-::: {.schritt zeige="freischnitt" zoom="20 380 880 200"}
+::: {.schritt zeige="freischnitt" zoom="20 380 690 200"}
 ### ② Pkw
 
 Auf den Pkw drückt die Stützlast $G_V = 417$ N nach unten.
@@ -543,7 +584,7 @@ Mehrteilige Systeme trennt man an den **Gelenken** und beginnt mit dem Teil mit 
 Mit den Lagerreaktionen kennen wir alle **äußeren** Kräfte eines Tragwerks. In Woche 3 schneiden wir das
 Tragwerk selbst auf und bestimmen die **inneren** Kräfte, die Schnittgrößen.
 
-**Weiter:** [Aufgaben zu Woche 2](../seminar/02-lager.qmd)
+**Weiter:** [Aufgaben zu Lager und Lagerreaktionen](../seminar/02-lager.qmd)
 :::
 
 ::::

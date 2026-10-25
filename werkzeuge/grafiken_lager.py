@@ -11,16 +11,22 @@ import math
 from pathlib import Path
 
 from grafiken_grundlagen import GRAU, GRUEN, ROT, hinweis, kasten, koord_xy, platte, punkt, strichpunkt, vektor
-from tmzeichnen import (FARBE, STRICH, Abbildung, balken, einspannung, festlager, gelenk, gruppe, kraft, kreis,
-                        linie, loslager, mass, moment, pfeil, polylinie, schnitt, streckenlast, text)
+from tmzeichnen import (FARBE, STRICH, Abbildung, balken, einspannung, festlager, gelenk, gelenk_offen, gruppe, kraft, kreis,
+                        linie, loslager, mass, moment, pfeil, polylinie, schnitt, stabzug, streckenlast, text)
 
 ZIEL = Path(__file__).resolve().parent.parent / "grafiken" / "lager"
 SCHWARZ = "#000000"
 T = 3.5                                         # halbe Balkendicke (balken dicke=7)
 
 
+# Text in den Kacheln: Im Einzelschritt wird eine Kachel (420 breit) etwa 2- bis 3-fach vergrößert, dort
+# soll der Text etwa so groß wirken wie der Fließtext rechts. In der Übersicht (alle Kacheln) bleibt er größer.
+GR_KACHEL = {"titel": 10, "text": 8}
+GR_UEBERSICHT = {"titel": 19, "text": 15}
+
+
 def titel(e, ox, oy, s, groesse=19):
-    e.append(text(ox + 20, oy + 26, f"[{s}]", SCHWARZ, groesse, anker="start", italic=False))
+    e.append(text(ox + 20, oy + 10 + groesse * 0.85, f"[{s}]", SCHWARZ, groesse, anker="start", italic=False))
 
 
 def rahmen(e, ox, oy, b, h):
@@ -47,28 +53,37 @@ def gleich(e, x, y, s="⇒"):
 # =====================================================================
 # 1  Arten der Kräfte
 # =====================================================================
-def _kraftart(e, nr, ox, oy):
+def _kraftart(e, nr, ox, oy, gr=GR_UEBERSICHT, ebenen=None):
+    """ebenen: dict mit den Ebenen "basis", "last", "kraft" für die Scroll-Schritte (Einzelkraft, Volumenkraft:
+    erst die verteilte bzw. reale Last, dann die Ersatzkraft); ohne: alles in e, Ersatzkraft statt Last."""
     W = 420
+    eb = ebenen or {"basis": e, "last": None, "kraft": e}
     if nr == 1:
-        titel(e, ox, oy, "Einzelkraft F in N")
+        b = eb["basis"]
+        titel(b, ox, oy, "Einzelkraft F in N", gr["titel"])
         y = oy + 160
-        e.append(balken(ox + 60, y, ox + 360, y))
-        e.append(festlager(ox + 60, y + T))
-        e.append(loslager(ox + 360, y + T))
-        e.append(platte([(ox + 190, y - T - 120), (ox + 230, y - T - 120), (ox + 230, y - T - 66), (ox + 190, y - T - 66)],
-                        "#d9d9d9"))
-        e.append(kraft(ox + 210, y - T, -90, "F", laenge=60, label_seite=-1, label_pos=0.5))
-        e.append(hinweis(ox + W / 2, oy + 235, "z. B. Stütze auf Träger: Last in einem Punkt", anker="middle", groesse=15))
+        b.append(balken(ox + 60, y, ox + 360, y))
+        b.append(festlager(ox + 60, y + T))
+        b.append(loslager(ox + 360, y + T))
+        b.append(hinweis(ox + W / 2, oy + 235, "z. B. Stütze auf Träger: Last in einem Punkt", anker="middle", groesse=gr["text"]))
+        xm, yt = ox + 210, y - T
+        if eb["last"] is not None:
+            # reale Last, die in einem Punkt aufsitzt: Dreieck mit gerundeter Spitze
+            hb, hh, r = 26, 70, 5
+            eb["last"].append(f'<path d="M {xm - hb:.1f},{yt - hh:.1f} L {xm + hb:.1f},{yt - hh:.1f} '
+                              f'L {xm + r * 0.6:.1f},{yt - r * 1.2:.1f} Q {xm:.1f},{yt + 0.4:.1f} {xm - r * 0.6:.1f},{yt - r * 1.2:.1f} Z" '
+                              f'fill="#d9d9d9" stroke="#000000" stroke-width="{STRICH["normal"]}" stroke-linejoin="round"/>')
+        eb["kraft"].append(kraft(xm, yt, -90, "F", laenge=80, label_seite=-1, label_pos=0.6))
     elif nr == 2:
-        titel(e, ox, oy, "Linienlast (Streckenlast) q in N/m")
+        titel(e, ox, oy, "Linienlast (Streckenlast) q in N/m", gr["titel"])
         y = oy + 160
         e.append(balken(ox + 60, y, ox + 360, y))
         e.append(festlager(ox + 60, y + T))
         e.append(loslager(ox + 360, y + T))
         e.append(streckenlast(ox + 60, ox + 360, y - T, 40, label="q", n=15))
-        e.append(hinweis(ox + W / 2, oy + 235, "z. B. Wand auf Decke, Eigengewicht des Trägers", anker="middle", groesse=15))
+        e.append(hinweis(ox + W / 2, oy + 235, "z. B. Wand auf Decke, Eigengewicht des Trägers", anker="middle", groesse=gr["text"]))
     elif nr == 3:
-        titel(e, ox, oy, "Flächenlast p in N/m²")
+        titel(e, ox, oy, "Flächenlast p in N/m²", gr["titel"])
         def P(x, y):                               # schräge Ansicht einer Platte
             return (ox + 70 + x + 0.55 * y, oy + 190 - 0.38 * y)
         e.append(polylinie([P(0, 0), P(240, 0), P(240, 160), P(0, 160)], SCHWARZ, STRICH["normal"], "#e6e6e6",
@@ -80,26 +95,52 @@ def _kraftart(e, nr, ox, oy):
                 x, yy = P(20 + 50 * i, 20 + 40 * k)
                 e.append(pfeil(x, yy - 30, x, yy, ROT, 1.2, (7, 5)))
         e.append(text(P(240, 160)[0] + 8, P(240, 160)[1] - 22, "p", ROT, anker="start"))
-        e.append(hinweis(ox + W / 2, oy + 235, "z. B. Schnee, Wind, Wasserdruck", anker="middle", groesse=15))
+        e.append(hinweis(ox + W / 2, oy + 235, "z. B. Schnee, Wind, Wasserdruck", anker="middle", groesse=gr["text"]))
     else:
-        titel(e, ox, oy, "Volumenkraft ρ g in N/m³")
-        x0, y0, b, h = ox + 90, oy + 70, 170, 130
-        e.append(platte([(x0, y0), (x0 + b, y0), (x0 + b, y0 + h), (x0, y0 + h)], "#e6e6e6"))
-        for i in range(5):
-            for k in range(4):
-                x, yy = x0 + 20 + 32 * i, y0 + 18 + 30 * k
-                e.append(pfeil(x, yy, x, yy + 16, "#e08080", 1.0, (5, 4)))
-        S = (x0 + b / 2, y0 + h / 2)
-        e.append(punkt(*S, 3.4))
-        e.append(kraft(*S, -90, "G", laenge=95, ziehend=True, label_seite=-1, label_pos=0.85))
-        e.append(text(x0 + b + 14, y0 + 20, "[im Schwerpunkt]", "#555555", 14, anker="start", italic=False))
-        e.append(hinweis(ox + W / 2, oy + 235, "z. B. Gewicht: verteilt über das ganze Volumen", anker="middle", groesse=15))
+        b = eb["basis"]
+        titel(b, ox, oy, "Volumenkraft ρ g in N/m³", gr["titel"])
+        b.append(hinweis(ox + W / 2, oy + 235, "z. B. Gewicht: verteilt über das ganze Volumen", anker="middle", groesse=gr["text"]))
+        # Quader in schräger Ansicht (wie die Platte der Flächenlast): Breite, Höhe, Tiefe
+        x0, y0, bq, hq, tq = ox + 110, oy + 85, 150, 105, 70
+        dx, dy = 0.55 * tq, -0.38 * tq
+        def Q(u, v, w):                              # u nach rechts, v nach unten, w in die Tiefe (0..1)
+            return (x0 + u * bq + w * dx, y0 + v * hq + w * dy)
+        vorne = [Q(0, 0, 0), Q(1, 0, 0), Q(1, 1, 0), Q(0, 1, 0)]
+        b.append(polylinie([Q(0, 0, 0), Q(0, 0, 1), Q(1, 0, 1), Q(1, 0, 0)], SCHWARZ, STRICH["normal"], "#efefef", schliessen=True))
+        b.append(polylinie([Q(1, 0, 0), Q(1, 0, 1), Q(1, 1, 1), Q(1, 1, 0)], SCHWARZ, STRICH["normal"], "#d0d0d0", schliessen=True))
+        b.append(polylinie(vorne, SCHWARZ, STRICH["normal"], "#e6e6e6", schliessen=True))
+        if eb["last"] is not None:
+            # verteilte Last in mehreren Schichten des Volumens; hintere Schichten blasser und hinter einer
+            # halb durchsichtigen Vorderfläche, gezeigt nur, soweit sie durch die Vorderfläche zu sehen sind
+            L = eb["last"]
+            for w, farbe in ((1.0, "#f0b0b0"), (0.5, "#e89090")):
+                for i in range(4):
+                    for k in range(3):
+                        x, yy = Q(0.1 + 0.24 * i, 0.1 + 0.28 * k, w)
+                        if x0 + 6 < x < x0 + bq - 6 and y0 + 4 < yy and yy + 18 < y0 + hq:
+                            L.append(pfeil(x, yy, x, yy + 16, farbe, 1.0, (5, 4)))
+            L.append(polylinie(vorne, "none", 0, "#e6e6e6", schliessen=True).replace('fill="#e6e6e6"', 'fill="#e6e6e6" fill-opacity="0.45"'))
+            for i in range(4):
+                for k in range(3):
+                    x, yy = Q(0.14 + 0.24 * i, 0.12 + 0.3 * k, 0)
+                    L.append(pfeil(x, yy, x, yy + 16, "#d40000", 1.1, (5, 4)))
+            L.append(polylinie(vorne, SCHWARZ, STRICH["normal"], "none", schliessen=True))
+        S = Q(0.5, 0.5, 0.5)
+        eb["kraft"].append(punkt(*S, 3.4))
+        eb["kraft"].append(kraft(*S, -90, "G", laenge=78, ziehend=True, label_seite=-1, label_pos=0.85))
+        eb["kraft"].append(text(S[0] + 10, S[1] - 10, "[im Schwerpunkt]", "#555555", gr["text"], anker="start", italic=False))
 
 
 def kraftarten():
     abb = Abbildung(840, 840, "Arten der Kräfte")
     for nr in (1, 2, 3, 4):
-        _kraftart(abb.ebene(f"art-{nr}", f"Kraftart {nr}"), nr, 0, 0)
+        if nr in (1, 4):                       # zwei Schritte: reale bzw. verteilte Last, dann Ersatzkraft
+            ebenen = {"basis": abb.ebene(f"art-{nr}", f"Kraftart {nr}"),
+                      "last": abb.ebene(f"art-{nr}-last", f"Kraftart {nr}: Last"),
+                      "kraft": abb.ebene(f"art-{nr}-kraft", f"Kraftart {nr}: Ersatzkraft")}
+            _kraftart(None, nr, 0, 0, GR_KACHEL, ebenen)
+        else:
+            _kraftart(abb.ebene(f"art-{nr}", f"Kraftart {nr}"), nr, 0, 0, GR_KACHEL)
     e = abb.ebene("uebersicht", "Übersicht")
     for nr, (ox, oy) in zip((1, 2, 3, 4), ((0, 300), (420, 300), (0, 560), (420, 560))):
         rahmen(e, ox, oy, 420, 260)
@@ -110,11 +151,11 @@ def kraftarten():
 # =====================================================================
 # 2  Lager und Lagerreaktionen
 # =====================================================================
-def _lager(e, art, ox, oy):
+def _lager(e, art, ox, oy, gr=GR_UEBERSICHT):
     W = 420
     y = oy + 130
     if art == "freiheitsgrade":
-        titel(e, ox, oy, "Freiheitsgrade in der Ebene")
+        titel(e, ox, oy, "Freiheitsgrade in der Ebene", gr["titel"])
         e.append(platte([(ox + 130, oy + 80), (ox + 290, oy + 70), (ox + 300, oy + 180), (ox + 140, oy + 190)]))
         M = (ox + 215, oy + 130)
         e.append(pfeil(M[0], M[1], M[0] + 90, M[1], GRUEN, 2.2, (11, 8)))
@@ -123,11 +164,11 @@ def _lager(e, art, ox, oy):
         e.append(text(M[0] + 96, M[1] + 16, "u_x", GRUEN, 18, anker="start"))
         e.append(text(M[0] + 10, M[1] - 92, "u_y", GRUEN, 18, anker="start"))
         e.append(text(M[0] - 34, M[1] + 30, "φ", GRUEN, 18))
-        e.append(hinweis(ox + W / 2, oy + 225, "2 Verschiebungen und 1 Drehung", anker="middle", groesse=15))
+        e.append(hinweis(ox + W / 2, oy + 225, "2 Verschiebungen und 1 Drehung", anker="middle", groesse=gr["text"]))
         return
     namen = {"los": "Loslager (einwertig)", "fest": "Festlager (zweiwertig)", "einsp": "Einspannung (dreiwertig)",
              "gelenk": "Gelenk (zweiwertig)", "pendel": "Pendelstütze (einwertig)"}
-    titel(e, ox, oy, namen[art])
+    titel(e, ox, oy, namen[art], gr["titel"])
     xs, xf = ox + 120, ox + 330               # Lager links, Freikörperbild rechts
     gleich(e, ox + 215, y)
     if art == "los":
@@ -144,13 +185,13 @@ def _lager(e, art, ox, oy):
         e.append(kraft(xf + 4, y, 180, "F_{AH}", laenge=55, label_seite=-1))
         txt = "verhindert: beide Verschiebungen"
     elif art == "einsp":
-        e.append(balken(xs - 70, y, xs + 10, y))
-        e.append(einspannung(xs - 70, y, hoehe=50))
-        e.append(balken(xf - 60, y, xf + 20, y))
-        e.append(kraft(xf - 60, y + T, 90, "F_{AV}", laenge=50, label_seite=1))
-        e.append(kraft(xf - 64, y, 0, "F_{AH}", laenge=50, label_seite=1))
-        e.append(moment(xf - 60, y, "", gegen_uhrzeiger=True, r=22, start=-60, bogen=200))
-        e.append(text(xf - 34, y - 32, "M_A", ROT, anker="start"))
+        e.append(balken(xs - 70, y, xs, y))
+        e.append(einspannung(xs, y, hoehe=50, seite="rechts"))
+        e.append(balken(xf - 70, y, xf, y))
+        e.append(kraft(xf, y + T, 90, "F_{AV}", laenge=55, label_seite=-1))
+        e.append(kraft(xf + 4, y, 180, "F_{AH}", laenge=55, label_seite=-1))
+        e.append(moment(xf, y, "", gegen_uhrzeiger=True, r=20, start=40, bogen=165))
+        e.append(text(xf - 24, y - 30, "M_A", ROT, anker="end"))
         txt = "verhindert: Verschiebungen und Drehung"
     elif art == "gelenk":
         e.append(balken(xs - 90, y, xs, y))
@@ -160,6 +201,8 @@ def _lager(e, art, ox, oy):
         xa, xb = xf - 60, xf + 30
         e.append(balken(xa - 40, y, xa, y))
         e.append(balken(xb, y, xb + 45, y + 14))
+        e.append(gelenk_offen(xa, y, 180))
+        e.append(gelenk_offen(xb, y, -math.degrees(math.atan2(14, 45))))
         e.append(kraft(xa, y, 0, "G_H", laenge=32, ziehend=True, label_seite=1))
         e.append(kraft(xa, y, 90, "G_V", laenge=40, ziehend=True, label_seite=-1))
         e.append(kraft(xb, y, 180, "G_H", laenge=32, ziehend=True, label_seite=-1))
@@ -170,18 +213,18 @@ def _lager(e, art, ox, oy):
         e.append(pendelstab(xs, y, xs - 40, y + 70))
         e.append(festlager(xs - 40, y + 70))
         e.append(balken(xf - 70, y, xf, y))
-        w = math.degrees(math.atan2(70, -40))
-        e.append(strichpunkt(xf + 40 * 0.5, y - 70 * 0.5, xf - 40 * 1.3, y + 70 * 1.3, GRAU))
-        e.append(kraft(xf, y, w - 180, "S", laenge=70, label_seite=1, label_pos=0.6))
+        w = math.degrees(math.atan2(-70, -40))     # Stabrichtung vom Balkenende zum Fußpunkt (nach links unten)
+        e.append(strichpunkt(xf + 40 * 0.5, y - 70 * 0.5, xf - 40 * 1.15, y + 70 * 1.15, GRAU))
+        e.append(kraft(xf, y, w, "S", laenge=70, ziehend=True, label_seite=-1, label_pos=0.7))
         txt = "überträgt nur eine Kraft in Stabrichtung"
-    e.append(hinweis(ox + W / 2, oy + 225, txt, anker="middle", groesse=15))
+    e.append(hinweis(ox + W / 2, oy + 225, txt, anker="middle", groesse=gr["text"]))
 
 
 def lager():
     arten = ("freiheitsgrade", "los", "fest", "einsp", "gelenk", "pendel")
     abb = Abbildung(1260, 780, "Lager und Lagerreaktionen")
     for a in arten:
-        _lager(abb.ebene(f"l-{a}", a), a, 0, 0)
+        _lager(abb.ebene(f"l-{a}", a), a, 0, 0, GR_KACHEL)
     e = abb.ebene("uebersicht", "Übersicht")
     for k, a in enumerate(arten):
         ox, oy = 420 * (k % 3), 280 + 250 * (k // 3)
@@ -203,7 +246,7 @@ def _bestimmt(e, art, ox, oy):
              "ausnahme": ("Achtung: trotz 3 = 3 beweglich", "drei parallele Lagerkräfte", ROT),
              "zwang": ("Vorteil: zwängungsfrei", "Temperaturdehnung frei möglich", GRUEN)}
     t1, t2, farbe = texte[art]
-    titel(e, ox, oy, t1)
+    titel(e, ox, oy, t1, GR_KACHEL["titel"])
     if art in ("bestimmt", "zwang"):
         e.append(balken(x0, y, x1, y))
         e.append(festlager(x0, y + T))
@@ -223,13 +266,13 @@ def _bestimmt(e, art, ox, oy):
         e.append(balken(x0, y, x1, y))
         e.append(loslager(x0, y + T))
         e.append(loslager(x1, y + T))
-        e.append(pfeil(ox + 190, y - 26, ox + 260, y - 26, ROT, 2.2, (11, 8)))
+        e.append(pfeil(ox + 185, y - 26, ox + 265, y - 26, GRUEN, 2.2, (11, 8), beidseitig=True))
     else:
         e.append(balken(x0, y, x1, y))
         for x in (x0, (x0 + x1) / 2, x1):
             e.append(loslager(x, y + T))
-        e.append(pfeil(ox + 190, y - 26, ox + 260, y - 26, ROT, 2.2, (11, 8)))
-    e.append(text(ox + W / 2, oy + 195, f"[{t2}]", farbe, 19, italic=False))
+        e.append(pfeil(ox + 185, y - 26, ox + 265, y - 26, GRUEN, 2.2, (11, 8), beidseitig=True))
+    e.append(text(ox + W / 2, oy + 195, f"[{t2}]", farbe, GR_KACHEL["titel"], italic=False))
 
 
 def bestimmtheit():
@@ -292,10 +335,10 @@ def kragtraeger():
     e.append(balken(xA, yf, xF2, yf))
     e.append(kraft(xF1, yf - T, -90, "F", laenge=55, label_seite=-1, label_pos=0.6))
     e.append(kraft(xF2, yf - T, -90, "2F", laenge=55, label_seite=-1, label_pos=0.6))
-    e.append(kraft(xA, yf + T, 90, "F_{AV}", laenge=55, label_seite=-1, label_pos=0.6))
+    e.append(kraft(xA, yf + T, 90, "F_{AV}", laenge=55, label_seite=1, label_pos=0.6))
     e.append(kraft(xA - 2, yf, 0, "F_{AH}", laenge=50, label_seite=1, label_pos=0.8))
-    e.append(moment(xA, yf, "", gegen_uhrzeiger=True, r=30, start=100, bogen=150))
-    e.append(text(xA - 30, yf - 42, "M_A", ROT, anker="end"))
+    e.append(moment(xA, yf, "", gegen_uhrzeiger=True, r=26, start=20, bogen=115))
+    e.append(text(xA - 22, yf - 34, "M_A", ROT, anker="end"))
     e.append(punkt(xA, yf, 3))
     e.append(koord_xy(520, 385, 34, 34))
     return abb.speichern(ZIEL / "kragtraeger.svg")
@@ -308,51 +351,96 @@ def streckenlasten():
     abb = Abbildung(560, 300, "Streckenlasten")
     x0, x1, y = 70, 470, 190
     L = x1 - x0
+    BLASS = "#f8d8d8"                        # ersetzte Last, stark verblasst im Hintergrund
+    TG = 12                                  # Titel etwa so groß wie der Fließtext (Grafik wird ca. 2-fach vergrößert)
 
-    e = abb.ebene("allgemein", "Allgemeine Streckenlast")
-    titel(e, 0, 0, "Streckenlast q(x)")
-    e.append(balken(x0, y, x1, y))
     def q(x):
         t = (x - x0) / L
         return 40 + 50 * math.sin(math.pi * t) + 20 * t
     pts = [(x0 + L * i / 60, y - T - q(x0 + L * i / 60)) for i in range(61)]
-    for i in range(0, 61, 4):
-        x = x0 + L * i / 60
-        e.append(pfeil(x, y - T - q(x), x, y - T, ROT, STRICH["normal"], (8, 5.5)))
-    e.append(polylinie(pts, ROT, STRICH["normal"]))
-    e.append(text(x1 + 6, y - T - q(x1) - 4, "q(x)", ROT, anker="start"))
+
+    def koord(e):                            # Ursprung senkrecht unter dem linken Balkenende (x = 0)
+        yk, g = y + 38, FARBE["koord"]
+        e.append(pfeil(x0, yk, x0 + 40, yk, g, STRICH["normal"], (8, 5)))
+        e.append(text(x0 + 46, yk, "x", g, anker="start"))
+        e.append(pfeil(x0, yk, x0, yk - 24, g, STRICH["normal"], (8, 5)))
+        e.append(text(x0 + 8, yk - 24, "y", g, anker="start"))
+
+    def last(e, farbe):
+        for i in range(0, 61, 4):
+            x = x0 + L * i / 60
+            e.append(pfeil(x, y - T - q(x), x, y - T, farbe, STRICH["normal"], (8, 5.5)))
+        e.append(polylinie(pts, farbe, STRICH["normal"]))
+        e.append(text(x1 + 6, y - T - q(x1) - 4, "q(x)", farbe, anker="start"))
+
+    e = abb.ebene("allgemein", "Allgemeine Streckenlast")
+    titel(e, 0, 0, "Streckenlast q(x)", TG)
+    e.append(balken(x0, y, x1, y))
+    last(e, ROT)
     xs = x0 + 0.62 * L
     e.append(polylinie([(xs, y - T), (xs, y - T - q(xs)), (xs + 14, y - T - q(xs + 14)), (xs + 14, y - T)], None,
                        fuellung="#f5b5b5", schliessen=True))
     e.append(text(xs + 7, y - T - q(xs) - 18, "dF = q dx", ROT, 15))
-    e.append(koord_xy(x0, y + 50, 40, 0.1, xlabel="x", ylabel=""))
-    e.append(mass(xs, y + T, xs + 14, y + T, "dx", abstand=-26, hilfslinien=False))
+    e.append(mass(xs, y, xs + 14, y, "dx", abstand=-28, aussen=True))
+    e.append(mass(x0, y, xs, y, "x", abstand=-62))
+    e.append(mass(x0, y, x1, y, "L", abstand=-86))
+    koord(e)
 
     e = abb.ebene("ersatz", "Resultierende")
-    titel(e, 0, 0, "Ersatz durch eine Einzelkraft")
+    titel(e, 0, 0, "Ersatz durch eine Einzelkraft", TG)
     e.append(balken(x0, y, x1, y))
+    last(e, BLASS)
     xr = x0 + 0.53 * L
-    e.append(kraft(xr, y - T, -90, "F_R", laenge=110, label_seite=-1, label_pos=0.5))
-    e.append(mass(x0, y, xr, y, "x_R", abstand=-38))
+    e.append(kraft(xr, y - T, -90, "F_R", laenge=130, label_seite=-1, label_pos=0.85))
+    e.append(mass(x0, y, xr, y, "x_R", abstand=-62))
+    e.append(mass(x0, y, x1, y, "L", abstand=-86))
+    koord(e)
 
-    e = abb.ebene("rechteck", "Rechtecklast")
-    titel(e, 0, 0, "Rechtecklast")
-    e.append(balken(x0, y, x1, y))
-    e.append(streckenlast(x0, x1, y - T, 60, label="q", n=16))
-    xm = (x0 + x1) / 2
-    e.append(kraft(xm, y - T, -90, "F_R = q L", laenge=130, label_seite=-1, label_pos=0.85, farbe="#9b0000"))
-    e.append(mass(x0, y, xm, y, "L/2", abstand=-36))
-    e.append(mass(x0, y, x1, y, "L", abstand=-66))
-
-    e = abb.ebene("dreieck", "Dreieckslast")
-    titel(e, 0, 0, "Dreieckslast")
-    e.append(balken(x0, y, x1, y))
-    e.append(streckenlast(x0, x1, y - T, 0, 90, label="q_0", n=16))
-    x23 = x0 + 2 / 3 * L
-    e.append(kraft(x23, y - T, -90, "F_R = ½ q_0 L", laenge=130, label_seite=1, label_pos=0.85, farbe="#9b0000"))
-    e.append(mass(x0, y, x23, y, "2L/3", abstand=-36))
-    e.append(mass(x0, y, x1, y, "L", abstand=-66))
+    # Rechteck- und Dreieckslast in zwei Schritten: erst die Last, dann die Resultierende (Last verblasst)
+    for name, titel_, h0, h1, lab, xr, f_lab, x_lab, seite in (
+            ("rechteck", "Rechtecklast", 60, 60, "q", (x0 + x1) / 2, "F_R = q L", "L/2", -1),
+            ("dreieck", "Dreieckslast", 0, 90, "q_0", x0 + 2 / 3 * L, "F_R = ½ q_0 L", "2L/3", 1)):
+        e = abb.ebene(name, titel_)
+        titel(e, 0, 0, titel_, TG)
+        e.append(balken(x0, y, x1, y))
+        e.append(mass(x0, y, x1, y, "L", abstand=-86))
+        koord(e)
+        e = abb.ebene(f"{name}-last", f"{titel_}: Last")
+        e.append(streckenlast(x0, x1, y - T, h0, h1, label=lab, n=16))
+        e = abb.ebene(f"{name}-ersatz", f"{titel_}: Resultierende")
+        e.append(streckenlast(x0, x1, y - T, h0, h1, label=lab, n=16, farbe=BLASS))
+        e.append(kraft(xr, y - T, -90, f_lab, laenge=130, label_seite=seite, label_pos=0.85))
+        e.append(mass(x0, y, xr, y, x_lab, abstand=-62))
     return abb.speichern(ZIEL / "streckenlasten.svg")
+
+
+def druck_halbkreis():
+    """Ergänzung: konstanter Druck p auf einen Halbkreisbogen, Resultierende = p mal Projektionslänge 2r."""
+    abb = Abbildung(460, 320, "Druck auf einen Halbkreisbogen")
+    e = abb.ebene("system", "System")
+    C, r = (230, 245), 120
+    e.append(linie(C[0] - r - 20, C[1], C[0] + r + 20, C[1], GRAU, STRICH["duenn"], strich="10 4 2 4"))
+    for w in range(15, 170, 15):                  # Druck von innen, senkrecht auf den Bogen
+        u = (math.cos(math.radians(w)), -math.sin(math.radians(w)))
+        e.append(pfeil(C[0] + u[0] * (r - 34), C[1] + u[1] * (r - 34), C[0] + u[0] * (r - 3), C[1] + u[1] * (r - 3),
+                       ROT, 1.1, (6, 4.5)))
+    e.append(f'<path d="M {C[0] - r},{C[1]} A {r} {r} 0 0 1 {C[0] + r},{C[1]}" fill="none" stroke="#000000" '
+             f'stroke-width="3"/>')
+    e.append(text(C[0] + (r - 46) * math.cos(math.radians(150)), C[1] - (r - 46) * math.sin(math.radians(150)) + 4,
+                  "p", ROT))
+    # Winkel und Element r dα bei α = 60°
+    a = math.radians(60)
+    P = (C[0] + r * math.cos(a), C[1] - r * math.sin(a))
+    e.append(linie(*C, *P, GRAU, STRICH["duenn"], strich="4 3"))
+    e.append(punkt(*C, 2.6))
+    from tmzeichnen import winkelbogen
+    e.append(winkelbogen(*C, 34, 0, 60, "α"))
+    e.append(text(P[0] + 14, P[1] - 12, "r dα", SCHWARZ, 15, anker="start"))
+    e.append(text((C[0] + P[0]) / 2 - 10, (C[1] + P[1]) / 2 - 4, "r", GRUEN, anker="end"))
+    # Resultierende senkrecht nach oben, Projektionslänge 2r
+    e.append(kraft(C[0], C[1] - r - 4, 90, "F_R = 2 p r", laenge=62, ziehend=True, label_seite=1, label_pos=0.7))
+    e.append(mass(C[0] - r, C[1], C[0] + r, C[1], "2r", abstand=-30))
+    return abb.speichern(ZIEL / "druck-halbkreis.svg")
 
 
 # =====================================================================
@@ -369,7 +457,7 @@ def kfz_anhaenger():
 
     # Ansicht (vereinfacht)
     e = abb.ebene("ansicht", "Pkw mit Anhänger")
-    boden(e, 30, 840, yb + 28)
+    boden(e, 30, X(6.6), yb + 28)
     e.append(platte([(X(0.1), yb + 6), (X(0.15), yb - 30), (X(1.2), yb - 40), (X(1.8), yb - 78), (X(3.1), yb - 78),
                      (X(3.7), yb - 40), (X(4.0), yb - 34), (X(4.0), yb + 6)], "#dfe7f0"))
     for x in (0.8, 3.2):
@@ -377,7 +465,7 @@ def kfz_anhaenger():
     e.append(linie(X(4.0), yb - 6, X(4.25), yb - 6, SCHWARZ, 2.4))
     e.append(platte([(X(4.25), yb - 60), (X(6.25), yb - 60), (X(6.25), yb + 2), (X(4.25), yb + 2)], "#ececec"))
     e.append(kreis(X(5.45), yb + 12, 16, SCHWARZ, "#555555", 1.2))
-    e.append(kreis(X(4.25), yb - 6, 4, SCHWARZ, "#ffffff", 1.4))
+    e.append(kreis(X(4.0), yb - 6, 4, SCHWARZ, "#ffffff", 1.4))
 
     # Modell
     y = 330
@@ -402,8 +490,8 @@ def kfz_anhaenger():
     d = 80
     e.append(balken(X(0), y2, X(4.0), y2))
     e.append(balken(X(4.0) + d, y2, X(6.0) + d, y2))
-    e.append(schnitt(X(4.0), y2 - 18, X(4.0), y2 + 18))
-    e.append(schnitt(X(4.0) + d, y2 - 18, X(4.0) + d, y2 + 18))
+    e.append(gelenk_offen(X(4.0), y2, 180))
+    e.append(gelenk_offen(X(4.0) + d, y2, 0))
     e.append(kraft(X(1.6), y2 - T, -90, "F_K", laenge=50, label_seite=-1, label_pos=0.6))
     e.append(kraft(X(0.8), y2 + T, 90, "F_A", laenge=45, label_seite=1, label_pos=0.6))
     e.append(kraft(X(3.2), y2 + T, 90, "F_{BV}", laenge=45, label_seite=1, label_pos=0.6))
@@ -447,8 +535,6 @@ def lkw_deichsel():
         e.append(loslager(x, y + T, label=lab, label_pos=(20, 12)))
     e.append(streckenlast(480, 800, y - T, 34, label="q_0", n=14))
     e.append(text(420, y + 62, "[Deichsel: nur Kraft in Stabrichtung]", ROT, 15, italic=False))
-    e.append(pfeil(395, y - 22, 445, y - 22, ROT, 2.2, (11, 8)))
-    e.append(text(420, y - 40, "S", ROT))
     return abb.speichern(ZIEL / "lkw-deichsel.svg")
 
 
@@ -507,18 +593,21 @@ def zusammenfassung():
     x, y = kachel(e, 1, 1, "Streckenlast ersetzen", ["F_R = ∫ q dx,   x_R = ∫ q x dx / F_R"])
     yy = y + 120
     e.append(balken(x + 40, yy, x + 260, yy))
-    e.append(streckenlast(x + 40, x + 260, yy - T, 0, 50, label="q_0", n=10))
-    e.append(kraft(x + 40 + 2 / 3 * 220, yy - T, -90, "", laenge=80, farbe="#9b0000"))
+    e.append(streckenlast(x + 40, x + 260, yy - T, 0, 50, label="q_0", n=10, farbe="#f2b8b8"))
+    e.append(kraft(x + 40 + 2 / 3 * 220, yy - T, -90, "F_R", laenge=80, label_seite=-1, label_pos=0.7))
 
     e = abb.ebene("k-gelenk", "Gelenk")
     x, y = kachel(e, 2, 1, "Systeme mit Gelenk", ["am Gelenk trennen: actio = reactio"])
-    yy = y + 105
-    e.append(balken(x + 40, yy, x + 140, yy))
-    e.append(balken(x + 170, yy, x + 260, yy))
-    e.append(schnitt(x + 140, yy - 14, x + 140, yy + 14))
-    e.append(schnitt(x + 170, yy - 14, x + 170, yy + 14))
-    e.append(kraft(x + 140, yy, 90, "G_V", laenge=36, ziehend=True, label_seite=1))
-    e.append(kraft(x + 170, yy, -90, "G_V", laenge=36, ziehend=True, label_seite=1))
+    yy = y + 108
+    xl, xr = x + 115, x + 185                  # Enden der beiden Teile am geschnittenen Gelenk
+    e.append(balken(x + 30, yy, xl, yy))
+    e.append(balken(xr, yy, x + 270, yy))
+    e.append(gelenk_offen(xl, yy, 180, r=6))       # offene Halbkreise: das Gelenk ist aufgeschnitten
+    e.append(gelenk_offen(xr, yy, 0, r=6))
+    e.append(kraft(xl, yy, 90, "G_V", laenge=40, ziehend=True, label_seite=-1))
+    e.append(kraft(xl, yy, 0, "G_H", laenge=30, ziehend=True, label_seite=1))
+    e.append(kraft(xr, yy, -90, "G_V", laenge=40, ziehend=True, label_seite=-1))
+    e.append(kraft(xr, yy, 180, "G_H", laenge=30, ziehend=True, label_seite=1))
     return abb.speichern(ZIEL / "zusammenfassung-lager.svg")
 
 
@@ -554,9 +643,7 @@ def aufgabe_1_3_2():
     E = (B[0], B[1] + l)                         # Ecke unten
     R = (E[0] + 2 * l, E[1])                     # rechtes Ende
     Ro = (R[0], R[1] - l / 4)
-    e.append(balken(*B, *E, dicke=8))
-    e.append(balken(*E, *R, dicke=8))
-    e.append(balken(*R, *Ro, dicke=8))
+    e.append(stabzug([B, E, R, Ro], dicke=8))
     from tmzeichnen import einspannung as eins
     e.append(linie(B[0] - 24, B[1], B[0] + 24, B[1], SCHWARZ, STRICH["dick"]))
     xx = B[0] - 22
@@ -569,7 +656,7 @@ def aufgabe_1_3_2():
     e.append(kraft(Ro[0], Ro[1] - 4, 90, "F_3", laenge=50, ziehend=True, label_seite=1))
     e.append(mass(*E, E[0] + l, E[1], "l", abstand=-36))
     e.append(mass(E[0] + l, E[1], *R, "l", abstand=-36))
-    e.append(mass(*E, *B, "l", abstand=-34))
+    e.append(mass(*E, *B, "l", abstand=50))
     e.append(mass(*R, *Ro, "l/4", abstand=-30))
     e.append(koord_xy(400, 60, 30, 30))
     return abb.speichern(ZIEL / "aufgabe-1-3-2.svg")
@@ -636,10 +723,9 @@ def aufgabe_1_3_9():
 def aufgabe_1_3_11():
     abb, e = _aufg("Gelenkträger mit Winkel", 600, 270)
     l = 100
-    x0, y = 70, 90
+    x0, y = 110, 90
     xB, xG, xA = x0 + l, x0 + 2 * l, x0 + 4 * l
-    e.append(balken(x0, y + l, x0, y, dicke=8))
-    e.append(balken(x0, y, xG, y, dicke=8))
+    e.append(stabzug([(x0, y + l), (x0, y), (xG, y)], dicke=8))
     e.append(balken(xG, y, xA, y, dicke=8))
     e.append(gelenk(xG, y, r=5))
     e.append(text(xG, y + 22, "G", SCHWARZ, 17))
@@ -648,7 +734,7 @@ def aufgabe_1_3_11():
     e.append(streckenlast(xG, xA, y - 4, 36, label="q", label_rechts=False, n=12))
     e.append(kraft(x0, y - 4, -90, "F", laenge=50, label_seite=1))
     e.append(kraft(x0 - 4, y + l, 0, "F", laenge=50, label_seite=1))
-    e.append(mass(x0, y + l, x0, y, "l", abstand=-26))
+    e.append(mass(x0, y + l, x0, y, "l", abstand=80, hilfslaenge=12))
     e.append(mass(x0, y, xB, y, "l", abstand=-l - 30))
     e.append(mass(xB, y, xG, y, "l", abstand=-l - 30))
     e.append(mass(xG, y, xA, y, "2l", abstand=-l - 30))
@@ -657,6 +743,6 @@ def aufgabe_1_3_11():
 
 if __name__ == "__main__":
     for fn in (kraftarten, lager, bestimmtheit, einfeldtraeger, kragtraeger, streckenlasten, kfz_anhaenger,
-               lkw_deichsel, zusammenfassung, aufgabe_1_3_1, aufgabe_1_3_2, aufgabe_1_3_4, aufgabe_1_3_8,
+               lkw_deichsel, zusammenfassung, druck_halbkreis, aufgabe_1_3_1, aufgabe_1_3_2, aufgabe_1_3_4, aufgabe_1_3_8,
                aufgabe_1_3_9, aufgabe_1_3_11):
         print(fn())

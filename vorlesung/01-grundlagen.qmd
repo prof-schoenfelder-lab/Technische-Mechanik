@@ -998,7 +998,7 @@ zum Beispiel Seil- oder Lagerkräfte.
 Freikörperbild zeichnen, Gleichgewicht aufstellen, auflösen, Ergebnis deuten: Dieses Vorgehen
 begleitet Sie durch die ganze Statik. In Woche 2 wenden wir es auf **Lager** und **Streckenlasten** an.
 
-**Weiter:** [Aufgaben zu Woche 1](../seminar/01-grundlagen.qmd) ·
+**Weiter:** [Aufgaben zu Kräfte, Momente, Gleichgewicht](../seminar/01-grundlagen.qmd) ·
 Notebooks: [Resultierende](../notebooks/resultierende/index.html){target="_blank"} ·
 [Mast](../notebooks/mast/index.html){target="_blank"} ·
 [Masse am Seil](../notebooks/masse-am-seil/index.html){target="_blank"}

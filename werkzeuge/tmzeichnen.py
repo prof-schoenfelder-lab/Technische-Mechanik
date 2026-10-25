@@ -37,6 +37,10 @@ FARBE = {
     "hinweis": "#7a7a7a",       # Hilfslinien
 }
 SCHRIFT = "'Latin Modern Roman','LM Roman 10','CMU Serif',serif"
+# Fließtext in Grafiken („[Seil 1]“, Bildunterschriften) in der Schrift der Seite; Formelzeichen und Einheiten
+# bleiben in Latin Modern
+SCHRIFT_TEXT = "'Source Sans Pro','Source Sans 3','Helvetica Neue',Arial,sans-serif"
+_WORT = re.compile(r"[A-Za-zÄÖÜäöüß]{3,}")
 GROESSE = 19          # Schriftgröße Formelzeichen
 STRICH = {"duenn": 0.8, "normal": 1.25, "dick": 1.9}
 
@@ -63,7 +67,8 @@ def _tspans(label: str, italic: bool = True) -> str:
     out = []
     for up, op, arg, plain in _TOKEN.findall(label):
         if up:
-            out.append(f'<tspan font-style="normal">{_esc(up)}</tspan>')
+            schrift = f' font-family="{SCHRIFT_TEXT}"' if _WORT.search(up) else ""
+            out.append(f'<tspan{schrift} font-style="normal">{_esc(up)}</tspan>')
         elif op:
             arg = arg[1:-1] if arg.startswith("{") else arg
             shift = "sub" if op == "_" else "super"
@@ -223,6 +228,32 @@ def balken(x0, y0, x1, y1, dicke=7, id_=None):
                             FARBE["linie"], STRICH["normal"], FARBE["bauteil"], schliessen=True), id_)
 
 
+def stabzug(punkte, dicke=7, id_=None):
+    """Zusammenhängendes Bauteil aus geraden Stücken (Winkel, Rahmen) als **eine** Fläche:
+    Achse durch die Punkte, Ecken auf Gehrung, Enden gerade."""
+    h = dicke / 2
+    def normale(a, b):
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        L = math.hypot(dx, dy)
+        return -dy / L, dx / L
+    links, rechts = [], []
+    for i, p in enumerate(punkte):
+        if i == 0:
+            nx, ny = normale(punkte[0], punkte[1]); k = h
+        elif i == len(punkte) - 1:
+            nx, ny = normale(punkte[-2], punkte[-1]); k = h
+        else:
+            n1, n2 = normale(punkte[i - 1], p), normale(p, punkte[i + 1])
+            mx, my = n1[0] + n2[0], n1[1] + n2[1]
+            m = math.hypot(mx, my)
+            nx, ny = mx / m, my / m
+            k = h / (nx * n1[0] + ny * n1[1])
+        links.append((p[0] + nx * k, p[1] + ny * k))
+        rechts.append((p[0] - nx * k, p[1] - ny * k))
+    return gruppe(polylinie(links + rechts[::-1], FARBE["linie"], STRICH["normal"], FARBE["bauteil"],
+                            schliessen=True), id_)
+
+
 def _schraffur(x0, x1, y, tiefe=7, abstand=6):
     teile = [linie(x0, y, x1, y, FARBE["linie"], STRICH["normal"])]
     x = x0 + 2
@@ -279,10 +310,27 @@ def gelenk(x, y, r=3.6, id_=None):
     return gruppe(kreis(x, y, r), id_)
 
 
+def gelenk_offen(x, y, koerper=180, r=5, id_=None):
+    """Aufgeschnittenes Gelenk im Freikörperbild: offener Halbkreis am Balkenende (statt Schnittlinie).
+    koerper: Richtung vom Gelenk in den Körper hinein, in Grad (180 = Körper links, Öffnung nach rechts)."""
+    pts = []
+    for i in range(21):
+        w = math.radians(koerper - 90 + 180 * i / 20)
+        pts.append((x + r * math.cos(w), y - r * math.sin(w)))
+    return gruppe(polylinie(pts, FARBE["linie"], 1.4, "#ffffff"), id_)
+
+
 # ---------------------------------------------------------------- Bemaßung, Koordinaten
-def mass(x1, y1, x2, y2, label="", abstand=30, farbe=None, id_=None, hilfslinien=True):
+HILFSLINIE = 16        # Länge der Maßhilfslinien von der Maßlinie zum Bauteil hin
+
+
+def mass(x1, y1, x2, y2, label="", abstand=30, farbe=None, id_=None, hilfslinien=True, hilfslaenge=HILFSLINIE,
+         aussen=False):
     """Maßlinie zwischen (x1,y1) und (x2,y2), um 'abstand' senkrecht versetzt
-    (positiv = links der Richtung 1→2, bei horizontaler Bemaßung also nach oben)."""
+    (positiv = links der Richtung 1→2, bei horizontaler Bemaßung also nach oben).
+    Die Maßhilfslinien sind kurz (hilfslaenge) und enden vor dem Bauteil: Sie sollen nicht durch Bauteile,
+    Formelzeichen oder Text laufen; ihre gedachte Verlängerung zeigt den Bezugspunkt.
+    aussen=True: für kurze Maße (z. B. dx) Pfeile von außen auf die Hilfslinien."""
     farbe = farbe or FARBE["mass"]
     dx, dy = x2 - x1, y2 - y1
     L = math.hypot(dx, dy)
@@ -294,11 +342,20 @@ def mass(x1, y1, x2, y2, label="", abstand=30, farbe=None, id_=None, hilfslinien
     teile = []
     if hilfslinien:
         sg = 1 if a >= 0 else -1
-        for (px, py), (qx, qy) in (((x1, y1), p1), ((x2, y2), p2)):
-            teile.append(linie(px + nx * sg * 4, py + ny * sg * 4, qx + nx * sg * 6, qy + ny * sg * 6,
-                               farbe, STRICH["duenn"]))
-    teile.append(pfeil(*p1, *p2, farbe=farbe, breite=STRICH["duenn"], spitze=(8, 5), beidseitig=True))
-    if label:
+        lang = min(hilfslaenge, abs(a) - 4)      # zum Bauteil hin, mindestens 4 Abstand zum Bezugspunkt
+        for qx, qy in (p1, p2):
+            if lang > 0:
+                teile.append(linie(qx - nx * sg * lang, qy - ny * sg * lang, qx + nx * sg * 6, qy + ny * sg * 6,
+                                   farbe, STRICH["duenn"]))
+    if aussen:
+        teile.append(linie(*p1, *p2, farbe, STRICH["duenn"]))
+        teile.append(pfeil(p1[0] - ux * 22, p1[1] - uy * 22, *p1, farbe=farbe, breite=STRICH["duenn"], spitze=(8, 5)))
+        teile.append(pfeil(p2[0] + ux * 22, p2[1] + uy * 22, *p2, farbe=farbe, breite=STRICH["duenn"], spitze=(8, 5)))
+    else:
+        teile.append(pfeil(*p1, *p2, farbe=farbe, breite=STRICH["duenn"], spitze=(8, 5), beidseitig=True))
+    if label and aussen:                         # kurzes Maß: Beschriftung neben dem rechten Pfeil
+        teile.append(text(p2[0] + ux * 26, p2[1] + uy * 26, label, farbe, anker="start"))
+    elif label:
         sg = 1 if a >= 0 else -1
         mx, my = (p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2
         teile.append(text(mx + nx * sg * 11, my + ny * sg * 11, label, farbe))

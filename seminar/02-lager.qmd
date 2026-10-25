@@ -35,13 +35,13 @@ Unbekannte Lagerkräfte werden in positiver Koordinatenrichtung angenommen.
 
 {{< include _aufgaben-02/traeger.qmd >}}
 
-{{< include _aufgaben-02/winkel.qmd >}}
+{{< include _aufgaben-02/streckenlast.qmd >}}
 
-{{< include _aufgaben-02/hebebuehne.qmd >}}
+{{< include _aufgaben-02/winkel.qmd >}}
 
 {{< pagebreak >}}
 
-{{< include _aufgaben-02/streckenlast.qmd >}}
+{{< include _aufgaben-02/hebebuehne.qmd >}}
 
 {{< include _aufgaben-02/dreieck.qmd >}}
 
@@ -58,18 +58,18 @@ $F_{AH} = 1000\,\text{N}$ · $F_{AV} = 366\,\text{N}$ · $F_B = 2366\,\text{N}$
 
 ::: {.callout-tip collapse="true"}
 ## Aufgabe 2.2
-$F_{BH} = 100\,\text{N}$ · $F_{BV} = 200\,\text{N}$ · $M_B = 350\,\text{Nm}$ (gegen den Uhrzeigersinn)
+$F_{AH} = 0$ · $F_{AV} = 5167\,\text{N}$ · $F_B = 833\,\text{N}$
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Aufgabe 2.3
-Zylinderkraft $F_C = 7609\,\text{N}$ (Druck) · $F_{BH} = -6606\,\text{N}$ · $F_{BV} = -1875\,\text{N}$
-(beide entgegen der positiven Achsrichtung)
+$F_{BH} = 100\,\text{N}$ · $F_{BV} = 200\,\text{N}$ · $M_B = 350\,\text{Nm}$ (gegen den Uhrzeigersinn)
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Aufgabe 2.4
-$F_{AH} = 0$ · $F_{AV} = 5167\,\text{N}$ · $F_B = 833\,\text{N}$
+Zylinderkraft $F_C = 7609\,\text{N}$ (Druck) · $F_{BH} = -6606\,\text{N}$ · $F_{BV} = -1875\,\text{N}$
+(beide entgegen der positiven Achsrichtung)
 :::
 
 ::: {.callout-tip collapse="true"}
