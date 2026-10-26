@@ -247,7 +247,7 @@ Ein Schnitt muss den Körper **vollständig** von seiner Umgebung trennen: Jede 
 durchtrennt.
 :::
 
-::: {.schritt zeige="freikoerper" dimmen="system" zoom="540 0 520 440"}
+::: {.schritt zeige="freikoerper-oben freikoerper" dimmen="system" zoom="540 0 520 440"}
 ### Freikörperbild
 
 An **jedem** Schnittufer tragen wir die übertragene Kraft an:
@@ -461,6 +461,11 @@ $$
 $F_R = 7{,}85$ kN greift in der Mastspitze an und zeigt senkrecht nach unten, **in den Mast hinein**.
 Das Krafteck rechts zeigt dasselbe grafisch.
 
+**Zum Größengefühl und zur Genauigkeit der Zahlenangaben:** 1 N ist etwa die Gewichtskraft einer Tafel
+Schokolade (100 g), 1 kN entspricht etwa 100 kg. Die Seile ziehen den Mast also mit rund **800 kg** nach
+unten. Mehr als drei gültige Ziffern sind selten sinnvoll: Ein Seil lässt sich kaum auf ein Grad genau
+anbringen, ob $\alpha = 50{,}96^\circ$ oder $51{,}0^\circ$, ist in der Praxis gleich.
+
 Würden am Mast nur die Seilkräfte wirken, wäre $F_R \neq 0$. Nach Newton ($F_R = m\,a$) würde der Mast
 nach unten **beschleunigt**. Er steht aber still. Es muss also noch eine Kraft geben, die wir bisher
 nicht sehen.
@@ -499,6 +504,15 @@ F_B = 7{,}85\ \text{kN}
 $$
 
 Der Mast steht nur, weil der **Boden** genau diese Kraft aufnimmt. Er wird dabei auf Druck beansprucht.
+
+::: {.vertiefung titel="Häufige Frage: Und wenn ich die Bodenkraft falsch herum einzeichne?"}
+Stellen Sie sich vor, Sie schneiden den Mast über dem Boden ab und müssen ihn selbst halten. Sie
+müssen **nach oben** drücken, so wie der Boden.
+
+Zeichnet man $F_B$ trotzdem nach unten, lautet die Gleichung $-F_{Ry} - F_B = 0$, und es folgt
+$F_B = -7{,}85$ kN. Das Minuszeichen sagt: Die Kraft wirkt entgegen der angenommenen Richtung. Das
+Gleichgewicht legt die Richtung fest, ein falscher Pfeil wird nur durch das Vorzeichen korrigiert.
+:::
 :::
 
 ::: {.schritt zeige="freischnitt krafteck-zu" dimmen="freischnitt" zoom="600 30 560 350"}
@@ -695,7 +709,8 @@ Rückt es nach außen, kippt sie nach rechts.
 ### Drehwirkung einer Kraft
 
 Bei der Wippe stehen die Kräfte **senkrecht** auf dem Balken, der Hebelarm ist einfach der Abstand
-zum Drehpunkt. Allgemein kann eine Kraft schräg angreifen. Das Moment kennen Sie aus
+zum Drehpunkt. Allgemein kann eine Kraft schräg angreifen: Wer schräg auf die Wippe drückt, verliert
+Drehwirkung, denn nur der Anteil senkrecht zum Balken dreht. Das Moment kennen Sie aus
 [Veranstaltung 0](00-mathematik.qmd#das-moment), zur Erinnerung:
 
 Eine Kraft $\vec F$ greift im Punkt $A$ an, der Ortsvektor $\vec r$ führt vom Bezugspunkt $0$ dorthin.
@@ -715,6 +730,13 @@ Der **Hebelarm** $b$ ist der **senkrechte Abstand** des Bezugspunkts von der Wir
 - Verschiebt man $F$ auf ihrer Wirkungslinie, bleibt $M$ gleich (Linienflüchtigkeit).
 - Wählt man einen anderen Bezugspunkt, ändert sich $M$.
 - $M$ zählt **positiv gegen den Uhrzeigersinn**.
+
+::: {.vertiefung titel="Häufige Frage: Warum der senkrechte Abstand?"}
+Eine Kraft darf längs ihrer Wirkungslinie verschoben werden, ohne dass sich ihre Wirkung ändert. Der
+Abstand zum Angriffspunkt ändert sich dabei, das Lot vom Bezugspunkt auf die Wirkungslinie nicht: Es ist
+der einzige Abstand, der zur Kraft gehört und nicht zu ihrem zufälligen Angriffspunkt. Zugleich ist es
+der kürzeste Abstand.
+:::
 :::
 
 ::: {.schritt zeige="ebene komponenten" dimmen="ebene" zoom="20 20 440 310"}
@@ -800,9 +822,118 @@ Kraftsystem in einen Punkt verschieben: Übrig bleiben **eine Resultierende** un
 
 ::::
 
-## Allgemeines ebenes Kraftsystem
+## Gleichgewicht im allgemeinen ebenen Kraftsystem
 
-Schneiden sich die Wirkungslinien nicht in einem Punkt, kommt zur Resultierenden ein Moment hinzu.
+Schneiden sich die Wirkungslinien nicht in einem Punkt, spricht man von einem **allgemeinen ebenen
+Kraftsystem**. Dann kann der Körper nicht nur verschoben, sondern auch **gedreht** werden.
+
+:::: {.scrolly svg="../grafiken/grundlagen/traeger-seile.svg"}
+
+::: {.schritt zeige="system" zoom="40 0 520 330"}
+### Zurück zum Träger an zwei Seilen
+
+Ein Träger mit dem Gewicht $G$ hängt an zwei Seilen an der Decke. Gesucht sind die Seilkräfte $S_1$
+und $S_2$.
+:::
+
+::: {.schritt zeige="system schnitte" zoom="40 0 520 330"}
+### Seile durchschneiden
+
+Wie beim Schnittprinzip schneiden wir beide Seile gedanklich durch. So werden die Seilkräfte sichtbar.
+:::
+
+::: {.schritt zeige="system schnitte freikoerper-oben freikoerper" dimmen="system schnitte" zoom="40 0 1020 440"}
+### Freikörperbild des Trägers
+
+An beiden Schnittufern wirken die Seilkräfte, entgegengesetzt (actio = reactio). Für die Rechnung
+brauchen wir nur den **Träger**: An ihm wirken das Gewicht $G$ und die beiden Seilkräfte $S_1$, $S_2$.
+Die Wirkungslinien sind parallel, sie schneiden sich **nicht** in einem Punkt: ein allgemeines
+ebenes Kraftsystem.
+
+In der Statik ruht der Träger. Also muss gelten: **Gewichtskraft + Seilkräfte = 0**, und zwar so,
+dass der Träger sich weder verschiebt noch dreht.
+:::
+
+::: {.schritt zeige="freikoerper mass" zoom="540 150 520 290"}
+### Gleichgewichtsbedingungen aufstellen
+
+Momente um den Anschlusspunkt 1 von Seil 1: Dann fällt $S_1$ heraus.
+
+$$
+\begin{aligned}
+&\uparrow: && S_1 + S_2 - G = 0\\[2pt]
+&\curvearrowleft 1: && S_2\,\tfrac34 L - G\,\tfrac{L}{2} = 0
+\end{aligned}
+$$
+
+Waagerechte Kräfte gibt es nicht, $\sum F_x = 0$ ist von selbst erfüllt.
+:::
+
+::: {.schritt zeige="freikoerper mass" zoom="540 150 520 290"}
+### Auflösen
+
+Aus der Momentenbilanz:
+
+$$
+S_2 = \frac{2}{3}\,G
+$$
+
+Eingesetzt in die Kraftbilanz:
+
+$$
+S_1 = G - S_2 = \frac{1}{3}\,G
+$$
+
+Das Seil näher an der Last trägt mehr. **Kontrolle** mit Momenten um den Anschlusspunkt von Seil 2:
+$-S_1\,\tfrac34 L + G\,\tfrac14 L = 0$ liefert ebenfalls $S_1 = G/3$.
+:::
+
+::: {.schritt zeige="freikoerper mass" zoom="540 150 520 290"}
+### Drei Gleichgewichtsbedingungen
+
+Ein starrer Körper ist im Gleichgewicht, wenn er sich **weder verschiebt noch dreht**:
+$\vec F_R = \vec 0$ **und** $\vec M_R = \vec 0$. In der Ebene sind das drei Gleichungen:
+
+$$
+\begin{aligned}
+\textstyle\sum F_{ix} &= 0\\
+\textstyle\sum F_{iy} &= 0\\
+\textstyle\sum M_i^{(P)} &= \textstyle\sum \left(x_i\,F_{iy} - y_i\,F_{ix}\right) = 0
+\end{aligned}
+$$
+
+$x_i$, $y_i$: Koordinaten der Angriffspunkte, gemessen vom Bezugspunkt $P$.
+
+Damit lassen sich höchstens **drei** Unbekannte bestimmen.
+
+- Der Bezugspunkt $P$ ist **frei wählbar**. Geschickt ist ein Punkt, durch den möglichst viele
+  unbekannte Kräfte gehen.
+- Die beiden Kraftrichtungen müssen nicht waagerecht und senkrecht sein, nur verschieden.
+- Positive Richtungen und Drehsinn sind frei wählbar, aber innerhalb einer Gleichung **einheitlich**.
+:::
+
+::::
+
+::: {.vertiefung titel="Ausführlicher: Gleichgewicht im Raum"}
+Im Raum gibt es sechs Bedingungen: drei Kraftsummen $\sum F_x = \sum F_y = \sum F_z = 0$ und
+drei Momentensummen um die Achsen $\sum M_x = \sum M_y = \sum M_z = 0$. Die ebene Statik ist der
+Sonderfall, in dem nur $F_x$, $F_y$ und $M_z$ vorkommen.
+:::
+
+::: {.vertiefung titel="Typische Fehler – und wie man sie vermeidet"}
+1. **Kein Freikörperbild.** Ohne vollständiges Freikörperbild werden Kräfte vergessen, besonders Gewichtskräfte und Reaktionen.
+2. **Kraft statt Komponente in die Summe.** In $\sum F_x$ gehören nur $x$-Komponenten, also $F\cos\alpha$ oder $F\sin\alpha$, je nach Winkel.
+3. **Sinus und Kosinus vertauscht.** Prüfen Sie am Grenzfall: Für $\alpha = 0$ muss die Komponente den vollen Betrag haben oder verschwinden.
+4. **Quadrant beim Winkel übersehen.** Bei $F_x < 0$ gehören $180^\circ$ zum Arkustangens.
+5. **Hebelarm nicht senkrecht.** Der Hebelarm ist der *senkrechte* Abstand zur Wirkungslinie, nicht der Abstand zum Angriffspunkt.
+6. **Drehsinn innerhalb einer Momentengleichung gewechselt.** Einen Drehsinn als positiv festlegen und durchhalten.
+:::
+
+## Vertiefung: Resultierende eines allgemeinen Kraftsystems
+
+Für das Gleichgewicht genügen die drei Bedingungen oben. Man kann ein allgemeines ebenes Kraftsystem
+aber auch durch **eine** Kraft ersetzen: Zur Resultierenden kommt zunächst ein Moment hinzu, und mit dem
+Versatzmoment lässt sich die Resultierende dann so verschieben, dass sie allein dieselbe Wirkung hat.
 
 :::: {.scrolly svg="../grafiken/grundlagen/scheibe-vier-kraefte.svg"}
 
@@ -868,94 +999,6 @@ Die Wirkungslinie schneidet die Achsen bei $y = \tfrac54 c$ und $x = \tfrac53 c$
 :::
 
 ::::
-
-## Gleichgewicht im allgemeinen ebenen Kraftsystem
-
-:::: {.scrolly svg="../grafiken/grundlagen/traeger-seile.svg"}
-
-::: {.schritt zeige="freikoerper" zoom="540 0 520 440"}
-### Zurück zum Träger an zwei Seilen
-
-Im Freikörperbild des Trägers wirken das Gewicht $G$ und die beiden Seilkräfte $S_1$, $S_2$.
-Die Wirkungslinien sind parallel, sie schneiden sich **nicht** in einem Punkt: ein allgemeines
-ebenes Kraftsystem.
-
-In der Statik ruht der Träger. Also muss gelten: **Gewichtskraft + Seilkräfte = 0**, und zwar so,
-dass der Träger sich weder verschiebt noch dreht.
-:::
-
-::: {.schritt zeige="freikoerper mass" zoom="540 0 520 440"}
-### Gleichgewichtsbedingungen aufstellen
-
-Momente um den Anschlusspunkt 1 von Seil 1: Dann fällt $S_1$ heraus.
-
-$$
-\begin{aligned}
-&\uparrow: && S_1 + S_2 - G = 0\\[2pt]
-&\curvearrowleft 1: && S_2\,\tfrac34 L - G\,\tfrac{L}{2} = 0
-\end{aligned}
-$$
-
-Waagerechte Kräfte gibt es nicht, $\sum F_x = 0$ ist von selbst erfüllt.
-:::
-
-::: {.schritt zeige="freikoerper mass" zoom="540 0 520 440"}
-### Auflösen
-
-Aus der Momentenbilanz:
-
-$$
-S_2 = \frac{2}{3}\,G
-$$
-
-Eingesetzt in die Kraftbilanz:
-
-$$
-S_1 = G - S_2 = \frac{1}{3}\,G
-$$
-
-Das Seil näher an der Last trägt mehr. **Kontrolle** mit Momenten um den Anschlusspunkt von Seil 2:
-$-S_1\,\tfrac34 L + G\,\tfrac14 L = 0$ liefert ebenfalls $S_1 = G/3$.
-:::
-
-::: {.schritt zeige="freikoerper mass" zoom="540 0 520 440"}
-### Drei Gleichgewichtsbedingungen
-
-Ein starrer Körper ist im Gleichgewicht, wenn er sich **weder verschiebt noch dreht**:
-$\vec F_R = \vec 0$ **und** $\vec M_R = \vec 0$. In der Ebene sind das drei Gleichungen:
-
-$$
-\begin{aligned}
-\textstyle\sum F_{ix} &= 0\\
-\textstyle\sum F_{iy} &= 0\\
-\textstyle\sum M_i^{(P)} &= 0
-\end{aligned}
-$$
-
-Damit lassen sich höchstens **drei** Unbekannte bestimmen.
-
-- Der Bezugspunkt $P$ ist **frei wählbar**. Geschickt ist ein Punkt, durch den möglichst viele
-  unbekannte Kräfte gehen.
-- Die beiden Kraftrichtungen müssen nicht waagerecht und senkrecht sein, nur verschieden.
-- Positive Richtungen und Drehsinn sind frei wählbar, aber innerhalb einer Gleichung **einheitlich**.
-:::
-
-::::
-
-::: {.vertiefung titel="Ausführlicher: Gleichgewicht im Raum"}
-Im Raum gibt es sechs Bedingungen: drei Kraftsummen $\sum F_x = \sum F_y = \sum F_z = 0$ und
-drei Momentensummen um die Achsen $\sum M_x = \sum M_y = \sum M_z = 0$. Die ebene Statik ist der
-Sonderfall, in dem nur $F_x$, $F_y$ und $M_z$ vorkommen.
-:::
-
-::: {.vertiefung titel="Typische Fehler – und wie man sie vermeidet"}
-1. **Kein Freikörperbild.** Ohne vollständiges Freikörperbild werden Kräfte vergessen, besonders Gewichtskräfte und Reaktionen.
-2. **Kraft statt Komponente in die Summe.** In $\sum F_x$ gehören nur $x$-Komponenten, also $F\cos\alpha$ oder $F\sin\alpha$, je nach Winkel.
-3. **Sinus und Kosinus vertauscht.** Prüfen Sie am Grenzfall: Für $\alpha = 0$ muss die Komponente den vollen Betrag haben oder verschwinden.
-4. **Quadrant beim Winkel übersehen.** Bei $F_x < 0$ gehören $180^\circ$ zum Arkustangens.
-5. **Hebelarm nicht senkrecht.** Der Hebelarm ist der *senkrechte* Abstand zur Wirkungslinie, nicht der Abstand zum Angriffspunkt.
-6. **Drehsinn innerhalb einer Momentengleichung gewechselt.** Einen Drehsinn als positiv festlegen und durchhalten.
-:::
 
 ## Zusammenfassung
 

@@ -467,7 +467,9 @@ def traeger_seile():
         e.append(schnitt(x - 26, 150, x + 26, 150))
 
     dx = 520
-    e = abb.ebene("freikoerper", "Freikörperbilder")
+    # Freikörperbilder: oberer Teil (Decke mit Seilenden) und unterer Teil (Träger) in getrennten Ebenen,
+    # damit beim Gleichgewicht nur der Träger gezeigt werden kann
+    e = abb.ebene("freikoerper-oben", "Freikörperbild Decke")
     f1, f2 = x1 + dx, x2 + dx
     yb2 = yb + 40
     decke(e, dx)
@@ -475,6 +477,7 @@ def traeger_seile():
         e.append(linie(x, yd, x, yd + 45, "#000000", 1.8))
         e.append(schnitt(x - 20, yd + 45, x + 20, yd + 45))
         e.append(kraft(x, yd + 45, -90, f"S_{n}", laenge=48, ziehend=True, label_seite=1))
+    e = abb.ebene("freikoerper", "Freikörperbild Träger")
     e.append(balken(f1, yb2, f1 + L, yb2, dicke=2 * t))
     for x, n in ((f1, "1"), (f2, "2")):
         e.append(linie(x, yb2 - t, x, yb2 - 55, "#000000", 1.8))
@@ -860,6 +863,168 @@ def aufgabe_b01_7():
 
 
 # =====================================================================
+# B01-8: Zwei Schokoriegel im Gleichgewicht (Aufgabe 1.8)
+#   L = 112 mm, m = 18,2 g je Riegel, Riegeldicke 13 mm, Stift 8 mm → Oberseite Riegel 1: h = 21 mm
+#   Riegel 2 liegt auf dem Tisch (A) und auf dem rechten Ende von Riegel 1: F = G/2, x = L/3 = 37,3 mm
+# =====================================================================
+RIEGEL = "#c8c8c8"
+RIEGEL_DUNKEL = "#a8a8a8"
+# Maße in mm: Riegel halbrund (Radius = Höhe 13 mm, Breite 26 mm), Stift 8 mm → Oberseite Riegel 1 bei h = 21 mm
+R_L, R_R, R_ST, R_H = 112.0, 13.0, 8.0, 21.0
+R_X = 37.33                                     # Abstand Stift – rechtes Ende von Riegel 1 (Ergebnis c)
+R_B = (R_L ** 2 - R_H ** 2) ** 0.5              # waagerechte Länge von Riegel 2
+
+
+def _tisch(e, x0, x1, y):
+    e.append(linie(x0, y, x1, y, "#000000", STRICH["normal"]))
+    xx = x0 + 2
+    while xx < x1:
+        e.append(linie(xx, y, xx - 7, y + 7, "#000000", STRICH["duenn"]))
+        xx += 7
+
+
+def _huelle(punkte):
+    """Konvexe Hülle (für Umrisse von Zylinder und Halbzylinder in der 3D-Ansicht)."""
+    pts = sorted(set((round(x, 2), round(y, 2)) for x, y in punkte))
+    def kreuz(o, a, b):
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+    unten, oben = [], []
+    for q in pts:
+        while len(unten) >= 2 and kreuz(unten[-2], unten[-1], q) <= 0:
+            unten.pop()
+        unten.append(q)
+    for q in reversed(pts):
+        while len(oben) >= 2 and kreuz(oben[-2], oben[-1], q) <= 0:
+            oben.pop()
+        oben.append(q)
+    return unten[:-1] + oben[:-1]
+
+
+def _g_pfeil(e, x, y):
+    e.append(pfeil(x, y, x, y + 46, ROT, STRICH["normal"], (8, 5)))
+    e.append(text(x + 12, y + 16, "g", ROT, 18, anker="start"))
+
+
+def aufgabe_b01_8_3d():
+    """B01-8: Übersicht im Schrägbild wie in der Skizze des Dozenten: z nach rechts, y nach oben,
+    x schräg nach hinten links. Riegel 2 liegt quer im Bild auf dem hinteren Ende von Riegel 1."""
+    abb, e = _aufgabe("Zwei Schokoriegel: Übersicht", 800, 340)
+    k = 2.7
+    O = (370, 250)
+    cx, cy = 0.55, 0.36                            # Verkürzung der x-Achse (nach hinten links oben)
+    def P(x, y, z):
+        return (O[0] + k * (z - cx * x), O[1] - k * (y + cy * x))
+    def flaeche(pts, fuell, breite=STRICH["normal"]):
+        return polylinie(pts, "#000000", breite, fuell, schliessen=True)
+    n = 24
+    xs = R_L - R_X
+    x2 = R_L                                        # Symmetrieachse von Riegel 2 genau über der Endkante von Riegel 1
+    # Tisch
+    e.append(polylinie([P(-15, 0, -65), P(135, 0, -65), P(135, 0, 130), P(-15, 0, 130)], "#bbbbbb", 0.8, "#f4f4f4",
+                       schliessen=True))
+    # Riegel 2 liegt am weitesten hinten (x ≈ 86 … 112): zuerst
+    u = (0.0, -R_H / R_L, R_B / R_L)                              # Achse (x, y, z), nach rechts unten
+    nv = (0.0, R_B / R_L, R_H / R_L)                              # senkrecht dazu, nach oben
+    def quer2(t):
+        b = (x2, R_H + u[1] * t, u[2] * t)
+        return [P(b[0] + R_R * math.cos(math.pi * i / n), b[1] + nv[1] * R_R * math.sin(math.pi * i / n),
+                  b[2] + nv[2] * R_R * math.sin(math.pi * i / n)) for i in range(n + 1)]
+    riegel2 = flaeche(_huelle(quer2(0) + quer2(R_L)), "#9a9a9a")
+    # Stift (Zylinder längs z) unter Riegel 1, in einem Stück
+    kreis_st = lambda z: [P(xs + 4 * math.cos(2 * math.pi * i / n), 4 + 4 * math.sin(2 * math.pi * i / n), z)
+                          for i in range(n)]
+    e.append(flaeche(_huelle(kreis_st(-55) + kreis_st(55)), "#ffffff"))
+    e.append(flaeche(kreis_st(-55), "#e8e8e8"))                  # sichtbare Stirnfläche des Stifts
+    # Riegel 1: Halbzylinder längs x, vordere Stirnfläche (x = 0) zum Betrachter
+    def quer1(x):
+        return [P(x, R_ST + R_R * math.sin(math.pi * i / n), R_R * math.cos(math.pi * i / n)) for i in range(n + 1)]
+    e.append(flaeche(_huelle(quer1(0) + quer1(R_L)), RIEGEL))
+    e.append(flaeche(quer1(0), RIEGEL_DUNKEL))                   # vordere halbrunde Stirnfläche
+    # Riegel 2 liegt oben auf Riegel 1 auf: zuletzt, mit sichtbarer Stirnfläche am oberen Ende
+    e.append(riegel2)
+    e.append(flaeche(quer2(0), "#7f7f7f"))
+    # Beschriftung
+    e.append(text(*P(20, 30, -18), "[Riegel 1]", "#000000", 17, anker="end", italic=False))
+    e.append(text(*P(x2, 31, 62), "[Riegel 2]", "#000000", 17, anker="start", italic=False))
+    e.append(text(*P(xs - 6, -4, -58), "[Stift]", "#555555", 16, anker="end", italic=False))
+    e.append(text(*P(x2 - 16, 2, R_B + 4), "A", "#000000", 19, anker="start"))
+    # Koordinatensystem (wie Skizze) und Erdbeschleunigung
+    K = (70, 300)
+    e.append(pfeil(*K, K[0] + 50, K[1], GRUEN, STRICH["normal"], (8, 5)))
+    e.append(text(K[0] + 56, K[1] + 4, "z", GRUEN, anker="start"))
+    e.append(pfeil(*K, K[0], K[1] - 50, GRUEN, STRICH["normal"], (8, 5)))
+    e.append(text(K[0] + 8, K[1] - 52, "y", GRUEN, anker="start"))
+    e.append(pfeil(*K, K[0] - cx * 50, K[1] - cy * 50, GRUEN, STRICH["normal"], (8, 5)))
+    e.append(text(K[0] - cx * 50 - 6, K[1] - cy * 50 - 4, "x", GRUEN, anker="end"))
+    _g_pfeil(e, 750, 20)
+    return abb.speichern(ZIEL / "aufgabe-b01-8-3d.svg")
+
+
+def aufgabe_b01_8():
+    """B01-8: Vorderansicht (Blick gegen z) und Seitenansicht (Blick in x-Richtung), maßstäblich."""
+    abb, e = _aufgabe("Zwei Schokoriegel: Vorderansicht", 420, 300)
+    k = 2.6                                        # px je mm
+    yt = 215                                       # Tischoberfläche
+    n = 30
+    Y = lambda y: yt - k * y
+    # --- Vorderansicht: Blick in z-Richtung, x nach links, y nach oben; Riegel 2 liegt hinter Riegel 1
+    #     und ist mit seinem oberen Ende auf Riegel 1 zu sehen
+    x0 = 370                                       # x = 0 (linkes Ende von Riegel 1 im Schrägbild) liegt rechts
+    X = lambda x: x0 - k * x
+    xs = R_L - R_X
+    x2 = R_L                                        # Symmetrieachse von Riegel 2 genau über der Endkante von Riegel 1
+    hc = R_R * R_B / R_L                           # Höhe der Rundung von Riegel 2 in dieser Ansicht (geneigt)
+    _tisch(e, X(R_L + 14), X(-12), yt)
+    # Riegel 2: sichtbare Unterseite (flach, fällt nach hinten ab) heller, Querschnitt am oberen Ende dunkler
+    e.append(platte([(X(x2 + R_R), Y(0)), (X(x2 - R_R), Y(0)), (X(x2 - R_R), Y(R_H)), (X(x2 + R_R), Y(R_H))], "#b8b8b8"))
+    kappe = [(X(x2 - R_R * math.cos(math.pi * i / n)), Y(R_H + hc * math.sin(math.pi * i / n))) for i in range(n + 1)]
+    e.append(polylinie(kappe, "#000000", STRICH["normal"], "#7f7f7f", schliessen=True))
+    e.append(kreis(X(xs), Y(R_ST / 2), k * R_ST / 2, "#000000", "#ffffff", 1.2))
+    e.append(platte([(X(R_L), Y(R_ST + R_R)), (X(0), Y(R_ST + R_R)), (X(0), Y(R_ST)), (X(R_L), Y(R_ST))], RIEGEL))
+    e.append(text(X(40), Y(R_ST + R_R / 2), "[Riegel 1]", "#000000", 15, italic=False))
+    # Symmetrieachse von Riegel 2 genau über der Endkante von Riegel 1: dort wird F eingeleitet
+    e.append(strichpunkt(X(x2), yt + 10, X(x2), Y(R_H + hc) - 10))
+    e.append(text(X(x2 - R_R) + 6, Y(R_H + 9), "[Riegel 2]", "#000000", 15, anker="start", italic=False))
+    e.append(text(X(xs) + 14, Y(R_ST / 2) + 2, "[Stift]", "#555555", 14, anker="start", italic=False))
+    e.append(mass(X(R_L), Y(R_ST + R_R), X(0), Y(R_ST + R_R), "L", abstand=k * 20))
+    e.append(mass(X(R_L), yt, X(xs), yt, "x", abstand=-26))
+    ko = (X(-8), 62)
+    e.append(pfeil(*ko, ko[0] - 34, ko[1], GRUEN, STRICH["normal"], (8, 5)))
+    e.append(text(ko[0] - 40, ko[1] + 11, "x", GRUEN, anker="end"))
+    e.append(pfeil(*ko, ko[0], ko[1] - 34, GRUEN, STRICH["normal"], (8, 5)))
+    e.append(text(ko[0] + 8, ko[1] - 36, "y", GRUEN, anker="start"))
+    e.append(hinweis((X(0) + X(R_L)) / 2 - 20, 290, "Vorderansicht (Blick in z-Richtung)", anker="middle", groesse=15))
+    _g_pfeil(e, X(R_L) - 10, 40)
+    abb.speichern(ZIEL / "aufgabe-b01-8-vorn.svg")
+    # --- Seitenansicht: z nach rechts, y nach oben (Blick in x-Richtung); Riegel 2 fällt nach rechts ab
+    abb, e = _aufgabe("Zwei Schokoriegel: Seitenansicht", 600, 300)
+    z0 = 235
+    Z = lambda z: z0 + k * z
+    _tisch(e, Z(-62), Z(R_B + 16), yt)
+    e.append(platte([(Z(-55), Y(R_ST)), (Z(45), Y(R_ST)), (Z(45), Y(0)), (Z(-55), Y(0))], "#ffffff"))   # Stift
+    nz, ny = R_H / R_L, R_B / R_L                  # Normale von Riegel 2 (nach oben)
+    e.append(platte([(Z(0), Y(R_H)), (Z(R_B), Y(0)), (Z(R_B + nz * R_R), Y(ny * R_R)), (Z(nz * R_R), Y(R_H + ny * R_R))],
+                    "#9a9a9a"))
+    halb = [(Z(R_R * math.cos(math.pi * i / n)), Y(R_ST + R_R * math.sin(math.pi * i / n))) for i in range(n + 1)]
+    e.append(polylinie(halb, "#000000", STRICH["normal"], RIEGEL, schliessen=True))
+    e.append(text(Z(-R_R) - 6, Y(R_ST + R_R) - 4, "[Riegel 1]", "#000000", 15, anker="end", italic=False))
+    e.append(text(Z(45) + 6, Y(R_ST / 2), "[Stift]", "#555555", 14, anker="start", italic=False))
+    e.append(text(Z(R_B) + 8, yt - 12, "A", "#000000", 16, anker="start"))
+    e.append(text(Z(R_B * 0.62 + nz * R_R / 2), Y(R_H * 0.38 + ny * R_R / 2), "[Riegel 2]", "#000000", 15,
+                  italic=False))
+    e.append(mass(Z(-66), yt, Z(-66), Y(R_H), "h", abstand=-14))
+    e.append(mass(Z(nz * R_R), Y(R_H + ny * R_R), Z(R_B + nz * R_R), Y(ny * R_R), "L", abstand=24))
+    ko = (Z(-55), yt + 62)
+    e.append(pfeil(*ko, ko[0] + 34, ko[1], GRUEN, STRICH["normal"], (8, 5)))
+    e.append(text(ko[0] + 40, ko[1] + 11, "z", GRUEN, anker="start"))
+    e.append(pfeil(*ko, ko[0], ko[1] - 34, GRUEN, STRICH["normal"], (8, 5)))
+    e.append(text(ko[0] + 8, ko[1] - 36, "y", GRUEN, anker="start"))
+    e.append(hinweis(Z(R_B / 2) - 20, 290, "Seitenansicht (Blick in x-Richtung)", anker="middle", groesse=15))
+    _g_pfeil(e, Z(R_B) + 34, 40)
+    return abb.speichern(ZIEL / "aufgabe-b01-8-seite.svg")
+
+
+# =====================================================================
 # Gleichgewicht im zentralen Kraftsystem: Mast mit drei Seilen (Aufgabe 1.7)
 #   F1 = 5 kN (60° links der Senkrechten), F2 = 4 kN (30° rechts), F3 = 3 kN unter α;
 #   α so, dass die Resultierende der Seilkräfte in Mastrichtung zeigt (sin α = 0,777 → α = 51°)
@@ -907,6 +1072,7 @@ def mast_gleichgewicht():
     e.append(balken(T[0], T[1], T[0], yb, dicke=8))
     seilkraefte(e, T)
     e.append(punkt(*T, 2.6))
+    e.append(koord_xy(95, 285, 34, 34))
 
     e = abb.ebene("resultierende", "Resultierende der Seilkräfte")
     # Resultierende greift im zentralen Punkt (Mastspitze) an und zeigt längs der Mastachse nach unten
@@ -921,6 +1087,7 @@ def mast_gleichgewicht():
     e.append(punkt(*T2, 2.6))
     e.append(schnitt(T2[0] - 22, yfuss + 4, T2[0] + 22, yfuss + 4))
     e.append(kraft(T2[0], yfuss + 4, 90, "F_B", laenge=40, label_seite=-1, label_pos=0.5))
+    e.append(koord_xy(650, 300, 34, 34))
     boden(e, T2[0] - 110, T2[0] + 110, yb2)
     e.append(schnitt(T2[0] - 22, yb2 - 4, T2[0] + 22, yb2 - 4))
     e.append(kraft(T2[0], yb2 - 4, -90, "F_B", laenge=40, label_seite=1, label_pos=0.5))
@@ -1063,5 +1230,5 @@ if __name__ == "__main__":
     for fn in (einordnung, kraft_vektor, axiome, resultierende_zwei_kraefte, seil_masse, moment_grafik, versatz_grafik,
                traeger_seile, mast_gleichgewicht, wippe, zusammenfassung,
                scheibe_vier_kraefte, aufgabe_1_1_3, aufgabe_1_1_4, aufgabe_1_1_5, aufgabe_1_2_1, aufgabe_1_2_4,
-               aufgabe_b01_4, aufgabe_b01_5, aufgabe_b01_4_raeumlich, aufgabe_b01_6, aufgabe_b01_7):
+               aufgabe_b01_4, aufgabe_b01_5, aufgabe_b01_4_raeumlich, aufgabe_b01_6, aufgabe_b01_7, aufgabe_b01_8, aufgabe_b01_8_3d):
         print(fn())

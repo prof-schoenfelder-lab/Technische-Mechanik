@@ -1,0 +1,20 @@
+### Aufgabe 1.8 · Zwei Schokoriegel im Gleichgewicht
+
+![](../grafiken/grundlagen/aufgabe-b01-8-3d.svg){width=100%}
+
+![](../grafiken/grundlagen/aufgabe-b01-8-vorn.svg){width=62%}
+
+![](../grafiken/grundlagen/aufgabe-b01-8-seite.svg){width=88%}
+
+Zwei gleiche Schokoriegel mit halbrundem Querschnitt liegen auf einem Tisch. Riegel 1 liegt quer auf einem runden Stift. Riegel 2
+liegt mit einem Ende auf dem Tisch ($A$) und mit dem anderen Ende auf einem Ende von Riegel 1.
+Alle Berührflächen sind glatt, die Kontaktkräfte wirken daher senkrecht.
+
+a) Wo muss der Stift unter einem **einzelnen** Riegel liegen, damit dieser waagerecht im Gleichgewicht ist?
+b) Mit welcher Kraft $F$ drückt Riegel 2 auf Riegel 1?
+c) In welchem Abstand $x$ von diesem Ende muss der Stift liegen, damit Riegel 1 waagerecht im
+   Gleichgewicht ist?
+
+**Gegeben:** $L$ = 112 mm, $m$ = 18,2 g je Riegel, $h$ = 21 mm, $g$ = 9,81 m/s²
+
+*Hinweis: Schneiden Sie zuerst Riegel 2 frei.*

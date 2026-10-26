@@ -60,10 +60,10 @@ def _(F3, FB, GRAU, GRUEN, ROT, alpha_m, mo, np, plt):
             _ax1.annotate("", xy=(_fx, _fy), xytext=(0, 0), arrowprops=dict(arrowstyle="-|>", color=ROT, lw=2))
             _ax1.text(_fx * 1.12, _fy * 1.12, _n, color=ROT, fontsize=13, ha="center", va="center")
     if FB.value > 0:
-        # Bodenkraft am Mastfuß (drückend, neben die Mastachse gezeichnet)
-        _ax1.annotate("", xy=(0.8, -10), xytext=(0.8, -10 - FB.value * 0.3),
+        # Bodenkraft am Mastfuß, drückend, auf der Mastachse
+        _ax1.annotate("", xy=(0, -10), xytext=(0, -10 - FB.value * 0.3),
                       arrowprops=dict(arrowstyle="-|>", color=ROT, lw=2))
-        _ax1.text(1.2, -10 - FB.value * 0.15, "$F_B$", color=ROT, fontsize=13, va="center")
+        _ax1.text(0.5, -10 - FB.value * 0.15, "$F_B$", color=ROT, fontsize=13, va="center")
     _ax1.set_xlim(-8, 8); _ax1.set_ylim(-15, 2); _ax1.set_aspect("equal"); _ax1.axis("off")
     _ax1.set_title("Mast mit drei Seilen", fontsize=12)
     # Krafteck
