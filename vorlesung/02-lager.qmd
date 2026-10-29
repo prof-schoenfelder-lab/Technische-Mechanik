@@ -35,7 +35,7 @@ die in einem Punkt angreift. Einheit: N.
 Die Einzelkraft ist ein sehr gutes **Modell**.
 :::
 
-::: {.schritt zeige="art-2" zoom="0 0 420 260"}
+::: {.schritt zeige="art-2 art-2-last" zoom="0 0 420 260"}
 ### Linienlast
 
 Eine **Linienlast** oder **Streckenlast** $q$ ist längs einer Linie verteilt. Einheit: N/m.
@@ -44,13 +44,28 @@ Beispiele: eine Wand, die auf einer Decke steht, oder das Eigengewicht eines Tr�
 Ist $q$ überall gleich groß, spricht man von einer **Gleichstreckenlast**.
 :::
 
-::: {.schritt zeige="art-3" zoom="0 0 420 260"}
+::: {.schritt zeige="art-2 art-2-kraft" zoom="0 0 420 260"}
+### Ersatz: Resultierende der Linienlast
+
+Für das Gleichgewicht des ganzen Trägers ersetzt man die Linienlast durch **eine** Einzelkraft: Bei konstantem
+$q$ über die Länge $L$ ist $F_R = q\,L$, in der Mitte. Wie man $F_R$ allgemein berechnet, folgt unten bei den
+Streckenlasten.
+:::
+
+::: {.schritt zeige="art-3 art-3-last" zoom="0 0 420 260"}
 ### Flächenlast
 
 Eine **Flächenlast** $p$ ist über eine Fläche verteilt. Einheit: N/m² = Pa.
 
 Beispiele: Schnee auf einem Dach, Wind auf einer Fassade, Wasserdruck auf eine Staumauer.
 Für einen Träger, der einen Streifen der Breite $b$ trägt, wird daraus eine Linienlast $q = p\,b$.
+:::
+
+::: {.schritt zeige="art-3 art-3-kraft" zoom="0 0 420 260"}
+### Ersatz: Resultierende der Flächenlast
+
+Auch die Flächenlast lässt sich durch **eine** Einzelkraft ersetzen: Bei konstantem $p$ auf der Fläche $A$ ist
+$F_R = p\,A$, angreifend im Flächenmittelpunkt.
 :::
 
 ::: {.schritt zeige="art-4 art-4-last" zoom="0 0 420 260"}
@@ -106,6 +121,13 @@ Das **Loslager** verhindert nur die Verschiebung senkrecht zur Bahn. Längs der 
 rollen, drehen kann es sich auch.
 
 Es überträgt **eine** Kraft senkrecht zur Bahn: einwertig.
+
+::: {.vertiefung titel="Anschaulich: auf dem Skateboard"}
+Stellen Sie sich auf ein Skateboard. Waagerecht rollen Sie frei weg: Diese Bewegung wird nicht verhindert,
+also entsteht dort auch **keine** Gegenkraft. Nach unten dagegen hält Sie der Boden. Er verhindert die
+Bewegung und drückt mit einer Kraft gegen Ihr Gewicht. Wo ein Lager eine Bewegung verhindert, entsteht
+eine Reaktion, wo es sie zulässt, nicht.
+:::
 :::
 
 ::: {.schritt zeige="l-fest" zoom="0 0 420 250"}
@@ -179,41 +201,24 @@ Jeder freigeschnittene Körper liefert **drei** Gleichgewichtsbedingungen. Damit
 sind, muss es genauso viele Unbekannte geben:
 
 $$
-3\,n = a + z
+3n = a + z
 $$
 
-$n$: Anzahl der Körper, $a$: Anzahl der Lagerreaktionen, $z$: Anzahl der Zwischenreaktionen (Gelenke).
+- $n$: Anzahl der Körper
+- $a$: Anzahl der Lagerreaktionen (alle Lager zusammen)
+- $z$: Anzahl der Gelenkreaktionen (Zwischenreaktionen in Gelenken und Pendelstützen)
 
-Fest- und Loslager: $3 \cdot 1 = 2 + 1 + 0$. Der Träger ist **statisch bestimmt** gelagert.
-:::
+Fest- und Loslager: ein Körper, Festlager zwei und Loslager eine Reaktion, kein Gelenk.
 
-::: {.schritt zeige="b-unbestimmt" zoom="0 0 440 230"}
-### Statisch unbestimmt
+$$
+\begin{aligned}
+3n &= a + z\\
+3 \cdot 1 &= 3 + 0\\
+3 &= 3
+\end{aligned}
+$$
 
-Zwei Festlager liefern **vier** Unbekannte, aber nur drei Gleichungen: $3 < 4$.
-
-Der Träger ist **statisch unbestimmt**. Die Lagerkräfte lassen sich mit der Statik allein nicht
-berechnen, man braucht zusätzlich die Verformung (Woche 7).
-:::
-
-::: {.schritt zeige="b-beweglich" zoom="0 0 440 230"}
-### Beweglich
-
-Zwei Loslager liefern nur **zwei** Unbekannte: $3 > 2$.
-
-Der Träger kann waagerecht wegrollen, er ist **beweglich** (kinematisch). Das ist kein Tragwerk,
-sondern ein Mechanismus, ein Fall für die Dynamik.
-:::
-
-::: {.schritt zeige="b-ausnahme" zoom="0 0 440 230"}
-### Vorsicht: notwendig, aber nicht hinreichend
-
-Drei Loslager ergeben $3 = 3$. Trotzdem kann der Träger waagerecht wegrollen: Alle drei Lagerkräfte sind
-parallel, keine kann eine waagerechte Kraft aufnehmen.
-
-Das Abzählkriterium ist also **notwendig, aber nicht hinreichend**. Prüfen Sie immer zusätzlich, ob die
-Lager die Bewegung wirklich verhindern: Die Lagerkräfte dürfen nicht alle parallel sein und nicht alle
-durch einen Punkt gehen.
+**Statisch bestimmt.**
 :::
 
 ::: {.schritt zeige="b-zwang" zoom="0 0 440 230"}
@@ -225,6 +230,62 @@ um $\Delta l$, rollt das Loslager einfach mit.
 Zwischen zwei Festlagern dagegen würde die Dehnung behindert, es entstünden zusätzliche Kräfte und
 Spannungen. Deshalb haben Brücken auf einer Seite ein Loslager oder Dehnfugen.
 :::
+
+::: {.schritt zeige="b-unbestimmt" zoom="0 0 440 230"}
+### Statisch unbestimmt
+
+Zwei Festlager liefern **vier** Unbekannte, aber nur drei Gleichungen:
+
+$$
+\begin{aligned}
+3n &= a + z\\
+3 \cdot 1 &= 4 + 0\\
+3 &< 4
+\end{aligned}
+$$
+
+**Statisch unbestimmt.** Mehr Unbekannte als Gleichungen. Die Lagerkräfte lassen sich mit der Statik allein nicht
+berechnen, man braucht zusätzlich die Verformung (Woche 7).
+:::
+
+::: {.schritt zeige="b-beweglich" zoom="0 0 440 230"}
+### Beweglich
+
+Zwei Loslager liefern nur **zwei** Unbekannte:
+
+$$
+\begin{aligned}
+3n &= a + z\\
+3 \cdot 1 &= 2 + 0\\
+3 &> 2
+\end{aligned}
+$$
+
+**Beweglich** (kinematisch). Der Träger kann waagerecht wegrollen. Das ist kein Tragwerk,
+sondern ein Mechanismus, ein Fall für die Dynamik.
+:::
+
+::: {.schritt zeige="b-ausnahme" zoom="0 0 440 230"}
+### Vorsicht: notwendig, aber nicht hinreichend
+
+Drei Loslager:
+
+$$
+\begin{aligned}
+3n &= a + z\\
+3 \cdot 1 &= 3 + 0\\
+3 &= 3
+\end{aligned}
+$$
+
+Nach der Zählung statisch bestimmt, **tatsächlich aber beweglich**: Der Träger kann waagerecht wegrollen.
+Alle drei Lagerkräfte sind parallel, keine kann eine waagerechte Kraft aufnehmen.
+
+Das Abzählkriterium ist also **notwendig, aber nicht hinreichend**. Prüfen Sie immer zusätzlich, ob die
+Lager die Bewegung wirklich verhindern: Die Lagerkräfte dürfen nicht alle parallel sein und nicht alle
+durch einen Punkt gehen.
+:::
+
 
 ::::
 
@@ -240,7 +301,17 @@ des Kragarms.
 
 **Gesucht:** die Lagerreaktionen
 
-**Abzählen:** $3 \cdot 1 = 2 + 1$: statisch bestimmt.
+**Abzählen:** $n = 1$ Körper, $a = 3$ Lagerreaktionen, $z = 0$ Gelenkreaktionen.
+
+$$
+\begin{aligned}
+3n &= a + z\\
+3 \cdot 1 &= 3 + 0\\
+3 &= 3
+\end{aligned}
+$$
+
+**Statisch bestimmt.**
 :::
 
 ::: {.schritt zeige="system freikoerper" dimmen="system" zoom="20 30 620 390"}
@@ -253,15 +324,25 @@ Kraft $F_B$. Alle unbekannten Kräfte zeichnen wir in **positive** Koordinatenri
 ::: {.schritt zeige="freikoerper" zoom="20 230 620 190"}
 ### ② Gleichgewicht
 
-Zuerst die Momente um $A$: Dort greifen zwei Unbekannte an, die herausfallen.
+Die drei Gleichgewichtsbedingungen schreiben wir immer in derselben Reihenfolge auf: waagerecht,
+senkrecht, Momente.
 
 $$
 \begin{aligned}
-&\curvearrowleft A: && -F\,\tfrac{L}{2} + F_B\,L - 2F\cdot 1{,}1\,L = 0\\
-& && F_B = 2{,}7\,F\\[4pt]
-&\uparrow: && F_{AV} + F_B - F - 2F = 0\\
-& && F_{AV} = 0{,}3\,F\\[4pt]
-&\rightarrow: && F_{AH} = 0
+&\rightarrow: && F_{AH} = 0 &&\qquad(1)\\[2pt]
+&\uparrow: && F_{AV} + F_B - F - 2F = 0 &&\qquad(2)\\[2pt]
+&\curvearrowleft A: && -F\,\tfrac{L}{2} + F_B\,L - 2F\cdot 1{,}1\,L = 0 &&\qquad(3)
+\end{aligned}
+$$
+
+Aufgelöst wird mit der Gleichung, die nur **eine** Unbekannte enthält: In (3) fallen $F_{AH}$ und $F_{AV}$
+heraus.
+
+$$
+\begin{aligned}
+&\text{aus (3):} && F_B = \frac{0{,}5\,F L + 2{,}2\,F L}{L} = 2{,}7\,F\\[2pt]
+&\text{aus (1):} && F_{AH} = 0\\[2pt]
+&\text{$F_B$ eingesetzt in (2):} && F_{AV} = 3F - F_B = 0{,}3\,F
 \end{aligned}
 $$
 :::
@@ -278,6 +359,9 @@ $$
 \end{aligned}
 $$
 
+Schnelle Plausibilitätsprüfung: Die Lagerkräfte zusammen ($0{,}3F + 2{,}7F = 3F$) tragen genau die
+Lasten ($F + 2F = 3F$).
+
 Lager $B$ trägt fast alles: Der Kragarm „drückt“ es nach unten und hebt Lager $A$ beinahe ab.
 :::
 
@@ -290,7 +374,17 @@ Lager $B$ trägt fast alles: Der Kragarm „drückt“ es nach unten und hebt La
 
 Derselbe Träger, jetzt aber links **eingespannt** und ohne Lager $B$. $F_2 = 2F$ greift am freien Ende an.
 
-**Abzählen:** $3 \cdot 1 = 3$: statisch bestimmt.
+**Abzählen:** $n = 1$ Körper, $a = 3$ Lagerreaktionen, $z = 0$ Gelenkreaktionen.
+
+$$
+\begin{aligned}
+3n &= a + z\\
+3 \cdot 1 &= 3 + 0\\
+3 &= 3
+\end{aligned}
+$$
+
+**Statisch bestimmt.**
 :::
 
 ::: {.schritt zeige="freikoerper" zoom="20 210 580 190"}
@@ -300,18 +394,35 @@ Die Einspannung liefert $F_{AH}$, $F_{AV}$ und das **Einspannmoment** $M_A$.
 
 $$
 \begin{aligned}
-&\rightarrow: && F_{AH} = 0\\[2pt]
-&\uparrow: && F_{AV} - F - 2F = 0 \;\Rightarrow\; F_{AV} = 3F\\[2pt]
-&\curvearrowleft A: && M_A - F\,\tfrac{L}{2} - 2F\,L = 0 \;\Rightarrow\; M_A = 2{,}5\,F L
+&\rightarrow: && F_{AH} = 0 &&\qquad(1)\\[2pt]
+&\uparrow: && F_{AV} - F - 2F = 0 &&\qquad(2)\\[2pt]
+&\curvearrowleft A: && M_A - F\,\tfrac{L}{2} - 2F\,L = 0 &&\qquad(3)
+\end{aligned}
+$$
+
+Hier enthält jede Gleichung nur eine Unbekannte:
+
+$$
+\begin{aligned}
+&\text{aus (1):} && F_{AH} = 0\\[2pt]
+&\text{aus (2):} && F_{AV} = 3F\\[2pt]
+&\text{aus (3):} && M_A = 2{,}5\,F L
 \end{aligned}
 $$
 
 Die Einspannung muss die ganze Last tragen **und** das Kippmoment aufnehmen.
 
+::: {.vertiefung titel="Häufige Frage: Muss man das Einspannmoment noch mit einem Hebelarm multiplizieren?"}
+Nein. $M_A$ ist bereits ein **Moment** (in N m), es kommt so, wie es ist, in die Momentengleichung. Nur
+Kräfte brauchen einen Hebelarm. Ebenso ein gegebenes äußeres Moment, etwa ein Moment $M$ irgendwo am
+Balken: Es erscheint nur in der Momentengleichung, nicht in den Kraftgleichungen, und es ist egal, wo es
+angreift (ein Moment ist frei verschieblich).
+:::
+
 ::: {.vertiefung titel="Ausführlicher: Andere Richtungsannahme, gleiches Ergebnis"}
-In der Vorlesung von 2013 ist $F_{AV}$ nach unten angetragen. Dann ergibt sich $F_{AV} = -3F$ und, mit
-dem dort gewählten Drehsinn, $M_A = -2{,}5\,FL$. Das ist **dasselbe** Ergebnis: Das Minuszeichen sagt nur,
-dass die Kraft entgegen der angenommenen Richtung wirkt.
+Zeichnet man $F_{AV}$ nach unten und wählt den Drehsinn andersherum, ergibt sich $F_{AV} = -3F$ und
+$M_A = -2{,}5\,FL$. Das ist **dasselbe** Ergebnis: Das Minuszeichen sagt nur, dass die Kraft entgegen der
+angenommenen Richtung wirkt.
 :::
 :::
 
@@ -321,10 +432,14 @@ dass die Kraft entgegen der angenommenen Richtung wirkt.
 **Rechenschema für Lagerreaktionen**
 
 1. **Abzählen:** $3n = a + z$? Lager verhindern die Bewegung wirklich?
-2. **Freikörperbild:** Lager durch Reaktionen ersetzen, Unbekannte in positive Richtung zeichnen.
-3. **Gleichgewicht:** am besten mit einer Momentenbilanz um einen Punkt beginnen, in dem möglichst viele
-   Unbekannte angreifen.
-4. **Auflösen**, Vorzeichen deuten.
+2. **Freikörperbild:** Lager durch Reaktionen ersetzen, und zwar **vollständig** (Festlager zwei Kräfte,
+   Einspannung zwei Kräfte und ein Moment). Die Richtung ist beliebig, das Vorzeichen zeigt am Ende die
+   wahre Richtung; am einfachsten in positive Koordinatenrichtung zeichnen.
+3. **Gleichgewicht** immer in derselben Reihenfolge aufschreiben: $\rightarrow$, $\uparrow$, $\curvearrowleft$,
+   und nummerieren: (1), (2), (3).
+   Für die Momente einen Punkt wählen, in dem möglichst viele Unbekannte angreifen.
+4. **Auflösen**, beginnend mit der Gleichung mit nur einer Unbekannten, und jeden Schritt benennen:
+   „aus (3): …“, „$F_B$ eingesetzt in (2): …“. Vorzeichen deuten.
 5. **Kontrolle** mit einer noch nicht benutzten Gleichung.
 :::
 
@@ -466,7 +581,18 @@ Ein Pkw (1500 kg, mit Fahrer 1600 kg) zieht einen einachsigen Anhänger. Die Lad
 - Vorderachse $A$: Loslager. Hinterachse $B$ (gebremst): Festlager. Anhängerachse $C$: Loslager.
 - Gewicht des Pkw $F_K = 15{,}7$ kN, Ladung $q_0 = 1250$ N/m auf $L_A = 2$ m.
 
-**Abzählen:** $n = 2$, $a = 1 + 2 + 1 = 4$, $z = 2$: $\;6 = 6$, statisch bestimmt.
+**Abzählen:** $n = 2$ Körper, $a = 4$ Lagerreaktionen ($A$ und $C$ je eine, $B$ zwei),
+$z = 2$ Gelenkreaktionen ($G_H$, $G_V$).
+
+$$
+\begin{aligned}
+3n &= a + z\\
+3 \cdot 2 &= 4 + 2\\
+6 &= 6
+\end{aligned}
+$$
+
+**Statisch bestimmt.**
 :::
 
 ::: {.schritt zeige="modell freischnitt" dimmen="modell" zoom="20 230 690 350"}
@@ -485,11 +611,17 @@ Resultierende der Ladung: $F_q = q_0 L_A = 2500$ N, 1,0 m hinter der Kupplung.
 
 $$
 \begin{aligned}
-&\rightarrow: && G_H = 0\\[2pt]
-&\curvearrowleft C: && -G_V \cdot 1{,}2\ \text{m} + F_q \cdot 0{,}2\ \text{m} = 0\\
-& && G_V = 417\ \text{N}\\[2pt]
-&\uparrow: && G_V + F_C - F_q = 0\\
-& && F_C = 2083\ \text{N}
+&\rightarrow: && G_H = 0 &&\qquad(1)\\[2pt]
+&\uparrow: && G_V + F_C - F_q = 0 &&\qquad(2)\\[2pt]
+&\curvearrowleft C: && -G_V \cdot 1{,}2\ \text{m} + F_q \cdot 0{,}2\ \text{m} = 0 &&\qquad(3)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (3):} && G_V = \frac{F_q\cdot 0{,}2\ \text{m}}{1{,}2\ \text{m}} = 417\ \text{N}\\[2pt]
+&\text{aus (1):} && G_H = 0\\[2pt]
+&\text{$G_V$ eingesetzt in (2):} && F_C = F_q - G_V = 2083\ \text{N}
 \end{aligned}
 $$
 
@@ -503,11 +635,19 @@ Auf den Pkw drückt die Stützlast $G_V = 417$ N nach unten.
 
 $$
 \begin{aligned}
-&\rightarrow: && F_{BH} = 0\\[2pt]
-&\curvearrowleft B: && -F_A\cdot 2{,}4 + F_K\cdot 1{,}6 - G_V\cdot 0{,}8 = 0\\
-& && F_A = 10{,}33\ \text{kN}\\[2pt]
-&\uparrow: && F_A + F_{BV} - F_K - G_V = 0\\
-& && F_{BV} = 5{,}79\ \text{kN}
+&\rightarrow: && F_{BH} = 0 &&\qquad(4)\\[2pt]
+&\uparrow: && F_A + F_{BV} - F_K - G_V = 0 &&\qquad(5)\\[2pt]
+&\curvearrowleft B: && -F_A\cdot 2{,}4 + F_K\cdot 1{,}6 - G_V\cdot 0{,}8 = 0 &&\qquad(6)
+\end{aligned}
+$$
+
+Die Nummern laufen weiter, damit sie eindeutig bleiben.
+
+$$
+\begin{aligned}
+&\text{aus (6):} && F_A = \frac{F_K\cdot 1{,}6 - G_V\cdot 0{,}8}{2{,}4} = 10{,}33\ \text{kN}\\[2pt]
+&\text{aus (4):} && F_{BH} = 0\\[2pt]
+&\text{$F_A$ eingesetzt in (5):} && F_{BV} = F_K + G_V - F_A = 5{,}79\ \text{kN}
 \end{aligned}
 $$
 
@@ -537,7 +677,18 @@ Die Deichsel ist ein Stab mit zwei Gelenken: eine **Pendelstütze**. Sie übertr
 Bei waagerechter Deichsel gibt es deshalb **keine Stützlast**: Der Anhänger trägt sich allein auf seinen
 zwei Achsen $C$ und $D$, der Lkw spürt nur die Zug- oder Bremskraft $S$.
 
-**Abzählen:** $n = 2$, $a = (1 + 2) + (1 + 1) = 5$, $z = 1$ (Pendelstütze): $6 = 6$.
+**Abzählen:** $n = 2$ Körper, $a = 5$ Lagerreaktionen (Lkw drei, Anhänger zwei),
+$z = 1$ Gelenkreaktion (Stabkraft $S$ der Pendelstütze).
+
+$$
+\begin{aligned}
+3n &= a + z\\
+3 \cdot 2 &= 5 + 1\\
+6 &= 6
+\end{aligned}
+$$
+
+**Statisch bestimmt.**
 
 ::: {.vertiefung titel="Ausführlicher: Und beim Bremsen?"}
 Beim Anfahren oder Bremsen ist $S \neq 0$. Greift $S$ höher oder tiefer an als die Schwerpunkte und

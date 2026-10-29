@@ -75,27 +75,37 @@ def _kraftart(e, nr, ox, oy, gr=GR_UEBERSICHT, ebenen=None):
                               f'fill="#d9d9d9" stroke="#000000" stroke-width="{STRICH["normal"]}" stroke-linejoin="round"/>')
         eb["kraft"].append(kraft(xm, yt, -90, "F", laenge=80, label_seite=-1, label_pos=0.6))
     elif nr == 2:
-        titel(e, ox, oy, "Linienlast (Streckenlast) q in N/m", gr["titel"])
+        b = eb["basis"]
+        titel(b, ox, oy, "Linienlast (Streckenlast) q in N/m", gr["titel"])
         y = oy + 160
-        e.append(balken(ox + 60, y, ox + 360, y))
-        e.append(festlager(ox + 60, y + T))
-        e.append(loslager(ox + 360, y + T))
-        e.append(streckenlast(ox + 60, ox + 360, y - T, 40, label="q", n=15))
-        e.append(hinweis(ox + W / 2, oy + 235, "z. B. Wand auf Decke, Eigengewicht des Trägers", anker="middle", groesse=gr["text"]))
+        b.append(balken(ox + 60, y, ox + 360, y))
+        b.append(festlager(ox + 60, y + T))
+        b.append(loslager(ox + 360, y + T))
+        b.append(hinweis(ox + W / 2, oy + 235, "z. B. Wand auf Decke, Eigengewicht des Trägers", anker="middle", groesse=gr["text"]))
+        # Übersicht (ebenen is None): die Last selbst; im Einzelschritt erst die Last, dann die Resultierende
+        (eb["last"] if ebenen else b).append(streckenlast(ox + 60, ox + 360, y - T, 40, label="q", n=15))
+        if ebenen:
+            eb["kraft"].append(kraft(ox + 210, y - T, -90, "F_R = q L", laenge=80, label_seite=-1, label_pos=0.6))
     elif nr == 3:
-        titel(e, ox, oy, "Flächenlast p in N/m²", gr["titel"])
+        b = eb["basis"]
+        titel(b, ox, oy, "Flächenlast p in N/m²", gr["titel"])
         def P(x, y):                               # schräge Ansicht einer Platte
             return (ox + 70 + x + 0.55 * y, oy + 190 - 0.38 * y)
-        e.append(polylinie([P(0, 0), P(240, 0), P(240, 160), P(0, 160)], SCHWARZ, STRICH["normal"], "#e6e6e6",
+        b.append(polylinie([P(0, 0), P(240, 0), P(240, 160), P(0, 160)], SCHWARZ, STRICH["normal"], "#e6e6e6",
                            schliessen=True))
-        e.append(polylinie([P(0, 0), P(240, 0), (P(240, 0)[0], P(240, 0)[1] + 12), (P(0, 0)[0], P(0, 0)[1] + 12)],
+        b.append(polylinie([P(0, 0), P(240, 0), (P(240, 0)[0], P(240, 0)[1] + 12), (P(0, 0)[0], P(0, 0)[1] + 12)],
                            SCHWARZ, STRICH["normal"], "#d0d0d0", schliessen=True))
+        b.append(hinweis(ox + W / 2, oy + 235, "z. B. Schnee, Wind, Wasserdruck", anker="middle", groesse=gr["text"]))
+        ziel = eb["last"] if ebenen else b
         for i in range(5):
             for k in range(4):
                 x, yy = P(20 + 50 * i, 20 + 40 * k)
-                e.append(pfeil(x, yy - 30, x, yy, ROT, 1.2, (7, 5)))
-        e.append(text(P(240, 160)[0] + 8, P(240, 160)[1] - 22, "p", ROT, anker="start"))
-        e.append(hinweis(ox + W / 2, oy + 235, "z. B. Schnee, Wind, Wasserdruck", anker="middle", groesse=gr["text"]))
+                ziel.append(pfeil(x, yy - 30, x, yy, ROT, 1.2, (7, 5)))
+        ziel.append(text(P(240, 160)[0] + 8, P(240, 160)[1] - 22, "p", ROT, anker="start"))
+        if ebenen:
+            M = P(120, 80)                         # Flächenmittelpunkt
+            eb["kraft"].append(punkt(*M, 3.2))
+            eb["kraft"].append(kraft(*M, -90, "F_R = p A", laenge=90, label_seite=-1, label_pos=0.85))
     else:
         b = eb["basis"]
         titel(b, ox, oy, "Volumenkraft ρ g in N/m³", gr["titel"])
@@ -109,22 +119,24 @@ def _kraftart(e, nr, ox, oy, gr=GR_UEBERSICHT, ebenen=None):
         b.append(polylinie([Q(0, 0, 0), Q(0, 0, 1), Q(1, 0, 1), Q(1, 0, 0)], SCHWARZ, STRICH["normal"], "#efefef", schliessen=True))
         b.append(polylinie([Q(1, 0, 0), Q(1, 0, 1), Q(1, 1, 1), Q(1, 1, 0)], SCHWARZ, STRICH["normal"], "#d0d0d0", schliessen=True))
         b.append(polylinie(vorne, SCHWARZ, STRICH["normal"], "#e6e6e6", schliessen=True))
-        if eb["last"] is not None:
-            # verteilte Last in mehreren Schichten des Volumens; hintere Schichten blasser und hinter einer
-            # halb durchsichtigen Vorderfläche, gezeigt nur, soweit sie durch die Vorderfläche zu sehen sind
-            L = eb["last"]
-            for w, farbe in ((1.0, "#f0b0b0"), (0.5, "#e89090")):
-                for i in range(4):
-                    for k in range(3):
-                        x, yy = Q(0.1 + 0.24 * i, 0.1 + 0.28 * k, w)
-                        if x0 + 6 < x < x0 + bq - 6 and y0 + 4 < yy and yy + 18 < y0 + hq:
-                            L.append(pfeil(x, yy, x, yy + 16, farbe, 1.0, (5, 4)))
-            L.append(polylinie(vorne, "none", 0, "#e6e6e6", schliessen=True).replace('fill="#e6e6e6"', 'fill="#e6e6e6" fill-opacity="0.45"'))
+        # verteilte Last in mehreren Schichten des Volumens; hintere Schichten blasser und hinter einer
+        # halb durchsichtigen Vorderfläche, gezeigt nur, soweit sie durch die Vorderfläche zu sehen sind.
+        # Übersicht (ebenen is None): wie bei Linien- und Flächenlast die verteilte Last, nicht G
+        L = eb["last"] if ebenen else b
+        for w, farbe in ((1.0, "#f0b0b0"), (0.5, "#e89090")):
             for i in range(4):
                 for k in range(3):
-                    x, yy = Q(0.14 + 0.24 * i, 0.12 + 0.3 * k, 0)
-                    L.append(pfeil(x, yy, x, yy + 16, "#d40000", 1.1, (5, 4)))
-            L.append(polylinie(vorne, SCHWARZ, STRICH["normal"], "none", schliessen=True))
+                    x, yy = Q(0.1 + 0.24 * i, 0.1 + 0.28 * k, w)
+                    if x0 + 6 < x < x0 + bq - 6 and y0 + 4 < yy and yy + 18 < y0 + hq:
+                        L.append(pfeil(x, yy, x, yy + 16, farbe, 1.0, (5, 4)))
+        L.append(polylinie(vorne, "none", 0, "#e6e6e6", schliessen=True).replace('fill="#e6e6e6"', 'fill="#e6e6e6" fill-opacity="0.45"'))
+        for i in range(4):
+            for k in range(3):
+                x, yy = Q(0.14 + 0.24 * i, 0.12 + 0.3 * k, 0)
+                L.append(pfeil(x, yy, x, yy + 16, "#d40000", 1.1, (5, 4)))
+        L.append(polylinie(vorne, SCHWARZ, STRICH["normal"], "none", schliessen=True))
+        if not ebenen:
+            return
         S = Q(0.5, 0.5, 0.5)
         eb["kraft"].append(punkt(*S, 3.4))
         eb["kraft"].append(kraft(*S, -90, "G", laenge=78, ziehend=True, label_seite=-1, label_pos=0.85))
@@ -133,14 +145,11 @@ def _kraftart(e, nr, ox, oy, gr=GR_UEBERSICHT, ebenen=None):
 
 def kraftarten():
     abb = Abbildung(840, 840, "Arten der Kräfte")
-    for nr in (1, 2, 3, 4):
-        if nr in (1, 4):                       # zwei Schritte: reale bzw. verteilte Last, dann Ersatzkraft
-            ebenen = {"basis": abb.ebene(f"art-{nr}", f"Kraftart {nr}"),
-                      "last": abb.ebene(f"art-{nr}-last", f"Kraftart {nr}: Last"),
-                      "kraft": abb.ebene(f"art-{nr}-kraft", f"Kraftart {nr}: Ersatzkraft")}
-            _kraftart(None, nr, 0, 0, GR_KACHEL, ebenen)
-        else:
-            _kraftart(abb.ebene(f"art-{nr}", f"Kraftart {nr}"), nr, 0, 0, GR_KACHEL)
+    for nr in (1, 2, 3, 4):                    # je zwei Schritte: reale bzw. verteilte Last, dann Ersatzkraft
+        ebenen = {"basis": abb.ebene(f"art-{nr}", f"Kraftart {nr}"),
+                  "last": abb.ebene(f"art-{nr}-last", f"Kraftart {nr}: Last"),
+                  "kraft": abb.ebene(f"art-{nr}-kraft", f"Kraftart {nr}: Ersatzkraft")}
+        _kraftart(None, nr, 0, 0, GR_KACHEL, ebenen)
     e = abb.ebene("uebersicht", "Übersicht")
     for nr, (ox, oy) in zip((1, 2, 3, 4), ((0, 300), (420, 300), (0, 560), (420, 560))):
         rahmen(e, ox, oy, 420, 260)
@@ -240,10 +249,10 @@ def _bestimmt(e, art, ox, oy):
     W = 440
     y = oy + 120
     x0, x1 = ox + 80, ox + 360
-    texte = {"bestimmt": ("statisch bestimmt", "3 · 1 = 3 + 0", GRUEN),
-             "unbestimmt": ("statisch unbestimmt", "3 · 1 < 4 + 0", ROT),
-             "beweglich": ("beweglich (kinematisch)", "3 · 1 > 2 + 0", ROT),
-             "ausnahme": ("Achtung: trotz 3 = 3 beweglich", "drei parallele Lagerkräfte", ROT),
+    texte = {"bestimmt": ("statisch bestimmt", "3 · 1 = 3 + 0  →  3 = 3", GRUEN),
+             "unbestimmt": ("statisch unbestimmt", "3 · 1 = 4 + 0  →  3 < 4", ROT),
+             "beweglich": ("beweglich (kinematisch)", "3 · 1 = 2 + 0  →  3 > 2", ROT),
+             "ausnahme": ("Achtung: trotz 3n = a + z beweglich", "drei parallele Lagerkräfte", ROT),
              "zwang": ("Vorteil: zwängungsfrei", "Temperaturdehnung frei möglich", GRUEN)}
     t1, t2, farbe = texte[art]
     titel(e, ox, oy, t1, GR_KACHEL["titel"])
@@ -380,7 +389,7 @@ def streckenlasten():
     xs = x0 + 0.62 * L
     e.append(polylinie([(xs, y - T), (xs, y - T - q(xs)), (xs + 14, y - T - q(xs + 14)), (xs + 14, y - T)], None,
                        fuellung="#f5b5b5", schliessen=True))
-    e.append(text(xs + 7, y - T - q(xs) - 18, "dF = q dx", ROT, 15))
+    e.append(text(xs + 7, y - T - q(xs) - 18, "dF = q(x) dx", ROT, 15))
     e.append(mass(xs, y, xs + 14, y, "dx", abstand=-28, aussen=True))
     e.append(mass(x0, y, xs, y, "x", abstand=-62))
     e.append(mass(x0, y, x1, y, "L", abstand=-86))
@@ -505,6 +514,7 @@ def kfz_anhaenger():
     e.append(kraft(X(5.2) + d, y2 + T, 90, "F_C", laenge=45, label_seite=-1, label_pos=0.6))
     e.append(text(X(2.0), y2 + 66, "[I: Pkw]", "#555555", 15, italic=False))
     e.append(text(X(5.0) + d, y2 + 66, "[II: Anhänger]", "#555555", 15, italic=False))
+    e.append(koord_xy(30, y2 + 78, 28, 28))
     return abb.speichern(ZIEL / "kfz-anhaenger.svg")
 
 
