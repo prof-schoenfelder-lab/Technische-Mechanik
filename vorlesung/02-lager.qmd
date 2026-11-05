@@ -340,9 +340,18 @@ heraus.
 
 $$
 \begin{aligned}
-&\text{aus (3):} && F_B = \frac{0{,}5\,F L + 2{,}2\,F L}{L} = 2{,}7\,F\\[2pt]
-&\text{aus (1):} && F_{AH} = 0\\[2pt]
-&\text{$F_B$ eingesetzt in (2):} && F_{AV} = 3F - F_B = 0{,}3\,F
+&\text{aus (3):}\\
+&\qquad \begin{aligned}
+F_B &= \frac{0{,}5\,F L + 2{,}2\,F L}{L}\\
+&= 2{,}7\,F
+\end{aligned}\\[6pt]
+&\text{aus (1):}\\
+&\qquad F_{AH} = 0\\[6pt]
+&\text{$F_B$ eingesetzt in (2):}\\
+&\qquad \begin{aligned}
+F_{AV} &= 3F - F_B\\
+&= 0{,}3\,F
+\end{aligned}
 \end{aligned}
 $$
 :::
@@ -355,7 +364,8 @@ Eine Gleichung, die man noch nicht benutzt hat, muss ebenfalls erfüllt sein, zu
 $$
 \begin{aligned}
 &\curvearrowleft B: && -F_{AV}\,L + F\,\tfrac{L}{2} - 2F\cdot 0{,}1\,L\\
-& && = (-0{,}3 + 0{,}5 - 0{,}2)\,F L = 0 \;\checkmark
+& && = (-0{,}3 + 0{,}5 - 0{,}2)\,F L\\
+& && = 0 \;\checkmark
 \end{aligned}
 $$
 
@@ -404,9 +414,9 @@ Hier enthält jede Gleichung nur eine Unbekannte:
 
 $$
 \begin{aligned}
-&\text{aus (1):} && F_{AH} = 0\\[2pt]
-&\text{aus (2):} && F_{AV} = 3F\\[2pt]
-&\text{aus (3):} && M_A = 2{,}5\,F L
+&\text{aus (1):}\quad F_{AH} = 0\\[2pt]
+&\text{aus (2):}\quad F_{AV} = 3F\\[2pt]
+&\text{aus (3):}\quad M_A = 2{,}5\,F L
 \end{aligned}
 $$
 
@@ -460,7 +470,10 @@ $$
 Ihr Moment um den Ursprung ist
 
 $$
-\mathrm dM = x\,\mathrm dF = x\,q(x)\,\mathrm dx
+\begin{aligned}
+\mathrm dM &= x\,\mathrm dF\\
+&= x\,q(x)\,\mathrm dx
+\end{aligned}
 $$
 :::
 
@@ -471,7 +484,10 @@ Für das Gleichgewicht ersetzen wir die Streckenlast durch eine **Resultierende*
 und Momentenwirkung. Die Kräfte $\mathrm dF$ aller Stücke über die Länge $L$ summieren sich zu
 
 $$
-F_R = \int_0^L \mathrm dF = \int_0^L q(x)\,\mathrm dx
+\begin{aligned}
+F_R &= \int_0^L \mathrm dF\\
+&= \int_0^L q(x)\,\mathrm dx
+\end{aligned}
 $$
 
 Die Teilmomente $x\,q(x)\,\mathrm dx$ müssen zusammen dasselbe Moment ergeben wie $F_R$ im Abstand $x_R$:
@@ -527,9 +543,22 @@ Die Resultierende liegt im **Drittelpunkt** auf der Seite der größeren Last.
 ::: {.vertiefung titel="Ausführlicher: Herleitung für die Dreieckslast"}
 $$
 \begin{aligned}
-F_R &= \int_0^L \frac{q_0}{L}\,x\,\mathrm dx = \frac{q_0}{L}\,\frac{L^2}{2} = \frac{q_0 L}{2}\\[2pt]
-\int_0^L q\,x\,\mathrm dx &= \frac{q_0}{L}\,\frac{L^3}{3} = \frac{q_0 L^2}{3}
-\quad\Rightarrow\quad x_R = \frac{q_0L^2/3}{q_0L/2} = \frac23\,L
+F_R &= \int_0^L \frac{q_0}{L}\,x\,\mathrm dx\\[2pt]
+&= \frac{q_0}{L}\,\frac{L^2}{2}\\[2pt]
+&= \frac{q_0 L}{2}
+\end{aligned}
+\qquad
+\begin{aligned}
+\int_0^L q\,x\,\mathrm dx &= \int_0^L \frac{q_0}{L}\,x^2\,\mathrm dx\\[2pt]
+&= \frac{q_0}{L}\,\frac{L^3}{3}\\[2pt]
+&= \frac{q_0 L^2}{3}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+x_R &= \frac{q_0L^2/3}{q_0L/2}\\[2pt]
+&= \frac23\,L
 \end{aligned}
 $$
 
@@ -542,7 +571,7 @@ jedes Teil einzeln.
 
 ::: {.merke}
 **Wichtig:** Eine Streckenlast darf man für das **Gleichgewicht eines ganzen Körpers** durch ihre Resultierende
-ersetzen. Schneidet man den Körper später auf, um innere Kräfte zu berechnen (Woche 3), muss man **erst
+ersetzen. Schneidet man den Körper später auf, um innere Kräfte zu berechnen (Woche 4), muss man **erst
 schneiden** und dann nur den Lastanteil am Teilkörper ersetzen.
 :::
 
@@ -553,7 +582,10 @@ Wirkt ein konstanter Druck $p$ auf einen Halbkreisbogen mit dem Radius $r$, hebe
 Anteile auf. Die senkrechte Resultierende ist
 
 $$
-F_R = \int_0^{\pi} p\,\sin\alpha\;r\,\mathrm d\alpha = 2\,p\,r
+\begin{aligned}
+F_R &= \int_0^{\pi} p\,\sin\alpha\;r\,\mathrm d\alpha\\
+&= 2\,p\,r
+\end{aligned}
 $$
 
 Das ist genau der Druck mal der **Projektionslänge** $2r$. Diese Regel gilt allgemein: Die Kraft eines
@@ -619,9 +651,18 @@ $$
 
 $$
 \begin{aligned}
-&\text{aus (3):} && G_V = \frac{F_q\cdot 0{,}2\ \text{m}}{1{,}2\ \text{m}} = 417\ \text{N}\\[2pt]
-&\text{aus (1):} && G_H = 0\\[2pt]
-&\text{$G_V$ eingesetzt in (2):} && F_C = F_q - G_V = 2083\ \text{N}
+&\text{aus (3):}\\
+&\qquad \begin{aligned}
+G_V &= \frac{F_q\cdot 0{,}2\ \text{m}}{1{,}2\ \text{m}}\\
+&= 417\ \text{N}
+\end{aligned}\\[6pt]
+&\text{aus (1):}\\
+&\qquad G_H = 0\\[6pt]
+&\text{$G_V$ eingesetzt in (2):}\\
+&\qquad \begin{aligned}
+F_C &= F_q - G_V\\
+&= 2083\ \text{N}
+\end{aligned}
 \end{aligned}
 $$
 
@@ -645,9 +686,18 @@ Die Nummern laufen weiter, damit sie eindeutig bleiben.
 
 $$
 \begin{aligned}
-&\text{aus (6):} && F_A = \frac{F_K\cdot 1{,}6 - G_V\cdot 0{,}8}{2{,}4} = 10{,}33\ \text{kN}\\[2pt]
-&\text{aus (4):} && F_{BH} = 0\\[2pt]
-&\text{$F_A$ eingesetzt in (5):} && F_{BV} = F_K + G_V - F_A = 5{,}79\ \text{kN}
+&\text{aus (6):}\\
+&\qquad \begin{aligned}
+F_A &= \frac{F_K\cdot 1{,}6 - G_V\cdot 0{,}8}{2{,}4}\\
+&= 10{,}33\ \text{kN}
+\end{aligned}\\[6pt]
+&\text{aus (4):}\\
+&\qquad F_{BH} = 0\\[6pt]
+&\text{$F_A$ eingesetzt in (5):}\\
+&\qquad \begin{aligned}
+F_{BV} &= F_K + G_V - F_A\\
+&= 5{,}79\ \text{kN}
+\end{aligned}
 \end{aligned}
 $$
 
@@ -732,8 +782,9 @@ Mehrteilige Systeme trennt man an den **Gelenken** und beginnt mit dem Teil mit 
 ::: {.schritt zeige="k-arten k-lager k-bestimmt k-rechnen k-strecke k-gelenk" zoom="0 0 950 480"}
 ### Das Wichtigste auf einen Blick
 
-Mit den Lagerreaktionen kennen wir alle **äußeren** Kräfte eines Tragwerks. In Woche 3 schneiden wir das
-Tragwerk selbst auf und bestimmen die **inneren** Kräfte, die Schnittgrößen.
+Mit den Lagerreaktionen kennen wir alle **äußeren** Kräfte eines Tragwerks. In Woche 3 üben wir Schneiden
+und Gleichgewicht an drei Aufgaben, in Woche 4 schneiden wir das Tragwerk selbst auf und bestimmen die
+**inneren** Kräfte, die Schnittgrößen.
 
 **Weiter:** [Aufgaben zu Lager und Lagerreaktionen](../seminar/02-lager.qmd)
 :::

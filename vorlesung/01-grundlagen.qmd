@@ -264,7 +264,7 @@ Ohne Freikörperbild keine Statik.
   angetragen.
 - Eine **glatte Berührfläche** überträgt nur eine Druckkraft senkrecht zur Fläche.
 - Ein **Stab** mit Gelenken an beiden Enden überträgt eine Kraft in Stabrichtung, Zug oder Druck.
-- Lager und Einspannungen folgen in Woche 2, der Schnitt durch einen Balken in Woche 3.
+- Lager und Einspannungen folgen in Woche 2, der Schnitt durch einen Balken in Woche 4.
 
 Wie herum man eine unbekannte Kraft einzeichnet, ist gleichgültig: Ein **negatives Ergebnis**
 heißt, dass sie in Wirklichkeit andersherum wirkt.

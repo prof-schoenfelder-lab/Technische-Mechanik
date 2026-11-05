@@ -37,16 +37,18 @@ website:
             text: "1 · Kräfte, Momente, Gleichgewicht"
           - href: vorlesung/02-lager.qmd
             text: "2 · Lager und Lagerreaktionen"
-          - href: vorlesung/03-schnittgroessen.qmd
-            text: "3 · Schnittgrößen"
+          - href: vorlesung/03-gleichgewicht.qmd
+            text: "3 · Übung: Gleichgewicht"
+          - href: vorlesung/04-schnittgroessen.qmd
+            text: "4 · Schnittgrößen"
       - text: Seminar
         menu:
           - href: seminar/01-grundlagen.qmd
             text: "1 · Kräfte, Momente, Gleichgewicht"
           - href: seminar/02-lager.qmd
             text: "2 · Lager und Lagerreaktionen"
-          - href: seminar/03-schnittgroessen.qmd
-            text: "3 · Schnittgrößen"
+          - href: seminar/04-schnittgroessen.qmd
+            text: "4 · Schnittgrößen"
     right:
       - text: "Prof. Dr.-Ing. Stephan Schönfelder"
         href: "https://fing.htwk-leipzig.de/fakultaet/professuren/prof-stephan-schoenfelder"

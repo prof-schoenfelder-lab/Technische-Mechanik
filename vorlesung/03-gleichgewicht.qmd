@@ -1,0 +1,521 @@
+---
+title: "Übung: Gleichgewicht"
+subtitle: "Statik · Vorlesung 3"
+page-layout: full
+---
+
+::: {.merke}
+**Worum geht es?** Drei Aufgaben, vollständig vorgerechnet, um das Handwerk aus Woche 1 und 2 zu festigen:
+**schneiden**, **Freikörperbild** zeichnen, **abzählen**, **Gleichgewicht** aufschreiben und **auflösen**.
+Rechnen Sie zuerst selbst und vergleichen Sie dann Schritt für Schritt.
+
+1. Gelenkträger: am Gelenk trennen, Streckenlast erst nach dem Schnitt ersetzen
+2. Fahrradrahmen: viele Schnitte, an jedem Knoten ein kleines Gleichgewicht, ganz ohne neue Theorie
+3. Balken mit veränderlicher Streckenlast: Resultierende und Lage durch Integration
+
+::: {.content-visible when-format="html"}
+Tipp: Mit **Bild↓ / Bild↑** oder **→ / ←** springen Sie von Schritt zu Schritt; Taste **B** schaltet den Beamer-Modus.
+:::
+:::
+
+## Aufgabe 1: Gelenkträger
+
+:::: {.scrolly svg="../grafiken/gleichgewicht/gelenktraeger.svg"}
+
+::: {.schritt zeige="system" zoom="20 40 720 300"}
+### Aufgabe
+
+Ein Träger aus zwei Teilen, verbunden durch das Gelenk $G$, liegt auf drei Lagern. Er trägt die
+Gleichstreckenlast $q$ über die ganze Länge und die Einzelkraft $F$.
+
+**Gegeben:** $F = 2000$ N, $q = 1{,}0$ kN/m, $l = 10$ m
+
+**Gesucht:** Lagerreaktionen und Gelenkkräfte
+
+**Abzählen:** $n = 2$ Körper, $a = 4$ Lagerreaktionen ($A$ zwei, $B$ und $C$ je eine),
+$z = 2$ Gelenkreaktionen ($G_H$, $G_V$).
+
+$$
+\begin{aligned}
+3n &= a + z\\
+3 \cdot 2 &= 4 + 2\\
+6 &= 6
+\end{aligned}
+$$
+
+**Statisch bestimmt.**
+:::
+
+::: {.schritt zeige="system schnitt freischnitt" dimmen="system" zoom="20 40 840 420"}
+### Schneiden: zwei Teilsysteme
+
+Die Schnitte (grün) gehen durch das Gelenk **und** durch die drei Lager. So entstehen zwei freie
+Teilsysteme I und II. An den Lagern wirken die Lagerkräfte, am Gelenk die Gelenkkräfte, und zwar an
+beiden Teilen **entgegengesetzt** (actio = reactio). Die Streckenlast wird erst
+**nach** dem Schnitt ersetzt:
+
+- Teil I trägt $q\cdot 4l = 40$ kN in der Mitte bei $2l$.
+- Teil II trägt $q\cdot 2l = 20$ kN in seiner Mitte, $l$ rechts von $G$.
+
+Teil I hat fünf Unbekannte, Teil II nur drei. Wir beginnen also mit **Teil II**.
+:::
+
+::: {.schritt zeige="freischnitt" zoom="20 260 840 210"}
+### ① Teil II
+
+$$
+\begin{aligned}
+&\rightarrow: && -G_H = 0 &&\qquad(1)\\[2pt]
+&\uparrow: && G_V + F_C - q\cdot 2l = 0 &&\qquad(2)\\[2pt]
+&\curvearrowleft G: && F_C\cdot 2l - q\cdot 2l\cdot l = 0 &&\qquad(3)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (1):}\\
+&\qquad G_H = 0\\[6pt]
+&\text{aus (3):}\\
+&\qquad \begin{aligned}
+F_C &= q\,l\\
+&= 10\ \text{kN}
+\end{aligned}\\[6pt]
+&\text{$F_C$ eingesetzt in (2):}\\
+&\qquad \begin{aligned}
+G_V &= 2q\,l - F_C\\
+&= 10\ \text{kN}
+\end{aligned}
+\end{aligned}
+$$
+
+Teil II ist symmetrisch belastet: Lager $C$ und Gelenk teilen sich die 20 kN je zur Hälfte.
+:::
+
+::: {.schritt zeige="freischnitt" zoom="20 260 840 210"}
+### ② Teil I
+
+Auf Teil I drückt die Gelenkkraft $G_V$ nach unten. Die Nummern laufen weiter.
+
+$$
+\begin{aligned}
+&\rightarrow: && F_{AH} + G_H = 0 &&\qquad(4)\\[2pt]
+&\uparrow: && F_{AV} + F_B - F - q\cdot 4l - G_V = 0 &&\qquad(5)\\[2pt]
+&\curvearrowleft A: && F_B\cdot 3l - F\cdot 2l - q\cdot 4l\cdot 2l - G_V\cdot 4l = 0 &&\qquad(6)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (4):}\\
+&\qquad \begin{aligned}
+F_{AH} &= -G_H\\
+&= 0
+\end{aligned}\\[6pt]
+&\text{aus (6):}\\
+&\qquad \begin{aligned}
+F_B &= \frac{2F + 8q\,l + 4G_V}{3}\\
+&= \frac{4 + 80 + 40}{3}\ \text{kN}\\
+&= 41{,}33\ \text{kN}
+\end{aligned}\\[6pt]
+&\text{$F_B$ eingesetzt in (5):}\\
+&\qquad \begin{aligned}
+F_{AV} &= F + 4q\,l + G_V - F_B\\
+&= (2 + 40 + 10 - 41{,}33)\ \text{kN}\\
+&= 10{,}67\ \text{kN}
+\end{aligned}
+\end{aligned}
+$$
+:::
+
+::: {.schritt zeige="gesamt" zoom="20 40 720 300"}
+### ③ Kontrolle am ganzen Träger
+
+Jetzt schneiden wir nur an den Lagern, das Gelenk bleibt **geschlossen**. Die Gelenkkräfte sind dann
+innere Kräfte und tauchen im Bild nicht auf. Mit den berechneten Lagerkräften muss der ganze Träger im
+Gleichgewicht sein:
+
+$$
+\begin{aligned}
+&\uparrow: && F_{AV} + F_B + F_C - F - q\cdot 6l = 0 &&\qquad(7)\\[2pt]
+&\curvearrowleft A: && F_B\cdot 3l + F_C\cdot 6l - F\cdot 2l - q\cdot 6l\cdot 3l = 0 &&\qquad(8)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{Kontrolle (7):}\\
+&\qquad (10{,}67 + 41{,}33 + 10 - 2 - 60)\ \text{kN} = 0\ \checkmark\\[6pt]
+&\text{Kontrolle (8):}\\
+&\qquad (1240 + 600 - 40 - 1800)\ \text{kNm} = 0\ \checkmark
+\end{aligned}
+$$
+
+Ein Gelenk ändert am Gleichgewicht des Ganzen nichts. Es sorgt nur dafür, dass man **schneiden muss**, um
+alle vier Lagerreaktionen zu bekommen: Am ganzen Träger gibt es nur drei Gleichungen.
+:::
+
+::::
+
+## Aufgabe 2: Fahrradrahmen
+
+:::: {.scrolly svg="../grafiken/gleichgewicht/fahrrad.svg"}
+
+::: {.schritt zeige="ansicht" zoom="0 40 800 440"}
+### Aufgabe
+
+Eine Person sitzt auf dem Fahrrad, tritt in die Pedale und drückt den Lenker nach vorn unten. Wie stark
+werden die Rohre des Rahmens belastet?
+:::
+
+::: {.schritt zeige="ansicht fachwerk nummern lager lasten mass" dimmen="ansicht" zoom="0 40 800 440"}
+### Modell
+
+Die fünf Rohre werden zu **Stäben**, die in den **Knoten** I bis IV gelenkig verbunden sind. Die Lasten
+greifen nur in den Knoten an. Jeder Stab ist damit eine **Pendelstütze** (Woche 2): Er überträgt nur eine
+Kraft in Stabrichtung, die **Stabkraft** $S_i$. Ein solches Tragwerk heißt **Fachwerk**.
+
+- Hinterachse: Festlager $B$, Steuerkopf: Loslager $A$ (die Gabel stützt senkrecht ab)
+- Sattel $F_S = 600$ N, Pedal $F_P = 300$ N, Lenker $F_L = 100\sqrt2$ N $\approx 141$ N, in Fahrtrichtung
+  nach unten geneigt (Wirkungslinie unter $135^\circ$)
+- $a = 0{,}1$ m, also $\tan\beta = \dfrac{3a}{4a}$, $\cos\beta = 0{,}8$, $\sin\beta = 0{,}6$
+
+**Gesucht:** Lagerreaktionen und Stabkräfte
+
+Neues Werkzeug brauchen wir dafür nicht: Gleichgewicht am ganzen Rahmen (Woche 2) und an jedem Knoten
+(zentrales Kraftsystem, Woche 1).
+:::
+
+::: {.schritt zeige="fachwerk nummern lager lasten schnitt-lager" dimmen="lager" zoom="0 60 800 400"}
+### ① Lagerreaktionen am ganzen Rahmen
+
+Zuerst schneiden wir den ganzen Rahmen von den Lagern frei (grüne Schnittlinien).
+:::
+
+::: {.schritt zeige="fachwerk nummern lasten reaktionen" zoom="0 60 800 400"}
+### ① Lagerreaktionen: Gleichgewicht
+
+Die Lager sind durch ihre Reaktionen ersetzt. Die Komponenten von $F_L$ sind je
+$F_L\cos 45^\circ = F_L\sin 45^\circ = 100$ N, nach rechts und nach unten.
+
+$$
+\begin{aligned}
+&\rightarrow: && F_{BH} + F_L\cos 45^\circ = 0 &&\qquad(1)\\[2pt]
+&\uparrow: && F_{BV} + F_A - F_S - F_P - F_L\sin 45^\circ = 0 &&\qquad(2)\\[2pt]
+&\curvearrowleft B: && F_A\, 8a - F_S\, 4a - F_P\, 4a\\
+& && {}- F_L\sin 45^\circ\, 8a - F_L\cos 45^\circ\, 3a = 0 &&\qquad(3)
+\end{aligned}
+$$
+
+Aufgelöst, beginnend mit der Gleichung mit nur einer Unbekannten:
+
+$$
+\begin{aligned}
+&\text{aus (1):}\\
+&\qquad F_{BH} = -100\ \text{N}\\[6pt]
+&\text{aus (3):}\\
+&\qquad \begin{aligned}
+F_A &= \frac{(600 + 300)\cdot 4 + 100\cdot 8 + 100\cdot 3}{8}\ \text{N}\\
+&= 587{,}5\ \text{N}
+\end{aligned}\\[6pt]
+&\text{$F_A$ eingesetzt in (2):}\\
+&\qquad \begin{aligned}
+F_{BV} &= (600 + 300 + 100 - 587{,}5)\ \text{N}\\
+&= 412{,}5\ \text{N}
+\end{aligned}
+\end{aligned}
+$$
+
+$F_{BH}$ ist negativ: Das Lager $B$ hält den Rahmen nach **links**, gegen die Lenkerkraft.
+
+::: {.vertiefung titel="Häufiger Fehler: die waagerechte Kraft im Moment vergessen"}
+Die waagerechte Komponente von $F_L$ greift in der Höhe $3a$ über $B$ an. Sie zeigt nach rechts und liegt
+oberhalb von $B$, sie dreht also **im** Uhrzeigersinn: $-F_L\cos 45^\circ\cdot 3a$. Wer nur die
+senkrechten Kräfte mit ihren waagerechten Abständen ansetzt, erhält ein falsches $F_A$.
+Mit $M = x\,F_y - y\,F_x$ (Woche 1) passiert das nicht.
+:::
+:::
+
+::: {.schritt zeige="fachwerk nummern lasten reaktionen schnitt-IV knoten-IV" dimmen="fachwerk nummern lasten reaktionen" zoom="0 60 900 620"}
+### ② Knoten IV
+
+Jetzt schneiden wir jeden Knoten einzeln heraus (grüner Schnitt rund um den Knoten). Jeder Schnitt trifft
+die Stäbe, dort wirken die Stabkräfte. Wir setzen sie als **Zug** an: Pfeil vom Knoten weg. Ein positives
+Ergebnis heißt Zug, ein negatives Druck.
+
+Am Knoten gehen alle Kräfte durch einen Punkt: zwei Gleichungen, $\rightarrow$ und $\uparrow$. Wir beginnen
+dort, wo höchstens **zwei** Stabkräfte unbekannt sind: Knoten IV mit $S_4$ und $S_5$.
+
+$$
+\begin{aligned}
+&\rightarrow: && F_L\cos 45^\circ - S_5 - S_4\cos\beta = 0 &&\qquad(4)\\[2pt]
+&\uparrow: && F_A - F_L\sin 45^\circ - S_4\sin\beta = 0 &&\qquad(5)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (5):}\\
+&\qquad \begin{aligned}
+S_4 &= \frac{587{,}5 - 100}{0{,}6}\ \text{N}\\
+&= 812{,}5\ \text{N}
+\end{aligned}\\[6pt]
+&\text{$S_4$ eingesetzt in (4):}\\
+&\qquad \begin{aligned}
+S_5 &= (100 - 0{,}8\cdot 812{,}5)\ \text{N}\\
+&= -550\ \text{N}
+\end{aligned}
+\end{aligned}
+$$
+:::
+
+::: {.schritt zeige="fachwerk nummern lasten reaktionen knoten-IV schnitt-III knoten-III" dimmen="fachwerk nummern lasten reaktionen knoten-IV" zoom="0 60 900 620"}
+### ③ Knoten III
+
+$S_5$ ist jetzt bekannt, unbekannt sind $S_2$ und $S_3$. Auch hier $S_5$ als Zug ansetzen, also vom Knoten weg,
+und mit seinem Vorzeichen einsetzen.
+
+$$
+\begin{aligned}
+&\rightarrow: && S_5 - S_2\cos\beta = 0 &&\qquad(6)\\[2pt]
+&\uparrow: && -F_S - S_3 - S_2\sin\beta = 0 &&\qquad(7)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (6):}\\
+&\qquad \begin{aligned}
+S_2 &= \frac{S_5}{0{,}8}\\
+&= \frac{-550}{0{,}8}\ \text{N}\\
+&= -687{,}5\ \text{N}
+\end{aligned}\\[6pt]
+&\text{$S_2$ eingesetzt in (7):}\\
+&\qquad \begin{aligned}
+S_3 &= -F_S - 0{,}6\, S_2\\
+&= (-600 + 412{,}5)\ \text{N}\\
+&= -187{,}5\ \text{N}
+\end{aligned}
+\end{aligned}
+$$
+:::
+
+::: {.schritt zeige="fachwerk nummern lasten reaktionen knoten-IV knoten-III schnitt-II knoten-II" dimmen="fachwerk nummern lasten reaktionen knoten-IV knoten-III" zoom="0 60 900 620"}
+### ④ Knoten II
+
+Nur noch $S_1$ ist unbekannt. Eine Gleichung genügt, die zweite ist die erste **Kontrolle**.
+
+$$
+\begin{aligned}
+&\rightarrow: && S_4\cos\beta - S_1 = 0 &&\qquad(8)\\[2pt]
+&\uparrow: && -F_P + S_4\sin\beta + S_3 = 0 &&\qquad(9)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (8):}\\
+&\qquad \begin{aligned}
+S_1 &= 0{,}8\cdot 812{,}5\ \text{N}\\
+&= 650\ \text{N}
+\end{aligned}\\[6pt]
+&\text{Kontrolle (9):}\\
+&\qquad (-300 + 487{,}5 - 187{,}5)\ \text{N} = 0\ \checkmark
+\end{aligned}
+$$
+:::
+
+::: {.schritt zeige="fachwerk nummern lasten reaktionen knoten-IV knoten-III knoten-II schnitt-I knoten-I" dimmen="fachwerk nummern lasten reaktionen knoten-IV knoten-III knoten-II" zoom="0 60 900 620"}
+### ⑤ Knoten I: Kontrolle
+
+Am Lager $B$ ist alles bekannt. Beide Gleichungen müssen aufgehen:
+
+$$
+\begin{aligned}
+&\rightarrow: && F_{BH} + S_1 + S_2\cos\beta = 0 &&\qquad(10)\\[2pt]
+&\uparrow: && F_{BV} + S_2\sin\beta = 0 &&\qquad(11)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{Kontrolle (10):}\\
+&\qquad (-100 + 650 - 550)\ \text{N} = 0\ \checkmark\\[6pt]
+&\text{Kontrolle (11):}\\
+&\qquad (412{,}5 - 412{,}5)\ \text{N} = 0\ \checkmark
+\end{aligned}
+$$
+
+Vier Knoten liefern acht Gleichungen, dazu kamen die drei am ganzen Rahmen: elf Gleichungen für acht
+Unbekannte. Die drei übrigen sind die **Probe**, denn das Gleichgewicht des Ganzen folgt aus dem
+Gleichgewicht aller Knoten.
+:::
+
+::: {.schritt zeige="fachwerk lasten reaktionen ergebnis nummern" zoom="0 60 800 400"}
+### Ergebnis
+
+| Stab | Rohr | Stabkraft | |
+|:-:|:--|--:|:--|
+| 1 | Kettenstrebe | $650$ N | Zug |
+| 2 | Sitzstrebe | $-687{,}5$ N | Druck |
+| 3 | Sattelrohr | $-187{,}5$ N | Druck |
+| 4 | Unterrohr | $812{,}5$ N | Zug |
+| 5 | Oberrohr | $-550$ N | Druck |
+
+Das Oberrohr und die Sitzstrebe werden **gedrückt**, Unterrohr und Kettenstrebe **gezogen**. Gedrückte
+schlanke Stäbe können knicken (Woche 13), gezogene nicht.
+
+Ein Fachwerk ist also nichts Neues: Schneiden und Gleichgewicht, nur eben an vielen Stellen.
+:::
+
+::::
+
+## Aufgabe 3: Balken mit veränderlicher Streckenlast
+
+:::: {.scrolly svg="../grafiken/gleichgewicht/balken-qx.svg"}
+
+::: {.schritt zeige="balken last" zoom="0 30 700 300"}
+### Aufgabe
+
+Ein Balken auf zwei Stützen trägt die Streckenlast
+
+$$
+q(x) = q_0\left[\frac{x}{L} - \left(\frac{x}{L}\right)^6\right]
+$$
+
+**Gegeben:** $q_0 = 2{,}8$ kN/m, $L = 6$ m
+
+**Gesucht:** Lagerreaktionen
+
+Die Last ist an beiden Lagern null und am größten bei $x = L/\sqrt[5]{6} \approx 0{,}70\,L = 4{,}19$ m,
+dort ist $q \approx 1{,}63$ kN/m.
+:::
+
+::: {.schritt zeige="balken ersatz" zoom="0 30 700 300"}
+### ① Resultierende und Lage
+
+Wir integrieren die Last direkt, dazu schreiben wir sie als Summe zweier Potenzen von $x$:
+$q(x) = q_0\left(\dfrac{x}{L} - \dfrac{x^6}{L^6}\right)$.
+
+$$
+\begin{aligned}
+F_R &= \int_0^L q(x)\,\mathrm dx\\[4pt]
+    &= q_0 \int_0^L \left(\frac{x}{L} - \frac{x^6}{L^6}\right)\mathrm dx\\[4pt]
+    &= q_0\left[\frac{x^2}{2L} - \frac{x^7}{7L^6}\right]_0^L\\[4pt]
+    &= q_0\left(\frac{L}{2} - \frac{L}{7}\right)\\[4pt]
+    &= \frac{5}{14}\,q_0 L\\[4pt]
+    &= \frac{5}{14}\cdot 2{,}8\cdot 6\ \text{kN}\\[4pt]
+    &= 6\ \text{kN}
+\end{aligned}
+$$
+
+Für die Lage brauchen wir das Moment der Last um $A$, jedes Lastelement $q(x)\,\mathrm dx$ mit dem Hebelarm $x$:
+
+$$
+\begin{aligned}
+\int_0^L x\,q(x)\,\mathrm dx &= q_0 \int_0^L \left(\frac{x^2}{L} - \frac{x^7}{L^6}\right)\mathrm dx\\[4pt]
+  &= q_0\left[\frac{x^3}{3L} - \frac{x^8}{8L^6}\right]_0^L\\[4pt]
+  &= q_0\left(\frac{L^2}{3} - \frac{L^2}{8}\right)\\[4pt]
+  &= \frac{5}{24}\,q_0 L^2
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+x_R &= \frac{1}{F_R}\int_0^L x\,q(x)\,\mathrm dx\\[4pt]
+    &= \frac{\frac{5}{24}\,q_0 L^2}{\frac{5}{14}\,q_0 L}\\[4pt]
+    &= \frac{7}{12}\,L\\[4pt]
+    &= 3{,}5\ \text{m}
+\end{aligned}
+$$
+
+Die Resultierende liegt rechts der Mitte, dort, wo die Last größer ist.
+:::
+
+::: {.schritt zeige="balken ersatz freikoerper" dimmen="balken ersatz" zoom="0 30 700 440"}
+### ② Gleichgewicht
+
+**Abzählen:** $n = 1$ Körper, $a = 3$ Lagerreaktionen, $z = 0$ Gelenkreaktionen.
+
+$$
+\begin{aligned}
+3n &= a + z\\
+3 \cdot 1 &= 3 + 0\\
+3 &= 3
+\end{aligned}
+$$
+
+**Statisch bestimmt.** Für das Gleichgewicht des ganzen Balkens ersetzen wir die Last durch $F_R$:
+
+$$
+\begin{aligned}
+&\rightarrow: && F_{AH} = 0 &&\qquad(1)\\[2pt]
+&\uparrow: && F_{AV} + F_B - F_R = 0 &&\qquad(2)\\[2pt]
+&\curvearrowleft A: && F_B\,L - F_R\,x_R = 0 &&\qquad(3)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (1):}\\
+&\qquad F_{AH} = 0\\[6pt]
+&\text{aus (3):}\\
+&\qquad \begin{aligned}
+F_B &= F_R\,\frac{x_R}{L}\\
+&= 6\cdot\frac{3{,}5}{6}\ \text{kN}\\
+&= 3{,}5\ \text{kN}
+\end{aligned}\\[6pt]
+&\text{$F_B$ eingesetzt in (2):}\\
+&\qquad \begin{aligned}
+F_{AV} &= F_R - F_B\\
+&= 2{,}5\ \text{kN}
+\end{aligned}
+\end{aligned}
+$$
+
+Lager $B$ trägt mehr, weil die Last zu ihm hin zunimmt.
+
+::: {.vertiefung titel="Ausführlicher: auch ohne Resultierende"}
+Die Momentengleichung (3) lässt sich direkt mit dem Integral schreiben: Jedes Lastelement
+$\mathrm dF = q(x)\,\mathrm dx$ hat um $A$ den Hebelarm $x$. Also
+
+$$
+\begin{aligned}
+F_B\,L &= \int_0^L x\,q(x)\,\mathrm dx\\[4pt]
+       &= \frac{5}{24}\,q_0 L^2
+\end{aligned}
+$$
+
+und damit
+
+$$
+\begin{aligned}
+F_B &= \frac{5}{24}\,q_0 L\\[4pt]
+    &= 3{,}5\ \text{kN}.
+\end{aligned}
+$$
+
+Die Resultierende ist nur eine Abkürzung für genau dieses Integral.
+:::
+:::
+
+::::
+
+## Was Sie geübt haben
+
+::: {.merke}
+- **Schneiden:** um jeden Knoten, am Gelenk, um den ganzen Körper. Jeder Schnitt legt Kräfte frei.
+- **Abzählen** vor dem Rechnen: $3n = a + z$.
+- **Reihenfolge:** Teilsystem oder Knoten mit den wenigsten Unbekannten zuerst.
+- **Gleichgewicht** immer $\rightarrow$, $\uparrow$, $\curvearrowleft$, nummeriert; beim Knoten nur zwei Gleichungen.
+- **Stabkräfte** als Zug ansetzen, das Vorzeichen zeigt Zug oder Druck.
+- **Streckenlast** erst nach dem Schneiden ersetzen; Resultierende und Lage aus Integralen.
+- **Kontrolle** mit Gleichungen, die man nicht gebraucht hat.
+
+**Weiter:** In [Woche 4](04-schnittgroessen.qmd) schneiden wir **durch** den Balken und bestimmen die inneren
+Kräfte, die Schnittgrößen.
+:::
+
+::: {.small .text-muted}
+Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 5–6 ·
+Dankert/Dankert, Technische Mechanik, Kap. 5–8
+:::

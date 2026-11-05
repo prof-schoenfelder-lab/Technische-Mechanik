@@ -17,8 +17,8 @@ Willkommen! Diese Seite begleitet Vorlesung und Seminar.
 | 0 | **Mathematische Werkzeuge** (Einführung, mit Übungen) | [Vorlesung](vorlesung/00-mathematik.qmd) | – |
 | 1 | **Kräfte, Momente, Gleichgewicht** | [Vorlesung](vorlesung/01-grundlagen.qmd) | [Seminar](seminar/01-grundlagen.qmd) |
 | 2 | **Lager und Lagerreaktionen**, Streckenlasten | [Vorlesung](vorlesung/02-lager.qmd) | [Seminar](seminar/02-lager.qmd) |
-| 3 | **Schnittgrößen** | [Vorlesung](vorlesung/03-schnittgroessen.qmd) | [Seminar](seminar/03-schnittgroessen.qmd) |
-| 4 | Wiederholung Statik | – | – |
+| 3 | **Übung: Gleichgewicht** (Aufgaben mit Lösungsweg) | [Vorlesung](vorlesung/03-gleichgewicht.qmd) | – |
+| 4 | **Schnittgrößen** | [Vorlesung](vorlesung/04-schnittgroessen.qmd) | [Seminar](seminar/04-schnittgroessen.qmd) |
 | 5 | Einführung Festigkeitslehre: Spannung und Verformung | – | – |
 | 6 | Stoffgesetz, Zugversuch | – | – |
 | 7 | Zug und Druck, statisch unbestimmte Stabsysteme | – | – |

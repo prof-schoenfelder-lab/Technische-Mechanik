@@ -1,6 +1,6 @@
 ---
 title: "Schnittgrößen"
-subtitle: "Statik · Vorlesung 3"
+subtitle: "Statik · Vorlesung 4"
 page-layout: full
 ---
 
@@ -133,16 +133,47 @@ Ein Träger mit Festlager $A$ und Loslager $B$ trägt die schräge Kraft $F_1$ u
 ::: {.schritt zeige="traeger lasten reaktionen" zoom="30 40 680 175"}
 ### ① Lagerreaktionen
 
-Lager durch Reaktionskräfte ersetzen und Gleichgewicht aufstellen:
+**Abzählen:** $n = 1$ Körper, $a = 3$ Lagerreaktionen, $z = 0$ Gelenkreaktionen.
 
 $$
 \begin{aligned}
-&\rightarrow: && F_{AH} - F_1\cos\alpha = 0\\
-& && F_{AH} = 1732\ \text{N}\\[4pt]
-&\curvearrowleft A: && -F_1 \sin\alpha\; a + F_B\, 3a - F_2\, 4a = 0\\
-& && F_B = 1000\ \text{N}\\[4pt]
-&\uparrow: && F_{AV} + F_B - F_1\sin\alpha - F_2 = 0\\
-& && F_{AV} = 500\ \text{N}
+3n &= a + z\\
+3 \cdot 1 &= 3 + 0\\
+3 &= 3
+\end{aligned}
+$$
+
+**Statisch bestimmt.** Lager durch Reaktionskräfte ersetzen und Gleichgewicht aufstellen:
+
+$$
+\begin{aligned}
+&\rightarrow: && F_{AH} - F_1\cos\alpha = 0 &&\qquad(1)\\[2pt]
+&\uparrow: && F_{AV} + F_B - F_1\sin\alpha - F_2 = 0 &&\qquad(2)\\[2pt]
+&\curvearrowleft A: && -F_1 \sin\alpha\; a + F_B\, 3a - F_2\, 4a = 0 &&\qquad(3)
+\end{aligned}
+$$
+
+Aufgelöst, beginnend mit der Gleichung mit nur einer Unbekannten:
+
+$$
+\begin{aligned}
+&\text{aus (1):}\\
+&\qquad \begin{aligned}
+F_{AH} &= F_1\cos\alpha\\
+&= 1732\ \text{N}
+\end{aligned}\\[6pt]
+&\text{aus (3):}\\
+&\qquad \begin{aligned}
+F_B &= \frac{F_1\sin\alpha\; a + F_2\, 4a}{3a}\\
+&= \frac{1000 + 2000}{3}\ \text{N}\\
+&= 1000\ \text{N}
+\end{aligned}\\[6pt]
+&\text{$F_B$ eingesetzt in (2):}\\
+&\qquad \begin{aligned}
+F_{AV} &= F_1\sin\alpha + F_2 - F_B\\
+&= (1000 + 500 - 1000)\ \text{N}\\
+&= 500\ \text{N}
+\end{aligned}
 \end{aligned}
 $$
 :::
@@ -162,16 +193,32 @@ Die Kraft $F_1$ und das Lager $B$ teilen den Träger in **drei Bereiche**:
 ::: {.schritt zeige="traeger lasten reaktionen schnitt-1" dimmen="bereiche" zoom="30 40 760 330"}
 ### ③ Bereich I
 
-Schnitt bei $x_1$, linkes Teilsystem:
+Schnitt bei $x_1$, linkes Teilsystem. Die Nummern laufen weiter, damit sie eindeutig bleiben.
 
 $$
 \begin{aligned}
-&\rightarrow: && F_{AH} + N(x_1) = 0\\
-& && N(x_1) = -F_{AH} = -1732\ \text{N}\\[4pt]
-&\uparrow: && F_{AV} - Q(x_1) = 0\\
-& && Q(x_1) = F_{AV} = 500\ \text{N}\\[4pt]
-&\curvearrowleft S: && M(x_1) - F_{AV}\,x_1 = 0\\
-& && M(x_1) = F_{AV}\,x_1
+&\rightarrow: && F_{AH} + N(x_1) = 0 &&\qquad(4)\\[2pt]
+&\uparrow: && F_{AV} - Q(x_1) = 0 &&\qquad(5)\\[2pt]
+&\curvearrowleft S: && M(x_1) - F_{AV}\,x_1 = 0 &&\qquad(6)
+\end{aligned}
+$$
+
+Jede Gleichung enthält nur eine Schnittgröße:
+
+$$
+\begin{aligned}
+&\text{aus (4):}\\
+&\qquad \begin{aligned}
+N(x_1) &= -F_{AH}\\
+&= -1732\ \text{N}
+\end{aligned}\\[6pt]
+&\text{aus (5):}\\
+&\qquad \begin{aligned}
+Q(x_1) &= F_{AV}\\
+&= 500\ \text{N}
+\end{aligned}\\[6pt]
+&\text{aus (6):}\\
+&\qquad M(x_1) = F_{AV}\,x_1
 \end{aligned}
 $$
 
@@ -185,12 +232,28 @@ Schnitt bei $x_2$. Das linke Teilsystem enthält jetzt zusätzlich $F_1$:
 
 $$
 \begin{aligned}
-&\rightarrow: && F_{AH} - F_1\cos\alpha + N(x_2) = 0\\
-& && N(x_2) = 0\\[4pt]
-&\uparrow: && F_{AV} - F_1\sin\alpha - Q(x_2) = 0\\
-& && Q(x_2) = -500\ \text{N}\\[4pt]
-&\curvearrowleft S: && M(x_2) + F_1\sin\alpha\,x_2 - F_{AV}(a + x_2) = 0\\
-& && M(x_2) = F_{AV}(a + x_2) - F_1\sin\alpha\,x_2
+&\rightarrow: && F_{AH} - F_1\cos\alpha + N(x_2) = 0 &&\qquad(7)\\[2pt]
+&\uparrow: && F_{AV} - F_1\sin\alpha - Q(x_2) = 0 &&\qquad(8)\\[2pt]
+&\curvearrowleft S: && M(x_2) + F_1\sin\alpha\,x_2 - F_{AV}(a + x_2) = 0 &&\qquad(9)
+\end{aligned}
+$$
+
+Jede Gleichung enthält nur eine Schnittgröße:
+
+$$
+\begin{aligned}
+&\text{aus (7):}\\
+&\qquad \begin{aligned}
+N(x_2) &= F_1\cos\alpha - F_{AH}\\
+&= 0
+\end{aligned}\\[6pt]
+&\text{aus (8):}\\
+&\qquad \begin{aligned}
+Q(x_2) &= F_{AV} - F_1\sin\alpha\\
+&= -500\ \text{N}
+\end{aligned}\\[6pt]
+&\text{aus (9):}\\
+&\qquad M(x_2) = F_{AV}(a + x_2) - F_1\sin\alpha\,x_2
 \end{aligned}
 $$
 
@@ -204,12 +267,25 @@ Hier ist das **rechte Teilsystem** einfacher: Es trägt nur $F_2$.
 
 $$
 \begin{aligned}
-&\rightarrow: && -N(x_3) = 0\\
-& && N(x_3) = 0\\[4pt]
-&\uparrow: && Q(x_3) - F_2 = 0\\
-& && Q(x_3) = F_2 = 500\ \text{N}\\[4pt]
-&\curvearrowleft S: && -M(x_3) - F_2\,(a - x_3) = 0\\
-& && M(x_3) = -F_2\,(a - x_3)
+&\rightarrow: && -N(x_3) = 0 &&\qquad(10)\\[2pt]
+&\uparrow: && Q(x_3) - F_2 = 0 &&\qquad(11)\\[2pt]
+&\curvearrowleft S: && -M(x_3) - F_2\,(a - x_3) = 0 &&\qquad(12)
+\end{aligned}
+$$
+
+Jede Gleichung enthält nur eine Schnittgröße:
+
+$$
+\begin{aligned}
+&\text{aus (10):}\\
+&\qquad N(x_3) = 0\\[6pt]
+&\text{aus (11):}\\
+&\qquad \begin{aligned}
+Q(x_3) &= F_2\\
+&= 500\ \text{N}
+\end{aligned}\\[6pt]
+&\text{aus (12):}\\
+&\qquad M(x_3) = -F_2\,(a - x_3)
 \end{aligned}
 $$
 :::
@@ -286,7 +362,7 @@ Wir schneiden ein kleines Stück der Länge $\mathrm{d}x$ heraus.
 
 $$
 \begin{aligned}
-&\downarrow: && -Q + q\,\mathrm{d}x + (Q + \mathrm{d}Q) = 0\\
+&\uparrow: && Q - q\,\mathrm{d}x - (Q + \mathrm{d}Q) = 0\\
 & && \boxed{\dfrac{\mathrm{d}Q}{\mathrm{d}x} = -q}
 \end{aligned}
 $$
@@ -313,7 +389,10 @@ $q\,\mathrm{d}x/2$, und das geht für $\mathrm{d}x \to 0$ gegen null. Es ist „
 ### Integration: Querkraft
 
 $$
-Q(x) = -\int q\,\mathrm{d}x = -\frac{q_0\,x^2}{2L} + C_1
+\begin{aligned}
+Q(x) &= -\int q\,\mathrm{d}x\\
+&= -\frac{q_0\,x^2}{2L} + C_1
+\end{aligned}
 $$
 
 Die Konstante folgt aus den Randbedingungen für $M$ (nächster Schritt): $C_1 = \frac{q_0 L}{6}$.
@@ -325,7 +404,10 @@ An den Rändern lassen sich die Lagerkräfte ablesen: $F_A = Q(0) = q_0L/6$, $F_
 ### Integration: Moment
 
 $$
-M(x) = \int Q\,\mathrm{d}x = -\frac{q_0\,x^3}{6L} + C_1\,x + C_2
+\begin{aligned}
+M(x) &= \int Q\,\mathrm{d}x\\
+&= -\frac{q_0\,x^3}{6L} + C_1\,x + C_2
+\end{aligned}
 $$
 
 Randbedingungen an den gelenkigen Lagern:
@@ -359,7 +441,11 @@ Q(x_0) = 0 \;\Rightarrow\; x_0 = \frac{L}{\sqrt 3} \approx 0{,}577\,L
 $$
 
 $$
-M_\text{max} = M(x_0) = \frac{q_0L^2}{9\sqrt3} \approx 0{,}064\,q_0L^2
+\begin{aligned}
+M_\text{max} &= M(x_0)\\
+&= \frac{q_0L^2}{9\sqrt3}\\
+&\approx 0{,}064\,q_0L^2
+\end{aligned}
 $$
 
 Die **Tangente** an $M$ hat überall die Steigung $Q$: bei $x = 0$ die Steigung $q_0L/6$, bei $x_0$ ist sie waagerecht.
@@ -407,7 +493,7 @@ Bereich vorgibt (Tabelle oben). Bei Parabeln hilft $M' = Q$, um die Tangentenric
 festzulegen. Das ist in Klausur und Praxis meist das schnellste Verfahren.
 :::
 
-**Weiter:** [Seminaraufgaben zu Schnittgrößen](../seminar/03-schnittgroessen.qmd) ·
+**Weiter:** [Seminaraufgaben zu Schnittgrößen](../seminar/04-schnittgroessen.qmd) ·
 [Interaktives Notebook](../notebooks/schnittgroessen/index.html){target="_blank"}
 
 ::: {.small .text-muted}
