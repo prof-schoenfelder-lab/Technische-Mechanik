@@ -511,7 +511,7 @@ Die Resultierende ist nur eine Abkürzung für genau dieses Integral.
 - **Streckenlast** erst nach dem Schneiden ersetzen; Resultierende und Lage aus Integralen.
 - **Kontrolle** mit Gleichungen, die man nicht gebraucht hat.
 
-**Weiter:** In [Woche 4](04-schnittgroessen.qmd) schneiden wir **durch** den Balken und bestimmen die inneren
+**Weiter:** In Woche 4 schneiden wir **durch** den Balken und bestimmen die inneren
 Kräfte, die Schnittgrößen.
 :::
 
