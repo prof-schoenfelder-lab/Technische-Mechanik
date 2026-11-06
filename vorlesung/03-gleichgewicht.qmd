@@ -22,7 +22,7 @@ Tipp: Mit **Bild↓ / Bild↑** oder **→ / ←** springen Sie von Schritt zu S
 
 :::: {.scrolly svg="../grafiken/gleichgewicht/gelenktraeger.svg"}
 
-::: {.schritt zeige="system" zoom="20 40 720 300"}
+::: {.schritt zeige="system" zoom="15 10 710 225"}
 ### Aufgabe
 
 Ein Träger aus zwei Teilen, verbunden durch das Gelenk $G$, liegt auf drei Lagern. Er trägt die
@@ -46,7 +46,7 @@ $$
 **Statisch bestimmt.**
 :::
 
-::: {.schritt zeige="system schnitt freischnitt" dimmen="system" zoom="20 40 840 420"}
+::: {.schritt zeige="system schnitt freischnitt" dimmen="system" zoom="15 10 790 445"}
 ### Schneiden: zwei Teilsysteme
 
 Die Schnitte (grün) gehen durch das Gelenk **und** durch die drei Lager. So entstehen zwei freie
@@ -60,7 +60,7 @@ beiden Teilen **entgegengesetzt** (actio = reactio). Die Streckenlast wird erst
 Teil I hat fünf Unbekannte, Teil II nur drei. Wir beginnen also mit **Teil II**.
 :::
 
-::: {.schritt zeige="freischnitt" zoom="20 260 840 210"}
+::: {.schritt zeige="freischnitt" zoom="15 280 790 175"}
 ### ① Teil II
 
 $$
@@ -91,7 +91,7 @@ $$
 Teil II ist symmetrisch belastet: Lager $C$ und Gelenk teilen sich die 20 kN je zur Hälfte.
 :::
 
-::: {.schritt zeige="freischnitt" zoom="20 260 840 210"}
+::: {.schritt zeige="freischnitt" zoom="15 280 790 175"}
 ### ② Teil I
 
 Auf Teil I drückt die Gelenkkraft $G_V$ nach unten. Die Nummern laufen weiter.
@@ -127,7 +127,7 @@ F_{AV} &= F + 4q\,l + G_V - F_B\\
 $$
 :::
 
-::: {.schritt zeige="gesamt" zoom="20 40 720 300"}
+::: {.schritt zeige="gesamt" zoom="15 50 700 205"}
 ### ③ Kontrolle am ganzen Träger
 
 Jetzt schneiden wir nur an den Lagern, das Gelenk bleibt **geschlossen**. Die Gelenkkräfte sind dann
@@ -174,15 +174,51 @@ Die fünf Rohre werden zu **Stäben**, die in den **Knoten** I bis IV gelenkig v
 greifen nur in den Knoten an. Jeder Stab ist damit eine **Pendelstütze** (Woche 2): Er überträgt nur eine
 Kraft in Stabrichtung, die **Stabkraft** $S_i$. Ein solches Tragwerk heißt **Fachwerk**.
 
-- Hinterachse: Festlager $B$, Steuerkopf: Loslager $A$ (die Gabel stützt senkrecht ab)
+Die Hinterachse wird zum Festlager $B$, der Steuerkopf zum Loslager $A$ (die Gabel stützt senkrecht ab).
+:::
+
+::: {.schritt zeige="fachwerk nummern lager lasten mass" zoom="20 85 640 345"}
+### Statisches System
+
+Ohne das Fahrrad bleibt das reine System: fünf Stäbe, vier Knoten, zwei Lager und drei Lasten.
+
+- Festlager $B$ (Hinterachse), Loslager $A$ (Steuerkopf)
 - Sattel $F_S = 600$ N, Pedal $F_P = 300$ N, Lenker $F_L = 100\sqrt2$ N $\approx 141$ N, in Fahrtrichtung
   nach unten geneigt (Wirkungslinie unter $135^\circ$)
-- $a = 0{,}1$ m, also $\tan\beta = \dfrac{3a}{4a}$, $\cos\beta = 0{,}8$, $\sin\beta = 0{,}6$
+- $a = 0{,}1$ m, Neigung der schrägen Stäbe:
+  $$
+  \tan\beta = \frac{3a}{4a}; \qquad \cos\beta = 0{,}8; \qquad \sin\beta = 0{,}6
+  $$
 
 **Gesucht:** Lagerreaktionen und Stabkräfte
 
 Neues Werkzeug brauchen wir dafür nicht: Gleichgewicht am ganzen Rahmen (Woche 2) und an jedem Knoten
 (zentrales Kraftsystem, Woche 1).
+
+::: {.vertiefung titel="Ergänzung: Abzählen beim Fachwerk"}
+Auch beim Fachwerk lässt sich vorher prüfen, ob die Gleichungen reichen. Statt der Körper zählen wir die
+**Knoten**: An einem Knoten greifen alle Kräfte im selben Punkt an (zentrales Kraftsystem). Dort gibt es
+nur **zwei** Gleichgewichtsbedingungen, → und ↑; die Momentenbedingung liefert nichts Neues.
+Unbekannt sind die Stabkräfte und die Lagerreaktionen.
+
+**Abzählen:** $k = 4$ Knoten, $s = 5$ Stäbe, $a = 3$ Lagerreaktionen ($B$ zwei, $A$ eine).
+
+$$
+\begin{aligned}
+2k &= s + a\\
+2 \cdot 4 &= 5 + 3\\
+8 &= 8
+\end{aligned}
+$$
+
+**Statisch bestimmt.**
+
+Die drei Gleichungen am ganzen Rahmen folgen aus den acht Knotengleichungen, sie sind nicht zusätzlich.
+Weil wir sie zuerst benutzen, bleiben am Ende drei Knotengleichungen als **Kontrolle** übrig: (9), (10)
+und (11). Wie $3n = a + z$ ist auch $2k = s + a$ nur eine notwendige Bedingung: Ein Viereck aus vier
+Stäben ohne Diagonale erfüllt sie mit passenden Lagern, ist aber beweglich. Ein Fachwerk aus Dreiecken
+wie unser Rahmen ist starr.
+:::
 :::
 
 ::: {.schritt zeige="fachwerk nummern lager lasten schnitt-lager" dimmen="lager" zoom="0 60 800 400"}

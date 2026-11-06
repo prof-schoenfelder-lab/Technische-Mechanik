@@ -15,6 +15,8 @@ format:
       text: |
         #show math.equation.where(block: true): set align(left)
         #set text(lang: "de")
+        // Dezimalkomma ohne Abstand dahinter (sonst „0, 6“ wie eine Aufzählung)
+        #show math.equation: it => { show ",": math.class("normal", ","); it }
         #set page(header: align(right, image("../assets/logos/htwk-schwarz.svg", height: 0.8cm)), footer: context [#text(size: 8pt)[Technische Mechanik · Prof. Dr.-Ing. Stephan Schönfelder #h(1fr) #counter(page).display()]])
 ---
 

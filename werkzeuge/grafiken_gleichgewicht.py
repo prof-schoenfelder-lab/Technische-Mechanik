@@ -170,8 +170,8 @@ def fahrrad():
 # =====================================================================
 def gelenktraeger():
     abb = Abbildung(860, 470, "Gelenkträger")
-    l = 60                                      # px je l
-    x0, y = 110, 140
+    l = 100                                     # px je l
+    x0, y = 80, 140
     def X(k):
         return x0 + k * l
     e = abb.ebene("system", "System")
