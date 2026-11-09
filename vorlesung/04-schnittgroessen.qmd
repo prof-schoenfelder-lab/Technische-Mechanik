@@ -442,30 +442,36 @@ Statt an jeder Stelle neu zu schneiden, können wir $Q(x)$ und $M(x)$ auch durch
 ::: {.schritt zeige="system last element" zoom="80 60 560 330"}
 ### Gleichgewicht am Element $\mathrm{d}x$
 
-Wir schneiden ein kleines Stück der Länge $\mathrm{d}x$ heraus.
+Wir schneiden ein kleines Stück der Länge $\mathrm{d}x$ heraus. Die Streckenlast darauf fassen wir zur
+Einzelkraft $q(x)\,\mathrm{d}x$ in der Mitte des Stücks zusammen.
 
 $$
 \begin{aligned}
 &\uparrow: && Q - q\,\mathrm{d}x - (Q + \mathrm{d}Q) = 0\\
-& && \boxed{\dfrac{\mathrm{d}Q}{\mathrm{d}x} = -q}
+& && \boxed{\dfrac{\mathrm{d}Q(x)}{\mathrm{d}x} = Q'(x) = -q(x)}
 \end{aligned}
 $$
 
-Momente um das rechte Ufer:
+Momente um den **rechten Rand des Ausschnitts** (Punkt $R$). Dort greifen $Q + \mathrm{d}Q$ und
+$M + \mathrm{d}M$ an, $Q$ hat den Hebelarm $\mathrm{d}x$, die Einzelkraft $q\,\mathrm{d}x$ den Hebelarm
+$\mathrm{d}x/2$:
 
 $$
 \begin{aligned}
-&\curvearrowleft: && -M + (M + \mathrm{d}M) - Q\,\mathrm{d}x + q\,\tfrac{\mathrm{d}x^2}{2} = 0\\
-& && \boxed{\dfrac{\mathrm{d}M}{\mathrm{d}x} = Q}
+&\curvearrowleft R: && -M + (M + \mathrm{d}M) - Q\,\mathrm{d}x + q\,\mathrm{d}x \cdot \tfrac{\mathrm{d}x}{2} = 0\\
+& && \boxed{\dfrac{\mathrm{d}M(x)}{\mathrm{d}x} = M'(x) = Q(x)}
 \end{aligned}
 $$
 
-Daraus folgt $M'' = -q$.
+Zusammen:
+
+$$
+\boxed{M''(x) = -q(x)}
+$$
 
 ::: {.vertiefung titel="Ausführlicher: Warum fällt das dx²-Glied weg?"}
-Das Glied $q\,\mathrm{d}x^2/2$ ist das Moment der Streckenlast auf dem Element um das rechte Ufer
-(Resultierende $q\,\mathrm{d}x$ mal Hebelarm $\mathrm{d}x/2$). Nach Division durch $\mathrm{d}x$ bleibt
-$q\,\mathrm{d}x/2$, und das geht für $\mathrm{d}x \to 0$ gegen null. Es ist „klein von höherer Ordnung“.
+$\mathrm{d}x$ ist sehr klein, sein Quadrat $\mathrm{d}x^2$ ist noch viel kleiner. Gegenüber den anderen
+Gliedern kann man es deshalb vernachlässigen.
 :::
 :::
 

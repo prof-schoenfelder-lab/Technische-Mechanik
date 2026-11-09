@@ -7,7 +7,7 @@ Ergebnis: grafiken/schnittgroessen/*.svg (Inkscape-Ebenen = Scroll-Schritte)
 import math
 from pathlib import Path
 
-from tmzeichnen import (FARBE, Abbildung, balken, einspannung, festlager, gelenk, koordinaten, kraft, kreis,
+from tmzeichnen import (FARBE, STRICH, Abbildung, balken, einspannung, festlager, gelenk, koordinaten, kraft, kreis,
                         linie, loslager, mass, moment, nummer, pfeil, polylinie, schnittlinie, schnittufer,
                         streckenlast, text, verlauf, winkelbogen)
 
@@ -668,10 +668,18 @@ def beispiel_dreieckslast():
     e.append(linie(xe + 22, y - 40, xe + 22, y + 40, "#000", 1, strich="4 3"))
     e.append(text(xe + 11, y + 22, "[d]x", "#000", 15))
     e.append(balken(xel, ye, xel + w, ye, dicke=24))
-    e.append(streckenlast(xel + 34, xel + w - 34, ye - 12, 30, 34, "q", n=6))
+    # Streckenlast auf dem Element blass, ihre Resultierende q(x) dx als Einzelkraft in der Mitte
+    e.append(streckenlast(xel + 4, xel + w - 4, ye - 12, 30, 34, "", farbe="#f6c4c4", n=8))
+    e.append(kraft(xel + w / 2, ye - 12, -90, "q(x)[ d]x", laenge=62, label_seite=-1, label_pos=0.75))
     e.append(mass(xel, ye, xel + w, ye, "[d]x", abstand=-48))
+    e.append(mass(xel + w / 2, ye, xel + w, ye, "[d]x/2", abstand=-80, hilfslinien=False))
+    for xx in (xel + w / 2, xel + w):
+        e.append(linie(xx, ye + 72, xx, ye + 88, FARBE["mass"], STRICH["duenn"]))
     e.append(schnittufer(xel + w, ye, positiv=True, N="", Q="Q(x) + [d]Q", M="M(x) + [d]M", zeige=("Q", "M"), laenge=56))
     e.append(schnittufer(xel, ye, positiv=False, N="", Q="Q(x)", M="M(x)", zeige=("Q", "M"), laenge=56))
+    # Bezugspunkt der Momentenbilanz: rechter Rand des Ausschnitts
+    e.append(kreis(xel + w, ye, 4, FARBE["mass"], FARBE["mass"]))
+    e.append(text(xel + w + 22, ye + 6, "R", FARBE["mass"], 17, anker="start"))
 
     # Verläufe
     n = 60
