@@ -1,0 +1,12 @@
+### Aufgabe 4.5 · Gelenkträger
+
+![](../grafiken/schnittgroessen/aufgabe-1-5-5.svg){width=75%}
+
+Der Träger hat in $G$ ein Gelenk.
+
+a) Bestimmen Sie die Lagerreaktionen und die Gelenkkräfte.
+b) Ermitteln Sie die Verläufe $N(x)$, $Q(x)$ und $M(x)$.
+
+**Gegeben:** $F$ = 3000 N, $M_B$ = 500 Nm, $l$ = 1,5 m, $\alpha$ = 30°
+
+*Hinweis: Was gilt für das Biegemoment im Gelenk?*

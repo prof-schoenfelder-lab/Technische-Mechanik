@@ -1,0 +1,8 @@
+### Aufgabe 4.4 · Kragträger mit Dreieckslast
+
+![](../grafiken/schnittgroessen/aufgabe-1-5-8.svg){width=55%}
+
+Ermitteln Sie $Q(x)$ und $M(x)$. Lösen Sie die Aufgabe zweimal: einmal mit der **Schnittmethode**
+und einmal durch **Integration** der Differentialbeziehungen $Q' = -q$, $M' = Q$.
+
+**Gegeben:** $q_0$, $a$

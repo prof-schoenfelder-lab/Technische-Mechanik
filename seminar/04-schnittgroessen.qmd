@@ -37,54 +37,17 @@ Vorzeichenkonvention wie in der Vorlesung: $N$ positiv als Zug, $Q$ am positiven
 
 ## Aufgaben
 
-### Aufgabe 4.1 · Träger mit zwei Einzelkräften
+{{< include _aufgaben-04/zwei-kraefte.qmd >}}
 
-![](../grafiken/schnittgroessen/aufgabe-1-5-1.svg){width=70%}
+{{< include _aufgaben-04/kragtraeger-streckenlast.qmd >}}
 
-Ermitteln Sie die Lagerreaktionen und die Verläufe $N(x)$, $Q(x)$ und $M(x)$.
-
-**Gegeben:** $F$ = 100 N, $l$ = 80 cm
-
-### Aufgabe 4.2 · Kragträger mit Streckenlast
-
-![](../grafiken/schnittgroessen/aufgabe-1-5-6.svg){width=65%}
-
-Ermitteln Sie die Verläufe $N(x)$, $Q(x)$ und $M(x)$ sowie Ort und Größe des größten Biegemoments.
-
-**Gegeben:** $F$ = 1250 N, $q$ = 3 N/cm, $a$ = 1,68 m
-
-### Aufgabe 4.3 · Träger mit Pendelstütze
-
-![](../grafiken/schnittgroessen/aufgabe-1-5-3.svg){width=70%}
-
-Der Träger ist in $A$ gelagert und in $C$ von einer Pendelstütze gehalten.
-Ermitteln Sie die Kraft in der Stütze sowie $N(x)$, $Q(x)$ und $M(x)$ im Träger.
-
-**Gegeben:** $F$ = 30 kN, $l$ = 1 m, $\alpha$ = 60°
+{{< include _aufgaben-04/pendelstuetze.qmd >}}
 
 {{< pagebreak >}}
 
-### Aufgabe 4.4 · Kragträger mit Dreieckslast
+{{< include _aufgaben-04/dreieckslast.qmd >}}
 
-![](../grafiken/schnittgroessen/aufgabe-1-5-8.svg){width=55%}
-
-Ermitteln Sie $Q(x)$ und $M(x)$. Lösen Sie die Aufgabe zweimal: einmal mit der **Schnittmethode**
-und einmal durch **Integration** der Differentialbeziehungen $Q' = -q$, $M' = Q$.
-
-**Gegeben:** $q_0$, $a$
-
-### Aufgabe 4.5 · Gelenkträger
-
-![](../grafiken/schnittgroessen/aufgabe-1-5-5.svg){width=75%}
-
-Der Träger hat in $G$ ein Gelenk.
-
-a) Bestimmen Sie die Lagerreaktionen und die Gelenkkräfte.
-b) Ermitteln Sie die Verläufe $N(x)$, $Q(x)$ und $M(x)$.
-
-**Gegeben:** $F$ = 3000 N, $M_B$ = 500 Nm, $l$ = 1,5 m, $\alpha$ = 30°
-
-*Hinweis: Was gilt für das Biegemoment im Gelenk?*
+{{< include _aufgaben-04/gelenktraeger.qmd >}}
 
 ::: {.content-visible when-format="html"}
 
@@ -117,6 +80,8 @@ $N = -15\,\text{kN}$ · $Q = -13{,}0\,\text{kN}$ bzw. $26{,}0\,\text{kN}$ · $M_
 
 ::: {.callout-tip collapse="true"}
 ## Aufgabe 4.4
+Mit $x$ vom freien Ende: $Q(x) = -\dfrac{q_0 x^2}{2a}$, $M(x) = -\dfrac{q_0 x^3}{6a}$
+
 An der Einspannung: $Q = -\tfrac12\,q_0 a$, $M = -\tfrac16\,q_0 a^2$
 :::
 
@@ -125,7 +90,8 @@ An der Einspannung: $Q = -\tfrac12\,q_0 a$, $M = -\tfrac16\,q_0 a^2$
 $F_{AH} = 2598\,\text{N}$, $F_{AV} = 750\,\text{N}$, $|M_A| = 2750\,\text{Nm}$, $F_C = 750\,\text{N}$,
 Gelenkkräfte $G_H = 2598\,\text{N}$, $G_V = 750\,\text{N}$ (Beträge)
 
-Im Gelenk ist $M = 0$.
+$N = -2598\,\text{N}$ bis zur Kraft, dann $0$ · $Q = 750\,\text{N}$ bzw. $-750\,\text{N}$ ·
+$M$: $-2750 \to -1625$, Sprung auf $-1125$, $0$ im Gelenk, $1125\,\text{Nm}$ an der Kraft, $0$ in $C$
 :::
 
 :::

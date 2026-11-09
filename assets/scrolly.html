@@ -267,6 +267,65 @@
   const knopf = document.querySelector(".beamer-schalter");
   if (knopf) knopf.addEventListener("click", () => document.documentElement.classList.toggle("beamer"));
 
+  // Sprungleiste (Vorlesungen): Hauptabschnitte (h2) als Links, mitlaufend unter der Kopfzeile;
+  // erscheint, sobald man im ersten Abschnitt ist, und hebt den aktuellen Abschnitt hervor
+  if (/\/vorlesung\//.test(location.pathname)) {
+    const abschnitte = Array.from(document.querySelectorAll("main section.level2"))
+      .filter(s => s.id && s.querySelector(":scope > h2"));
+    if (abschnitte.length >= 2) {
+      const leiste = document.createElement("nav");
+      leiste.className = "sprungleiste";
+      leiste.setAttribute("aria-label", "Abschnitte dieser Vorlesung");
+      const links = abschnitte.map(s => {
+        const a = document.createElement("a");
+        a.href = "#" + s.id;
+        a.innerHTML = s.querySelector(":scope > h2").innerHTML;
+        a.querySelectorAll(".anchorjs-link, .header-section-number").forEach(x => x.remove());
+        a.addEventListener("click", e => {
+          e.preventDefault();
+          s.scrollIntoView({ behavior: "smooth", block: "start" });
+          history.replaceState(null, "", "#" + s.id);
+        });
+        leiste.appendChild(a);
+        return a;
+      });
+      document.body.appendChild(leiste);
+      document.documentElement.classList.add("mit-leiste");
+      if (window.MathJax && MathJax.startup && MathJax.startup.promise) {
+        MathJax.startup.promise.then(() => MathJax.typesetPromise ? MathJax.typesetPromise([leiste]) : null)
+          .catch(() => {});
+      }
+      const kopf = document.querySelector("#quarto-header");
+      let aktivIdx = -1, geplant = false;
+      function leisteAktualisieren() {
+        geplant = false;
+        const oben = kopf ? Math.max(0, kopf.getBoundingClientRect().bottom) : 0;
+        leiste.style.top = oben + "px";
+        const grenze = window.innerHeight * 0.35;
+        let i = -1;
+        abschnitte.forEach((s, k) => { if (s.getBoundingClientRect().top <= grenze) i = k; });
+        leiste.classList.toggle("sichtbar", i >= 0);
+        if (i !== aktivIdx) {
+          if (aktivIdx >= 0) links[aktivIdx].classList.remove("aktiv");
+          if (i >= 0) {
+            links[i].classList.add("aktiv");
+            const a = links[i], l = leiste;
+            if (a.offsetLeft < l.scrollLeft || a.offsetLeft + a.offsetWidth > l.scrollLeft + l.clientWidth) {
+              l.scrollTo({ left: a.offsetLeft - l.clientWidth / 2 + a.offsetWidth / 2, behavior: "smooth" });
+            }
+          }
+          aktivIdx = i;
+        }
+      }
+      const anstossen = () => { if (!geplant) { geplant = true; requestAnimationFrame(leisteAktualisieren); } };
+      window.addEventListener("scroll", anstossen, { passive: true });
+      window.addEventListener("resize", anstossen);
+      // die Kopfzeile fährt animiert ein und aus: kurz nachführen
+      if (kopf) kopf.addEventListener("transitionend", anstossen);
+      leisteAktualisieren();
+    }
+  }
+
   // Hilfe-Schaltfläche (ARSnova Q&A) auf Vorlesungs- und Seminarseiten
   if (/\/(vorlesung|seminar)\//.test(location.pathname)) {
     const hilfe = document.createElement("a");

@@ -1,0 +1,7 @@
+### Aufgabe 4.2 · Kragträger mit Streckenlast
+
+![](../grafiken/schnittgroessen/aufgabe-1-5-6.svg){width=65%}
+
+Ermitteln Sie die Verläufe $N(x)$, $Q(x)$ und $M(x)$ sowie Ort und Größe des größten Biegemoments.
+
+**Gegeben:** $F$ = 1250 N, $q$ = 3 N/cm, $a$ = 1,68 m

@@ -1,0 +1,8 @@
+### Aufgabe 4.3 · Träger mit Pendelstütze
+
+![](../grafiken/schnittgroessen/aufgabe-1-5-3.svg){width=70%}
+
+Der Träger ist in $A$ gelagert und in $C$ von einer Pendelstütze gehalten.
+Ermitteln Sie die Kraft in der Stütze sowie $N(x)$, $Q(x)$ und $M(x)$ im Träger.
+
+**Gegeben:** $F$ = 30 kN, $l$ = 1 m, $\alpha$ = 60°

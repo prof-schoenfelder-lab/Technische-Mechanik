@@ -1,0 +1,7 @@
+### Aufgabe 4.1 · Träger mit zwei Einzelkräften
+
+![](../grafiken/schnittgroessen/aufgabe-1-5-1.svg){width=70%}
+
+Ermitteln Sie die Lagerreaktionen und die Verläufe $N(x)$, $Q(x)$ und $M(x)$.
+
+**Gegeben:** $F$ = 100 N, $l$ = 80 cm

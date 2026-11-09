@@ -19,13 +19,24 @@ Hinter **„Ausführlicher“** finden Sie zu vielen Schritten eine längere Erk
 
 :::: {.scrolly svg="../grafiken/schnittgroessen/vorzeichen.svg"}
 
-::: {.schritt zeige="ganz" zoom="40 40 560 150"}
+::: {.schritt zeige="system schnitt" zoom="15 25 700 160"}
 ### Gedankliches Schneiden
 
-Wir schneiden einen Balken an einer beliebigen Stelle $x$ (Schnittpunkt $S$) auf.
+Ein Träger liegt auf dem Festlager $A$ und dem Loslager $B$ und trägt die Kraft $F$. Wir schneiden ihn
+an einer beliebigen Stelle $x$ auf, hier in der Mitte (Schnittpunkt $S$).
 
-Im Schnitt muss so viel übertragen werden, dass beide Teile im Gleichgewicht bleiben.
-Ein Schnitt verhält sich also wie eine **Einspannung**: Er überträgt in der Ebene **drei** Größen.
+$x$ zeigt längs der Balkenachse nach rechts, $z$ nach **unten**. Dieses Koordinatensystem legt die
+Vorzeichen der Schnittgrößen fest.
+:::
+
+::: {.schritt zeige="system schnitt getrennt" dimmen="system schnitt" zoom="15 25 790 365"}
+### Zwei Teilsysteme
+
+Wir ziehen die beiden Teile auseinander und ersetzen die Lager durch ihre Reaktionen.
+
+Jedes Teil muss für sich im Gleichgewicht sein. Im Schnitt muss also so viel übertragen werden, wie das
+weggeschnittene Teil vorher geleistet hat. Ein Schnitt verhält sich deshalb wie eine **Einspannung**:
+Er überträgt in der Ebene **drei** Größen.
 
 ::: {.vertiefung titel="Ausführlicher: Was wird im Schnitt wirklich übertragen?"}
 In Wirklichkeit wird über die ganze Schnittfläche eine verteilte Flächenkraft übertragen, die
@@ -40,7 +51,7 @@ Dort brauchen wir genau diese drei Größen wieder, deshalb lohnt es sich, sie s
 :::
 :::
 
-::: {.schritt zeige="ganz getrennt ufer-pos" zoom="0 20 620 300"}
+::: {.schritt zeige="getrennt ufer-pos" zoom="15 205 790 205"}
 ### Positives Schnittufer
 
 Das Schnittufer, dessen äußere Normale in **$+x$-Richtung** zeigt, heißt *positives Schnittufer*.
@@ -53,7 +64,7 @@ Dort sind positiv:
 - **Biegemoment $M(x)$** so, dass die **untere Faser auf Zug** beansprucht wird
 :::
 
-::: {.schritt zeige="ganz getrennt ufer-pos ufer-neg" zoom="0 20 620 300"}
+::: {.schritt zeige="getrennt ufer-pos ufer-neg" zoom="15 205 790 205"}
 ### Negatives Schnittufer
 
 Am gegenüberliegenden Ufer wirken die Schnittgrößen nach dem
@@ -80,41 +91,6 @@ Die Vorzeichenkonvention ist überall dieselbe.
 :::
 
 ::::
-
-## Bereiche und Rechenschema
-
-Schnittgrößen sind **Funktionen von $x$**: $N(x)$, $Q(x)$, $M(x)$. Wo sich die Belastung sprunghaft
-ändert, ändern sich auch die Funktionen. Deshalb teilen wir das Tragwerk in **Bereiche** ein,
-jeweils mit eigener Koordinate $x_1, x_2, \ldots$
-
-Ein neuer Bereich beginnt
-
-1. am Trägeranfang,
-2. an Angriffsstellen von Einzelkräften und Einzelmomenten,
-3. an Beginn und Ende von Streckenlasten,
-4. an Unstetigkeiten einer Streckenlast,
-5. an Lagern,
-6. an Ecken und Verzweigungen.
-
-::: {.merke}
-**Rechenschema („Kochrezept“)**
-
-1. Lager- und Verbindungsreaktionen bestimmen (in der Regel nötig; beim Kragträger kann man oft vom freien Ende her rechnen)
-2. Bereiche einteilen, Koordinaten $x_i$ festlegen
-3. In jedem Bereich an beliebiger Stelle $x_i$ schneiden. Schnittgrößen **immer in positiver Richtung** einzeichnen.
-   Gleichgewicht am einfacheren Teilsystem, Momentenbilanz stets **um den Schnittpunkt $S$**.
-4. Werte an den Bereichsgrenzen berechnen und Verläufe zeichnen
-:::
-
-::: {.vertiefung titel="Ausführlicher: Warum immer positiv einzeichnen?"}
-Zeichnen Sie $N(x_i)$, $Q(x_i)$, $M(x_i)$ am Schnittufer **immer in positiver Richtung** ein, auch wenn
-Sie schon ahnen, dass das Ergebnis negativ wird. Das Vorzeichen des Ergebnisses sagt Ihnen dann direkt,
-was los ist: $N<0$ heißt Druck, $M<0$ heißt Zug oben. Wer stattdessen „richtig herum“ einzeichnet,
-muss das Vorzeichen nachträglich umdeuten, und genau dabei passieren die meisten Fehler.
-
-Die Momentenbilanz um den Schnittpunkt $S$ hat den Vorteil, dass $N$ und $Q$ darin nicht vorkommen
-(ihre Wirkungslinien gehen durch $S$). So erhält man $M$ direkt aus einer Gleichung.
-:::
 
 ## Beispiel: Träger mit Kragarm
 
@@ -181,7 +157,8 @@ $$
 ::: {.schritt zeige="traeger lasten reaktionen bereiche" zoom="30 40 680 175"}
 ### ② Bereiche
 
-Die Kraft $F_1$ und das Lager $B$ teilen den Träger in **drei Bereiche**:
+Die Kraft $F_1$ und das Lager $B$ teilen den Träger in **drei Bereiche**. In jedem Bereich gilt eine
+eigene Funktion; wo allgemein ein neuer Bereich beginnt, fassen wir nach dem Beispiel zusammen.
 
 | Bereich | Koordinate |
 |:-:|:-:|
@@ -334,10 +311,117 @@ Die betragsgrößten Momente liegen unter $F_1$ ($+500$ Nm, unten gezogen) und �
 - Wo $Q$ konstant ist, ist $M$ linear. Die **Steigung von $M$ ist $Q$**.
 - $M$ ist extremal, wo $Q$ das **Vorzeichen wechselt**, hier durch einen Sprung.
 
-Dahinter steckt ein allgemeiner Zusammenhang. Ihn sehen wir uns als Nächstes an.
+Dahinter steckt ein allgemeiner Zusammenhang. Zuerst fassen wir aber das Vorgehen zu einem Rechenschema
+zusammen.
 :::
 
 ::::
+
+## Bereiche und Rechenschema
+
+:::: {.scrolly svg="../grafiken/schnittgroessen/bereiche.svg"}
+
+::: {.schritt zeige="traeger" zoom="15 30 630 215"}
+### Schnittgrößen sind Funktionen von $x$
+
+Im Beispiel haben wir den Träger in drei Bereiche geteilt und in jedem geschnitten. Dieses Vorgehen fassen
+wir jetzt allgemein zusammen.
+
+Je nachdem, wo wir schneiden, liegen andere Lasten am Teilsystem. Die Schnittgrößen hängen also von
+der Schnittstelle ab: $N(x)$, $Q(x)$, $M(x)$.
+
+An diesem Musterträger kommt jede Art von Last einmal vor: eine Einzelkraft $F$, ein Einzelmoment
+$M_0$ und eine Streckenlast $q$, die über das Lager $B$ hinweg bis zum Kragarmende reicht.
+:::
+
+::: {.schritt zeige="traeger grenzen" zoom="15 30 630 215"}
+### Wo beginnt ein neuer Bereich?
+
+Wo sich die Belastung sprunghaft ändert, ändern sich auch die Funktionen. Ein neuer **Bereich**
+beginnt
+
+1. am Trägeranfang,
+2. an Einzelkräften,
+3. an Einzelmomenten,
+4. an Beginn und Ende von Streckenlasten (auch dort, wo sich $q$ sprunghaft ändert),
+5. an Lagern,
+6. an Ecken und Verzweigungen (bei Rahmen, siehe Dreigelenkrahmen unten).
+:::
+
+::: {.schritt zeige="traeger grenzen bereiche" dimmen="grenzen" zoom="15 30 630 215"}
+### Bereiche und Koordinaten
+
+Der Musterträger hat **fünf Bereiche**. Jeder bekommt eine eigene Koordinate $x_i$, die an seinem
+linken Ende bei null beginnt: $0 \le x_i \le a$.
+
+Vorher sind die Lagerreaktionen zu bestimmen (Woche 2). Hier ergibt sich
+
+$$
+F_{AH} = 0, \qquad F_{AV} = 2qa, \qquad F_B = 2qa
+$$
+
+mit $F = 2qa$ und $M_0 = 2qa^2$.
+:::
+
+::: {.schritt zeige="traeger bereiche schnitt" dimmen="traeger bereiche" zoom="15 30 630 425"}
+### In jedem Bereich schneiden
+
+Schnitt bei $x_2$ im Bereich II. Am Schnittufer zeichnen wir $N$, $Q$ und $M$ **immer in positiver
+Richtung** ein. Die Momentenbilanz bilden wir **um den Schnittpunkt $S$**:
+
+$$
+\begin{aligned}
+&\rightarrow: && F_{AH} + N(x_2) = 0 &&\qquad(1)\\[2pt]
+&\uparrow: && F_{AV} - F - Q(x_2) = 0 &&\qquad(2)\\[2pt]
+&\curvearrowleft S: && M(x_2) - F_{AV}\,(a + x_2) + F\,x_2 = 0 &&\qquad(3)
+\end{aligned}
+$$
+
+Jede Gleichung enthält nur eine Schnittgröße:
+
+$$
+\begin{aligned}
+&\text{aus (1):}\quad N(x_2) = 0\\[2pt]
+&\text{aus (2):}\quad Q(x_2) = 0\\[2pt]
+&\text{aus (3):}\quad M(x_2) = 2qa^2
+\end{aligned}
+$$
+
+::: {.vertiefung titel="Ausführlicher: Warum immer positiv einzeichnen?"}
+Zeichnen Sie $N(x_i)$, $Q(x_i)$, $M(x_i)$ am Schnittufer **immer in positiver Richtung** ein, auch wenn
+Sie schon ahnen, dass das Ergebnis negativ wird. Das Vorzeichen des Ergebnisses sagt Ihnen dann direkt,
+was los ist: $N<0$ heißt Druck, $M<0$ heißt Zug oben. Wer stattdessen „richtig herum“ einzeichnet,
+muss das Vorzeichen nachträglich umdeuten, und genau dabei passieren die meisten Fehler.
+
+Die Momentenbilanz um den Schnittpunkt $S$ hat den Vorteil, dass $N$ und $Q$ darin nicht vorkommen
+(ihre Wirkungslinien gehen durch $S$). So erhält man $M$ direkt aus einer Gleichung.
+:::
+:::
+
+::: {.schritt zeige="traeger bereiche verlauf-Q verlauf-M grenzen-unten" dimmen="traeger" zoom="15 30 640 485"}
+### Verläufe zeichnen
+
+Die Werte an den Bereichsgrenzen werden übereinander unter dem Träger aufgetragen, positive Werte
+**oberhalb** der Achse. An diesem Bild sieht man schon die Regeln, die wir gleich mit den Differentialbeziehungen begründen:
+
+- an der Einzelkraft **springt** $Q$, $M$ hat einen **Knick**,
+- am Einzelmoment **springt** $M$, $Q$ ändert sich nicht,
+- unter der Streckenlast ist $Q$ **linear** und $M$ eine **Parabel**,
+- am freien Ende sind $Q$ und $M$ null.
+:::
+
+::::
+
+::: {.merke}
+**Rechenschema („Kochrezept“)**
+
+1. Lager- und Verbindungsreaktionen bestimmen (in der Regel nötig; beim Kragträger kann man oft vom
+   freien Ende her rechnen).
+2. Bereiche einteilen, Koordinaten $x_i$ festlegen.
+3. In jedem Bereich an beliebiger Stelle $x_i$ schneiden. Schnittgrößen **immer in positiver Richtung**
+   einzeichnen. Gleichgewicht am einfacheren Teilsystem, Momentenbilanz stets **um den Schnittpunkt $S$**.
+4. Werte an den Bereichsgrenzen berechnen und Verläufe zeichnen.
+:::
 
 ## Differentialbeziehungen
 
@@ -462,20 +546,83 @@ die Extremwerte innerhalb der Bereiche **und** die Werte an allen Bereichsgrenze
 
 ## Kontrollregeln für die Verläufe
 
-::: {.merke}
-| Belastung im Bereich | $Q(x)$ | $M(x)$ |
-|:--|:--|:--|
-| keine ($q = 0$) | konstant | linear |
-| $q$ konstant | linear | quadratische Parabel |
-| $q$ linear | quadratisch | kubisch |
-| Beginn/Ende einer Streckenlast | Knick | glatt (kein Knick) |
-| Einzelkraft $F$ | Sprung um die Querkomponente | Knick |
-| Einzelmoment $M_0$ | – | Sprung um $M_0$ |
+:::: {.scrolly svg="../grafiken/schnittgroessen/kontrollregeln.svg"}
 
-- $M = 0$ am freien Ende, am gelenkigen Endlager und im Gelenk.
-- $Q > 0$: $M$ steigt; $Q < 0$: $M$ fällt.
-- Probe: $Q$ springt am rechten Rand mit der letzten Kraft genau auf null zurück.
+::: {.schritt zeige="kopf zeile-1" zoom="10 8 700 580"}
+### Von der Last zum Verlauf
+
+Aus den Differentialbeziehungen
+
+$$
+Q' = -q, \qquad M' = Q
+$$
+
+folgt: Die Belastung bestimmt die Form von $Q$, und $Q$ bestimmt die Form von $M$. Wir sehen uns das an
+**vollständigen** Einfeldträgern an, damit jeder Verlauf eine Ursache hat.
+
+**Einzelkraft:** Links und rechts davon ist $q = 0$, also $Q$ **konstant** und $M$ **linear**. An der Kraft
+**springt $Q$** um die Kraft, in Kraftrichtung. $M$ ist dort stetig, hat aber einen **Knick**.
 :::
+
+::: {.schritt zeige="kopf zeile-1 zeile-2" dimmen="zeile-1" zoom="10 8 700 580"}
+### Einzelmoment
+
+Ein Einzelmoment ändert $Q$ **nicht**. Trotzdem ist $Q \neq 0$: Die Lager müssen das Moment durch ein
+Kräftepaar aufnehmen, $F_A = -F_B = -M_0/L$.
+
+$M$ **springt** um $M_0$, die Steigung bleibt links und rechts gleich. Ein Einzelmoment im Uhrzeigersinn
+lässt $M$ nach oben springen, eines gegen den Uhrzeigersinn nach unten.
+:::
+
+::: {.schritt zeige="kopf zeile-1 zeile-2 zeile-3" dimmen="zeile-1 zeile-2" zoom="10 8 700 580"}
+### Konstante Streckenlast
+
+$q$ konstant: $Q$ fällt **linear** von $+qL/2$ auf $-qL/2$, $M$ ist eine **quadratische Parabel**.
+
+Wirkt $q$ nach unten, ist die Parabel nach oben gewölbt, denn $M'' = -q < 0$.
+:::
+
+::: {.schritt zeige="kopf zeile-1 zeile-2 zeile-3 steigung" dimmen="zeile-1 zeile-2" zoom="10 8 700 580"}
+### Steigung und Extremum
+
+Wegen $M' = Q$ liest man die Steigung von $M$ direkt aus $Q$ ab:
+
+- $Q > 0$: $M$ **steigt**,
+- $Q < 0$: $M$ **fällt**,
+- $Q = 0$: $M$ hat ein **Extremum** (waagerechte Tangente).
+
+Hier liegt das größte Moment $M_\text{max} = qL^2/8$ in der Mitte, genau dort, wo $Q$ null wird.
+:::
+
+::: {.schritt zeige="kopf zeile-1 zeile-2 zeile-3 zeile-4" dimmen="zeile-1 zeile-2 zeile-3" zoom="10 8 700 580"}
+### Linear veränderliche Streckenlast
+
+$q$ linear: $Q$ ist **quadratisch**, $M$ ist **kubisch**. Jede Integration erhöht den Grad um eins.
+
+Wo $q = 0$ ist (hier am linken Rand), hat $Q$ eine waagerechte Tangente. Das Maximum von $M$ liegt
+nicht mehr in der Mitte, sondern bei $x = L/\sqrt3$ (siehe Differentialbeziehungen).
+:::
+
+::: {.schritt zeige="kopf zeile-1 zeile-2 zeile-3 zeile-4 trenner zeile-5" dimmen="zeile-1 zeile-2 zeile-3 zeile-4" zoom="10 8 700 580"}
+### Übergänge zwischen Bereichen
+
+Eine andere Frage ist, was **an einer Bereichsgrenze** passiert. Wo eine Streckenlast beginnt oder endet,
+hat $Q$ einen **Knick**: Die Steigung $-q$ ändert sich sprunghaft. $M$ geht dort **glatt** in die Parabel
+über, denn $Q$ und damit die Steigung von $M$ springen nicht.
+:::
+
+::: {.schritt zeige="kopf zeile-1 zeile-2 zeile-3 zeile-4 trenner zeile-5" zoom="10 8 700 580"}
+### Randwerte und Probe
+
+Zusätzlich zu den Formen helfen feste Werte, in allen Zeilen zu sehen:
+
+- $M = 0$ am **gelenkigen Endlager**, ebenso am **freien Ende** und im **Gelenk**,
+- $Q$ springt an jedem Lager um die Lagerkraft,
+- **Probe:** Läuft man mit den Kräften von links nach rechts, springt $Q$ am rechten Rand genau auf null
+  zurück.
+:::
+
+::::
 
 ::: {.vertiefung titel="Typische Fehler – und wie man sie vermeidet"}
 1. **Streckenlast vor dem Schnitt zusammengefasst.** Erst schneiden, dann nur den Lastanteil am Teilsystem zur Resultierenden zusammenfassen.
@@ -492,6 +639,312 @@ Bereichsgrenze und verbindet die Punkte mit Geraden oder Parabeln, je nachdem, w
 Bereich vorgibt (Tabelle oben). Bei Parabeln hilft $M' = Q$, um die Tangentenrichtung an den Enden
 festzulegen. Das ist in Klausur und Praxis meist das schnellste Verfahren.
 :::
+
+## Beispiel: Dreigelenkrahmen
+
+:::: {.scrolly svg="../grafiken/schnittgroessen/dreigelenkrahmen.svg"}
+
+::: {.schritt zeige="system lasten mass" zoom="30 30 580 480"}
+### Aufgabe
+
+Ein Rahmen besteht aus zwei Teilen, die im Gelenk $G$ verbunden sind. Beide Füße stehen auf
+Festlagern. Am Rahmeneck $C$ greift die waagerechte Kraft $F$ an, auf dem rechten Riegel liegt die
+Streckenlast $q_0$.
+
+**Gegeben:** $q_0$, $a$, $F = 2\,q_0 a$
+
+**Gesucht:** Verläufe $N$, $Q$, $M$
+
+**Abzählen:** $n = 2$ Körper, $a = 4$ Lagerreaktionen, $z = 2$ Gelenkreaktionen.
+
+$$
+\begin{aligned}
+3n &= a + z\\
+3 \cdot 2 &= 4 + 2\\
+6 &= 6
+\end{aligned}
+$$
+
+**Statisch bestimmt.**
+:::
+
+::: {.schritt zeige="teilsysteme" zoom="90 100 520 430"}
+### ① Lagerreaktionen: zwei Teilsysteme
+
+Wie beim Gelenkträger in Woche 3 schneiden wir am Gelenk und an den Lagern. Die Gelenkkräfte wirken an
+beiden Teilen entgegengesetzt; am linken Teil nehmen wir sie positiv an.
+
+Teil I (links), Momente um $G$:
+
+$$
+\begin{aligned}
+&\rightarrow: && F_{AH} + F + G_H = 0 &&\qquad(1)\\[2pt]
+&\uparrow: && F_{AV} + G_V = 0 &&\qquad(2)\\[2pt]
+&\curvearrowleft G: && F_{AH}\,12a - F_{AV}\,4a = 0 &&\qquad(3)
+\end{aligned}
+$$
+
+Teil II (rechts), Momente um $G$:
+
+$$
+\begin{aligned}
+&\rightarrow: && -G_H + F_{BH} = 0 &&\qquad(4)\\[2pt]
+&\uparrow: && -G_V - q_0\,8a + F_{BV} = 0 &&\qquad(5)\\[2pt]
+&\curvearrowleft G: && F_{BV}\,8a + F_{BH}\,8a - q_0\,8a \cdot 4a = 0 &&\qquad(6)
+\end{aligned}
+$$
+:::
+
+::: {.schritt zeige="teilsysteme" zoom="90 100 520 430"}
+### ① Lagerreaktionen: auflösen
+
+Keine Gleichung enthält nur eine Unbekannte. Wir drücken alles durch $F_{AH}$ aus:
+
+$$
+\begin{aligned}
+&\text{aus (3):}\quad F_{AV} = 3\,F_{AH}\\[2pt]
+&\text{aus (2):}\quad G_V = -3\,F_{AH}\\[2pt]
+&\text{aus (5):}\quad F_{BV} = 8\,q_0a - 3\,F_{AH}\\[2pt]
+&\text{aus (1) und (4):}\quad F_{BH} = G_H = -2\,q_0a - F_{AH}
+\end{aligned}
+$$
+
+Eingesetzt in (6), geteilt durch $8a$:
+
+$$
+\begin{aligned}
+(8\,q_0a - 3F_{AH}) + (-2\,q_0a - F_{AH}) &= 4\,q_0a\\
+F_{AH} &= 0{,}5\,q_0a
+\end{aligned}
+$$
+
+Damit $F_{AV} = 1{,}5\,q_0a$, $F_{BV} = 6{,}5\,q_0a$, $F_{BH} = G_H = -2{,}5\,q_0a$, $G_V = -1{,}5\,q_0a$.
+
+Kontrolle am ganzen Rahmen: $\rightarrow$: $(0{,}5 + 2 - 2{,}5)\,q_0a = 0$; $\uparrow$: $(1{,}5 + 6{,}5 - 8)\,q_0a = 0$.
+:::
+
+::: {.schritt zeige="system koordinaten" zoom="110 55 470 450"}
+### ② Bereiche und Koordinaten
+
+Beim Rahmen gibt es kein eindeutiges „unten“. Deshalb zeichnen wir in **jedem Bereich** ein eigenes
+Koordinatensystem ein, mit dem Ursprung am Anfang des Bereichs: $x_i$ längs des Stabes, $z_i$ quer dazu.
+$z_i$ übernimmt die Rolle von „unten“: Positives $M$ zieht die Seite, zu der $z_i$ zeigt.
+
+Die $x_i$ laufen gleichsinnig um den Rahmen (im linken Stiel aufwärts, im Riegel nach rechts, im rechten
+Stiel abwärts), die $z_i$ zeigen durchgehend nach innen.
+
+| Bereich | Koordinate |
+|:-:|:-:|
+| I | $0 \le x_1 \le 12a$ |
+| II | $0 \le x_2 \le 4a$ |
+| III | $0 \le x_3 \le 8a$ |
+| IV | $0 \le x_4 \le 8a$ |
+:::
+
+::: {.schritt zeige="system lasten schnitt-I" dimmen="system lasten" zoom="110 90 460 440"}
+### ③ Bereich I
+
+Unteres Teil des linken Stiels. Das Schnittufer oben ist **positiv** (Normale in $+x_1$): $N$ zeigt
+nach oben, $Q$ in $+z_1$ nach rechts.
+
+$$
+\begin{aligned}
+&\uparrow: && F_{AV} + N(x_1) = 0 &&\qquad(7)\\[2pt]
+&\rightarrow: && F_{AH} + Q(x_1) = 0 &&\qquad(8)\\[2pt]
+&\curvearrowleft S: && M(x_1) + F_{AH}\,x_1 = 0 &&\qquad(9)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (7):}\quad N(x_1) = -1{,}5\,q_0a\\[2pt]
+&\text{aus (8):}\quad Q(x_1) = -0{,}5\,q_0a\\[2pt]
+&\text{aus (9):}\quad M(x_1) = -0{,}5\,q_0a\,x_1
+\end{aligned}
+$$
+:::
+
+::: {.schritt zeige="system lasten schnitt-II" dimmen="system lasten" zoom="110 90 460 440"}
+### ③ Bereich II
+
+Linkes Teil mit Stiel und Ecke $C$. Momente um $S$: $F_{AH}$ hat den Hebelarm $12a$, $F_{AV}$ den Hebelarm
+$x_2$, $F$ geht durch die Höhe von $S$.
+
+$$
+\begin{aligned}
+&\rightarrow: && F_{AH} + F + N(x_2) = 0 &&\qquad(10)\\[2pt]
+&\uparrow: && F_{AV} - Q(x_2) = 0 &&\qquad(11)\\[2pt]
+&\curvearrowleft S: && M(x_2) + F_{AH}\,12a - F_{AV}\,x_2 = 0 &&\qquad(12)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (10):}\quad N(x_2) = -2{,}5\,q_0a\\[2pt]
+&\text{aus (11):}\quad Q(x_2) = 1{,}5\,q_0a\\[2pt]
+&\text{aus (12):}\quad M(x_2) = -6\,q_0a^2 + 1{,}5\,q_0a\,x_2
+\end{aligned}
+$$
+
+Im Gelenk ($x_2 = 4a$) ist $M = 0$, wie es sein muss.
+:::
+
+::: {.schritt zeige="system lasten schnitt-III" dimmen="system lasten" zoom="110 90 460 440"}
+### ③ Bereich III
+
+Linkes Teil bis $S$, mit dem Anteil $q_0\,x_3$ der Streckenlast (Hebelarm $x_3/2$):
+
+$$
+\begin{aligned}
+&\rightarrow: && F_{AH} + F + N(x_3) = 0 &&\qquad(13)\\[2pt]
+&\uparrow: && F_{AV} - q_0\,x_3 - Q(x_3) = 0 &&\qquad(14)\\[2pt]
+&\curvearrowleft S: && M(x_3) + F_{AH}\,12a - F_{AV}\,(4a + x_3)\\
+& && {}+ q_0\,x_3\,\tfrac{x_3}{2} = 0 &&\qquad(15)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (13):}\quad N(x_3) = -2{,}5\,q_0a\\[2pt]
+&\text{aus (14):}\quad Q(x_3) = 1{,}5\,q_0a - q_0\,x_3\\[2pt]
+&\text{aus (15):}\quad M(x_3) = 1{,}5\,q_0a\,x_3 - \tfrac12\,q_0\,x_3^2
+\end{aligned}
+$$
+:::
+
+::: {.schritt zeige="system lasten schnitt-IV" dimmen="system lasten" zoom="110 90 460 440"}
+### ③ Bereich IV
+
+Hier ist das **untere Teil** des rechten Stiels einfacher. Sein Schnittufer oben ist **negativ**
+(Normale in $-x_4$): $N$ zeigt nach oben (Zug), $Q$ in $-z_4$ nach rechts, $M$ im Uhrzeigersinn.
+
+$$
+\begin{aligned}
+&\uparrow: && N(x_4) + F_{BV} = 0 &&\qquad(16)\\[2pt]
+&\rightarrow: && Q(x_4) + F_{BH} = 0 &&\qquad(17)\\[2pt]
+&\curvearrowleft S: && -M(x_4) + F_{BH}\,(8a - x_4) = 0 &&\qquad(18)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (16):}\quad N(x_4) = -6{,}5\,q_0a\\[2pt]
+&\text{aus (17):}\quad Q(x_4) = 2{,}5\,q_0a\\[2pt]
+&\text{aus (18):}\quad M(x_4) = -2{,}5\,q_0a\,(8a - x_4)
+\end{aligned}
+$$
+:::
+
+::: {.schritt zeige="verlauf-N" zoom="120 40 600 440"}
+### ④ Normalkraftverlauf
+
+Alle Stäbe sind **gedrückt**. Der rechte Stiel trägt fast die ganze Streckenlast ab: $N = -6{,}5\,q_0a$.
+
+Positive Werte tragen wir wie beim Balken **entgegen** $z_i$ auf, hier also außen; negative innen.
+:::
+
+::: {.schritt zeige="verlauf-Q" zoom="120 40 600 440"}
+### ④ Querkraftverlauf
+
+In den Stielen und im Riegel II ist $Q$ konstant, unter der Streckenlast fällt es linear von $1{,}5$ auf
+$-6{,}5\,q_0a$. Der Nulldurchgang liegt bei
+
+$$
+Q(x_3) = 0 \;\Rightarrow\; x_3 = 1{,}5\,a
+$$
+
+Am Gelenk springt $Q$ nicht: Dort greift keine äußere Kraft an.
+:::
+
+::: {.schritt zeige="verlauf-M" zoom="120 40 600 440"}
+### ④ Momentenverlauf
+
+$M$ ist in den Stielen und im Riegel II **linear**, unter der Streckenlast eine **Parabel**:
+
+- im Gelenk $G$: $M = 0$,
+- Feldmoment bei $x_3 = 1{,}5\,a$: $M = \tfrac98\,q_0a^2$,
+- Ecke $C$: $M = -6\,q_0a^2$, Ecke $D$: $M = -20\,q_0a^2$.
+
+An einer **unbelasteten rechtwinkligen Ecke** geht $M$ unverändert vom Riegel in den Stiel über.
+Das ist eine gute Kontrolle.
+
+::: {.vertiefung titel="Ausführlicher: Momentenlinie auf der Zugseite"}
+In der Tragwerksplanung (Stahlbeton, Stahlbau) zeichnet man die Momentenlinie meist auf der **gezogenen**
+Seite. Dann braucht man kein Vorzeichen: Man sieht direkt, wo die Bewehrung hingehört.
+
+Wir tragen wie Gross und Dankert positive Werte entgegen $z_i$ auf. Ein negatives Moment, wie hier an
+den Ecken, zieht die **äußere** Seite. In der Zugseiten-Darstellung stünde
+die Fläche dort also außen, bei uns steht sie innen. Prüfen Sie bei fremden Unterlagen immer zuerst,
+welche Darstellung gemeint ist.
+:::
+:::
+
+::::
+
+## Zusammenfassung: Fahrplan Schnittgrößen
+
+:::: {.scrolly svg="../grafiken/schnittgroessen/fahrplan.svg"}
+
+::: {.schritt zeige="leiste traeger lager" zoom="5 10 755 270"}
+### System
+
+Ausgangspunkt ist immer das **vollständige System**: Tragwerk, Lager, alle Lasten und die Maße. Hier ein
+Träger auf dem Festlager $A$ und dem Loslager $B$ mit der Kraft $F$ und der Streckenlast $q$ auf dem
+Kragarm.
+
+An diesem System gehen wir die fünf Schritte durch.
+:::
+
+::: {.schritt zeige="leiste leiste-1 traeger lager reaktionen" dimmen="lager" zoom="5 10 755 270"}
+### ① Lagerreaktionen
+
+**Abzählen** ($3n = a + z$), Lager durch Reaktionen ersetzen, alle **positiv** annehmen, Gleichgewicht
+$\rightarrow$, $\uparrow$, $\curvearrowleft$ nummeriert aufstellen und auflösen.
+
+Bei Systemen mit Gelenk am Gelenk schneiden (Teilsysteme). Beim Kragträger kann man diesen Schritt oft
+sparen und vom freien Ende her rechnen.
+:::
+
+::: {.schritt zeige="leiste leiste-2 traeger lager bereiche" zoom="5 10 755 270"}
+### ② Bereiche
+
+Ein neuer Bereich beginnt an Einzelkräften und -momenten, an Beginn und Ende von Streckenlasten, an
+Lagern und an Ecken.
+
+Jeder Bereich bekommt eine eigene Koordinate $x_i$ mit dem Ursprung an seinem Anfang. Beim Rahmen
+zeichnet man auch $z_i$ ein; es legt fest, welche Seite „unten“ ist.
+:::
+
+::: {.schritt zeige="leiste leiste-3 traeger lager bereiche schnitt" dimmen="traeger lager bereiche" zoom="5 10 755 450"}
+### ③ Schneiden
+
+In jedem Bereich an einer beliebigen Stelle schneiden und das **einfachere** Teil betrachten.
+
+Schnittgrößen immer **positiv** einzeichnen: am positiven Ufer $N$ in $+x$ (Zug), $Q$ in $+z$, $M$ so,
+dass die $z$-Seite gezogen wird. Die Momentenbilanz **um den Schnittpunkt $S$** liefert $M$ direkt.
+:::
+
+::: {.schritt zeige="leiste leiste-4 traeger lager verlauf-Q verlauf-M" zoom="5 10 755 540"}
+### ④ Verläufe
+
+Werte an den Bereichsgrenzen berechnen und verbinden, positive Werte **oberhalb** der Achse (beim
+Rahmen entgegen $z_i$). Die Form folgt aus $Q' = -q$ und $M' = Q$:
+
+- $q = 0$: $Q$ konstant, $M$ linear,
+- $q$ konstant: $Q$ linear, $M$ Parabel,
+- $q$ linear: $Q$ quadratisch, $M$ kubisch.
+:::
+
+::: {.schritt zeige="leiste leiste-5 traeger lager verlauf-Q verlauf-M kontrolle" zoom="5 10 755 540"}
+### ⑤ Kontrolle
+
+- An einer Einzelkraft **springt $Q$**, $M$ hat einen **Knick**; an einem Einzelmoment springt $M$.
+- $M$ ist extremal, wo $Q$ null wird oder das Vorzeichen wechselt; auch die Bereichsgrenzen prüfen.
+- $M = 0$ am freien Ende, am gelenkigen Endlager und im Gelenk.
+- $Q$ endet am rechten Rand auf null, an unbelasteten Ecken geht $M$ unverändert um die Ecke.
+:::
+
+::::
 
 **Weiter:** [Seminaraufgaben zu Schnittgrößen](../seminar/04-schnittgroessen.qmd) ·
 [Interaktives Notebook](../notebooks/schnittgroessen/index.html){target="_blank"}

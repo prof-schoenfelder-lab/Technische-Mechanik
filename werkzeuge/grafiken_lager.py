@@ -43,7 +43,8 @@ def boden(e, x0, x1, y):
 
 
 def pendelstab(x1, y1, x2, y2):
-    return gruppe([balken(x1, y1, x2, y2, dicke=6), gelenk(x1, y1), gelenk(x2, y2)])
+    """Pendelstab: schmaler Stab (dicke Linie), Gelenke größer als die Balkendicke."""
+    return gruppe([linie(x1, y1, x2, y2, SCHWARZ, 3), gelenk(x1, y1, r=5), gelenk(x2, y2, r=5)])
 
 
 def gleich(e, x, y, s="⇒"):
