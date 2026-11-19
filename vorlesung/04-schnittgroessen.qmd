@@ -17,6 +17,59 @@ Hinter **„Ausführlicher“** finden Sie zu vielen Schritten eine längere Erk
 
 ## Was sind Schnittgrößen?
 
+:::: {.scrolly svg="../grafiken/schnittgroessen/reine-biegung.svg"}
+
+::: {.schritt zeige="system momente" zoom="15 25 690 245"}
+### Ein Träger, zwei Momente
+
+Ein Träger auf zwei Stützen wird an beiden Lagern durch **gleich große, entgegengesetzte** Momente $M_0$
+belastet.
+
+$$
+\begin{aligned}
+&\rightarrow: && F_{AH} = 0 &&\qquad(1)\\[2pt]
+&\uparrow: && F_{AV} + F_B = 0 &&\qquad(2)\\[2pt]
+&\curvearrowleft A: && M_0 - M_0 + F_B\,L = 0 &&\qquad(3)
+\end{aligned}
+$$
+
+Aus (3) folgt $F_B = 0$, aus (2) $F_{AV} = 0$: Die beiden Momente halten sich gegenseitig im
+Gleichgewicht, die Lager bleiben **kraftfrei**.
+:::
+
+::: {.schritt zeige="verformt" zoom="15 25 690 200"}
+### Der Träger biegt sich
+
+Trotzdem bleibt der Träger nicht gerade. Er biegt sich **nach oben**, und zwar überall **gleich stark**:
+Die Biegelinie ist ein **Kreisbogen**. Oben wird der Träger gezogen, unten gedrückt.
+
+Irgendetwas im Inneren muss diese Verbiegung über die ganze Länge weitergeben.
+:::
+
+::: {.schritt zeige="verformt ausschnitt" zoom="15 25 690 400"}
+### Ein Stück herausschneiden
+
+Wir schneiden gedanklich ein kleines Mittelstück heraus. Damit es **genauso gebogen** bleibt wie im
+Träger, müssen an beiden Schnittufern Momente wirken, **gleich groß und entgegengesetzt**, jeweils vom
+Betrag $M_0$.
+
+Diese inneren Momente, allgemein die **inneren Kräfte**, sind die **Schnittgrößen**. Im ganzen Träger
+sind sie unsichtbar; erst das **Freischneiden** macht sie sichtbar.
+:::
+
+::: {.schritt zeige="verformt verlauf-M" zoom="15 25 690 315"}
+### Überall dasselbe Moment
+
+Egal, wo wir schneiden: Das Stück braucht immer dasselbe Moment. Der **Momentenverlauf** ist konstant,
+$M(x) = -M_0$. Das Minuszeichen heißt: Die **Oberseite** ist gezogen; die Vorzeichenregel folgt gleich.
+Eine Normalkraft oder Querkraft tritt hier nicht auf: $N = Q = 0$.
+
+Bei anderen Lasten ändern sich die Schnittgrößen von Stelle zu Stelle. Wie man sie dann bestimmt, sehen
+wir jetzt Schritt für Schritt.
+:::
+
+::::
+
 :::: {.scrolly svg="../grafiken/schnittgroessen/vorzeichen.svg"}
 
 ::: {.schritt zeige="system schnitt" zoom="15 25 700 160"}

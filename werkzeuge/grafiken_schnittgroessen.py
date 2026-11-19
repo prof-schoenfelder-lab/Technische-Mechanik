@@ -68,6 +68,92 @@ def vorzeichen():
 
 
 # =====================================================================
+# Einstieg: reine Biegung – Träger auf zwei Stützen mit gleich großen, entgegengesetzten Momenten M0
+#   F_A = F_B = 0, N = Q = 0, M(x) = M0 konstant, Biegelinie ein Kreisbogen
+# =====================================================================
+def reine_biegung():
+    """Träger auf zwei Stützen, an A ein Moment gegen den Uhrzeigersinn, an B gleich groß im
+    Uhrzeigersinn: Der Träger biegt sich nach OBEN (für die Demonstration mit dem Zeigestab).
+    F_A = F_B = 0, N = Q = 0, M(x) = -M0 konstant (oben gezogen), Biegelinie ein Kreisbogen."""
+    from tmzeichnen import stabzug, schnitt
+    abb = Abbildung(760, 560, "Reine Biegung")
+    x0, x1, y, t = 130, 630, 150, 3.5
+    xm, c = (x0 + x1) / 2, x1 - x0
+    f = 42                                        # Durchbiegung nach oben (stark überhöht)
+    Rk = (c * c / 4 + f * f) / (2 * f)
+    yc = y - f + Rk                               # Kreismittelpunkt (unterhalb)
+    def yb(xp):
+        return yc - math.sqrt(Rk ** 2 - (xp - xm) ** 2)
+    def bogen(xa, xb, n=60):
+        return [(xa + (xb - xa) * i / n, yb(xa + (xb - xa) * i / n)) for i in range(n + 1)]
+    hl = "#b0b6bd"
+
+    def lagermomente(e):
+        e.append(moment(x0, y, "", gegen_uhrzeiger=True, r=22, start=-20, bogen=250))
+        e.append(text(x0 - 26, y - 30, "M_0", FARBE["last"], anker="end"))
+        e.append(moment(x1, y, "", gegen_uhrzeiger=False, r=22, start=200, bogen=250))
+        e.append(text(x1 + 26, y - 30, "M_0", FARBE["last"], anker="start"))
+
+    e = abb.ebene("system", "Träger mit zwei Momenten")
+    e.append(balken(x0, y, x1, y))
+    e.append(festlager(x0, y + t, label="A", label_pos=(-24, 14)))
+    e.append(loslager(x1, y + t, label="B", label_pos=(24, 14)))
+    e.append(mass(x0, y, x1, y, "L", abstand=-62))
+    e.append(koordinaten(30, 40, 30, "x", "z"))
+
+    e = abb.ebene("momente", "Momente an den Lagern")
+    lagermomente(e)
+
+    # verformter Träger: Kreisbogen nach oben, unverformte Lage gestrichelt
+    e = abb.ebene("verformt", "Biegelinie")
+    e.append(linie(x0, y, x1, y, hl, 1.2, strich="6 4"))
+    e.append(stabzug(bogen(x0, x1), dicke=7))
+    e.append(festlager(x0, y + t, label="A", label_pos=(-24, 14)))
+    e.append(loslager(x1, y + t, label="B", label_pos=(24, 14)))
+    lagermomente(e)
+    e.append(text(xm, y - f - 38, "[oben gezogen, unten gedrückt]", "#444444", 14, italic=False))
+    e.append(text(xm - 160, y - 7, "[Kreisbogen]", "#444444", 14, italic=False))
+    e.append(koordinaten(30, 40, 30, "x", "z"))
+
+    # Mittelstück herausschneiden
+    ds = 46
+    xa, xb = xm - ds, xm + ds
+    def radial(xp):
+        yp = yb(xp)
+        ux, uy = (xp - xm) / Rk, (yp - yc) / Rk
+        return (xp - 22 * ux, yp - 22 * uy), (xp + 22 * ux, yp + 22 * uy)
+    e = abb.ebene("ausschnitt", "Mittelstück")
+    for xp in (xa, xb):
+        p1, p2 = radial(xp)
+        e.append(schnitt(*p1, *p2))
+    yv = 330
+    wv = 240
+    e.append(linie(xa, yb(xa) + 24, xm - wv / 2, yv - 40, hl, 0.9, strich="4 3"))
+    e.append(linie(xb, yb(xb) + 24, xm + wv / 2, yv - 40, hl, 0.9, strich="4 3"))
+    # vergrößertes Stück: nach oben gekrümmt (Krümmung überhöht), Momente an beiden Ufern
+    fv = 16
+    Rv = (wv * wv / 4 + fv * fv) / (2 * fv)
+    ycv = yv - fv + Rv
+    stueck = [(xm - wv / 2 + wv * i / 40,
+               ycv - math.sqrt(Rv ** 2 - (wv * i / 40 - wv / 2) ** 2)) for i in range(41)]
+    e.append(stabzug(stueck, dicke=14))
+    S_ = FARBE["schnitt"]
+    xl, yl = stueck[0]
+    xr, yr = stueck[-1]
+    e.append(moment(xl, yl, "", gegen_uhrzeiger=True, r=26, start=-50, bogen=230, farbe=S_))
+    e.append(text(xl - 34, yl - 30, "M_0", S_, anker="end"))
+    e.append(moment(xr, yr, "", gegen_uhrzeiger=False, r=26, start=230, bogen=230, farbe=S_))
+    e.append(text(xr + 34, yr - 30, "M_0", S_, anker="start"))
+    e.append(text(xm, yv + 52, "[gleich große, entgegengesetzte Momente halten das Stück gebogen]",
+                  "#444444", 14, italic=False))
+
+    # konstanter Momentenverlauf (negativ: oben gezogen), positive Werte oberhalb der Achse
+    e = abb.ebene("verlauf-M", "Momentenverlauf")
+    e.append(verlauf(x0, [(0, -1), (c, -1)], 34, 240, c, "M(x)", werte=[(c / 2, -1, "−M_0", "middle")]))
+    return abb.speichern(ZIEL / "reine-biegung.svg")
+
+
+# =====================================================================
 # Bereiche und Rechenschema: Musterträger mit allen Arten von Bereichsgrenzen
 #   A (Festlager) bei 0, F = 2qa bei a, M0 = 2qa² (gegen Uhrzeiger) bei 2a,
 #   q von 3a bis 5a, B (Loslager) bei 4a  ->  F_AV = 2qa, F_B = 2qa
@@ -795,6 +881,6 @@ def aufgabe_1_5_8():
 
 
 if __name__ == "__main__":
-    for fn in (vorzeichen, bereiche_muster, kontrollregeln, dreigelenkrahmen, fahrplan, beispiel_einzelkraefte, beispiel_dreieckslast, aufgabe_1_5_1, aufgabe_1_5_3,
+    for fn in (reine_biegung, vorzeichen, bereiche_muster, kontrollregeln, dreigelenkrahmen, fahrplan, beispiel_einzelkraefte, beispiel_dreieckslast, aufgabe_1_5_1, aufgabe_1_5_3,
                aufgabe_1_5_5, aufgabe_1_5_6, aufgabe_1_5_8):
         print(fn())
