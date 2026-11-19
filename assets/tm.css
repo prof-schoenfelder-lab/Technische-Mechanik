@@ -257,30 +257,3 @@ iframe.notebook-rahmen {
 }
 @media print { .offline-meldung { display: none; } }
 
-/* ------------------------------------------------ Sprungleiste (Vorlesungen): Hauptabschnitte als Links */
-.sprungleiste {
-  position: fixed; left: 0; right: 0; top: 0; z-index: 1020;
-  height: 2.2rem; display: flex; align-items: center; justify-content: safe center; gap: 0.15rem;
-  padding: 0 1rem; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; white-space: nowrap;
-  background: #fff; border-bottom: 1px solid var(--tm-rand);
-  font-size: 0.87rem; transition: top 0.2s ease, opacity 0.3s ease;
-  opacity: 0; pointer-events: none;
-}
-.sprungleiste::-webkit-scrollbar { display: none; }
-.sprungleiste.sichtbar { opacity: 1; pointer-events: auto; }
-.sprungleiste a {
-  color: #555; text-decoration: none; padding: 0.3rem 0.45rem; border-radius: 0.3rem;
-  border-bottom: 2px solid transparent;
-}
-.sprungleiste a:hover { background: #f1f3f5; color: #222; }
-.sprungleiste a.aktiv { color: #0050b4; font-weight: 600; border-bottom-color: #0050b4; border-radius: 0.3rem 0.3rem 0 0; }
-.sprungleiste mjx-container { font-size: 100% !important; }
-/* Platz für die Leiste: Grafiken im Scrollytelling beginnen darunter, Sprungziele ebenso */
-html.mit-leiste .scrolly-sticky { top: 6.3rem; height: calc(100vh - 7.5rem); }
-html.mit-leiste main section.level2 { scroll-margin-top: 3rem; }
-html.mit-leiste.beamer .scrolly-sticky { top: 2.9rem; height: calc(100vh - 3.6rem); }
-@media (max-width: 900px) {
-  html.mit-leiste .scrolly-grafik { top: 2.2rem; }
-  .sprungleiste { justify-content: flex-start; font-size: 0.85rem; }
-}
-@media print { .sprungleiste { display: none; } }
