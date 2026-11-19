@@ -488,7 +488,14 @@ def verlauf(x0, punkte, skala, y0, laenge, label="", positiv_unten=False, schraf
         teile.append(polylinie(kurve, kontur, STRICH["dick"]))
     teile.append(linie(x0 - 8, y0, x0 + laenge + 14, y0, "#000000", STRICH["normal"]))
     if label:
-        teile.append(text(x0 - 16, y0, label, "#000000", anker="end"))
+        # Werteachse der Schnittgröße (nicht z!): Pfeil in Richtung positiver Werte, Bezeichnung an der Spitze
+        pos = max([v for _, v in punkte if v > 0] + [0]) * skala
+        neg = max([-v for _, v in punkte if v < 0] + [0]) * skala
+        oben, unten = (pos, neg) if not positiv_unten else (neg, pos)
+        y_spitze = y0 + s * max(oben + 20, 30)
+        y_fuss = y0 - s * (unten + 6 if unten > 0 else 6)
+        teile.append(pfeil(x0, y_fuss, x0, y_spitze, "#000000", STRICH["normal"], (9, 6)))
+        teile.append(text(x0 - 9, y_spitze + (5 if s < 0 else -5), label, "#000000", anker="end"))
     if vorzeichen:
         # ⊕/⊖ in der Mitte des jeweils größten positiven bzw. negativen Abschnitts
         for pos in (True, False):

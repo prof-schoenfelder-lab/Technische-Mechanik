@@ -775,7 +775,7 @@ def beispiel_dreieckslast():
     yQ, yM = 330, 500
     e = abb.ebene("verlauf-Q", "Querkraftverlauf")
     e.append(verlauf(xA, Q, 150, yQ, L, "Q(x)",
-                     werte=[(0, 1 / 6, "q_0L/6", "start"), (L, -1 / 3, "−q_0L/3", "end")]))
+                     werte=[(10, 1 / 6, "q_0L/6", "start"), (L, -1 / 3, "−q_0L/3", "end")]))
     e = abb.ebene("verlauf-M", "Momentenverlauf")
     x0 = 1 / math.sqrt(3)
     e.append(verlauf(xA, M, 1000, yM, L, "M(x)",

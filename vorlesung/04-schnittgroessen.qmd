@@ -326,6 +326,10 @@ $$
 Nur im Bereich I wirkt eine Normalkraft: Der Träger wird zwischen $A$ und $F_1$ **gedrückt**.
 
 Positive Werte tragen wir **oberhalb** der Achse auf; die Symbole ⊕/⊖ zeigen das Vorzeichen.
+
+Die senkrechte Achse ist dabei die **Werteachse** der Schnittgröße (hier $N$), **nicht** $z$: Wie bei jedem
+Funktionsgraphen stehen positive Werte oben. $z$ legt nur fest, welche Richtung am Schnittufer positiv
+zählt.
 :::
 
 ::: {.schritt zeige="traeger lasten reaktionen verlauf-N verlauf-Q" zoom="30 40 690 555"}
