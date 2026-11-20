@@ -88,9 +88,9 @@ $N = -15\,\text{kN}$ · $Q = -13{,}0\,\text{kN}$ bzw. $26{,}0\,\text{kN}$ · $M_
 
 ::: {.callout-tip collapse="true"}
 ## Aufgabe 4.4
-Mit $x$ vom freien Ende: $Q(x) = -\dfrac{q_0 x^2}{2a}$, $M(x) = -\dfrac{q_0 x^3}{6a}$
+Mit $x$ vom freien Ende: $Q(x) = -\dfrac{q_0\,x^2}{2a}$, $M(x) = -\dfrac{q_0\,x^3}{6a}$
 
-An der Einspannung: $Q = -\tfrac12\,q_0 a$, $M = -\tfrac16\,q_0 a^2$
+An der Einspannung: $Q = -\tfrac12\,q_0\,a$, $M = -\tfrac16\,q_0\,a^2$
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -115,24 +115,24 @@ Senkrechter Stab: $N = 0$ · $|Q| = 1000\,\text{N}$ · $M$ linear von $1000\,\te
 
 ::: {.callout-tip collapse="true"}
 ## Aufgabe 4.7
-a) $F_{AV} = q_0 l$, $M_A = \tfrac12 q_0 l^2$ · $Q(x) = q_0(l - x)$ · $M(x) = -\tfrac12 q_0 (l - x)^2$
+a) $F_{AV} = q_0\,l$, $M_A = \tfrac12 q_0\,l^2$ · $Q(x) = q_0(l - x)$ · $M(x) = -\tfrac12 q_0 (l - x)^2$
 
-b) $F_{AV} = \tfrac12 q_0 l$, $M_A = \tfrac18 q_0 l^2$ · auf der belasteten Hälfte $Q = q_0(\tfrac l2 - x)$,
+b) $F_{AV} = \tfrac12 q_0\,l$, $M_A = \tfrac18 q_0\,l^2$ · auf der belasteten Hälfte $Q = q_0(\tfrac l2 - x)$,
 $M = -\tfrac12 q_0(\tfrac l2 - x)^2$; auf der unbelasteten Hälfte $Q = M = 0$
 
-c) $F_{AV} = \tfrac12 q_0 l$, $M_A = \tfrac38 q_0 l^2$ · unbelastete Hälfte $Q = \tfrac12 q_0 l$, $M$ linear von
-$-\tfrac38 q_0 l^2$ bis $-\tfrac18 q_0 l^2$; belastete Hälfte $Q = q_0(l - x)$, $M = -\tfrac12 q_0(l - x)^2$
+c) $F_{AV} = \tfrac12 q_0\,l$, $M_A = \tfrac38 q_0\,l^2$ · unbelastete Hälfte $Q = \tfrac12 q_0\,l$, $M$ linear von
+$-\tfrac38 q_0\,l^2$ bis $-\tfrac18 q_0\,l^2$; belastete Hälfte $Q = q_0(l - x)$, $M = -\tfrac12 q_0(l - x)^2$
 
 Überall $N = 0$.
 :::
 
 ::: {.callout-tip collapse="true"}
 ## Aufgabe 4.8
-a) $q(x) = q_0\left(1 - \dfrac{x^2}{l^2}\right)$ · $F_{AV} = \tfrac23 q_0 l$, $M_A = \tfrac14 q_0 l^2$ ·
-$Q(0) = \tfrac23 q_0 l$, $M(0) = -\tfrac14 q_0 l^2$
+a) $q(x) = q_0\left(1 - \dfrac{x^2}{l^2}\right)$ · $F_{AV} = \tfrac23 q_0\,l$, $M_A = \tfrac14 q_0\,l^2$ ·
+$Q(0) = \tfrac23 q_0\,l$, $M(0) = -\tfrac14 q_0\,l^2$
 
-b) $q(x) = 4 q_0\,\dfrac{x}{l}\left(1 - \dfrac{x}{l}\right)$ · $F_{AV} = F_B = \tfrac13 q_0 l$ ·
-$M_\text{max} = \tfrac{5}{48}\,q_0 l^2$ in der Mitte
+b) $q(x) = 4 q_0\,\dfrac{x}{l}\left(1 - \dfrac{x}{l}\right)$ · $F_{AV} = F_B = \tfrac13 q_0\,l$ ·
+$M_\text{max} = \tfrac{5}{48}\,q_0\,l^2$ in der Mitte
 
 Überall $N = 0$.
 :::
