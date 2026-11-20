@@ -1,0 +1,9 @@
+### Aufgabe 4.7 · Kragträger mit Streckenlast, drei Lastfälle
+
+![](../grafiken/schnittgroessen/aufgabe-4-7.svg){width=60%}
+
+Der Kragträger der Länge $l$ ist in $A$ eingespannt und trägt die Streckenlast $q_0$ a) über die ganze
+Länge, b) auf der Hälfte an der Einspannung, c) auf der Hälfte am freien Ende.
+Ermitteln Sie jeweils die Lagerreaktionen und die Verläufe $N(x)$, $Q(x)$ und $M(x)$.
+
+**Gegeben:** $l$, $q_0$

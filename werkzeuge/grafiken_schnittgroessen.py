@@ -880,7 +880,82 @@ def aufgabe_1_5_8():
     return abb.speichern(ZIEL / "aufgabe-1-5-8.svg")
 
 
+def lastkurve(x0, x1, y, h, n=14, label="", label_pos=None, farbe=None):
+    """Streckenlast mit beliebiger Form: h(t) in px für t in [0, 1], Pfeile zum Balken (Oberkante y)."""
+    farbe = farbe or FARBE["last"]
+    teile = []
+    for i in range(n + 1):
+        tt = i / n
+        hh = h(tt)
+        xx = x0 + (x1 - x0) * tt
+        if hh > 4:
+            teile.append(pfeil(xx, y - hh, xx, y, farbe, 1.25, (8, 5.5)))
+    teile.append(polylinie([(x0 + (x1 - x0) * i / 60, y - h(i / 60)) for i in range(61)], farbe, 1.25))
+    if label:
+        lx, ly = label_pos or (x1 + 6, y - h(1) - 4)
+        teile.append(text(lx, ly, label, farbe, anker="start"))
+    return "".join(teile)
+
+
+def aufgabe_4_6():
+    """Abgewinkelter Kragträger (Scan B04-1): Einspannung A, waagerecht 2a bis C, senkrecht a nach unten bis D."""
+    from tmzeichnen import stabzug
+    abb, e = _aufgabe("Aufgabe 4.6", 460, 250)
+    a, xA, y = 110, 70, 70
+    C, D = (xA + 2 * a, y), (xA + 2 * a, y + a)
+    e.append(stabzug([(xA, y), C, D], dicke=7))
+    e.append(einspannung(xA, y, seite="links", label="A"))
+    e.append(kraft(C[0], y - 3.5, -90, "F_1", laenge=48, label_seite=-1))
+    e.append(kraft(D[0] - 3.5, D[1] - 6, 0, "F_2", laenge=50, label_seite=-1))
+    e.append(text(C[0] + 14, y - 12, "C"))
+    e.append(text(D[0] + 14, D[1] + 4, "D"))
+    e.append(mass(xA, y, C[0], y, "2a", abstand=-(a + 40)))
+    e.append(mass(C[0], C[1], D[0], D[1], "a", abstand=46))
+    return abb.speichern(ZIEL / "aufgabe-4-6.svg")
+
+
+def aufgabe_4_7():
+    """Kragträger mit Streckenlast, drei Lastfälle (Scan B04-02 a–c)."""
+    abb, e = _aufgabe("Aufgabe 4.7", 520, 470)
+    L, xA = 320, 110
+    for k, (tit, l0, l1) in enumerate((("a)", 0, 1), ("b)", 0, 0.5), ("c)", 0.5, 1))):
+        y = 90 + k * 140
+        e.append(text(30, y - 36, f"[{tit}]", "#222222", 17, anker="start", italic=False))
+        e.append(balken(xA, y, xA + L, y))
+        e.append(einspannung(xA, y, seite="links", label="A" if k == 0 else ""))
+        e.append(streckenlast(xA + l0 * L, xA + l1 * L, y - 3.5, 30, label="q_0", n=max(4, int(16 * (l1 - l0)))))
+        if (l0, l1) == (0, 1):
+            e.append(mass(xA, y, xA + L, y, "l", abstand=-34))
+        else:
+            e.append(mass(xA, y, xA + L / 2, y, "l/2", abstand=-34))
+            e.append(mass(xA + L / 2, y, xA + L, y, "l/2", abstand=-34))
+    return abb.speichern(ZIEL / "aufgabe-4-7.svg")
+
+
+def aufgabe_4_8():
+    """Parabelförmige Streckenlasten (Scan B04-3): a) Kragträger, b) Einfeldträger."""
+    abb, e = _aufgabe("Aufgabe 4.8", 760, 230)
+    L, y = 260, 120
+    # a) Kragträger: Maximum q0 an der Einspannung (waagerechte Tangente), null am freien Ende
+    xA = 80
+    e.append(text(20, 40, "[a)]", "#222222", 17, anker="start", italic=False))
+    e.append(balken(xA, y, xA + L, y))
+    e.append(einspannung(xA, y, seite="links", label="A"))
+    e.append(lastkurve(xA, xA + L, y - 3.5, lambda s: 60 * (1 - s * s), n=12, label="q_0", label_pos=(xA + 6, y - 82)))
+    e.append(mass(xA, y, xA + L, y, "l", abstand=-38))
+    # b) Einfeldträger: Maximum q0 in der Mitte, null an beiden Lagern
+    xB = 450
+    e.append(text(390, 40, "[b)]", "#222222", 17, anker="start", italic=False))
+    e.append(balken(xB, y, xB + L, y))
+    e.append(festlager(xB, y + 3.5, label="A", label_pos=(-22, 12)))
+    e.append(loslager(xB + L, y + 3.5, label="B", label_pos=(22, 12)))
+    e.append(lastkurve(xB, xB + L, y - 3.5, lambda s: 60 * 4 * s * (1 - s), n=12, label="q_0",
+                       label_pos=(xB + L / 2 + 8, y - 80)))
+    e.append(mass(xB, y, xB + L, y, "l", abstand=-50))
+    return abb.speichern(ZIEL / "aufgabe-4-8.svg")
+
+
 if __name__ == "__main__":
     for fn in (reine_biegung, vorzeichen, bereiche_muster, kontrollregeln, dreigelenkrahmen, fahrplan, beispiel_einzelkraefte, beispiel_dreieckslast, aufgabe_1_5_1, aufgabe_1_5_3,
-               aufgabe_1_5_5, aufgabe_1_5_6, aufgabe_1_5_8):
+               aufgabe_1_5_5, aufgabe_1_5_6, aufgabe_1_5_8, aufgabe_4_6, aufgabe_4_7, aufgabe_4_8):
         print(fn())

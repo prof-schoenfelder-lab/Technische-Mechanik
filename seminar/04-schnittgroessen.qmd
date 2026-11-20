@@ -49,6 +49,14 @@ Vorzeichenkonvention wie in der Vorlesung: $N$ positiv als Zug, $Q$ am positiven
 
 {{< include _aufgaben-04/gelenktraeger.qmd >}}
 
+{{< pagebreak >}}
+
+{{< include _aufgaben-04/winkel-kragtraeger.qmd >}}
+
+{{< include _aufgaben-04/kragtraeger-lastfaelle.qmd >}}
+
+{{< include _aufgaben-04/parabellasten.qmd >}}
+
 ::: {.content-visible when-format="html"}
 
 ## Ergebnisse zur Kontrolle
@@ -94,6 +102,40 @@ $N = -2598\,\text{N}$ bis zur Kraft, dann $0$ · $Q = 750\,\text{N}$ bzw. $-750\
 $M$: $-2750 \to -1625$, Sprung auf $-1125$, $0$ im Gelenk, $1125\,\text{Nm}$ an der Kraft, $0$ in $C$
 :::
 
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 4.6
+$F_{AH} = -1000\,\text{N}$ (nach links), $F_{AV} = 1000\,\text{N}$, $M_A = 1000\,\text{N}\cdot a$ (gegen den Uhrzeigersinn)
+
+Waagerechter Stab: $N = 1000\,\text{N}$ (Zug) · $Q = 1000\,\text{N}$ ·
+$M$ linear von $-1000\,\text{N}\cdot a$ an der Einspannung bis $+1000\,\text{N}\cdot a$ an der Ecke $C$ (null bei $x_1 = a$)
+
+Senkrechter Stab: $N = 0$ · $|Q| = 1000\,\text{N}$ · $M$ linear von $1000\,\text{N}\cdot a$ an der Ecke bis $0$ in $D$
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 4.7
+a) $F_{AV} = q_0 l$, $M_A = \tfrac12 q_0 l^2$ · $Q(x) = q_0(l - x)$ · $M(x) = -\tfrac12 q_0 (l - x)^2$
+
+b) $F_{AV} = \tfrac12 q_0 l$, $M_A = \tfrac18 q_0 l^2$ · auf der belasteten Hälfte $Q = q_0(\tfrac l2 - x)$,
+$M = -\tfrac12 q_0(\tfrac l2 - x)^2$; auf der unbelasteten Hälfte $Q = M = 0$
+
+c) $F_{AV} = \tfrac12 q_0 l$, $M_A = \tfrac38 q_0 l^2$ · unbelastete Hälfte $Q = \tfrac12 q_0 l$, $M$ linear von
+$-\tfrac38 q_0 l^2$ bis $-\tfrac18 q_0 l^2$; belastete Hälfte $Q = q_0(l - x)$, $M = -\tfrac12 q_0(l - x)^2$
+
+Überall $N = 0$.
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 4.8
+a) $q(x) = q_0\left(1 - \dfrac{x^2}{l^2}\right)$ · $F_{AV} = \tfrac23 q_0 l$, $M_A = \tfrac14 q_0 l^2$ ·
+$Q(0) = \tfrac23 q_0 l$, $M(0) = -\tfrac14 q_0 l^2$
+
+b) $q(x) = 4 q_0\,\dfrac{x}{l}\left(1 - \dfrac{x}{l}\right)$ · $F_{AV} = F_B = \tfrac13 q_0 l$ ·
+$M_\text{max} = \tfrac{5}{48}\,q_0 l^2$ in der Mitte
+
+Überall $N = 0$.
+:::
 :::
 
 ::: {.content-visible when-format="typst"}

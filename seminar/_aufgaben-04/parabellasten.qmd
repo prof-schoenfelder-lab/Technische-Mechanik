@@ -1,0 +1,15 @@
+### Aufgabe 4.8 · Parabelförmige Streckenlasten
+
+![](../grafiken/schnittgroessen/aufgabe-4-8.svg){width=85%}
+
+Die Streckenlasten lassen sich durch quadratische Funktionen beschreiben: a) am Kragträger mit dem Größtwert
+$q_0$ an der Einspannung (waagerechte Tangente) und null am freien Ende, b) am Einfeldträger mit dem
+Größtwert $q_0$ in der Mitte und null an beiden Lagern.
+
+Für beide Träger:
+
+1. Stellen Sie die Funktion $q(x)$ auf.
+2. Ermitteln Sie die Lagerreaktionen.
+3. Ermitteln Sie die Verläufe $N(x)$, $Q(x)$ und $M(x)$.
+
+**Gegeben:** $q_0$, $l$
