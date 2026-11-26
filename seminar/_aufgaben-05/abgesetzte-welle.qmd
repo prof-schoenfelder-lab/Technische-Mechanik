@@ -1,0 +1,16 @@
+### Aufgabe 5.3 · Abgesetzte Welle unter Zug
+
+![](../grafiken/spannung/aufgabe-5-3.svg){width=75%}
+
+Eine abgesetzte Stahlwelle ist links fest eingespannt. Am Absatz wird die Kraft $F_1$ eingeleitet
+(ringförmig verteilt, Resultierende in der Wellenachse), am rechten Ende greift $F_2$ an.
+
+a) Ermitteln Sie die Normalkraft in beiden Abschnitten.
+b) Berechnen Sie die Spannungen in beiden Abschnitten.
+c) Berechnen Sie die Dehnungen und Längenänderungen beider Abschnitte.
+d) Um wie viel verschiebt sich das rechte Wellenende?
+e) Welchen Durchmesser $d_2$ müsste der rechte Abschnitt haben, damit in beiden Abschnitten dieselbe
+   Spannung herrscht?
+
+**Gegeben:** $F_1$ = 20 kN, $F_2$ = 10 kN, $l_1$ = 300 mm, $l_2$ = 200 mm, $d_1$ = 20 mm, $d_2$ = 12 mm,
+$E$ = 210 000 N/mm²

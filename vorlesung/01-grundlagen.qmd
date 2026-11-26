@@ -376,6 +376,17 @@ Die Reihenfolge der Pfeile ist beliebig. Das Krafteck ist heute kein Rechenverfa
 aber es macht sichtbar, was die Komponentensummen tun, und es ist eine schnelle **Plausibilitätskontrolle**.
 :::
 
+::: {.schritt zeige="system resultierende krafteck" zoom="30 40 650 360"}
+### Ausprobieren
+
+Im interaktiven Notebook können Sie bis zu drei Kräfte selbst einstellen: Beträge und Richtungswinkel.
+Komponenten, Resultierende und Krafteck rechnen sofort mit.
+
+::: {.notebook titel="Ausprobieren: Resultierende und Krafteck" src="../notebooks/resultierende/index.html"}
+Überlegen Sie **vorher**, wohin sich $F_R$ dreht, wenn Sie eine Kraft verändern.
+:::
+:::
+
 ::::
 
 ::: {.merke}
@@ -396,11 +407,6 @@ F_R &= \sqrt{F_{Rx}^2 + F_{Ry}^2}
 $$
 
 Winkel mit $\tan\alpha_R = F_{Ry}/F_{Rx}$, Quadrant beachten.
-:::
-
-::: {.notebook titel="Ausprobieren: Resultierende und Krafteck" src="../notebooks/resultierende/index.html"}
-Verändern Sie Beträge und Richtungswinkel von bis zu drei Kräften und beobachten Sie Komponenten,
-Resultierende und Krafteck. Überlegen Sie **vorher**, wohin sich $F_R$ dreht.
 :::
 
 ## Gleichgewicht im zentralen Kraftsystem
@@ -529,12 +535,19 @@ für die unbekannten Kräfte. Dazu muss das Freikörperbild **vollständig** sei
 Boden hätten wir $F_B$ vergessen.
 :::
 
-::::
+::: {.schritt zeige="freischnitt krafteck-zu" zoom="600 30 560 350"}
+### Ausprobieren
+
+Im interaktiven Notebook können Sie am Mast selbst drehen: $F_3$, den Winkel $\alpha$ und die
+Bodenkraft $F_B$.
 
 ::: {.notebook titel="Ausprobieren: Mast mit drei Seilen" src="../notebooks/mast/index.html"}
-Stellen Sie $F_3$, $\alpha$ und die Bodenkraft $F_B$ so ein, dass sich das Krafteck schließt. Finden Sie
-beide Winkel? Was passiert ohne Boden?
+Stellen Sie die Werte so ein, dass sich das Krafteck schließt. Finden Sie beide Winkel? Was passiert
+ohne Boden?
 :::
+:::
+
+::::
 
 :::: {.scrolly svg="../grafiken/grundlagen/seil-masse.svg"}
 
@@ -617,6 +630,18 @@ wachsen beide über alle Grenzen: Ganz waagerecht lässt sich das Seil nicht zie
 :::
 :::
 
+::: {.schritt zeige="freischnitt krafteck" zoom="320 20 540 400"}
+### Ausprobieren
+
+Im interaktiven Notebook können Sie die Masse selbst auslenken und $m$ und $\alpha$ verändern.
+$F$ und $F_S$ und das Krafteck rechnen sofort mit.
+
+::: {.notebook titel="Ausprobieren: Masse am Seil" src="../notebooks/masse-am-seil/index.html"}
+Sagen Sie **vorher** voraus, wie stark $F$ und $F_S$ mit dem Winkel wachsen. Prüfen Sie für eigene
+Werte von $m$ und $\alpha$ Ihre Rechnung nach.
+:::
+:::
+
 ::::
 
 ::: {.merke}
@@ -630,11 +655,6 @@ $$
 $$
 
 Damit lassen sich höchstens **zwei** Unbekannte bestimmen.
-:::
-
-::: {.notebook titel="Ausprobieren: Masse am Seil" src="../notebooks/masse-am-seil/index.html"}
-Lenken Sie die Masse aus und beobachten Sie, wie $F$ und $F_S$ mit dem Winkel wachsen. Prüfen Sie für
-eigene Werte von $m$ und $\alpha$ Ihre Rechnung nach.
 :::
 
 ## Das Moment

@@ -1,0 +1,11 @@
+### Aufgabe 5.2 · Last an zwei Stäben
+
+![](../grafiken/spannung/aufgabe-5-2.svg){width=50%}
+
+Ein Körper mit der Gewichtskraft $F_G$ hängt an zwei gleichen Stahlstäben mit Kreisquerschnitt
+(Durchmesser $d$).
+
+Ermitteln Sie 1. die Spannung in den Stäben, 2. ihre Längenänderung $\Delta l$ und 3. die senkrechte
+Verschiebung $\Delta h$ des Lastangriffspunkts.
+
+**Gegeben:** $F_G$ = 6000 N, $a$ = 1,5 m, $d$ = 6 mm, $\alpha$ = 60°, $E$ = 210 000 N/mm²

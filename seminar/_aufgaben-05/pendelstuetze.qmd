@@ -1,0 +1,13 @@
+### Aufgabe 5.4 · Starrer Balken auf einer Pendelstütze
+
+![](../grafiken/spannung/aufgabe-5-4.svg){width=60%}
+
+Ein starrer Balken ist in $A$ gelenkig gelagert. Eine Pendelstütze $BC$ aus Stahl hält ihn im
+unbelasteten Zustand waagerecht.
+
+a) Ermitteln Sie die Lagerkräfte in $A$ und die Kraft in der Pendelstütze.
+b) Berechnen Sie Spannung und Dehnung in der Stütze.
+c) Um wie viel ändert sich die Länge der Stütze?
+d) Um welchen Winkel neigt sich der Balken, und um wie viel senkt sich der Lastangriffspunkt?
+
+**Gegeben:** $F$ = 24 kN, $a$ = 1,5 m, $l$ = 2 m, $h$ = 1,2 m, $d$ = 16 mm, $E$ = 210 000 N/mm²

@@ -1,0 +1,15 @@
+### Aufgabe 5.5 · Balken an zwei Seilen
+
+![](../grafiken/spannung/aufgabe-5-5.svg){width=60%}
+
+Ein starrer Balken hängt an zwei unterschiedlich langen Stahlseilen und trägt in der Mitte die Kraft $F$.
+Er ist seitlich nicht geführt und kann sich deshalb schräg stellen.
+
+a) Ermitteln Sie die Seilkräfte und die Spannungen in den Seilen.
+b) Berechnen Sie die Verlängerungen der Seile, die Absenkung der Balkenmitte und den Winkel, um den sich der
+   Balken neigt.
+c) Keines der Seilenden darf sich um mehr als 0,3 mm absenken. Wie lang dürfen die Seile jeweils höchstens sein?
+d) Wie lang müsste Seil 1 sein ($L_2$ unverändert), damit der Balken waagerecht bleibt?
+
+**Gegeben:** $F$ = 8 kN, $b$ = 600 mm, $L_1$ = 600 mm, $A_1$ = 36 mm², $L_2$ = 300 mm, $A_2$ = 24 mm²,
+$E$ = 210 000 N/mm²

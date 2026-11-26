@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="640" height="300" viewBox="0 0 640 300" class="tm-grafik">
+<title>Querkontraktion und Schub</title>
+<g inkscape:groupmode="layer" id="quer" inkscape:label="01 Querkontraktion" data-ebene="quer">
+<text x="50" y="44.76" fill="#444444" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="14" font-style="normal" text-anchor="start" xml:space="preserve"><tspan font-family="'Source Sans Pro','Source Sans 3','Helvetica Neue',Arial,sans-serif" font-style="normal">Querkontraktion</tspan></text>
+<path d="M 50,115 L 240,115 L 240,185 L 50,185 Z" fill="none" stroke="#7a7a7a" stroke-width="0.8" stroke-linejoin="round" stroke-dasharray="5 4"/>
+<path d="M 50,124 L 275,124 L 275,176 L 50,176 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<g><g><path d="M 50,150 L 23.6,150" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 14,150 L 26,146 L 26,154 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g><text x="6.8" y="174.46" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>F</tspan></text></g>
+<g><g><path d="M 275,150 L 301.4,150" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 311,150 L 299,154 L 299,146 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g><text x="318.2" y="174.46" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>F</tspan></text></g>
+<g><path d="M 50,195 L 50,217" fill="none" stroke="#006414" stroke-width="0.8" stroke-linecap="butt"/><path d="M 240,195 L 240,217" fill="none" stroke="#006414" stroke-width="0.8" stroke-linecap="butt"/><g><path d="M 56.4,211 L 233.6,211" fill="none" stroke="#006414" stroke-width="0.8" stroke-linecap="butt"/><path d="M 240,211 L 232,213.5 L 232,208.5 Z" fill="#006414" stroke="none" stroke-linejoin="round"/><path d="M 50,211 L 58,208.5 L 58,213.5 Z" fill="#006414" stroke="none" stroke-linejoin="round"/></g><text x="145" y="228.46" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>l</tspan><tspan baseline-shift="sub" font-size="70%" font-style="normal">0</tspan></text></g>
+<g><g><path d="M 56.4,238 L 268.6,238" fill="none" stroke="#006414" stroke-width="0.8" stroke-linecap="butt"/><path d="M 275,238 L 267,240.5 L 267,235.5 Z" fill="#006414" stroke="none" stroke-linejoin="round"/><path d="M 50,238 L 58,235.5 L 58,240.5 Z" fill="#006414" stroke="none" stroke-linejoin="round"/></g><text x="162.5" y="255.46" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>l</tspan></text></g>
+<text x="228" y="106.1" fill="#7a7a7a" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="15" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>b</tspan><tspan baseline-shift="sub" font-size="70%" font-style="normal">0</tspan></text>
+<text x="132.5" y="155.44" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="16" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>b</tspan></text>
+</g>
+<g inkscape:groupmode="layer" id="schub" inkscape:label="02 Schubverformung" data-ebene="schub">
+<text x="390" y="44.76" fill="#444444" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="14" font-style="normal" text-anchor="start" xml:space="preserve"><tspan font-family="'Source Sans Pro','Source Sans 3','Helvetica Neue',Arial,sans-serif" font-style="normal">Schub</tspan></text>
+<path d="M 390,230 L 580,230" fill="none" stroke="#000000" stroke-width="1.25" stroke-linecap="butt"/>
+<path d="M 392,230 L 385,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 398,230 L 391,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 404,230 L 397,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 410,230 L 403,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 416,230 L 409,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 422,230 L 415,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 428,230 L 421,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 434,230 L 427,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 440,230 L 433,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 446,230 L 439,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 452,230 L 445,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 458,230 L 451,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 464,230 L 457,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 470,230 L 463,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 476,230 L 469,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 482,230 L 475,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 488,230 L 481,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 494,230 L 487,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 500,230 L 493,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 506,230 L 499,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 512,230 L 505,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 518,230 L 511,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 524,230 L 517,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 530,230 L 523,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 536,230 L 529,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 542,230 L 535,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 548,230 L 541,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 554,230 L 547,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 560,230 L 553,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 566,230 L 559,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 572,230 L 565,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 578,230 L 571,237" fill="none" stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 410,110 L 530,110 L 530,230 L 410,230 Z" fill="none" stroke="#7a7a7a" stroke-width="0.8" stroke-linejoin="round" stroke-dasharray="5 4"/>
+<path d="M 410,230 L 530,230 L 560,110 L 440,110 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<g><path d="M 450,96 L 540.4,96" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 550,96 L 538,100 L 538,92 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<text x="500" y="84.46" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>τ</tspan></text>
+<g><path d="M 426.98,162.09 L 426.14,161.89 L 425.31,161.69 L 424.47,161.51 L 423.63,161.34 L 422.79,161.18 L 421.95,161.03 L 421.1,160.89 L 420.25,160.75 L 419.4,160.63 L 418.55,160.52 L 417.7,160.42 L 416.85,160.34 L 415.99,160.26 L 415.14,160.19 L 414.28,160.13 L 413.43,160.08 L 412.57,160.05 L 411.71,160.02 L 410.86,160.01 L 410,160" fill="none" stroke="#006414" stroke-width="0.8" stroke-linejoin="round"/><text x="419.77" y="155.7" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="15" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>γ</tspan></text></g>
+<path d="M 410,230 L 410,110" fill="none" stroke="#7a7a7a" stroke-width="0.8" stroke-linecap="butt" stroke-dasharray="5 4"/>
+</g>
+</svg>

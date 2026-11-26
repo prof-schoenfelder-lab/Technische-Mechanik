@@ -19,7 +19,7 @@ Willkommen! Diese Seite begleitet Vorlesung und Seminar.
 | 2 | **Lager und Lagerreaktionen**, Streckenlasten | [Vorlesung](vorlesung/02-lager.qmd) | [Seminar](seminar/02-lager.qmd) |
 | 3 | **Übung: Gleichgewicht** (Aufgaben mit Lösungsweg) | [Vorlesung](vorlesung/03-gleichgewicht.qmd) | – |
 | 4 | **Schnittgrößen** | [Vorlesung](vorlesung/04-schnittgroessen.qmd) | [Seminar](seminar/04-schnittgroessen.qmd) |
-| 5 | Einführung Festigkeitslehre: Spannung und Verformung | – | – |
+| 5 | **Spannung, Dehnung, Stoffgesetz** | [Vorlesung](vorlesung/05-spannung-dehnung.qmd) | [Seminar](seminar/05-spannung-dehnung.qmd) |
 | 6 | Stoffgesetz, Zugversuch | – | – |
 | 7 | Zug und Druck, statisch unbestimmte Stabsysteme | – | – |
 | 8 | Flächenmomente | – | – |

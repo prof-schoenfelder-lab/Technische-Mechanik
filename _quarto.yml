@@ -41,6 +41,8 @@ website:
             text: "3 · Übung: Gleichgewicht"
           - href: vorlesung/04-schnittgroessen.qmd
             text: "4 · Schnittgrößen"
+          - href: vorlesung/05-spannung-dehnung.qmd
+            text: "5 · Spannung, Dehnung, Stoffgesetz"
       - text: Seminar
         menu:
           - href: seminar/01-grundlagen.qmd
@@ -49,6 +51,8 @@ website:
             text: "2 · Lager und Lagerreaktionen"
           - href: seminar/04-schnittgroessen.qmd
             text: "4 · Schnittgrößen"
+          - href: seminar/05-spannung-dehnung.qmd
+            text: "5 · Spannung, Dehnung, Stoffgesetz"
     right:
       - text: "Prof. Dr.-Ing. Stephan Schönfelder"
         href: "https://fing.htwk-leipzig.de/fakultaet/professuren/prof-stephan-schoenfelder"

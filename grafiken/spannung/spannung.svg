@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="940" height="450" viewBox="0 0 940 450" class="tm-grafik">
+<title>Spannung: Kraft je Fläche</title>
+<g inkscape:groupmode="layer" id="system" inkscape:label="01 Stab unter Zug" data-ebene="system">
+<path d="M 110,37 L 530,37 L 530,83 L 110,83 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<g><g><path d="M 110,60 L 69.6,60" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 60,60 L 72,56 L 72,64 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g><text x="75" y="84.46" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>F</tspan></text></g>
+<g><g><path d="M 530,60 L 570.4,60" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 580,60 L 568,64 L 568,56 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g><text x="565" y="84.46" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>F</tspan></text></g>
+<text x="170" y="65.44" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="16" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>A</tspan></text>
+</g>
+<g inkscape:groupmode="layer" id="schnitt" inkscape:label="02 Schnitt" data-ebene="schnitt">
+<g><g><path d="M 320,25 L 318.93,27 L 317.89,29 L 316.92,31 L 316.05,33 L 315.31,35 L 314.72,37 L 314.29,39 L 314.05,41 L 314.01,43 L 314.15,45 L 314.48,47 L 314.99,49 L 315.66,51 L 316.47,53 L 317.4,55 L 318.4,57 L 319.46,59 L 320.54,61 L 321.6,63 L 322.6,65 L 323.53,67 L 324.34,69 L 325.01,71 L 325.52,73 L 325.85,75 L 325.99,77 L 325.95,79 L 325.71,81 L 325.28,83 L 324.69,85 L 323.95,87 L 323.08,89 L 322.11,91 L 321.07,93 L 320,95" fill="none" stroke="#006414" stroke-width="1.6" stroke-linejoin="round"/></g></g>
+</g>
+<g inkscape:groupmode="layer" id="normalkraft" inkscape:label="03 Normalkraft im Schnitt" data-ebene="normalkraft">
+<path d="M 110,137 L 320,137 L 320,183 L 110,183 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<g><g><path d="M 110,160 L 69.6,160" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 60,160 L 72,156 L 72,164 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g><text x="75" y="184.46" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>F</tspan></text></g>
+<g><g><path d="M 320,160 L 360.4,160" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 370,160 L 358,164 L 358,156 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g><text x="355" y="184.46" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>N</tspan></text></g>
+</g>
+<g inkscape:groupmode="layer" id="federn" inkscape:label="04 Viele kleine Federn im Querschnitt" data-ebene="federn">
+<path d="M 110,247 L 290,247 L 290,293 L 110,293 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<path d="M 350,247 L 530,247 L 530,293 L 350,293 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<path d="M 290,252 L 295,252 L 298.12,255 L 304.38,249 L 310.62,255 L 316.88,249 L 323.12,255 L 329.38,249 L 335.62,255 L 341.88,249 L 345,252 L 350,252" fill="none" stroke="#000000" stroke-width="1" stroke-linejoin="round"/>
+<path d="M 290,261 L 295,261 L 298.12,264 L 304.38,258 L 310.62,264 L 316.88,258 L 323.12,264 L 329.38,258 L 335.62,264 L 341.88,258 L 345,261 L 350,261" fill="none" stroke="#000000" stroke-width="1" stroke-linejoin="round"/>
+<path d="M 290,270 L 295,270 L 298.12,273 L 304.38,267 L 310.62,273 L 316.88,267 L 323.12,273 L 329.38,267 L 335.62,273 L 341.88,267 L 345,270 L 350,270" fill="none" stroke="#000000" stroke-width="1" stroke-linejoin="round"/>
+<path d="M 290,279 L 295,279 L 298.12,282 L 304.38,276 L 310.62,282 L 316.88,276 L 323.12,282 L 329.38,276 L 335.62,282 L 341.88,276 L 345,279 L 350,279" fill="none" stroke="#000000" stroke-width="1" stroke-linejoin="round"/>
+<path d="M 290,288 L 295,288 L 298.12,291 L 304.38,285 L 310.62,291 L 316.88,285 L 323.12,291 L 329.38,285 L 335.62,291 L 341.88,285 L 345,288 L 350,288" fill="none" stroke="#000000" stroke-width="1" stroke-linejoin="round"/>
+<g><g><path d="M 110,270 L 69.6,270" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 60,270 L 72,266 L 72,274 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g><text x="75" y="294.46" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>F</tspan></text></g>
+<g><g><path d="M 530,270 L 570.4,270" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 580,270 L 568,274 L 568,266 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g><text x="565" y="294.46" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>F</tspan></text></g>
+<text x="320" y="234.76" fill="#444444" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="14" font-style="normal" text-anchor="middle" xml:space="preserve"><tspan font-family="'Source Sans Pro','Source Sans 3','Helvetica Neue',Arial,sans-serif" font-style="normal">viele kleine Federn</tspan></text>
+</g>
+<g inkscape:groupmode="layer" id="spannung" inkscape:label="05 Spannung am Schnittufer" data-ebene="spannung">
+<path d="M 110,357 L 320,357 L 320,403 L 110,403 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<g><g><path d="M 110,380 L 69.6,380" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 60,380 L 72,376 L 72,384 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g><text x="75" y="404.46" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="middle" xml:space="preserve"><tspan>F</tspan></text></g>
+<g><path d="M 320,362 L 347.6,362" fill="none" stroke="#ff0000" stroke-width="1.25" stroke-linecap="butt"/><path d="M 354,362 L 346,364.5 L 346,359.5 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<g><path d="M 320,371 L 347.6,371" fill="none" stroke="#ff0000" stroke-width="1.25" stroke-linecap="butt"/><path d="M 354,371 L 346,373.5 L 346,368.5 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<g><path d="M 320,380 L 347.6,380" fill="none" stroke="#ff0000" stroke-width="1.25" stroke-linecap="butt"/><path d="M 354,380 L 346,382.5 L 346,377.5 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<g><path d="M 320,389 L 347.6,389" fill="none" stroke="#ff0000" stroke-width="1.25" stroke-linecap="butt"/><path d="M 354,389 L 346,391.5 L 346,386.5 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<g><path d="M 320,398 L 347.6,398" fill="none" stroke="#ff0000" stroke-width="1.25" stroke-linecap="butt"/><path d="M 354,398 L 346,400.5 L 346,395.5 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<path d="M 354,358 L 354,402" fill="none" stroke="#ff0000" stroke-width="0.8" stroke-linecap="butt"/>
+<text x="368" y="386.8" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="20" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>σ</tspan></text>
+<text x="440" y="386.46" fill="#000000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="19" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>σ = N / A</tspan></text>
+</g>
+<g inkscape:groupmode="layer" id="querschnitt" inkscape:label="06 Querschnitt A und 2A" data-ebene="querschnitt">
+<text x="640" y="138.76" fill="#444444" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="14" font-style="normal" text-anchor="start" xml:space="preserve"><tspan font-family="'Source Sans Pro','Source Sans 3','Helvetica Neue',Arial,sans-serif" font-style="normal">Querschnitt von vorn</tspan></text>
+<path d="M 640,160 L 724,160 L 724,244 L 640,244 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<circle cx="650.5" cy="170.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="650.5" cy="191.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="650.5" cy="212.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="650.5" cy="233.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="671.5" cy="170.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="671.5" cy="191.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="671.5" cy="212.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="671.5" cy="233.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="692.5" cy="170.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="692.5" cy="191.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="692.5" cy="212.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="692.5" cy="233.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="713.5" cy="170.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="713.5" cy="191.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="713.5" cy="212.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="713.5" cy="233.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<text x="738" y="208.12" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>A</tspan></text>
+<text x="738" y="234.12" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>F</tspan></text>
+<text x="774" y="221.12" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>→  σ</tspan></text>
+<path d="M 640,284 L 808,284 L 808,368 L 640,368 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<circle cx="650.5" cy="294.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="650.5" cy="315.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="650.5" cy="336.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="650.5" cy="357.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="671.5" cy="294.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="671.5" cy="315.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="671.5" cy="336.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="671.5" cy="357.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="692.5" cy="294.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="692.5" cy="315.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="692.5" cy="336.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="692.5" cy="357.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="713.5" cy="294.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="713.5" cy="315.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="713.5" cy="336.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="713.5" cy="357.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="734.5" cy="294.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="734.5" cy="315.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="734.5" cy="336.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="734.5" cy="357.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="755.5" cy="294.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="755.5" cy="315.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="755.5" cy="336.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="755.5" cy="357.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="776.5" cy="294.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="776.5" cy="315.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="776.5" cy="336.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="776.5" cy="357.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="797.5" cy="294.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="797.5" cy="315.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="797.5" cy="336.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<circle cx="797.5" cy="357.5" r="2.6" fill="#ff0000" stroke="#ff0000" stroke-width="0.8"/>
+<text x="822" y="332.12" fill="#006414" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>2A</tspan></text>
+<text x="822" y="358.12" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>F</tspan></text>
+<text x="858" y="345.12" fill="#ff0000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="italic" text-anchor="start" xml:space="preserve"><tspan>→  σ / </tspan><tspan font-style="normal">2</tspan></text>
+</g>
+</svg>

@@ -1,0 +1,12 @@
+### Aufgabe 5.1 · Kennwerte aus dem Zugversuch
+
+![](../grafiken/spannung/aufgabe-5-1.svg){width=75%}
+
+Um die elastischen Kennwerte eines isotropen, metallischen Werkstoffs zu bestimmen, wird eine Probe im
+Zugversuch belastet. Unter der Kraft $F$ misst man an der Messstrecke die Länge $l_1$ und den Durchmesser
+$d_1$. Die Verformungen liegen noch im elastischen Bereich.
+
+Ermitteln Sie 1. den Elastizitätsmodul $E$, 2. die Querkontraktionszahl $\nu$ und 3. den Schubmodul $G$.
+4. Um welchen Werkstoff könnte es sich handeln?
+
+**Gegeben:** $F$ = 14 253 N, $l_0$ = 80,714 mm, $d_0$ = 10,005 mm, $l_1$ = 80,920 mm, $d_1$ = 9,996 mm

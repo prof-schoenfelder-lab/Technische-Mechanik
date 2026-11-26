@@ -43,9 +43,9 @@
 .scrolly-sticky { flex-direction: column; }
 .scrolly-titel {
   align-self: stretch; flex: 0 0 auto;
-  font-weight: 600; font-size: 1.35rem; line-height: 1.25; color: #222;
-  min-height: 1.7rem; margin: 0 0 0.4rem;
-  border-left: 4px solid #8a8f96; padding-left: 0.6rem;
+  font-weight: 600; font-size: 2.025rem; line-height: 1.2; color: #222;   /* 1,5-fach seit 26.11.2026 (vorher 1.35rem) */
+  min-height: 1.7rem; margin: 0 0 0.5rem;
+  border-left: 5px solid #8a8f96; padding-left: 0.7rem;
 }
 
 @keyframes tm-titel { from { opacity: 0; } to { opacity: 1; } }
@@ -125,7 +125,7 @@ html.beamer { font-size: 125%; }
 @media print { .hilfe-schalter, .beamer-schalter { display: none; } }
 html.beamer .beamer-schalter { background: #0050b4; color: #fff; }
 html.beamer .scrolly-sticky { top: 3.6rem; height: calc(100vh - 4.5rem); }
-html.beamer .scrolly-titel { font-size: 1.7rem; }
+html.beamer .scrolly-titel { font-size: 2.55rem; }   /* 1,5-fach (vorher 1.7rem) */
 html.beamer #quarto-header { opacity: 0.25; }
 html.beamer .schritt:not(.aktiv) { opacity: 0.12; }
 html.beamer .scrolly { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 1.5rem; }
@@ -240,9 +240,10 @@ iframe.notebook-rahmen {
    (Full-HD-Beamer) fast die ganze Breite, zentriert über der Lesespalte. */
 @media (min-width: 1200px) {
   .scrolly {
-    --scrolly-breite: min(1840px, calc(100vw - 4rem));
+    /* links 2,5 rem frei für das Inhaltsverzeichnis am Rand (assets/inhalt-rand.html), rechts 2 rem */
+    --scrolly-breite: min(1840px, calc(100vw - 4.5rem));
     width: var(--scrolly-breite);
-    margin-left: calc((100% - var(--scrolly-breite)) / 2);
+    margin-left: calc((100% - var(--scrolly-breite)) / 2 + 0.25rem);
   }
 }
 

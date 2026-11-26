@@ -1,0 +1,827 @@
+---
+title: "Spannung, Dehnung, Stoffgesetz"
+subtitle: "Festigkeitslehre · Vorlesung 5"
+page-layout: full
+---
+
+::: {.merke}
+**Worum geht es?** Bisher waren alle Körper starr. Die Statik hat uns die Kräfte geliefert, auch die inneren
+Kräfte, die Schnittgrößen. Jetzt fragen wir, was diese Kräfte im Bauteil **anrichten**: Wie hoch ist der Werkstoff
+beansprucht, und wie stark verformt er sich? Dazu brauchen wir drei Begriffe: **Spannung**, **Dehnung** und das
+**Stoffgesetz**, das beide verbindet. Den Schlüssel liefert die Feder aus Vorlesung 0.
+
+::: {.content-visible when-format="html"}
+Tipp: Mit **Bild↓ / Bild↑** oder **→ / ←** springen Sie von Schritt zu Schritt; Taste **B** schaltet den Beamer-Modus.
+Hinter **„Ausführlicher“** finden Sie zu vielen Schritten eine längere Erklärung zum Nachlesen.
+:::
+:::
+
+## Einordnung
+
+:::: {.scrolly svg="../grafiken/spannung/einordnung.svg"}
+
+::: {.schritt zeige="baum bisher" zoom="0 0 10 10"}
+### Bisher: Stereostatik
+
+Erinnern Sie sich an die Gliederung der Mechanik aus Vorlesung 1. In den Vorlesungen 0 bis 4 waren alle
+Körper **starr**: Wir haben Lagerreaktionen und Schnittgrößen allein aus dem Gleichgewicht berechnet. Das ist
+die **Stereostatik**.
+:::
+
+::: {.schritt zeige="baum bisher jetzt" dimmen="bisher" zoom="0 0 10 10"}
+### Jetzt: Elastostatik
+
+Ab heute wechseln wir in die **Elastostatik**, auch **Festigkeitslehre** genannt. Die Körper sind jetzt
+**verformbar**. Die Kräfte aus der Statik brauchen wir weiter; neu kommt die Frage hinzu, was sie im Werkstoff
+bewirken.
+:::
+
+::::
+
+## Vom starren zum elastischen Körper
+
+:::: {.scrolly svg="../grafiken/mathematik/elastischer-koerper.svg"}
+
+::: {.schritt zeige="starr reaktionen-starr" zoom="330 40 10 10"}
+### Was die Statik liefert
+
+In der Statik haben wir am **starren** Körper gerechnet: Lagerkräfte aus dem Gleichgewicht, danach die
+Schnittgrößen $N$, $Q$ und $M$ in jedem Querschnitt.
+
+Diese Kräfte hängen **nicht vom Werkstoff** ab. Ein Träger aus Stahl und einer aus Holz haben bei gleicher Last
+dieselben Lagerkräfte und dieselben Schnittgrößen.
+:::
+
+::: {.schritt zeige="starr reaktionen-starr elastisch reaktionen-elastisch" dimmen="starr reaktionen-starr" zoom="330 40 10 10"}
+### Zwei neue Fragen
+
+Ein wirkliches Bauteil verformt sich. Ob es seine Aufgabe erfüllt, entscheiden zwei Fragen:
+
+- **Festigkeit:** Hält der Werkstoff die Beanspruchung aus?
+  Die Beanspruchung im Bauteil muss kleiner sein als die zulässige.
+- **Steifigkeit:** Bleibt die Verformung klein genug?
+  Eine Decke darf nicht sichtbar durchhängen, eine Welle darf nicht klemmen.
+
+Ziel ist ein Bauteil, das **sicher** ist und dabei **wenig Werkstoff** braucht. Hier kommt der Werkstoff ins
+Spiel: Stahl und Holz verhalten sich sehr verschieden.
+:::
+
+::: {.schritt zeige="starr reaktionen-starr elastisch reaktionen-elastisch" zoom="330 40 10 10"}
+### Annahmen
+
+In der Festigkeitslehre gelten in diesem Semester vier Annahmen:
+
+(A) Der Körper ist **verformbar**, nicht mehr starr.
+
+(B) Die Verformungen sind **klein** gegenüber den Abmessungen des Bauteils.
+
+(C) Das **Gleichgewicht** stellen wir deshalb weiterhin am **unverformten** Bauteil auf. Alles, was Sie in der
+Statik gelernt haben, gilt weiter.
+
+(D) Der Werkstoff ist **homogen** (an jeder Stelle gleich) und **isotrop** (in jeder Richtung gleich).
+
+::: {.vertiefung titel="Ausführlicher: homogen und isotrop"}
+Stahl, Aluminium oder Gummi sind in guter Näherung homogen und isotrop. **Holz** dagegen ist **anisotrop**: längs
+der Faser ist es viel steifer und fester als quer dazu. Ein **Ast** im Holz macht es außerdem **inhomogen**, denn an
+dieser Stelle verlaufen die Fasern anders.
+:::
+:::
+
+::::
+
+## Beanspruchungsarten
+
+:::: {.scrolly svg="../grafiken/spannung/beanspruchungsarten.svg"}
+
+::: {.schritt zeige="zug biegung torsion schub" zoom="0 0 10 10"}
+### Arten der Beanspruchung
+
+Je nachdem, wie die Lasten angreifen, unterscheidet man:
+
+1. **Zug und Druck:** Kräfte in Richtung der Stabachse, Schnittgröße $N$
+2. **Biegung:** Momente, die den Balken krümmen, Schnittgröße $M$
+3. **Torsion:** Momente um die Stabachse, die den Stab verdrehen
+4. **Schub (Scherung):** Kräfte, die zwei Teile gegeneinander verschieben, z. B. an einem Bolzen
+:::
+
+::: {.schritt zeige="zug" dimmen="biegung torsion schub" zoom="0 0 10 10"}
+### Heute: Zug und Druck
+
+Wir beginnen mit dem einfachsten Fall, dem **Stab unter Zug oder Druck**. An ihm lassen sich Spannung, Dehnung
+und Stoffgesetz am klarsten zeigen. Biegung und Torsion folgen in eigenen Vorlesungen.
+:::
+
+::::
+
+## Die Feder als Modell
+
+:::: {.scrolly svg="../grafiken/spannung/feder-modell.svg"}
+
+::: {.schritt zeige="feder" zoom="40 20 10 10"}
+### Erinnerung: die Feder
+
+Aus Vorlesung 0 kennen Sie die **Feder**. Unter der Kraft $F$ verschiebt sich ihr Ende um $u$; ohne Kraft geht
+sie wieder zurück. Bei einer linearen Feder gilt das **Federgesetz**
+
+$$
+F = c\,u .
+$$
+
+Die Federsteifigkeit $c$ sagt, wie viel Kraft man für einen Millimeter Verschiebung braucht.
+:::
+
+::: {.schritt zeige="feder stab" dimmen="feder" zoom="40 20 10 10"}
+### Ein Stab ist eine Feder
+
+Ein Stab unter Zug verhält sich genauso, nur viel steifer. In Vorlesung 0 hatten wir seine Federsteifigkeit
+schon angegeben:
+
+$$
+c = \frac{E\,A}{l}
+$$
+
+Woher diese Formel kommt, klären wir heute. Eines fällt sofort auf: $c$ hängt nicht nur vom Werkstoff ab
+(Elastizitätsmodul $E$), sondern auch von der **Querschnittsfläche** $A$ und der **Länge** $l$.
+:::
+
+::: {.schritt zeige="feder stab parallel" dimmen="feder stab" zoom="40 20 10 10"}
+### Doppelte Fläche
+
+Zwei gleiche Federn **nebeneinander** teilen sich die Last. Für dieselbe Verschiebung $u$ braucht man die
+**doppelte Kraft** $2F$: Die Steifigkeit verdoppelt sich.
+
+Ein Stab mit doppelter Querschnittsfläche verhält sich genauso. Man kann sich vorstellen, dass er aus zwei
+Stäben nebeneinander besteht.
+:::
+
+::: {.schritt zeige="feder stab parallel reihe" dimmen="feder stab parallel" zoom="40 20 10 10"}
+### Doppelte Länge
+
+Zwei gleiche Federn **hintereinander** tragen beide die volle Kraft $F$. Jede verlängert sich um $u$, zusammen
+um $2u$: Die Steifigkeit halbiert sich.
+
+Ein doppelt so langer Stab verhält sich genauso. Die Federsteifigkeit $c$ beschreibt also das **Bauteil**,
+nicht den **Werkstoff**. Um den Werkstoff zu beschreiben, müssen wir die Kraft **auf die Fläche** und die
+Verlängerung **auf die Länge** beziehen. Das führt auf **Spannung** und **Dehnung**.
+:::
+
+::::
+
+## Spannung
+
+:::: {.scrolly svg="../grafiken/spannung/spannung.svg"}
+
+::: {.schritt zeige="system schnitt" zoom="40 10 10 10"}
+### Ein Stab unter Zug
+
+Ein gerader Stab mit der Querschnittsfläche $A$ wird an beiden Enden mit $F$ gezogen. Wir schneiden ihn
+gedanklich an einer beliebigen Stelle durch, wie bei den Schnittgrößen.
+:::
+
+::: {.schritt zeige="system schnitt normalkraft" dimmen="system schnitt" zoom="40 10 10 10"}
+### Die Normalkraft
+
+Am linken Teil verlangt das Gleichgewicht im Schnitt die **Normalkraft**
+
+$$
+N = F .
+$$
+
+So haben wir in Vorlesung 4 gerechnet: Die Normalkraft fasst alles zusammen, was im Schnitt übertragen wird.
+Sie sagt aber nichts darüber, **wie** das geschieht.
+:::
+
+::: {.schritt zeige="system schnitt normalkraft federn" dimmen="system schnitt normalkraft" zoom="40 10 10 10"}
+### Viele kleine Federn
+
+In Wirklichkeit hält der Werkstoff über die **ganze Schnittfläche** zusammen. Stellen Sie sich den Querschnitt
+als **viele kleine Federn** vor, die die beiden Teile verbinden. Jede überträgt einen kleinen Teil der Kraft;
+zusammen ergeben sie $N$.
+
+Wird der Stab gleichmäßig gezogen, dehnen sich alle Federchen gleich und tragen **gleich viel**.
+:::
+
+::: {.schritt zeige="system schnitt normalkraft federn spannung" dimmen="system schnitt normalkraft federn" zoom="40 10 10 10"}
+### Kraft je Fläche
+
+Die Kraft verteilt sich also gleichmäßig über die Fläche. Diese **auf die Fläche bezogene Kraft** heißt
+**Spannung**:
+
+$$
+\sigma = \frac{N}{A}
+$$
+
+Einheit: $\text{N/mm}^2 = \text{MPa}$ (Megapascal).
+
+Die Spannung sagt, wie viel Kraft **jedes Stück** des Querschnitts trägt, und damit, wie hoch der Werkstoff
+beansprucht ist.
+:::
+
+::: {.schritt zeige="normalkraft spannung querschnitt" dimmen="normalkraft spannung" zoom="40 10 10 10"}
+### Doppelte Fläche, gleiche Kraft
+
+Jetzt verdoppeln wir die Querschnittsfläche und lassen die Kraft $F$ gleich. Im doppelten Querschnitt gibt es
+**doppelt so viele** Federchen. Dieselbe Kraft verteilt sich auf mehr Federchen, jedes trägt nur noch die
+**Hälfte**. Die Spannung sinkt auf die Hälfte:
+
+$$
+\begin{aligned}
+\sigma_2 &= \frac{F}{2A}\\[2pt]
+&= \frac{\sigma}{2}
+\end{aligned}
+$$
+
+Die Spannung sagt also, wie stark **jedes Stück** des Querschnitts belastet ist. Ein dickeres Bauteil ist bei
+gleicher Kraft geringer beansprucht.
+
+**Zahlenbeispiel:** Ein Rundstab mit $d = 10$ mm trägt $N = 10$ kN:
+
+$$
+\begin{aligned}
+A &= \frac{\pi\,d^2}{4}\\[2pt]
+&= 78{,}5\ \text{mm}^2\\[6pt]
+\sigma &= \frac{10\,000\ \text{N}}{78{,}5\ \text{mm}^2}\\[2pt]
+&= 127\ \text{N/mm}^2
+\end{aligned}
+$$
+:::
+
+::::
+
+:::: {.scrolly svg="../grafiken/spannung/normal-schub.svg"}
+
+::: {.schritt zeige="schraeg spannung-schraeg" zoom="40 40 10 10"}
+### Ein schräger Schnitt
+
+Schneiden wir den Stab **schräg**, wirkt die Spannung weiterhin in Stabrichtung. Sie steht dann aber nicht mehr
+senkrecht auf der Schnittfläche.
+:::
+
+::: {.schritt zeige="schraeg spannung-schraeg zerlegung" dimmen="schraeg spannung-schraeg" zoom="40 40 10 10"}
+### Normalspannung und Schubspannung
+
+Man zerlegt die Spannung deshalb in zwei Anteile:
+
+- **Normalspannung $\sigma$**: senkrecht zur Schnittfläche; sie zieht die Teile auseinander oder drückt sie
+  zusammen,
+- **Schubspannung $\tau$**: in der Schnittfläche; sie will die Teile gegeneinander verschieben.
+
+Schneiden wir **senkrecht** zur Stabachse, gibt es nur die Normalspannung $\sigma = N/A$. Schubspannungen treten
+bei Querkraft, Torsion und an Bolzen auf. Wie Spannungen in verschiedenen Schnittrichtungen zusammenhängen,
+behandeln wir später.
+:::
+
+::::
+
+:::: {.scrolly svg="../grafiken/spannung/abgesetzter-stab.svg"}
+
+::: {.schritt zeige="system" zoom="60 20 10 10"}
+### Spannung längs des Stabes
+
+Ein **abgesetzter Stab**: links mit der Fläche $A$, rechts mit $2A$, an beiden Enden mit $F$ gezogen.
+:::
+
+::: {.schritt zeige="system verlauf-N verlauf-sigma" zoom="60 20 10 10"}
+### Die Spannung springt
+
+Die **Normalkraft** ist überall gleich, $N = F$; das liefert die Statik, unabhängig vom Querschnitt.
+
+Die **Spannung** dagegen hängt von der Fläche ab:
+
+$$
+\sigma(x) = \frac{N(x)}{A(x)}
+$$
+
+Im dünnen Teil ist sie **doppelt so groß** wie im dicken. Der dünne Teil ist höher beansprucht; dort würde der
+Stab zuerst versagen.
+
+::: {.vertiefung titel="Ausführlicher: Wo gilt σ = N/A? (Prinzip von St. Venant)"}
+Die gleichmäßige Verteilung $\sigma = N/A$ gilt in **genügend großem Abstand** von der Stelle, an der die Last
+eingeleitet wird. Greift die Kraft z. B. über einen Bolzen an, ist die Spannung dort ungleichmäßig verteilt.
+Schon etwa eine Querschnittsbreite weiter hat sie sich ausgeglichen. Das ist das **Prinzip von St. Venant**
+(Adhémar Barré de Saint-Venant, 1797–1886).
+
+Dasselbe gilt am Absatz: Direkt am Übergang ist die Spannung ungleichmäßig. Wie stark, zeigt der nächste
+Abschnitt.
+:::
+:::
+
+::::
+
+:::: {.scrolly svg="../grafiken/spannung/kerbe.svg"}
+
+::: {.schritt zeige="platte" zoom="60 40 10 10"}
+### Eine Bohrung in der Platte
+
+Eine breite Platte wird gleichmäßig mit der Spannung $\sigma_0$ gezogen. In der Mitte hat sie eine kleine
+**Bohrung**.
+:::
+
+::: {.schritt zeige="platte verteilung" zoom="60 40 10 10"}
+### Spannungsspitze am Lochrand
+
+Im Querschnitt durch die Bohrung ist die Spannung **nicht** mehr gleichmäßig verteilt. Die Kraftlinien müssen
+um das Loch herum; am Lochrand drängen sie sich zusammen. Dort steigt die Spannung auf etwa das **Dreifache**:
+
+$$
+\sigma_{\max} = k_t\,\sigma_0 \qquad\text{mit}\qquad k_t \approx 3
+$$
+
+Die **Formzahl** $k_t$ hängt nur von der Geometrie ab und steht für Kerben, Bohrungen und Absätze in
+Tabellenbüchern. Solche Stellen heißen **Kerben**. An ihnen beginnen viele Brüche, etwa Ermüdungsrisse.
+
+::: {.vertiefung titel="Ausführlicher: Bezugsspannung der Formzahl"}
+$k_t \approx 3$ gilt für ein **kleines** Loch in einer **breiten** Platte, bezogen auf die Spannung $\sigma_0$ im
+ungeschwächten Teil. Tabellen beziehen $k_t$ oft auf die **Nennspannung** im geschwächten Querschnitt,
+$\sigma_\text{n} = F/A_\text{n}$. Dann ist $k_t$ etwas kleiner. Achten Sie beim Nachschlagen darauf, worauf sich der Wert
+bezieht.
+:::
+:::
+
+::::
+
+## Dehnung
+
+:::: {.scrolly svg="../grafiken/spannung/gummiband.svg"}
+
+::: {.schritt zeige="lineal band0" zoom="40 30 10 10"}
+### Ein Gummiband am Lineal
+
+Ein Gummiband liegt an einem Lineal, das linke Ende ist bei 0 festgehalten. Auf dem Band sind Striche bei
+0, 2, 4, 6, 8 und 10 cm.
+
+Probieren Sie es selbst aus: Ein Gummiband, ein Lineal und ein Stift genügen.
+:::
+
+::: {.schritt zeige="lineal band0 band1 wege" dimmen="band0" zoom="40 30 10 10"}
+### Jeder Strich wandert
+
+Jetzt ziehen wir das rechte Ende von 10 auf 15 cm. Alle Striche wandern mit, aber **verschieden weit**:
+
+| Strich bei | neue Lage | Verschiebung $u$ |
+|:-:|:-:|:-:|
+| 0 cm | 0 cm | 0 |
+| 4 cm | 6 cm | 2 cm |
+| 10 cm | 15 cm | 5 cm |
+
+Die Verschiebung $u$ wächst **gleichmäßig** mit dem Abstand vom festen Ende.
+:::
+
+::: {.schritt zeige="lineal band0 band1 wege stuecke" dimmen="band0 band1 wege" zoom="40 30 10 10"}
+### Jedes Stück dehnt sich gleich
+
+Betrachten wir einzelne Stücke: Aus jedem 2-cm-Stück wird ein 3-cm-Stück, egal ob am Anfang oder am Ende des
+Bandes. Jedes Stück wird um **denselben Anteil** länger.
+
+Dieser Anteil ist die **Dehnung**:
+
+$$
+\begin{aligned}
+\varepsilon &= \frac{\Delta l}{l}\\[2pt]
+&= \frac{1\ \text{cm}}{2\ \text{cm}}\\[2pt]
+&= 0{,}5 \;\;(50\,\%)
+\end{aligned}
+$$
+
+Für das ganze Band gilt dasselbe: $5\ \text{cm} / 10\ \text{cm} = 0{,}5$. Die Dehnung ist **dimensionslos** und
+hängt nicht davon ab, wie lang das betrachtete Stück ist.
+:::
+
+::: {.schritt zeige="lineal band0 band1 u-gerade" dimmen="lineal band0 band1" zoom="40 30 10 10"}
+### Dehnung ist die Steigung von u
+
+Tragen wir die Verschiebung $u$ über der ursprünglichen Lage $x$ der Striche auf, ergibt sich eine **Gerade**.
+Ihre Steigung ist die Dehnung.
+
+Damit ist auch die **doppelte Länge** aus dem Federmodell erklärt: Gleiche Dehnung auf doppelter Länge ergibt
+die doppelte Verlängerung.
+
+Bei Stahl ist die Dehnung viel kleiner als beim Gummiband: Bauteile dehnen sich im Betrieb meist nur um etwa
+$0{,}1\,\%$, also um einen Millimeter auf einen Meter.
+:::
+
+::::
+
+:::: {.scrolly svg="../grafiken/spannung/gummiband-knoten.svg"}
+
+::: {.schritt zeige="lineal band0" zoom="40 30 10 10"}
+### Dünn und dick
+
+Jetzt verknoten wir ein **dünnes** und ein **dickes** Gummiband, jedes 5 cm lang, Striche im Abstand von 1 cm.
+Das ist dasselbe wie der abgesetzte Stab von oben.
+:::
+
+::: {.schritt zeige="lineal band0 band1 wege" dimmen="band0" zoom="40 30 10 10"}
+### Der dünne Teil gibt mehr nach
+
+Wir ziehen das Ende auf 13 cm. Beide Teile tragen **dieselbe Kraft**, aber der dünne hat die kleinere Fläche
+und damit die **größere Spannung**. Er dehnt sich stärker:
+
+- dünner Teil: von 5 auf 7 cm, $\varepsilon = 2/5 = 0{,}4$
+- dicker Teil: von 5 auf 6 cm, $\varepsilon = 1/5 = 0{,}2$
+
+Innerhalb jedes Teils ist die Dehnung wieder gleichmäßig.
+:::
+
+::: {.schritt zeige="lineal band0 band1 u-knick" dimmen="lineal band0 band1" zoom="40 30 10 10"}
+### Dehnung an einer Stelle
+
+Die Verschiebung $u(x)$ hat jetzt einen **Knick**: Im dünnen Teil steigt sie steiler. Die Dehnung an einer
+Stelle ist die **Steigung** von $u(x)$:
+
+$$
+\varepsilon(x) = \frac{\mathrm du}{\mathrm dx}
+$$
+
+Ist die Dehnung überall gleich, wird daraus wieder $\varepsilon = \Delta l / l$. Dieser einfache Fall genügt
+für fast alles in dieser Vorlesung.
+
+::: {.vertiefung titel="Ausführlicher: Herleitung von ε = du/dx"}
+Ein kleines Stück der Länge $\mathrm dx$ beginnt bei $x$ und endet bei $x + \mathrm dx$. Sein Anfang verschiebt
+sich um $u$, sein Ende um $u + \mathrm du$. Die neue Länge ist $\mathrm dx + \mathrm du$, die Verlängerung also
+$\mathrm du$. Bezogen auf die alte Länge:
+
+$$
+\varepsilon = \frac{\mathrm du}{\mathrm dx}
+$$
+
+Umgekehrt erhält man die Verschiebung durch Aufsummieren der Dehnungen: $u(x) = \int_0^x \varepsilon\,\mathrm d\bar x$.
+:::
+
+::: {.notebook titel="Ausprobieren: Gummiband am Lineal" src="../notebooks/gummiband/index.html"}
+Ziehen Sie das Ende weiter und beobachten Sie die Striche: Bleibt die Dehnung jedes Stücks gleich? Wie ändert
+sich das Bild, wenn ein Teil des Bandes dicker ist? Sagen Sie **vorher** voraus, welcher Teil sich stärker
+dehnt.
+:::
+:::
+
+::::
+
+:::: {.scrolly svg="../grafiken/spannung/waermedehnung.svg"}
+
+::: {.schritt zeige="stab warm" zoom="0 0 10 10"}
+### Dehnung ohne Kraft: Wärme
+
+Ein Stab kann sich auch **ohne Kraft** dehnen: Wird er um $\Delta T$ erwärmt, wird er länger. Diese
+**Wärmedehnung** ist proportional zur Temperaturänderung:
+
+$$
+\varepsilon_\mathrm{T} = \alpha_\mathrm{T}\,\Delta T
+$$
+
+Der **Wärmeausdehnungskoeffizient** $\alpha_\mathrm{T}$ beträgt für Stahl etwa $12 \cdot 10^{-6}$ 1/K, für Kupfer
+$17 \cdot 10^{-6}$ 1/K, für Aluminium $23 \cdot 10^{-6}$ 1/K. Ein 10 m langer Stahlträger wird bei 30 K
+Erwärmung also um 3,6 mm länger.
+
+Kann sich der Stab frei ausdehnen, entsteht dabei **keine Spannung**.
+:::
+
+::: {.schritt zeige="stab kalt" zoom="0 0 10 10"}
+### Abkühlen
+
+Bei Abkühlung ist $\Delta T < 0$: Die Wärmedehnung ist **negativ**, der Stab wird kürzer, ebenfalls ohne
+Spannung.
+
+Wirken Kraft und Temperatur zusammen, **addieren** sich die Dehnungen. Wie das geht, zeigt das Beispiel am
+Ende, sobald wir das Stoffgesetz kennen.
+:::
+
+::::
+
+## Stoffgesetz
+
+:::: {.scrolly svg="../grafiken/spannung/stoffgesetz.svg"}
+
+::: {.schritt zeige="feder achsen-fu linie-fu" zoom="0 0 10 10"}
+### Ausgangspunkt: die Feder
+
+Bei der Feder hängen Kraft und Verschiebung linear zusammen:
+
+$$
+F = c\,u
+$$
+
+Die Kennlinie ist eine Gerade, ihre Steigung ist die Federsteifigkeit $c$. Wir wissen aber schon: $c$ hängt
+von Fläche und Länge des Bauteils ab, nicht nur vom Werkstoff.
+:::
+
+::: {.schritt zeige="feder achsen-se linie-se" dimmen="feder" zoom="0 0 10 10"}
+### Von F und u zu σ und ε
+
+Teilen wir die Kraft durch die Fläche und die Verlängerung durch die Länge, so wird aus $F$ die Spannung
+$\sigma$ und aus $u$ die Dehnung $\varepsilon$. Die Gerade bleibt eine Gerade:
+
+$$
+\sigma = E\,\varepsilon
+$$
+
+Das ist das **Hookesche Gesetz** (Robert Hooke, 1678), das **Stoffgesetz** dieser Vorlesung. Die Steigung
+$E$ heißt **Elastizitätsmodul**, Einheit N/mm². Anders als $c$ hängt $E$ **nur vom Werkstoff** ab.
+:::
+
+::: {.schritt zeige="probe achsen-se linie-se" dimmen="linie-se" zoom="0 0 10 10"}
+### Gemessen im Zugversuch
+
+Den Zusammenhang misst man im **Zugversuch**: Eine genormte Probe mit dem Querschnitt $A_0$ wird langsam
+gezogen. Man misst die Kraft $F$ und die Verlängerung $\Delta l$ der Messlänge $l_0$ und rechnet um:
+
+$$
+\sigma = \frac{F}{A_0}, \qquad \varepsilon = \frac{\Delta l}{l_0}
+$$
+
+Weil Fläche und Länge herausgerechnet sind, gilt das Ergebnis für jedes Bauteil aus diesem Werkstoff.
+:::
+
+::: {.schritt zeige="probe achsen-se materialien" dimmen="probe" zoom="0 0 10 10"}
+### Verschiedene Werkstoffe
+
+Jeder Werkstoff hat seine eigene Gerade. Je **steiler** sie ist, desto **steifer** ist der Werkstoff: Für
+dieselbe Spannung dehnt er sich weniger.
+
+| Werkstoff | $E$ in N/mm² |
+|:--|--:|
+| Stahl | 210 000 |
+| Kupfer | 120 000 |
+| Aluminium | 70 000 |
+| Beton | ≈ 30 000 |
+| Holz (längs der Faser) | ≈ 10 000 |
+| Kunststoff (z. B. PVC) | ≈ 3 000 |
+| Gummi | ≈ 1 … 5 |
+
+Gummi ist rund 100 000-mal weicher als Stahl. Deshalb konnten wir die Dehnung am Gummiband mit bloßem Auge
+sehen.
+:::
+
+::: {.schritt zeige="achsen-se materialien nichtlinear" zoom="0 0 10 10"}
+### Der ganze Zugversuch
+
+Zieht man weiter, endet der lineare Bereich (Punkt am Ende der Geraden), und jeder Werkstoff verhält sich
+anders:
+
+- **Stahl** beginnt an der **Streckgrenze** $R_e$ zu **fließen**: Die Dehnung wächst, ohne dass die Spannung
+  steigt. Danach verfestigt er sich bis zur **Zugfestigkeit** $R_m$, schnürt sich ein und bricht.
+- **Aluminium** geht allmählich in den nichtlinearen Bereich über, ohne ausgeprägtes Fließen.
+- **Kunststoff** ist früh nichtlinear und dehnt sich bis zum Bruch sehr weit.
+
+Jenseits des linearen Bereichs bleibt nach dem Entlasten eine Verformung zurück: Der Werkstoff ist
+**plastisch** verformt.
+:::
+
+::: {.schritt zeige="achsen-se materialien" zoom="0 0 10 10"}
+### Uns interessiert der lineare Bereich
+
+Bauteile werden so ausgelegt, dass sie im **linearen, elastischen** Bereich bleiben. Die nichtlinearen Teile
+blenden wir deshalb wieder aus. Was bleibt, ist für jeden Werkstoff eine Gerade, und ihr **Anstieg** ist die
+**Steifigkeit des Werkstoffs**, der Elastizitätsmodul $E$.
+
+Wie klein die Dehnungen dabei sind, zeigt Baustahl S235 mit der Streckgrenze $R_e = 235$ N/mm²:
+
+$$
+\begin{aligned}
+\varepsilon &= \frac{R_e}{E}\\[2pt]
+&= \frac{235\ \text{N/mm}^2}{210\,000\ \text{N/mm}^2}\\[2pt]
+&= 0{,}0011 \;\;(0{,}11\,\%)
+\end{aligned}
+$$
+
+Ein 1 m langer Stab wird also höchstens etwa 1 mm länger, dann beginnt er zu fließen. Darauf beruht
+Annahme (B).
+:::
+
+::: {.schritt zeige="feder achsen-se materialien" dimmen="achsen-se materialien" zoom="0 0 10 10"}
+### Der Kreis schließt sich
+
+Jetzt können wir die Federsteifigkeit des Stabes herleiten. Wir beginnen mit der Normalkraft, setzen das
+Hookesche Gesetz ein und dann die Dehnung $\varepsilon = \Delta l / l$:
+
+$$
+\begin{aligned}
+N &= \sigma\,A\\[2pt]
+&= E\,\varepsilon\,A\\[2pt]
+&= \frac{E\,A}{l}\,\Delta l
+\end{aligned}
+$$
+
+Das ist das Federgesetz $F = c\,u$ mit $c = E\,A/l$. Umgestellt nach der Verlängerung:
+
+$$
+\Delta l = \frac{N\,l}{E\,A}
+$$
+
+Die Feder aus Vorlesung 0 besteht also aus drei Teilen: der **Spannung** (Kraft je Fläche), der
+**Dehnung** (Verlängerung je Länge) und dem **Stoffgesetz** dazwischen. Nur $E$ beschreibt den Werkstoff.
+:::
+
+::::
+
+:::: {.scrolly svg="../grafiken/spannung/weitere-kennwerte.svg"}
+
+::: {.schritt zeige="quer" zoom="20 20 10 10"}
+### Querkontraktion
+
+Wird ein Stab länger, wird er zugleich **dünner**. Die Dehnung quer zur Stabachse ist proportional zur Dehnung
+längs:
+
+$$
+\varepsilon_q = -\nu\,\varepsilon
+$$
+
+Die **Querkontraktionszahl** $\nu$ (sprich „nü“) liegt zwischen 0 und 0,5: Metalle etwa 0,3, Beton etwa 0,2,
+Gummi fast 0,5 (Gummi behält sein Volumen).
+:::
+
+::: {.schritt zeige="quer schub" dimmen="quer" zoom="20 20 10 10"}
+### Schubspannung und Gleitung
+
+Eine **Schubspannung** $\tau$ verschiebt die Oberseite eines Elements gegenüber der Unterseite. Die rechten
+Winkel verändern sich um die **Gleitung** $\gamma$ (einen kleinen Winkel). Auch hier gilt ein lineares Gesetz:
+
+$$
+\tau = G\,\gamma
+$$
+
+Der **Schubmodul** $G$ hängt bei isotropen Werkstoffen mit $E$ und $\nu$ zusammen:
+
+$$
+G = \frac{E}{2\,(1 + \nu)}
+$$
+
+Für Stahl: $G = 210\,000 / 2{,}6 \approx 81\,000$ N/mm².
+:::
+
+::::
+
+## Beispiel: Kupferkabel
+
+:::: {.scrolly svg="../grafiken/spannung/kupferkabel.svg"}
+
+::: {.schritt zeige="system" zoom="40 30 10 10"}
+### Aufgabe
+
+An einem Kupferkabel hängt ein Bauteil der Masse $m$.
+
+**Gegeben:** $l = 0{,}5$ m, $A = 6{,}8$ mm², $m = 80$ kg, $E = 120\,000$ N/mm²,
+$\alpha_\mathrm{T} = 17 \cdot 10^{-6}$ 1/K, Raumtemperatur $T_0 = 20$ °C
+
+**Gesucht:**
+
+① Spannung, Dehnung und Verlängerung $\Delta l_0$ unter der Last bei $T_0$
+
+② Verlängerung, wenn sich das Kabel auf $65$ °C erwärmt
+
+③ Verlängerung, wenn es auf $-10$ °C abkühlt
+:::
+
+::: {.schritt zeige="system fkb" dimmen="system" zoom="40 30 10 10"}
+### ① Normalkraft und Spannung
+
+Wir schneiden das Kabel über der Masse:
+
+$$
+\uparrow:\quad N - m\,g = 0 \qquad(1)
+$$
+
+$$
+\begin{aligned}
+&\text{aus (1):}\quad \begin{aligned} N &= m\,g\\ &= 80\ \text{kg} \cdot 9{,}81\ \text{m/s}^2\\ &= 784{,}8\ \text{N} \end{aligned}
+\end{aligned}
+$$
+
+Die Spannung im Kabel:
+
+$$
+\begin{aligned}
+\sigma &= \frac{N}{A}\\[2pt]
+&= \frac{784{,}8\ \text{N}}{6{,}8\ \text{mm}^2}\\[2pt]
+&= 115{,}4\ \text{N/mm}^2
+\end{aligned}
+$$
+:::
+
+::: {.schritt zeige="system fkb skala" dimmen="system fkb" zoom="40 30 10 10"}
+### ① Dehnung und Verlängerung
+
+Mit dem Hookeschen Gesetz:
+
+$$
+\begin{aligned}
+\varepsilon &= \frac{\sigma}{E}\\[2pt]
+&= \frac{115{,}4\ \text{N/mm}^2}{120\,000\ \text{N/mm}^2}\\[2pt]
+&= 9{,}62 \cdot 10^{-4} \;\;(0{,}096\,\%)\\[6pt]
+\Delta l_0 &= \varepsilon\,l\\[2pt]
+&= 9{,}62 \cdot 10^{-4} \cdot 500\ \text{mm}\\[2pt]
+&= 0{,}481\ \text{mm}
+\end{aligned}
+$$
+
+Ein halber Meter Kabel wird unter 80 kg nur um einen knappen halben Millimeter länger.
+:::
+
+::: {.schritt zeige="system fkb skala skala-warm" dimmen="system fkb skala" zoom="40 30 10 10"}
+### ② Erwärmung auf 65 °C
+
+Die Temperatur steigt um $\Delta T = 45$ K. Die Normalkraft ändert sich dabei **nicht**: Das Kabel hängt frei,
+die Masse bleibt dieselbe. Also bleiben auch $\sigma$ und die elastische Dehnung gleich. Dazu kommt die
+Wärmedehnung, die beiden Dehnungen **addieren** sich:
+
+$$
+\varepsilon = \frac{\sigma}{E} + \alpha_\mathrm{T}\,\Delta T
+$$
+
+$$
+\begin{aligned}
+\Delta l_1 &= \left(\frac{\sigma}{E} + \alpha_\mathrm{T}\,\Delta T\right) l\\[2pt]
+&= \left(9{,}62 \cdot 10^{-4} + 17 \cdot 10^{-6} \cdot 45\right) \cdot 500\ \text{mm}\\[2pt]
+&= 0{,}481\ \text{mm} + 0{,}383\ \text{mm}\\[2pt]
+&= 0{,}863\ \text{mm}
+\end{aligned}
+$$
+:::
+
+::: {.schritt zeige="system fkb skala skala-warm skala-kalt" dimmen="system fkb skala skala-warm" zoom="40 30 10 10"}
+### ③ Abkühlung auf −10 °C
+
+Jetzt ist $\Delta T = -30$ K: Die Wärmedehnung ist **negativ**, das Kabel **zieht sich zusammen**.
+
+$$
+\begin{aligned}
+\Delta l_2 &= \left(\frac{\sigma}{E} + \alpha_\mathrm{T}\,\Delta T\right) l\\[2pt]
+&= 0{,}481\ \text{mm} + 17 \cdot 10^{-6} \cdot (-30\ \text{K}) \cdot 500\ \text{mm}\\[2pt]
+&= 0{,}481\ \text{mm} - 0{,}255\ \text{mm}\\[2pt]
+&= 0{,}226\ \text{mm}
+\end{aligned}
+$$
+
+Die Masse hebt sich um $0{,}255$ mm, hängt aber immer noch tiefer als ohne Last. Die Spannung bleibt bei
+$115{,}4$ N/mm², denn das frei hängende Kabel kann sich ungehindert verkürzen.
+
+::: {.vertiefung titel="Ausführlicher: Und wenn sich das Kabel nicht frei verkürzen kann?"}
+Wäre das Kabel an beiden Enden fest eingespannt, könnte es sich beim Abkühlen nicht verkürzen. Dann entsteht
+eine zusätzliche **Wärmespannung**. Solche Aufgaben sind **statisch unbestimmt**: Das Gleichgewicht allein
+reicht nicht, man braucht zusätzlich die Verformung. Das ist Thema einer späteren Vorlesung.
+:::
+:::
+
+::::
+
+## Zusammenfassung
+
+:::: {.scrolly svg="../grafiken/spannung/zusammenfassung.svg"}
+
+::: {.schritt zeige="k-feder k-spannung k-dehnung" zoom="0 0 10 10"}
+### Spannung und Dehnung
+
+Ein Stab ist eine **Feder**. Damit der Werkstoff unabhängig von Fläche und Länge beschrieben werden kann,
+bezieht man
+
+- die Kraft auf die Fläche: **Spannung** $\sigma = N/A$ (viele kleine Federn im Querschnitt),
+- die Verlängerung auf die Länge: **Dehnung** $\varepsilon = \Delta l / l$ (Gummiband am Lineal).
+:::
+
+::: {.schritt zeige="k-feder k-spannung k-dehnung k-hooke k-weitere k-laenge" dimmen="k-feder k-spannung k-dehnung" zoom="0 0 10 10"}
+### Stoffgesetz und Längenänderung
+
+Das **Hookesche Gesetz** $\sigma = E\,\varepsilon$ verbindet beide. Dazu kommen Querkontraktion $\nu$, Schubmodul
+$G$ und Wärmedehnung $\alpha_\mathrm{T}\,\Delta T$. Zusammen ergibt sich die Längenänderung eines Stabes:
+
+$$
+\Delta l = \frac{N\,l}{E\,A} + \alpha_\mathrm{T}\,\Delta T\,l
+$$
+:::
+
+::: {.schritt zeige="k-feder k-spannung k-dehnung k-hooke k-weitere k-laenge" zoom="0 0 10 10"}
+### Das Wichtigste auf einen Blick
+
+Der Rechenweg ist immer derselbe:
+
+1. **Statik:** Normalkraft $N$ aus dem Gleichgewicht
+2. **Spannung:** $\sigma = N/A$
+3. **Stoffgesetz:** $\varepsilon = \sigma/E\ (+\,\alpha_\mathrm{T}\,\Delta T)$
+4. **Verformung:** $\Delta l = \varepsilon\,l$, bei mehreren Abschnitten addieren
+:::
+
+::::
+
+### Zum Nachschlagen
+
+::: {.merke}
+| Größe | Formel | Einheit |
+|:--|:--|:--|
+| Spannung | $\sigma = N/A$ | N/mm² = MPa |
+| Dehnung | $\varepsilon = \Delta l / l$, allgemein $\varepsilon = \mathrm du/\mathrm dx$ | – (oft in %) |
+| Hookesches Gesetz | $\sigma = E\,\varepsilon$ | $E$ in N/mm² |
+| Querkontraktion | $\varepsilon_q = -\nu\,\varepsilon$ | – |
+| Schub | $\tau = G\,\gamma$, $G = E/(2(1+\nu))$ | $G$ in N/mm² |
+| Wärmedehnung | $\varepsilon_\mathrm{T} = \alpha_\mathrm{T}\,\Delta T$ | $\alpha_\mathrm{T}$ in 1/K |
+| Längenänderung | $\Delta l = \dfrac{N\,l}{E\,A} + \alpha_\mathrm{T}\,\Delta T\,l$ | mm |
+| Stab als Feder | $c = E\,A/l$ | N/mm |
+
+Kennwerte Stahl: $E = 210\,000$ N/mm², $\nu = 0{,}3$, $G \approx 81\,000$ N/mm², $\alpha_\mathrm{T} \approx 12 \cdot 10^{-6}$ 1/K.
+:::
+
+**Weiter:** [Aufgaben zu Spannung, Dehnung, Stoffgesetz](../seminar/05-spannung-dehnung.qmd)
+
+::: {.small .text-muted}
+Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 2, Kap. 1 · Dankert/Dankert, Technische Mechanik,
+Kap. 12–14
+:::

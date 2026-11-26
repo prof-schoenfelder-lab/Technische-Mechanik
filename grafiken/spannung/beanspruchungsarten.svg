@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" width="602" height="442" viewBox="0 0 602 442" class="tm-grafik">
+<title>Beanspruchungsarten</title>
+<g inkscape:groupmode="layer" id="zug" inkscape:label="01 Zug und Druck" data-ebene="zug">
+<path d="M 14,14 L 294,14 L 294,214 L 14,214 Z" fill="#fafafa" stroke="#c8c8c8" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="154" y="202.12" fill="#000000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="normal" text-anchor="middle" xml:space="preserve"><tspan font-family="'Source Sans Pro','Source Sans 3','Helvetica Neue',Arial,sans-serif" font-style="normal">Zug / Druck</tspan></text>
+<path d="M 109,61 L 199,61 L 199,77 L 109,77 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<g><g><path d="M 109,69 L 82.6,69" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 73,69 L 85,65 L 85,73 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g></g>
+<g><g><path d="M 199,69 L 225.4,69" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 235,69 L 223,73 L 223,65 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g></g>
+<path d="M 109,121 L 199,121 L 199,137 L 109,137 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<g><g><path d="M 73,129 L 99.4,129" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 109,129 L 97,133 L 97,125 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g></g>
+<g><g><path d="M 235,129 L 208.6,129" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 199,129 L 211,125 L 211,133 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g></g>
+</g>
+<g inkscape:groupmode="layer" id="biegung" inkscape:label="02 Biegung" data-ebene="biegung">
+<path d="M 308,14 L 588,14 L 588,214 L 308,214 Z" fill="#fafafa" stroke="#c8c8c8" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="448" y="202.12" fill="#000000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="normal" text-anchor="middle" xml:space="preserve"><tspan font-family="'Source Sans Pro','Source Sans 3','Helvetica Neue',Arial,sans-serif" font-style="normal">Biegung</tspan></text>
+<path d="M 388,88 L 508,88 L 508,100 L 388,100 Z" fill="none" stroke="#9a9a9a" stroke-dasharray="4 3" stroke-width="1.25" stroke-linejoin="round"/>
+<path d="M 390.06,88.37 L 394.05,89.83 L 398.02,91.26 L 401.97,92.66 L 405.9,94 L 409.81,95.28 L 413.7,96.48 L 417.57,97.58 L 421.43,98.58 L 425.26,99.46 L 429.08,100.22 L 432.88,100.85 L 436.67,101.35 L 440.46,101.71 L 444.23,101.93 L 448,102 L 451.77,101.93 L 455.54,101.71 L 459.33,101.35 L 463.12,100.85 L 466.92,100.22 L 470.74,99.46 L 474.57,98.58 L 478.43,97.58 L 482.3,96.48 L 486.19,95.28 L 490.1,94 L 494.03,92.66 L 497.98,91.26 L 501.95,89.83 L 505.94,88.37 L 510.06,99.63 L 506.05,101.1 L 502.02,102.56 L 497.97,103.99 L 493.9,105.38 L 489.81,106.72 L 485.7,107.98 L 481.57,109.16 L 477.43,110.23 L 473.26,111.19 L 469.08,112.03 L 464.88,112.72 L 460.67,113.28 L 456.46,113.68 L 452.23,113.92 L 448,114 L 443.77,113.92 L 439.54,113.68 L 435.33,113.28 L 431.12,112.72 L 426.92,112.03 L 422.74,111.19 L 418.57,110.23 L 414.43,109.16 L 410.3,107.98 L 406.19,106.72 L 402.1,105.38 L 398.03,103.99 L 393.98,102.56 L 389.95,101.1 L 385.94,99.63 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<g><path d="M 370.41,85 L 371.35,83.55 L 372.42,82.19 L 373.61,80.94 L 374.92,79.82 L 376.33,78.82 L 377.83,77.96 L 379.4,77.25 L 381.04,76.7 L 382.72,76.3 L 384.43,76.07 L 386.16,76 L 387.88,76.1 L 389.59,76.36 L 391.26,76.79 L 392.89,77.37 L 394.45,78.11 L 395.93,78.99 L 397.33,80.01 L 398.62,81.16 L 399.79,82.43 L 400.83,83.8 L 401.74,85.27 L 402.51,86.82 L 403.12,88.44 L 403.57,90.1 L 403.87,91.81 L 403.99,93.53 L 403.96,95.26 L 403.75,96.97 L 403.39,98.66 L 402.86,100.3 L 402.18,101.89 L 401.35,103.4 L 400.38,104.83 L 399.27,106.16 L 398.04,107.38 L 396.71,108.47" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linejoin="round"/><path d="M 389.34,111.94 L 398.31,104.42 L 401.04,111.94 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<g><path d="M 525.59,85 L 524.65,83.55 L 523.58,82.19 L 522.39,80.94 L 521.08,79.82 L 519.67,78.82 L 518.17,77.96 L 516.6,77.25 L 514.96,76.7 L 513.28,76.3 L 511.57,76.07 L 509.84,76 L 508.12,76.1 L 506.41,76.36 L 504.74,76.79 L 503.11,77.37 L 501.55,78.11 L 500.07,78.99 L 498.67,80.01 L 497.38,81.16 L 496.21,82.43 L 495.17,83.8 L 494.26,85.27 L 493.49,86.82 L 492.88,88.44 L 492.43,90.1 L 492.13,91.81 L 492.01,93.53 L 492.04,95.26 L 492.25,96.97 L 492.61,98.66 L 493.14,100.3 L 493.82,101.89 L 494.65,103.4 L 495.62,104.83 L 496.73,106.16 L 497.96,107.38 L 499.29,108.47" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linejoin="round"/><path d="M 506.66,111.94 L 494.96,111.94 L 497.69,104.42 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+</g>
+<g inkscape:groupmode="layer" id="torsion" inkscape:label="03 Torsion" data-ebene="torsion">
+<path d="M 14,228 L 294,228 L 294,428 L 14,428 Z" fill="#fafafa" stroke="#c8c8c8" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="154" y="416.12" fill="#000000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="normal" text-anchor="middle" xml:space="preserve"><tspan font-family="'Source Sans Pro','Source Sans 3','Helvetica Neue',Arial,sans-serif" font-style="normal">Torsion</tspan></text>
+<path d="M 104,297 L 204,297 L 204,319 L 104,319 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<g><path d="M 104,308 L 84,308" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 66,308 L 78,303.5 L 78,312.5 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/><path d="M 77,308 L 89,303.5 L 89,312.5 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<g><path d="M 204,308 L 224,308" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 242,308 L 230,312.5 L 230,303.5 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/><path d="M 231,308 L 219,312.5 L 219,303.5 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g>
+<path d="M 116,297 L 128,319" fill="none" stroke="#7a7a7a" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 142,297 L 154,319" fill="none" stroke="#7a7a7a" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 168,297 L 180,319" fill="none" stroke="#7a7a7a" stroke-width="0.8" stroke-linecap="butt"/>
+<path d="M 194,297 L 206,319" fill="none" stroke="#7a7a7a" stroke-width="0.8" stroke-linecap="butt"/>
+</g>
+<g inkscape:groupmode="layer" id="schub" inkscape:label="04 Schub" data-ebene="schub">
+<path d="M 308,228 L 588,228 L 588,428 L 308,428 Z" fill="#fafafa" stroke="#c8c8c8" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="448" y="416.12" fill="#000000" stroke="#ffffff" stroke-width="4" stroke-linejoin="round" paint-order="stroke" font-family="'Latin Modern Roman','LM Roman 10','CMU Serif',serif" font-size="18" font-style="normal" text-anchor="middle" xml:space="preserve"><tspan font-family="'Source Sans Pro','Source Sans 3','Helvetica Neue',Arial,sans-serif" font-style="normal">Schub / Scherung</tspan></text>
+<path d="M 378,286 L 468,286 L 468,306 L 378,306 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<path d="M 428,310 L 518,310 L 518,330 L 428,330 Z" fill="#e6e6e6" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<path d="M 440,278 L 456,278 L 456,338 L 440,338 Z" fill="#cfcfcf" stroke="#000000" stroke-width="1.25" stroke-linejoin="round"/>
+<g><g><path d="M 378,296 L 361.6,296" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 352,296 L 364,292 L 364,300 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g></g>
+<g><g><path d="M 518,320 L 534.4,320" fill="none" stroke="#ff0000" stroke-width="1.9" stroke-linecap="butt"/><path d="M 544,320 L 532,324 L 532,316 Z" fill="#ff0000" stroke="none" stroke-linejoin="round"/></g></g>
+<path d="M 434,308 L 462,308" fill="none" stroke="#ff0000" stroke-width="1.8" stroke-linecap="butt"/>
+</g>
+</svg>

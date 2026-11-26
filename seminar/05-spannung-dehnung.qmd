@@ -1,0 +1,100 @@
+---
+title: "Seminar 5 · Spannung, Dehnung, Stoffgesetz"
+subtitle: "Technische Mechanik · Festigkeitslehre"
+format:
+  html: default
+  typst:
+    papersize: a4
+    margin:
+      x: 2cm
+      y: 2cm
+    fontsize: 11pt
+    mainfont: "Source Sans Pro"
+    font-paths: ["../assets/fonts"]
+    include-in-header:
+      text: |
+        #show math.equation.where(block: true): set align(left)
+        #set text(lang: "de")
+        // Dezimalkomma ohne Abstand dahinter (sonst „0, 6“ wie eine Aufzählung)
+        #show math.equation: it => { show ",": math.class("normal", ","); it }
+        #set page(header: align(right, image("../assets/logos/htwk-schwarz.svg", height: 0.8cm)), footer: context [#text(size: 8pt)[Technische Mechanik · Prof. Dr.-Ing. Stephan Schönfelder #h(1fr) #counter(page).display()]])
+---
+
+::: {.content-visible when-format="html"}
+::: {.merke}
+**So arbeiten Sie mit dieser Aufgabensammlung**
+
+1. Lösen Sie die Aufgaben **auf Papier**: Freikörperbild, Normalkraft aus dem Gleichgewicht, dann Spannung,
+   Dehnung und Längenänderung. [Aufgabenblatt als PDF](05-spannung-dehnung.pdf)
+2. **Kontrollieren** Sie Ihre Ergebnisse mit den Ergebnissen unten.
+:::
+:::
+
+Normalkräfte und Spannungen sind positiv bei **Zug**. Rechenweg: Normalkraft $N$ aus dem Gleichgewicht,
+Spannung $\sigma = N/A$, Dehnung $\varepsilon = \sigma/E$, Längenänderung $\Delta l = \varepsilon\,l$.
+
+## Aufgaben
+
+{{< include _aufgaben-05/zugversuch.qmd >}}
+
+{{< include _aufgaben-05/zwei-staebe.qmd >}}
+
+{{< pagebreak >}}
+
+{{< include _aufgaben-05/abgesetzte-welle.qmd >}}
+
+{{< include _aufgaben-05/pendelstuetze.qmd >}}
+
+{{< pagebreak >}}
+
+{{< include _aufgaben-05/zwei-seile.qmd >}}
+
+::: {.content-visible when-format="html"}
+
+## Ergebnisse zur Kontrolle
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 5.1
+$\sigma = 181{,}3$ N/mm², $\varepsilon = 2{,}552 \cdot 10^{-3}$, $\varepsilon_q = -8{,}996 \cdot 10^{-4}$
+
+1\. $E = 71\,034$ N/mm² · 2. $\nu = 0{,}352$ · 3. $G = 26\,261$ N/mm² · 4. eine Aluminiumlegierung
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 5.2
+1\. Stabkraft $S = 3464$ N (Zug), $\sigma = 122{,}5$ N/mm² · 2. $\Delta l = 1{,}01$ mm (Stablänge 1732 mm) ·
+3\. $\Delta h = 1{,}17$ mm
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 5.3
+a) $N_1 = 30$ kN, $N_2 = 10$ kN · b) $\sigma_1 = 95{,}5$ N/mm², $\sigma_2 = 88{,}4$ N/mm²
+
+c) $\varepsilon_1 = 4{,}55 \cdot 10^{-4}$, $\varepsilon_2 = 4{,}21 \cdot 10^{-4}$; $\Delta l_1 = 0{,}136$ mm,
+$\Delta l_2 = 0{,}084$ mm
+
+d) $0{,}221$ mm nach rechts · e) $d_2 = 11{,}5$ mm
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 5.4
+a) $F_{AH} = 0$, $F_{AV} = 6$ kN, Stützkraft $18$ kN (Druck) · b) $\sigma = -89{,}5$ N/mm²,
+$\varepsilon = -4{,}26 \cdot 10^{-4}$ · c) Verkürzung $0{,}512$ mm
+
+d) $\varphi = 2{,}56 \cdot 10^{-4}$ rad $= 0{,}015°$, Absenkung des Lastangriffspunkts $0{,}384$ mm
+:::
+
+::: {.callout-tip collapse="true"}
+## Aufgabe 5.5
+a) $S_1 = S_2 = 4$ kN, $\sigma_1 = 111{,}1$ N/mm², $\sigma_2 = 166{,}7$ N/mm²
+
+b) $\Delta L_1 = 0{,}317$ mm, $\Delta L_2 = 0{,}238$ mm, Mitte $0{,}278$ mm,
+$\varphi = 1{,}32 \cdot 10^{-4}$ rad $= 0{,}0076°$ (Seite 1 tiefer)
+
+c) $L_1 \le 567$ mm, $L_2 \le 378$ mm · d) $L_1 = 450$ mm
+:::
+:::
+
+::: {.content-visible when-format="typst"}
+*Ergebnisse zur Kontrolle finden Sie auf der Kurswebseite.*
+:::
