@@ -314,6 +314,7 @@ def kontrollregeln():
 
 
 # =====================================================================
+# Verläufe an Rahmen und abgewinkelten Tragwerken (Dreigelenkrahmen: siehe Lösungsskript, Aufgabe 4.6)
 # B04-3 (Vorlesung 2013, Teil 3 S. 17–23): Dreigelenkrahmen
 #   A (0,0) und B (12a,4a) Festlager, Gelenk G (4a,12a), Ecken C (0,12a), D (12a,12a)
 #   F = 2 q0 a waagerecht in C, q0 auf G–D
@@ -347,172 +348,154 @@ def _rahmen_flaeche(P0, P1, werte, skala, aussen, schraffur=7):
     return "".join(flaechen), "".join(konturen)
 
 
-def dreigelenkrahmen():
-    from tmzeichnen import gelenk_offen, stabzug, schnitt
-    a = 26
-    A = (190, 470)
-    C = (A[0], A[1] - 12 * a)
-    G = (A[0] + 4 * a, C[1])
-    D = (A[0] + 12 * a, C[1])
-    B = (D[0], A[1] - 4 * a)
-    t = 3.5
-    abb = Abbildung(760, 560, "Dreigelenkrahmen")
-    blass = FARBE["hinweis"]
+# =====================================================================
+# Beispiel abgewinkelter Kragträger (Scan B04-1, Gross Beispiel 1.5.1; bis 26.11.2026 Seminaraufgabe 4.6)
+#   Einspannung A, waagerechter Stab 2a bis C, senkrechter Stab a nach unten bis D
+#   F1 = F2 = F = 1000 N: F1 in C nach unten, F2 in D nach rechts
+#   F_AH = -1000 N, F_AV = 1000 N, M_A = 1000 Nm (a = 1 m)
+#   I: x1 von A nach rechts, z1 nach unten; II: x2 von C nach unten, z2 nach links (beide nach innen)
+#   Verläufe positiv entgegen z_i (außen)
+# =====================================================================
+def _nqm(S, n, z, Mccw, Mstart, Nl, Ql, Ml, Nlp, Qlp, Mlp):
+    """Positiv eingezeichnete Schnittgrößen am Schnittpunkt S: n = Außennormale des Ufers,
+    z = Richtung, in die Q zeigt; Labels mit Versatz zum Pfeilende bzw. zu S (Moment)."""
+    S_ = FARBE["schnitt"]
+    g = [pfeil(S[0] + 9 * n[0], S[1] + 9 * n[1], S[0] + 45 * n[0], S[1] + 45 * n[1], S_),
+         text(S[0] + 45 * n[0] + Nlp[0], S[1] + 45 * n[1] + Nlp[1], Nl, S_, anker="start"),
+         pfeil(S[0] - 18 * z[0] + 4 * n[0], S[1] - 18 * z[1] + 4 * n[1], S[0] + 18 * z[0] + 4 * n[0],
+               S[1] + 18 * z[1] + 4 * n[1], S_),
+         text(S[0] + 18 * z[0] + Qlp[0], S[1] + 18 * z[1] + Qlp[1], Ql, S_, anker="start"),
+         moment(S[0], S[1], "", gegen_uhrzeiger=Mccw, r=21, start=Mstart, bogen=200, farbe=S_),
+         text(S[0] + Mlp[0], S[1] + Mlp[1], Ml, S_, anker="start")]
+    return "".join(g)
 
-    e = abb.ebene("system", "Rahmen")
-    e.append(stabzug([A, C, G], dicke=7))
-    e.append(stabzug([G, D, B], dicke=7))
-    e.append(gelenk(*G, r=5))
-    e.append(festlager(A[0], A[1] + t, label="A", label_pos=(-24, 12)))
-    e.append(festlager(B[0], B[1] + t, label="B", label_pos=(24, 12)))
-    e.append(text(G[0] - 16, G[1] + 24, "G", "#000000", 17))
-    e.append(text(C[0] - 16, C[1] - 12, "C", "#000000", 17))
-    e.append(text(D[0] + 16, D[1] - 12, "D", "#000000", 17))
+
+def abgewinkelter_kragtraeger():
+    from tmzeichnen import stabzug
+    a, t = 120, 3.5
+    A = (190, 190)
+    C = (A[0] + 2 * a, A[1])
+    D = (C[0], C[1] + a)
+    abb = Abbildung(680, 620, "Abgewinkelter Kragträger")
+
+    def lasten(e, F1=True, F2=True):
+        if F1:
+            e.append(kraft(C[0], C[1] - t, -90, "F_1", laenge=50, label_seite=-1))
+        if F2:
+            e.append(kraft(D[0] - t, D[1] - t, 0, "F_2", laenge=50, label_seite=1))   # am Stabende D
+
+    def reaktionen(e):
+        e.append(kraft(A[0] - 4, A[1], 0, "F_{AH}", farbe=R, laenge=46, label_seite=1))
+        e.append(kraft(A[0], A[1] + t, 90, "F_{AV}", farbe=R, laenge=48, label_seite=1))
+        e.append(moment(A[0], A[1], "", gegen_uhrzeiger=True, r=22, start=-120, bogen=240, farbe=R))
+        e.append(text(A[0] - 26, A[1] - 28, "M_A", R, anker="end"))
+
+    e = abb.ebene("system", "Tragwerk")
+    e.append(stabzug([A, C, D], dicke=7))
+    e.append(text(C[0] + 16, C[1] - 12, "C", "#000000", 17))
+    e.append(text(D[0] + 16, D[1] + 6, "D", "#000000", 17))
+
+    e = abb.ebene("lager", "Einspannung")
+    e.append(einspannung(A[0], A[1], seite="links", label="A"))
 
     e = abb.ebene("lasten", "Lasten")
-    e.append(kraft(C[0] - t, C[1], 0, "F", laenge=55, label_seite=-1))
-    e.append(streckenlast(G[0], D[0], C[1] - t, 30, label="q_0", n=16))
+    lasten(e)
 
     e = abb.ebene("mass", "Bemaßung")
-    e.append(mass(C[0], C[1], G[0], G[1], "4a", abstand=78))
-    e.append(mass(G[0], G[1], D[0], D[1], "8a", abstand=78))
-    e.append(mass(A[0], A[1], C[0], C[1], "12a", abstand=70))
-    e.append(mass(D[0], D[1], B[0], B[1], "8a", abstand=70))
+    e.append(mass(A[0], A[1], C[0], C[1], "2a", abstand=78))
+    e.append(mass(C[0], C[1], D[0], D[1], "a", abstand=54))
     e.append(koordinaten(40, 40, 30, "x", "z"))
 
-    # --- Teilsysteme mit Lager- und Gelenkkräften (positiv angenommen)
-    dl, dr = -40, 62
-    L = lambda p: (p[0] + dl, p[1])
-    Rr = lambda p: (p[0] + dr, p[1])
-    e = abb.ebene("teilsysteme", "Teilsysteme")
-    e.append(stabzug([L(A), L(C), L(G)], dicke=7))
-    e.append(stabzug([Rr(G), Rr(D), Rr(B)], dicke=7))
-    e.append(gelenk_offen(*L(G), 180))
-    e.append(gelenk_offen(*Rr(G), 0))
-    e.append(kraft(L(C)[0] - t, C[1], 0, "F", laenge=50, label_seite=-1))
-    e.append(streckenlast(Rr(G)[0], Rr(D)[0], C[1] - t, 28, label="q_0", n=14))
-    e.append(kraft(L(A)[0] - 4, A[1], 0, "F_{AH}", farbe=R, laenge=44, label_seite=-1))
-    e.append(kraft(L(A)[0], A[1] + t, 90, "F_{AV}", farbe=R, laenge=46, label_seite=1))
-    e.append(kraft(Rr(B)[0] - 4, B[1], 0, "F_{BH}", farbe=R, laenge=44, label_seite=-1))
-    e.append(kraft(Rr(B)[0], B[1] + t, 90, "F_{BV}", farbe=R, laenge=46, label_seite=1))
-    e.append(kraft(L(G)[0] + 6, G[1], 0, "G_H", farbe=R, laenge=34, ziehend=True, label_seite=1))
-    e.append(kraft(L(G)[0], G[1] - t, 90, "G_V", farbe=R, laenge=40, ziehend=True, label_seite=-1, label_pos=0.8))
-    e.append(kraft(Rr(G)[0] - 6, G[1], 180, "G_H", farbe=R, laenge=34, ziehend=True, label_seite=-1))
-    e.append(kraft(Rr(G)[0], G[1] + t, -90, "G_V", farbe=R, laenge=40, ziehend=True, label_seite=-1, label_pos=0.8))
-    e.append(text(L(A)[0] + 50, A[1] - 120, "[I]", "#555555", 16, italic=False))
-    e.append(text(Rr(D)[0] - 60, D[1] + 120, "[II]", "#555555", 16, italic=False))
+    e = abb.ebene("reaktionen", "Lagerreaktionen")
+    reaktionen(e)
 
-    # --- Bereiche und lokale Koordinaten, jeweils im Ursprung des Bereichs (z_i zeigt nach innen)
-    e = abb.ebene("koordinaten", "Bereiche und lokale Koordinaten")
+    # Bereiche und lokale Koordinaten im Ursprung jedes Bereichs, z_i nach innen
     k = FARBE["koord"]
-    def achsen(P, u, z, nr, lx, lz):
-        g = [pfeil(P[0], P[1], P[0] + 36 * u[0], P[1] + 36 * u[1], k, 1.6, (9, 6)),
-             pfeil(P[0], P[1], P[0] + 28 * z[0], P[1] + 28 * z[1], k, 1.6, (9, 6)),
-             text(P[0] + 36 * u[0] + lx[0], P[1] + 36 * u[1] + lx[1], f"x_{nr}", k, 16),
-             text(P[0] + 28 * z[0] + lz[0], P[1] + 28 * z[1] + lz[1], f"z_{nr}", k, 16)]
-        return "".join(g)
-    e.append(achsen(A, (0, -1), (1, 0), 1, (-14, 2), (6, 12)))
-    e.append(achsen(C, (1, 0), (0, 1), 2, (0, -12), (14, 4)))
-    e.append(achsen(G, (1, 0), (0, 1), 3, (0, -12), (14, 4)))
-    e.append(achsen(D, (0, 1), (-1, 0), 4, (16, 0), (0, 16)))
-    e.append(nummer(A[0] - 42, A[1] - 6 * a, "I", r=11.5))
-    e.append(nummer((C[0] + G[0]) / 2, C[1] + 34, "II", r=11.5))
-    e.append(nummer((G[0] + D[0]) / 2, C[1] + 34, "III", r=11.5))
-    e.append(nummer(D[0] + 42, (D[1] + B[1]) / 2 + 40, "IV", r=11.5))
+    e = abb.ebene("koordinaten", "Bereiche und lokale Koordinaten")
+    for P, u, z, nr, lx, lz in ((A, (1, 0), (0, 1), 1, (0, -12), (14, 6)),
+                                (C, (0, 1), (-1, 0), 2, (16, 4), (-2, -12))):
+        e.append(pfeil(P[0], P[1], P[0] + 40 * u[0], P[1] + 40 * u[1], k, 1.6, (9, 6)))
+        e.append(pfeil(P[0], P[1], P[0] + 30 * z[0], P[1] + 30 * z[1], k, 1.6, (9, 6)))
+        e.append(text(P[0] + 40 * u[0] + lx[0], P[1] + 40 * u[1] + lx[1], f"x_{nr}", k, 16))
+        e.append(text(P[0] + 30 * z[0] + lz[0], P[1] + 30 * z[1] + lz[1], f"z_{nr}", k, 16))
+    e.append(nummer(A[0] + 1.2 * a, A[1] - 30, "I", r=11.5))
+    e.append(nummer(C[0] + 34, C[1] + 0.62 * a, "II", r=11.5))
 
-    # --- Schnitte in den vier Bereichen (das behaltene Teil kräftig, mit positiven Schnittgrößen)
-    S_ = FARBE["schnitt"]
-    def N_Q_M(S, n, z, Mccw, Ml, Nl, Ql, Mlp, Nlp, Qlp, Mstart):
-        g = [pfeil(S[0] + 9 * n[0], S[1] + 9 * n[1], S[0] + 45 * n[0], S[1] + 45 * n[1], S_),
-             text(S[0] + 45 * n[0] + Nlp[0], S[1] + 45 * n[1] + Nlp[1], Nl, S_),
-             pfeil(S[0] - 18 * z[0] + 4 * n[0], S[1] - 18 * z[1] + 4 * n[1], S[0] + 18 * z[0] + 4 * n[0],
-                   S[1] + 18 * z[1] + 4 * n[1], S_),
-             text(S[0] + 18 * z[0] + Qlp[0], S[1] + 18 * z[1] + Qlp[1], Ql, S_),
-             moment(S[0], S[1], "", gegen_uhrzeiger=Mccw, r=21, start=Mstart, bogen=200, farbe=S_),
-             text(S[0] + Mlp[0], S[1] + Mlp[1], Ml, S_)]
-        return "".join(g)
+    S1 = (A[0] + a, A[1])          # Schnitt in I bei x1 = a
+    S2 = (C[0], C[1] + a / 2)      # Schnitt in II bei x2 = a/2
 
-    # I: Schnitt im Stiel A–C bei x1 = 6a, unteres Teil, positives Ufer (Normale nach oben)
-    S1 = (A[0], A[1] - 6 * a)
-    e = abb.ebene("schnitt-I", "Schnitt Bereich I")
-    e.append(balken(A[0], A[1], S1[0], S1[1] + 3))
-    e.append(linie(S1[0], S1[1] + 2, S1[0], S1[1] - 6, "#ffffff", 14))
-    e.append(kraft(A[0] - 4, A[1], 0, "F_{AH}", farbe=R, laenge=44, label_seite=-1))
-    e.append(kraft(A[0], A[1] + t, 90, "F_{AV}", farbe=R, laenge=46, label_seite=1))
-    e.append(N_Q_M(S1, (0, -1), (1, 0), True, "M(x_1)", "N(x_1)", "Q(x_1)", (-40, -22), (12, 2), (8, 14), -20))
-    e.append(mass(A[0], A[1], S1[0], S1[1], "x_1", abstand=-58))
+    # I, linkes Teil A–S1 (positives Ufer, Normale +x1)
+    e = abb.ebene("schnitt-I", "Bereich I, linkes Teil")
+    e.append(balken(A[0], A[1], S1[0] - 3, S1[1]))
+    e.append(linie(S1[0] - 2, S1[1], S1[0] + 6, S1[1], "#ffffff", 14))
+    reaktionen(e)
+    e.append(schnittufer(S1[0], S1[1], positiv=True, N="N(x_1)", Q="Q(x_1)", M="M(x_1)"))
+    e.append(mass(A[0], A[1], S1[0], S1[1], "x_1", abstand=-78))
 
-    # II: Schnitt im Riegel C–G bei x2 = 2a, linkes Teil
-    S2 = (C[0] + 2 * a, C[1])
-    e = abb.ebene("schnitt-II", "Schnitt Bereich II")
-    e.append(stabzug([A, C, (S2[0] - 3, S2[1])], dicke=7))
-    e.append(linie(S2[0] - 2, S2[1], S2[0] + 6, S2[1], "#ffffff", 14))
-    e.append(kraft(C[0] - t, C[1], 0, "F", laenge=55, label_seite=-1))
-    e.append(kraft(A[0] - 4, A[1], 0, "F_{AH}", farbe=R, laenge=44, label_seite=-1))
-    e.append(kraft(A[0], A[1] + t, 90, "F_{AV}", farbe=R, laenge=46, label_seite=1))
-    e.append(schnittufer(S2[0], S2[1], positiv=True, N="N(x_2)", Q="Q(x_2)", M="M(x_2)"))
-    e.append(mass(C[0], C[1], S2[0], S2[1], "x_2", abstand=40))
+    # II, oberes Teil A–C–S2 (positives Ufer, Normale +x2 = nach unten; Q in +z2 = nach links; M gegen Uhrzeiger)
+    e = abb.ebene("schnitt-II", "Bereich II, oberes Teil")
+    e.append(stabzug([A, C, (S2[0], S2[1] - 3)], dicke=7))
+    e.append(linie(S2[0], S2[1] - 2, S2[0], S2[1] + 6, "#ffffff", 14))
+    reaktionen(e)
+    lasten(e, F2=False)
+    e.append(_nqm(S2, (0, 1), (-1, 0), True, 160, "N(x_2)", "Q(x_2)", "M(x_2)", (10, 4), (-62, -10), (26, 26)))
+    e.append(mass(C[0], C[1], S2[0], S2[1], "x_2", abstand=54))
 
-    # III: Schnitt im Riegel G–D bei x3 = 4a, linkes Teil
-    S3 = (G[0] + 4 * a, G[1])
-    e = abb.ebene("schnitt-III", "Schnitt Bereich III")
-    e.append(stabzug([A, C, G], dicke=7))
-    e.append(balken(G[0], G[1], S3[0] - 3, S3[1]))
-    e.append(gelenk(*G, r=5))
-    e.append(linie(S3[0] - 2, S3[1], S3[0] + 6, S3[1], "#ffffff", 14))
-    e.append(kraft(C[0] - t, C[1], 0, "F", laenge=55, label_seite=-1))
-    e.append(streckenlast(G[0], S3[0] - 3, C[1] - t, 30, label="q_0", n=8, label_rechts=False))
-    e.append(kraft(A[0] - 4, A[1], 0, "F_{AH}", farbe=R, laenge=44, label_seite=-1))
-    e.append(kraft(A[0], A[1] + t, 90, "F_{AV}", farbe=R, laenge=46, label_seite=1))
-    e.append(schnittufer(S3[0], S3[1], positiv=True, N="N(x_3)", Q="Q(x_3)", M="M(x_3)"))
-    e.append(mass(G[0], G[1], S3[0], S3[1], "x_3", abstand=58))
+    # Probe I, rechtes Teil S1–C–D (negatives Ufer)
+    e = abb.ebene("probe-I", "Bereich I, rechtes Teil")
+    e.append(stabzug([(S1[0] + 3, S1[1]), C, D], dicke=7))
+    e.append(linie(S1[0] - 6, S1[1], S1[0] + 2, S1[1], "#ffffff", 14))
+    lasten(e)
+    e.append(schnittufer(S1[0], S1[1], positiv=False, N="N(x_1)", Q="Q(x_1)", M="M(x_1)"))
+    e.append(mass(S1[0], S1[1], C[0], C[1], "2a − x_1", abstand=78))
 
-    # IV: Schnitt im Stiel D–B bei x4 = 4a, unteres Teil, negatives Ufer (Normale -x4 = nach oben)
-    S4 = (D[0], D[1] + 4 * a)
-    e = abb.ebene("schnitt-IV", "Schnitt Bereich IV")
-    e.append(balken(S4[0], S4[1] + 3, B[0], B[1]))
-    e.append(linie(S4[0], S4[1] - 2, S4[0], S4[1] + 6, "#ffffff", 14))
-    e.append(kraft(B[0] - 4, B[1], 0, "F_{BH}", farbe=R, laenge=44, label_seite=-1))
-    e.append(kraft(B[0], B[1] + t, 90, "F_{BV}", farbe=R, laenge=46, label_seite=1))
-    # negatives Ufer: N nach oben (Zug), Q in -z4 = nach rechts, M im Uhrzeigersinn
-    e.append(N_Q_M(S4, (0, -1), (1, 0), False, "M(x_4)", "N(x_4)", "Q(x_4)", (-40, -22), (12, 2), (8, 14), 200))
-    e.append(mass(D[0], D[1], S4[0], S4[1], "x_4", abstand=58))
+    # Probe II, unteres Teil S2–D (negatives Ufer, Normale -x2 = nach oben; Q in -z2 = nach rechts; M im Uhrzeiger)
+    e = abb.ebene("probe-II", "Bereich II, unteres Teil")
+    e.append(balken(S2[0], S2[1] + 3, D[0], D[1]))
+    e.append(linie(S2[0], S2[1] + 2, S2[0], S2[1] - 6, "#ffffff", 14))
+    lasten(e, F1=False)
+    e.append(_nqm(S2, (0, -1), (1, 0), False, 200, "N(x_2)", "Q(x_2)", "M(x_2)", (10, 4), (10, 16), (-80, -24)))
+    e.append(mass(S2[0], S2[1], D[0], D[1], "", abstand=104))       # rechts neben dem Label Q(x_2)
+    e.append(text(S2[0] + 112, (S2[1] + D[1]) / 2 + 5, "a − x_2", FARBE["mass"], anker="start"))
 
-    # --- Verläufe am Rahmen (positiv auf der Seite von -z_i = außen)
-    aussen = {"I": (-1, 0), "II": (0, -1), "III": (0, -1), "IV": (1, 0)}
-    staebe = {"I": (A, C), "II": (C, G), "III": (G, D), "IV": (D, B)}
-    def rahmen_bild(e):
-        e.append(polylinie([A, C, G, D, B], "#000000", 2.2))
-        e.append(kreis(*G, 4, "#000000", "#ffffff", 1.2))
-    xs = [i / 40 for i in range(41)]
+    # Verläufe am Tragwerk, positiv entgegen z_i (außen); Werte in N bzw. Nm
+    aussen = {"I": (0, -1), "II": (1, 0)}
+    staebe = {"I": (A, C), "II": (C, D)}
+    skala = 0.042
     verl = {
-        "N": ({"I": [(0, -1.5), (1, -1.5)], "II": [(0, -2.5), (1, -2.5)], "III": [(0, -2.5), (1, -2.5)],
-               "IV": [(0, -6.5), (1, -6.5)]}, 7.0,
-              [((A[0] + 22, A[1] - 6 * a), "−1,5", "start"), ((C[0] + 2 * a, C[1] + 34), "−2,5", "middle"),
-               ((G[0] + 4 * a, C[1] + 34), "−2,5", "middle"), ((D[0] - 52, D[1] + 4 * a), "−6,5", "end")]),
-        "Q": ({"I": [(0, -0.5), (1, -0.5)], "II": [(0, 1.5), (1, 1.5)], "III": [(s, 1.5 - 8 * s) for s in xs],
-               "IV": [(0, 2.5), (1, 2.5)]}, 7.0,
-              [((A[0] + 14, A[1] - 6 * a), "−0,5", "start"), ((C[0] + 2 * a, C[1] - 20), "1,5", "middle"),
-               ((D[0] - 14, D[1] + 58), "−6,5", "end"), ((D[0] + 26, D[1] + 4 * a), "2,5", "start")]),
-        "M": ({"I": [(s, -6 * s) for s in xs], "II": [(s, -6 + 6 * s) for s in xs],
-               "III": [(s, 1.5 * 8 * s - (8 * s) ** 2 / 2) for s in xs], "IV": [(s, -20 + 20 * s) for s in xs]}, 3.0,
-              [((C[0] + 24, C[1] + 30), "−6", "start"), ((G[0] + 1.5 * a, C[1] - 16), "9/8", "middle"),
-               ((D[0] - 66, D[1] + 66), "−20", "end")]),
+        "N": ({"I": [(0, 1000), (1, 1000)], "II": [(0, 0), (1, 0)]},
+              [((A[0] + a, A[1] - 52), "1000", "middle")], "N[ in N]"),
+        "Q": ({"I": [(0, 1000), (1, 1000)], "II": [(0, -1000), (1, -1000)]},
+              [((A[0] + a, A[1] - 52), "1000", "middle"), ((C[0] - 50, C[1] + a / 2 + 5), "−1000", "end")],
+              "Q[ in N]"),
+        "M": ({"I": [(0, -1000), (1, 1000)], "II": [(0, 1000), (1, 0)]},
+              [((A[0] + 8, A[1] + 62), "−1000", "start"), ((C[0] - 10, C[1] - 52), "1000", "end"),
+               ((C[0] + 50, C[1] + 22), "1000", "start")], "M[ in Nm]"),
     }
-    einheit = {"N": "q_0a", "Q": "q_0a", "M": "q_0a^2"}
-    for gr, (werte, skala, labels) in verl.items():
+    for gr, (werte, labels, titel) in verl.items():
         e = abb.ebene(f"verlauf-{gr}", f"{gr}-Verlauf")
         teile = [_rahmen_flaeche(P0, P1, werte[st], skala, aussen[st]) for st, (P0, P1) in staebe.items()]
         for f_, _ in teile:
             e.append(f_)
         for _, k_ in teile:
             e.append(k_)
-        rahmen_bild(e)
+        e.append(polylinie([A, C, D], "#000000", 2.2))
+        e.append(einspannung(A[0], A[1], seite="links"))
         for (x, y), txt, anker in labels:
             farbe = FARBE["verlauf_neg"] if txt.startswith("−") else FARBE["verlauf"]
             e.append(text(x, y, f"[{txt}]", farbe, 15, anker=anker, italic=False))
-        e.append(text(640, 60, f"{gr}[ in ]{einheit[gr]}", "#222222", 17, anker="start"))
-    return abb.speichern(ZIEL / "dreigelenkrahmen.svg")
+        e.append(text(470, 60, titel, "#222222", 17, anker="start"))
+
+    # alle drei Verläufe nebeneinander (Zusammenfassung am Ende des Beispiels)
+    inhalt = {id_: teile for id_, _, teile in abb.ebenen}
+    e = abb.ebene("verlaeufe", "Verläufe N, Q, M zusammen")
+    for k, gr in enumerate("NQM"):
+        tx = -80 + k * 215
+        e.append(f'<g transform="translate({tx},{405}) scale(0.62)">')
+        e.extend(inhalt[f"verlauf-{gr}"][:-1])          # ohne Titel „… in …“
+        e.append("</g>")
+        e.append(text(tx + 0.62 * 310, 446, verl[gr][2], "#222222", 16))
+    return abb.speichern(ZIEL / "abgewinkelter-kragtraeger.svg")
 
 
 # =====================================================================
@@ -898,19 +881,30 @@ def lastkurve(x0, x1, y, h, n=14, label="", label_pos=None, farbe=None):
 
 
 def aufgabe_4_6():
-    """Abgewinkelter Kragträger (Scan B04-1): Einspannung A, waagerecht 2a bis C, senkrecht a nach unten bis D."""
+    """Dreigelenkrahmen (B04-3, bis 26.11.2026 Vorlesungsbeispiel): Festlager A und B, Gelenk G,
+    F = 2 q0 a waagerecht in C, q0 auf G–D."""
     from tmzeichnen import stabzug
-    abb, e = _aufgabe("Aufgabe 4.6", 460, 250)
-    a, xA, y = 110, 70, 70
-    C, D = (xA + 2 * a, y), (xA + 2 * a, y + a)
-    e.append(stabzug([(xA, y), C, D], dicke=7))
-    e.append(einspannung(xA, y, seite="links", label="A"))
-    e.append(kraft(C[0], y - 3.5, -90, "F_1", laenge=48, label_seite=-1))
-    e.append(kraft(D[0] - 3.5, D[1] - 6, 0, "F_2", laenge=50, label_seite=-1))
-    e.append(text(C[0] + 14, y - 12, "C"))
-    e.append(text(D[0] + 14, D[1] + 4, "D"))
-    e.append(mass(xA, y, C[0], y, "2a", abstand=-(a + 40)))
-    e.append(mass(C[0], C[1], D[0], D[1], "a", abstand=46))
+    abb, e = _aufgabe("Aufgabe 4.6", 500, 420)
+    a, t = 22, 3.5
+    A = (150, 370)
+    C = (A[0], A[1] - 12 * a)
+    G = (A[0] + 4 * a, C[1])
+    D = (A[0] + 12 * a, C[1])
+    B = (D[0], A[1] - 4 * a)
+    e.append(stabzug([A, C, G], dicke=7))
+    e.append(stabzug([G, D, B], dicke=7))
+    e.append(gelenk(*G, r=5))
+    e.append(festlager(A[0], A[1] + t, label="A", label_pos=(-24, 12)))
+    e.append(festlager(B[0], B[1] + t, label="B", label_pos=(24, 12)))
+    e.append(text(G[0], G[1] + 26, "G", "#000000", 17))
+    e.append(text(C[0] + 16, C[1] + 24, "C", "#000000", 17))
+    e.append(text(D[0] - 16, D[1] + 24, "D", "#000000", 17))
+    e.append(kraft(C[0] - t, C[1], 0, "F", laenge=50, label_seite=-1))
+    e.append(streckenlast(G[0], D[0], C[1] - t, 30, label="q_0", n=14))
+    e.append(mass(C[0], C[1], G[0], G[1], "4a", abstand=66))
+    e.append(mass(G[0], G[1], D[0], D[1], "8a", abstand=66))
+    e.append(mass(A[0], A[1], C[0], C[1], "12a", abstand=92))
+    e.append(mass(D[0], D[1], B[0], B[1], "8a", abstand=56))
     return abb.speichern(ZIEL / "aufgabe-4-6.svg")
 
 
@@ -956,6 +950,6 @@ def aufgabe_4_8():
 
 
 if __name__ == "__main__":
-    for fn in (reine_biegung, vorzeichen, bereiche_muster, kontrollregeln, dreigelenkrahmen, fahrplan, beispiel_einzelkraefte, beispiel_dreieckslast, aufgabe_1_5_1, aufgabe_1_5_3,
+    for fn in (reine_biegung, vorzeichen, bereiche_muster, kontrollregeln, abgewinkelter_kragtraeger, fahrplan, beispiel_einzelkraefte, beispiel_dreieckslast, aufgabe_1_5_1, aufgabe_1_5_3,
                aufgabe_1_5_5, aufgabe_1_5_6, aufgabe_1_5_8, aufgabe_4_6, aufgabe_4_7, aufgabe_4_8):
         print(fn())

@@ -1,0 +1,14 @@
+### Aufgabe 4.6 · Dreigelenkrahmen
+
+![](../grafiken/schnittgroessen/aufgabe-4-6.svg){width=70%}
+
+Ein Rahmen besteht aus zwei Teilen, die im Gelenk $G$ verbunden sind. Beide Füße stehen auf Festlagern.
+Am Rahmeneck $C$ greift die waagerechte Kraft $F$ an, auf dem rechten Riegel liegt die Streckenlast $q_0$.
+
+a) Bestimmen Sie die Lagerreaktionen und die Gelenkkräfte.
+b) Ermitteln Sie die Verläufe $N$, $Q$ und $M$ und zeichnen Sie sie am Rahmen.
+
+**Gegeben:** $q_0$, $a$, $F = 2\,q_0\,a$
+
+*Hinweis: Schneiden Sie am Gelenk und an den Lagern. Legen Sie in jedem Bereich ein eigenes
+Koordinatensystem $x_i$, $z_i$ fest, $z_i$ nach innen.*

@@ -372,6 +372,18 @@ Dahinter steckt ein allgemeiner Zusammenhang. Zuerst fassen wir aber das Vorgehe
 zusammen.
 :::
 
+::: {.schritt zeige="traeger lasten reaktionen verlauf-N verlauf-Q verlauf-M" zoom="30 40 690 555"}
+### Ausprobieren
+
+Im interaktiven Notebook können Sie an diesem Träger selbst drehen: $F_1$, den Winkel $\alpha$, den
+Angriffspunkt von $F_1$ und die Kraft $F_2$ am Kragarm.
+
+::: {.notebook titel="Ausprobieren: Träger mit Kragarm" src="../notebooks/schnittgroessen/index.html"}
+Sagen Sie **vorher** voraus, wie sich $Q$ und $M$ ändern: Wann wird das Stützmoment über $B$ null?
+Wann verschwindet die Normalkraft?
+:::
+:::
+
 ::::
 
 ## Bereiche und Rechenschema
@@ -402,7 +414,7 @@ beginnt
 3. an Einzelmomenten,
 4. an Beginn und Ende von Streckenlasten (auch dort, wo sich $q$ sprunghaft ändert),
 5. an Lagern,
-6. an Ecken und Verzweigungen (bei Rahmen, siehe Dreigelenkrahmen unten).
+6. an Ecken und Verzweigungen (siehe abgewinkelter Kragträger unten).
 :::
 
 ::: {.schritt zeige="traeger grenzen bereiche" dimmen="grenzen" zoom="15 30 630 215"}
@@ -703,243 +715,274 @@ Bereich vorgibt (Tabelle oben). Bei Parabeln hilft $M' = Q$, um die Tangentenric
 festzulegen. Das ist in Klausur und Praxis meist das schnellste Verfahren.
 :::
 
-## Beispiel: Dreigelenkrahmen
+## Beispiel: Abgewinkelter Kragträger
 
-:::: {.scrolly svg="../grafiken/schnittgroessen/dreigelenkrahmen.svg"}
+:::: {.scrolly svg="../grafiken/schnittgroessen/abgewinkelter-kragtraeger.svg"}
 
-::: {.schritt zeige="system lasten mass" zoom="30 30 580 480"}
+::: {.schritt zeige="system lager lasten mass" zoom="30 30 540 320"}
 ### Aufgabe
 
-Ein Rahmen besteht aus zwei Teilen, die im Gelenk $G$ verbunden sind. Beide Füße stehen auf
-Festlagern. Am Rahmeneck $C$ greift die waagerechte Kraft $F$ an, auf dem rechten Riegel liegt die
-Streckenlast $q_0$.
+Ein Tragwerk aus zwei rechtwinklig verbundenen Stäben ist in $A$ eingespannt. In der Ecke $C$ greift die
+senkrechte Kraft $F_1$ an, am freien Ende $D$ die waagerechte Kraft $F_2$.
 
-**Gegeben:** $q_0$, $a$, $F = 2\,q_0 a$
+**Gegeben:** $F_1 = F_2 = 1000$ N, $a = 1$ m
 
-**Gesucht:** Verläufe $N$, $Q$, $M$
+**Gesucht:** Lagerreaktionen und Verläufe $N$, $Q$, $M$ in beiden Stäben
 
-**Abzählen:** $n = 2$ Körper, $a = 4$ Lagerreaktionen, $z = 2$ Gelenkreaktionen.
+**Abzählen:** $n = 1$ Körper, $a = 3$ Lagerreaktionen, $z = 0$ Gelenkreaktionen.
 
 $$
 \begin{aligned}
 3n &= a + z\\
-3 \cdot 2 &= 4 + 2\\
-6 &= 6
+3 \cdot 1 &= 3 + 0\\
+3 &= 3
 \end{aligned}
 $$
 
 **Statisch bestimmt.**
 :::
 
-::: {.schritt zeige="teilsysteme" zoom="90 100 520 430"}
-### ① Lagerreaktionen: zwei Teilsysteme
+::: {.schritt zeige="system lasten mass reaktionen" zoom="30 30 540 320"}
+### ① Lagerreaktionen
 
-Wie beim Gelenkträger in Woche 3 schneiden wir am Gelenk und an den Lagern. Die Gelenkkräfte wirken an
-beiden Teilen entgegengesetzt; am linken Teil nehmen wir sie positiv an.
-
-Teil I (links), Momente um $G$:
+Die Einspannung überträgt zwei Kräfte und das Einspannmoment $M_A$, alle positiv angenommen:
 
 $$
 \begin{aligned}
-&\rightarrow: && F_{AH} + F + G_H = 0 &&\qquad(1)\\[2pt]
-&\uparrow: && F_{AV} + G_V = 0 &&\qquad(2)\\[2pt]
-&\curvearrowleft G: && F_{AH}\,12a - F_{AV}\,4a = 0 &&\qquad(3)
+&\rightarrow: && F_{AH} + F_2 = 0 &&\qquad(1)\\[2pt]
+&\uparrow: && F_{AV} - F_1 = 0 &&\qquad(2)\\[2pt]
+&\curvearrowleft A: && M_A - F_1\,2a + F_2\,a = 0 &&\qquad(3)
 \end{aligned}
 $$
 
-Teil II (rechts), Momente um $G$:
+$F_2$ greift um $a$ unterhalb von $A$ an, deshalb hat sie den Hebelarm $a$.
 
 $$
 \begin{aligned}
-&\rightarrow: && -G_H + F_{BH} = 0 &&\qquad(4)\\[2pt]
-&\uparrow: && -G_V - q_0\,8a + F_{BV} = 0 &&\qquad(5)\\[2pt]
-&\curvearrowleft G: && F_{BV}\,8a + F_{BH}\,8a - q_0\,8a \cdot 4a = 0 &&\qquad(6)
+&\text{aus (1):}\\
+&\qquad \begin{aligned}
+F_{AH} &= -F_2\\
+&= -1000\ \text{N}
+\end{aligned}\\[6pt]
+&\text{aus (2):}\\
+&\qquad \begin{aligned}
+F_{AV} &= F_1\\
+&= 1000\ \text{N}
+\end{aligned}\\[6pt]
+&\text{aus (3):}\\
+&\qquad \begin{aligned}
+M_A &= F_1\,2a - F_2\,a\\
+&= 1000\ \text{Nm}
+\end{aligned}
 \end{aligned}
 $$
+
+$F_{AH}$ ist negativ: Die Kraft zeigt nach links.
 :::
 
-::: {.schritt zeige="teilsysteme" zoom="90 100 520 430"}
-### ① Lagerreaktionen: auflösen
-
-Keine Gleichung enthält nur eine Unbekannte. Wir drücken alles durch $F_{AH}$ aus:
-
-$$
-\begin{aligned}
-&\text{aus (3):}\quad F_{AV} = 3\,F_{AH}\\[2pt]
-&\text{aus (2):}\quad G_V = -3\,F_{AH}\\[2pt]
-&\text{aus (5):}\quad F_{BV} = 8\,q_0a - 3\,F_{AH}\\[2pt]
-&\text{aus (1) und (4):}\quad F_{BH} = G_H = -2\,q_0a - F_{AH}
-\end{aligned}
-$$
-
-Eingesetzt in (6), geteilt durch $8a$:
-
-$$
-\begin{aligned}
-(8\,q_0a - 3F_{AH}) + (-2\,q_0a - F_{AH}) &= 4\,q_0a\\
-F_{AH} &= 0{,}5\,q_0a
-\end{aligned}
-$$
-
-Damit $F_{AV} = 1{,}5\,q_0a$, $F_{BV} = 6{,}5\,q_0a$, $F_{BH} = G_H = -2{,}5\,q_0a$, $G_V = -1{,}5\,q_0a$.
-
-Kontrolle am ganzen Rahmen: $\rightarrow$: $(0{,}5 + 2 - 2{,}5)\,q_0a = 0$; $\uparrow$: $(1{,}5 + 6{,}5 - 8)\,q_0a = 0$.
-:::
-
-::: {.schritt zeige="system koordinaten" zoom="110 55 470 450"}
+::: {.schritt zeige="system koordinaten" zoom="30 30 540 320"}
 ### ② Bereiche und Koordinaten
 
-Beim Rahmen gibt es kein eindeutiges „unten“. Deshalb zeichnen wir in **jedem Bereich** ein eigenes
-Koordinatensystem ein, mit dem Ursprung am Anfang des Bereichs: $x_i$ längs des Stabes, $z_i$ quer dazu.
-$z_i$ übernimmt die Rolle von „unten“: Positives $M$ zieht die Seite, zu der $z_i$ zeigt.
-
-Die $x_i$ laufen gleichsinnig um den Rahmen (im linken Stiel aufwärts, im Riegel nach rechts, im rechten
-Stiel abwärts), die $z_i$ zeigen durchgehend nach innen.
+Die Ecke $C$ teilt das Tragwerk in **zwei Bereiche**. Bei abgewinkelten Tragwerken und Rahmen gibt es kein
+eindeutiges „unten“. Deshalb bekommt jeder Bereich ein eigenes Koordinatensystem mit dem Ursprung am Anfang des Bereichs: $x_i$ längs des Stabes, $z_i$ quer dazu und
+nach **innen**. Positives $M$ zieht die Seite, zu der $z_i$ zeigt.
 
 | Bereich | Koordinate |
 |:-:|:-:|
-| I | $0 \le x_1 \le 12a$ |
-| II | $0 \le x_2 \le 4a$ |
-| III | $0 \le x_3 \le 8a$ |
-| IV | $0 \le x_4 \le 8a$ |
+| I | $0 \le x_1 \le 2a$ |
+| II | $0 \le x_2 \le a$ |
+
+Im waagerechten Stab zeigt $z_1$ nach unten, wie beim geraden Träger. Im senkrechten Stab läuft $x_2$
+nach unten, $z_2$ zeigt nach links.
 :::
 
-::: {.schritt zeige="system lasten schnitt-I" dimmen="system lasten" zoom="110 90 460 440"}
+::: {.schritt zeige="system lasten schnitt-I" dimmen="system lasten" zoom="30 30 540 320"}
 ### ③ Bereich I
 
-Unteres Teil des linken Stiels. Das Schnittufer oben ist **positiv** (Normale in $+x_1$): $N$ zeigt
-nach oben, $Q$ in $+z_1$ nach rechts.
+Wir behalten das **linke Teil** mit der Einspannung. Die Lagerreaktionen aus ① gehen so direkt in die
+Schnittgrößen ein.
 
 $$
 \begin{aligned}
-&\uparrow: && F_{AV} + N(x_1) = 0 &&\qquad(7)\\[2pt]
-&\rightarrow: && F_{AH} + Q(x_1) = 0 &&\qquad(8)\\[2pt]
-&\curvearrowleft S: && M(x_1) + F_{AH}\,x_1 = 0 &&\qquad(9)
+&\rightarrow: && F_{AH} + N(x_1) = 0 &&\qquad(4)\\[2pt]
+&\uparrow: && F_{AV} - Q(x_1) = 0 &&\qquad(5)\\[2pt]
+&\curvearrowleft S: && M_A + M(x_1) - F_{AV}\,x_1 = 0 &&\qquad(6)
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-&\text{aus (7):}\quad N(x_1) = -1{,}5\,q_0a\\[2pt]
-&\text{aus (8):}\quad Q(x_1) = -0{,}5\,q_0a\\[2pt]
-&\text{aus (9):}\quad M(x_1) = -0{,}5\,q_0a\,x_1
+&\text{aus (4):}\\
+&\qquad \begin{aligned}
+N(x_1) &= -F_{AH}\\
+&= 1000\ \text{N}
+\end{aligned}\\[6pt]
+&\text{aus (5):}\\
+&\qquad \begin{aligned}
+Q(x_1) &= F_{AV}\\
+&= 1000\ \text{N}
+\end{aligned}\\[6pt]
+&\text{aus (6):}\\
+&\qquad \begin{aligned}
+M(x_1) &= F_{AV}\,x_1 - M_A\\
+&= 1000\ \text{N}\,(x_1 - 1\ \text{m})
+\end{aligned}
 \end{aligned}
 $$
+
+Der waagerechte Stab ist **gezogen**. An der Einspannung ist $M(0) = -M_A$, an der Ecke
+$M(2a) = 1000\ \text{Nm}$.
 :::
 
-::: {.schritt zeige="system lasten schnitt-II" dimmen="system lasten" zoom="110 90 460 440"}
+::: {.schritt zeige="system lasten schnitt-II" dimmen="system lasten" zoom="30 30 540 320"}
 ### ③ Bereich II
 
-Linkes Teil mit Stiel und Ecke $C$. Momente um $S$: $F_{AH}$ hat den Hebelarm $12a$, $F_{AV}$ den Hebelarm
-$x_2$, $F$ geht durch die Höhe von $S$.
+Wieder das Teil mit der Einspannung, jetzt das **obere Teil** mit der Ecke und $F_1$. Am positiven Ufer
+zeigt die Normale in $+x_2$, also nach unten: $N$ nach unten (Zug), $Q$ in $+z_2$ nach links, $M$ gegen
+den Uhrzeigersinn.
+
+Hebelarme um $S$: $F_{AV}$ hat $2a$, $F_{AH}$ hat $x_2$; $F_1$ geht durch $S$.
 
 $$
 \begin{aligned}
-&\rightarrow: && F_{AH} + F + N(x_2) = 0 &&\qquad(10)\\[2pt]
-&\uparrow: && F_{AV} - Q(x_2) = 0 &&\qquad(11)\\[2pt]
-&\curvearrowleft S: && M(x_2) + F_{AH}\,12a - F_{AV}\,x_2 = 0 &&\qquad(12)
+&\rightarrow: && F_{AH} - Q(x_2) = 0 &&\qquad(7)\\[2pt]
+&\uparrow: && F_{AV} - F_1 - N(x_2) = 0 &&\qquad(8)\\[2pt]
+&\curvearrowleft S: && M_A + M(x_2) - F_{AV}\,2a - F_{AH}\,x_2 = 0 &&\qquad(9)
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-&\text{aus (10):}\quad N(x_2) = -2{,}5\,q_0a\\[2pt]
-&\text{aus (11):}\quad Q(x_2) = 1{,}5\,q_0a\\[2pt]
-&\text{aus (12):}\quad M(x_2) = -6\,q_0a^2 + 1{,}5\,q_0a\,x_2
+&\text{aus (7):}\\
+&\qquad \begin{aligned}
+Q(x_2) &= F_{AH}\\
+&= -1000\ \text{N}
+\end{aligned}\\[6pt]
+&\text{aus (8):}\\
+&\qquad \begin{aligned}
+N(x_2) &= F_{AV} - F_1\\
+&= 0
+\end{aligned}\\[6pt]
+&\text{aus (9):}\\
+&\qquad \begin{aligned}
+M(x_2) &= F_{AV}\,2a + F_{AH}\,x_2 - M_A\\
+&= 1000\ \text{N}\,(1\ \text{m} - x_2)
+\end{aligned}
 \end{aligned}
 $$
 
-Im Gelenk ($x_2 = 4a$) ist $M = 0$, wie es sein muss.
+Am freien Ende ($x_2 = a$) ist $M = 0$, wie es sein muss.
 :::
 
-::: {.schritt zeige="system lasten schnitt-III" dimmen="system lasten" zoom="110 90 460 440"}
-### ③ Bereich III
-
-Linkes Teil bis $S$, mit dem Anteil $q_0\,x_3$ der Streckenlast (Hebelarm $x_3/2$):
-
-$$
-\begin{aligned}
-&\rightarrow: && F_{AH} + F + N(x_3) = 0 &&\qquad(13)\\[2pt]
-&\uparrow: && F_{AV} - q_0\,x_3 - Q(x_3) = 0 &&\qquad(14)\\[2pt]
-&\curvearrowleft S: && M(x_3) + F_{AH}\,12a - F_{AV}\,(4a + x_3)\\
-& && {}+ q_0\,x_3\,\tfrac{x_3}{2} = 0 &&\qquad(15)
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-&\text{aus (13):}\quad N(x_3) = -2{,}5\,q_0a\\[2pt]
-&\text{aus (14):}\quad Q(x_3) = 1{,}5\,q_0a - q_0\,x_3\\[2pt]
-&\text{aus (15):}\quad M(x_3) = 1{,}5\,q_0a\,x_3 - \tfrac12\,q_0\,x_3^2
-\end{aligned}
-$$
-:::
-
-::: {.schritt zeige="system lasten schnitt-IV" dimmen="system lasten" zoom="110 90 460 440"}
-### ③ Bereich IV
-
-Hier ist das **untere Teil** des rechten Stiels einfacher. Sein Schnittufer oben ist **negativ**
-(Normale in $-x_4$): $N$ zeigt nach oben (Zug), $Q$ in $-z_4$ nach rechts, $M$ im Uhrzeigersinn.
-
-$$
-\begin{aligned}
-&\uparrow: && N(x_4) + F_{BV} = 0 &&\qquad(16)\\[2pt]
-&\rightarrow: && Q(x_4) + F_{BH} = 0 &&\qquad(17)\\[2pt]
-&\curvearrowleft S: && -M(x_4) + F_{BH}\,(8a - x_4) = 0 &&\qquad(18)
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-&\text{aus (16):}\quad N(x_4) = -6{,}5\,q_0a\\[2pt]
-&\text{aus (17):}\quad Q(x_4) = 2{,}5\,q_0a\\[2pt]
-&\text{aus (18):}\quad M(x_4) = -2{,}5\,q_0a\,(8a - x_4)
-\end{aligned}
-$$
-:::
-
-::: {.schritt zeige="verlauf-N" zoom="120 40 600 440"}
+::: {.schritt zeige="verlauf-N" zoom="30 30 540 320"}
 ### ④ Normalkraftverlauf
 
-Alle Stäbe sind **gedrückt**. Der rechte Stiel trägt fast die ganze Streckenlast ab: $N = -6{,}5\,q_0a$.
+Der waagerechte Stab ist mit $N = 1000$ N **gezogen**: $F_2$ zieht über die Ecke an ihm. Der senkrechte Stab
+ist frei von Normalkraft.
 
-Positive Werte tragen wir wie beim Balken **entgegen** $z_i$ auf, hier also außen; negative innen.
+Positive Werte tragen wir **entgegen** $z_i$ auf, also außen: am waagerechten Stab oben,
+am senkrechten Stab rechts.
 :::
 
-::: {.schritt zeige="verlauf-Q" zoom="120 40 600 440"}
+::: {.schritt zeige="verlauf-Q" zoom="30 30 540 320"}
 ### ④ Querkraftverlauf
 
-In den Stielen und im Riegel II ist $Q$ konstant, unter der Streckenlast fällt es linear von $1{,}5$ auf
-$-6{,}5\,q_0a$. Der Nulldurchgang liegt bei
+In beiden Stäben ist $Q$ **konstant**, denn zwischen den Einzelkräften greift keine Last an. Im waagerechten
+Stab trägt $Q = 1000$ N die Kraft $F_1$, im senkrechten Stab trägt $Q = -1000$ N die Kraft $F_2$.
 
-$$
-Q(x_3) = 0 \;\Rightarrow\; x_3 = 1{,}5\,a
-$$
-
-Am Gelenk springt $Q$ nicht: Dort greift keine äußere Kraft an.
+An der Ecke tauschen Längs- und Querrichtung: Was im einen Stab Querkraft ist, wird im anderen zur
+Normalkraft.
 :::
 
-::: {.schritt zeige="verlauf-M" zoom="120 40 600 440"}
+::: {.schritt zeige="verlauf-M" zoom="30 30 540 320"}
 ### ④ Momentenverlauf
 
-$M$ ist in den Stielen und im Riegel II **linear**, unter der Streckenlast eine **Parabel**:
+$M$ ist in beiden Stäben **linear**:
 
-- im Gelenk $G$: $M = 0$,
-- Feldmoment bei $x_3 = 1{,}5\,a$: $M = \tfrac98\,q_0a^2$,
-- Ecke $C$: $M = -6\,q_0a^2$, Ecke $D$: $M = -20\,q_0a^2$.
+- an der Einspannung: $M = -M_A = -1000\ \text{Nm}$,
+- Nulldurchgang bei $x_1 = a = 1$ m,
+- Ecke $C$: $M = 1000\ \text{Nm}$ in **beiden** Stäben,
+- freies Ende $D$: $M = 0$.
 
-An einer **unbelasteten rechtwinkligen Ecke** geht $M$ unverändert vom Riegel in den Stiel über.
-Das ist eine gute Kontrolle.
+An einer **rechtwinkligen Ecke ohne Einzelmoment** geht $M$ unverändert vom einen Stab in den anderen über.
+Die Kraft $F_1$ in der Ecke ändert daran nichts. Außerdem gilt $M' = Q$ in beiden Stäben. Das sind gute
+Kontrollen.
 
 ::: {.vertiefung titel="Ausführlicher: Momentenlinie auf der Zugseite"}
 In der Tragwerksplanung (Stahlbeton, Stahlbau) zeichnet man die Momentenlinie meist auf der **gezogenen**
 Seite. Dann braucht man kein Vorzeichen: Man sieht direkt, wo die Bewehrung hingehört.
 
-Wir tragen wie Gross und Dankert positive Werte entgegen $z_i$ auf. Ein negatives Moment, wie hier an
-den Ecken, zieht die **äußere** Seite. In der Zugseiten-Darstellung stünde
-die Fläche dort also außen, bei uns steht sie innen. Prüfen Sie bei fremden Unterlagen immer zuerst,
-welche Darstellung gemeint ist.
+Wir tragen wie Gross und Dankert positive Werte entgegen $z_i$ auf. Ein negatives Moment, wie hier nahe
+der Einspannung, zieht die **äußere** (obere) Seite. In der Zugseiten-Darstellung stünde die Fläche dort
+also oben, bei uns steht sie unten. Prüfen Sie bei fremden Unterlagen immer zuerst, welche Darstellung
+gemeint ist.
 :::
+:::
+
+::: {.schritt zeige="verlaeufe" zoom="25 425 650 180"}
+### Ergebnis: alle Verläufe
+
+Alle drei Verläufe nebeneinander, positiv entgegen $z_i$ (außen):
+
+- $N$: waagerechter Stab $1000$ N (Zug), senkrechter Stab $0$,
+- $Q$: waagerechter Stab $1000$ N, senkrechter Stab $-1000$ N,
+- $M$: linear von $-1000\ \text{Nm}$ an der Einspannung über $1000\ \text{Nm}$ an der Ecke $C$
+  bis $0$ am freien Ende $D$.
+:::
+
+::: {.schritt zeige="system lasten probe-I" dimmen="system lasten" zoom="30 30 540 320"}
+### Probe: Bereich I von rechts
+
+Zur Probe dieselben Schnitte, jetzt mit dem **anderen** Teil. Das rechte Teil enthält nur $F_1$ und $F_2$, keine
+Lagerreaktionen. Am negativen Ufer zeigt $N$ nach links, $Q$ nach oben, $M$ im Uhrzeigersinn.
+
+$$
+\begin{aligned}
+&\rightarrow: && -N(x_1) + F_2 = 0 &&\qquad(10)\\[2pt]
+&\uparrow: && Q(x_1) - F_1 = 0 &&\qquad(11)\\[2pt]
+&\curvearrowleft S: && -M(x_1) - F_1\,(2a - x_1) + F_2\,a = 0 &&\qquad(12)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (10):}\quad N(x_1) = F_2 = 1000\ \text{N}\\[6pt]
+&\text{aus (11):}\quad Q(x_1) = F_1 = 1000\ \text{N}\\[6pt]
+&\text{aus (12):}\\
+&\qquad \begin{aligned}
+M(x_1) &= F_2\,a - F_1\,(2a - x_1)\\
+&= 1000\ \text{N}\,(x_1 - 1\ \text{m})
+\end{aligned}
+\end{aligned}
+$$
+
+Dasselbe wie aus (4)–(6).
+:::
+
+::: {.schritt zeige="system lasten probe-II" dimmen="system lasten" zoom="30 30 540 320"}
+### Probe: Bereich II von unten
+
+Das untere Teil trägt nur $F_2$. Am negativen Ufer (Normale nach oben) zeigt $N$ nach oben, $Q$ in
+$-z_2$ nach rechts, $M$ im Uhrzeigersinn.
+
+$$
+\begin{aligned}
+&\rightarrow: && Q(x_2) + F_2 = 0 &&\qquad(13)\\[2pt]
+&\uparrow: && N(x_2) = 0 &&\qquad(14)\\[2pt]
+&\curvearrowleft S: && -M(x_2) + F_2\,(a - x_2) = 0 &&\qquad(15)
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+&\text{aus (13):}\quad Q(x_2) = -F_2 = -1000\ \text{N}\\[6pt]
+&\text{aus (15):}\quad M(x_2) = F_2\,(a - x_2) = 1000\ \text{N}\,(1\ \text{m} - x_2)
+\end{aligned}
+$$
+
+Auch hier dasselbe Ergebnis. Von welcher Seite man schneidet, ist gleich. Das Teil **ohne** Einspannung
+ist meist kürzer zu rechnen und braucht keine Lagerreaktionen. Das Teil **mit** Einspannung prüft dagegen
+die Lagerreaktionen gleich mit.
 :::
 
 ::::
@@ -1009,8 +1052,7 @@ Rahmen entgegen $z_i$). Die Form folgt aus $Q' = -q$ und $M' = Q$:
 
 ::::
 
-**Weiter:** [Seminaraufgaben zu Schnittgrößen](../seminar/04-schnittgroessen.qmd) ·
-[Interaktives Notebook](../notebooks/schnittgroessen/index.html){target="_blank"}
+**Weiter:** [Seminaraufgaben zu Schnittgrößen](../seminar/04-schnittgroessen.qmd)
 
 ::: {.small .text-muted}
 Literatur: Gross/Hauger/Schröder/Wall, Technische Mechanik 1, Kap. 7 ·

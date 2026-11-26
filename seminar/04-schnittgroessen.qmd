@@ -27,8 +27,6 @@ format:
 1. Lösen Sie die Aufgaben **auf Papier**: Freikörperbild, Bereiche, Gleichgewicht, Verläufe skizzieren.
    [Aufgabenblatt als PDF](04-schnittgroessen.pdf)
 2. **Kontrollieren** Sie Ihre Ergebnisse mit den Ergebnissen unten.
-3. Im [interaktiven Notebook](../notebooks/schnittgroessen/index.html){target="_blank"} können Sie
-   Lasten verändern. Sagen Sie die Wirkung **vorher** voraus.
 :::
 :::
 
@@ -51,7 +49,7 @@ Vorzeichenkonvention wie in der Vorlesung: $N$ positiv als Zug, $Q$ am positiven
 
 {{< pagebreak >}}
 
-{{< include _aufgaben-04/winkel-kragtraeger.qmd >}}
+{{< include _aufgaben-04/dreigelenkrahmen.qmd >}}
 
 {{< include _aufgaben-04/kragtraeger-lastfaelle.qmd >}}
 
@@ -105,12 +103,13 @@ $M$: $-2750 \to -1625$, Sprung auf $-1125$, $0$ im Gelenk, $1125\,\text{Nm}$ an 
 
 ::: {.callout-tip collapse="true"}
 ## Aufgabe 4.6
-$F_{AH} = -1000\,\text{N}$ (nach links), $F_{AV} = 1000\,\text{N}$, $M_A = 1000\,\text{N}\cdot a$ (gegen den Uhrzeigersinn)
+Lagerreaktionen und Gelenkkräfte (in $q_0\,a$): $F_{AH} = 0{,}5$, $F_{AV} = 1{,}5$, $F_{BH} = -2{,}5$, $F_{BV} = 6{,}5$,
+$G_H = -2{,}5$, $G_V = -1{,}5$ (am linken Teil positiv angenommen)
 
-Waagerechter Stab: $N = 1000\,\text{N}$ (Zug) · $Q = 1000\,\text{N}$ ·
-$M$ linear von $-1000\,\text{N}\cdot a$ an der Einspannung bis $+1000\,\text{N}\cdot a$ an der Ecke $C$ (null bei $x_1 = a$)
+$N$ (in $q_0\,a$): linker Stiel $-1{,}5$, Riegel $-2{,}5$, rechter Stiel $-6{,}5$ ·
+$Q$ (in $q_0\,a$): linker Stiel $-0{,}5$, Riegel $1{,}5$ bis zum Gelenk, dann linear bis $-6{,}5$, rechter Stiel $2{,}5$
 
-Senkrechter Stab: $N = 0$ · $|Q| = 1000\,\text{N}$ · $M$ linear von $1000\,\text{N}\cdot a$ an der Ecke bis $0$ in $D$
+$M$ (in $q_0\,a^2$): Ecke $C$: $-6$, Gelenk: $0$, Feldmoment $\tfrac98$ bei $1{,}5\,a$ rechts vom Gelenk, Ecke $D$: $-20$
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -139,5 +138,5 @@ $M_\text{max} = \tfrac{5}{48}\,q_0\,l^2$ in der Mitte
 :::
 
 ::: {.content-visible when-format="typst"}
-*Ergebnisse zur Kontrolle und ein interaktives Notebook finden Sie auf der Kurswebseite.*
+*Ergebnisse zur Kontrolle finden Sie auf der Kurswebseite.*
 :::
